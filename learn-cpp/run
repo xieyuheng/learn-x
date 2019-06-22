@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+C="g++"
+# C="clang++"
+L=-lstdc++fs
+
+run () {
+
+    time $C $L -o $1 $1.cpp && ./$1 && rm $1
+}
+
+run $1

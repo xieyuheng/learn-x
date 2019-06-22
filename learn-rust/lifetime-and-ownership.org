@@ -1,0 +1,165 @@
+#+title: lifetime and ownership
+
+* resource lifetime
+
+  #+begin_src rust
+  fn string_lifetime() {
+      let s = String::from("hi!");
+      // do something with s ...
+  } // s's memory is freed here
+
+  fn resource_lifetime() {
+      let mut f = File::open("/tmp/log.txt").unwrap();
+      // do something with f ...
+  } // f's file is freed here
+
+  // memory is just resource
+  #+end_src
+
+* ownership of resources
+
+  #+begin_src rust
+  fn get_strange() -> String {
+      let s = String::from("hi!");
+      s // last value willbe returned
+  } // s's memory is not freed
+
+  fn example() {
+      let strange = get_strange();
+      // s's memory is now owned by strange
+  } // strange's memory is freed here
+  #+end_src
+
+* ownership rules
+
+  1. each value in rust has a variable that’s called its owner.
+
+     - thus it is all about names.
+
+  2. there can only be one owner at a time.
+
+  3. when the owner goes out of scope, the value will be dropped.
+
+* borrow -- passing ownership
+
+*** [note] function call
+
+    - function call do bindings,
+      which can be viewed as let bindings in a new block.
+      - x -
+        or say,
+        let bindings can be implemented by unnamed function call.
+
+    - when call a function on some data,
+      the data is either moved or copied to the function,
+      depending on the type of the function.
+
+*** value can not be used after move
+
+    #+begin_src rust
+    fn hello() {
+        let s = String::from("hi");
+        hype(s); // value of s moved to hype
+        println!("{}", s); // can not use s here
+    }
+
+    fn hype(s: String) {
+        println!("{}!!!", s);
+    }
+    #+end_src
+
+*** explicit clone
+
+    #+begin_src rust
+    fn hello() {
+        let s = String::from("hi");
+        hype(s.clone());
+        println!("{}", s);
+    }
+
+    fn hype(s: String) {
+        println!("{}!!!", s);
+    }
+    #+end_src
+
+*** borrow
+
+    #+begin_src rust
+    fn hello() {
+        let s = String::from("hi");
+        hype(&s); // hype borrows s
+        println!("{}", s);
+    }
+
+    fn hype(s: &String) {
+        // borrowed value will be immutable
+        //   read  -- ok
+        //   write -- not allowed
+        println!("{}!!!", s);
+    }
+    #+end_src
+
+*** mut borrow
+
+    #+begin_src rust
+    fn hello() {
+        let mut s = String::from("hi");
+        hype(&mut s);
+        println!("{}", s);
+    }
+
+    fn hype(s: &mut String) {
+        // if explicitly expressed
+        // borrowed value can be mutable
+        //   read  -- ok
+        //   write -- ok
+        s.push_str("!!!");
+    }
+
+    //// inline function call
+
+    fn hello() {
+        let mut s = String::from("hi");
+        {
+            let s: &mut String = &mut s;
+            s.push_str("!!!");
+        }
+        println!("{}", s);
+    }
+    #+end_src
+
+*** borrow in block
+
+    #+begin_src rust
+    fn immutable_borrow() {
+        let mut s = String::from("hi");
+        {
+            let borrowed = &s;
+            println!("{}", s); // read -- ok
+            println!("{}", borrowed); // ok
+            // s.truncate(1); // write -- not allowed
+        }
+        s.truncate(1); // write -- ok
+        println!("{}", s);
+    }
+
+    fn mutable_borrow() {
+        let mut s = String::from("hi");
+        {
+            let mutably_borrowed = &mut s;
+            println!("{}", s); // read -- not allowed
+            // not allowed because outer block might write it
+            println!("{}", mutably_borrowed); // ok
+        }
+        s.truncate(1); // write -- ok
+        println!("{}", s);
+    }
+    #+end_src
+
+*** [note] principles
+
+    - if you can *read* something,
+      no one else can be *writing* it.
+
+    - if you can *writing* something,
+      no one else can be *reading* or *writing* it.

@@ -1,0 +1,180 @@
+#+title: unnamed
+
+* lifetime is not only about borrow or not
+
+  - when a function ends
+
+    data bound in its local variables
+    will be auto freed,
+
+    data returned into data-stack by this function
+    will not be auto freed.
+
+    thus the same data can not be both in local variable
+    and returned in stack.
+
+  - it is not enough to know
+    whether we should free a argument or not
+
+    #+begin_src rust
+    struct Bar;
+
+    fn g<'a, 'b>(a: &'a Bar, b: &'b Bar) -> &'a Bar {
+        a
+    }
+
+    // fn g<'a, 'b>(a: &'a Bar, b: &'b Bar) -> &'a Bar {
+    //     b
+    // }
+
+    fn f(a: &Bar) -> &Bar {
+        let b = Bar;
+        g(a, &b)
+        // without the information
+        //   about lifetime of g's arguments
+        // we can not know whether it is safe
+        //   to free b at the end of f
+        // if g returns a, it is safe to free b
+        // if g returns b, it is not safe to free b
+    }
+
+    fn main() {
+        let a = Bar;
+        f(&a);
+    }
+    #+end_src
+
+* ownership of resources -- in an unnamed way
+
+  - in the following code,
+    after takes_ownership(s)
+    s can not be used in current scope anymore
+
+  #+begin_src rust
+  let s = String::from("hi");
+  takes_ownership(s);
+  #+end_src
+
+  - this is to say,
+    value (on heap) can not have dup refs.
+    we can also do this in an unamed way :
+
+  #+begin_src jojo
+  "hi" make-new-string-on-heap
+  takes-ownership
+  #+end_src
+
+  - but we can not use dup
+
+  #+begin_src jojo
+  "hi" make-new-string-on-heap
+  dup ;; dup refs
+  takes-ownership
+  #+end_src
+
+  - in a named syntax,
+    we can say :
+
+  #+begin_src jojo
+  "hi" make-new-string-on-heap :local!
+  ;; :local owns the string
+  :local
+  ;; after then, the value is not in :local anymore
+  #+end_src
+
+  - more examples :
+
+  #+begin_src rust
+  fn main() {
+      let s1 = gives_ownership();
+      let s2 = String::from("hello");
+      let s3 = takes_and_gives_back(s2);
+  }
+  #+end_src
+
+  - unamed version :
+
+  #+begin_src jojo
+  gives-ownership
+  ;; -- String
+  "hi" make-new-string-on-heap
+  ;; -- String String
+  takes-and-gives-back
+  ;; -- String String
+  #+end_src
+
+* unnamed ownership rules
+
+  1. one value one reference
+     "been on the stack" counts as one reference
+
+  2. :local! take value on the stack
+     :local  put value back to the stack
+     after then, the ref :local is empty
+
+  3. if :local hold structured data,
+     :local.field1
+     :local.field2
+     can be used to get fields
+
+  4. at the end of function call
+     all resources hold by :local will be deep free
+
+  --
+
+  - x -
+    with "no dup refs" principle,
+    we can use 'copy' to copy structured data,
+    but how about destruction ?
+    when to destructe a string ?
+    for example, the function 'string-append'
+    must destructe its two arguments.
+
+  - k -
+    we can push this kind of destructors to primitive functions.
+
+  - x -
+    how about cons car cdr ?
+    if "no dup refs" principle is used,
+    cons can not be shared anymore.
+
+  - k -
+    yes.
+    cons can not be shared anymore.
+    just like 'string-append',
+    'cons' will claim ownership of its two arguments,
+    and deep copy is needed to copy a structured data.
+
+* examples
+
+*** list-append
+
+    #+begin_src jojo
+    (+jojo list-append (-> :ante :succ -> List)
+      (cond
+        [:ante null?] [:succ]
+        [:ante cons?] [:ante.cdr :succ list-append
+                       :ante.car swap cons]))
+
+    (+jojo list-append
+      (-> & :ante : List
+          & :succ : List
+       -- List)
+      (cond
+        [:ante null?] [:succ list-copy]
+        [:ante cons?] [:ante.cdr :succ list-append
+                       :ante.car copy swap cons]))
+    #+end_src
+
+*** list-length
+
+    #+begin_src jojo
+    (note we must be explicit about immutable borrow
+      in body of list-length
+      no 'cons' is used on fields of :list
+      thus no ownership taken)
+
+    (+jojo list-length (-> &:list -- Int)
+      (cond [:list null?] 0
+            else [:list.cdr list-length inc]))
+    #+end_src

@@ -1,0 +1,39 @@
+UNITS: 1
+a := sum
+INPUTS: 2
+CONNECTIONS: 3
+input/0 -- a/in/0
+input/1 -- a/in/1
+a/out/0 -- result
+VALUES: 3
+input/0 := 3
+input/1 := 5
+input/0 := 7
+
+// 8
+// 12
+
+
+
+UNITS: 1
+a := negate
+INPUTS: 1
+CONNECTIONS: 2
+input/0 -- a/in/0
+a/out/0 -- result
+VALUES: 1
+input/0 := -3
+
+
+
+UNITS: 1
+a := min
+INPUTS: 2
+CONNECTIONS: 3
+input/0 -- a/in/0
+input/1 -- a/in/1
+a/out/0 -- result
+VALUES: 3
+input/0 := 3
+input/1 := 5
+input/0 := 7
