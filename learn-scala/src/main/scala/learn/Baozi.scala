@@ -1,3 +1,3 @@
 package learn
 
-import com.github.xieyuheng.untyped._
+import xieyuheng.baozi.untyped._
