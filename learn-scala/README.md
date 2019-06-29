@@ -1,5 +1,11 @@
 # learn-scala
 
+## Martin Odersky
+
+- [FOSDEM 2009 Scala - A Scalable Language](https://www.youtube.com/watch?v=zqFryHC018k)
+  - In this talk the author describes the design principles of the Scala programming language,
+    which has scalability as its primary design objective.
+
 ## Misc
 
 - [The Last 10 Percent by Stefan Zeiger](https://www.youtube.com/watch?v=RmEMUwfQoSc)
