@@ -8,6 +8,9 @@
 
 - ["Working Hard to Keep It Simple" - OSCON Java 2011](https://www.youtube.com/watch?v=3jg1AheF4n0)
   - Why we need functional programming and actor model
+  - Object oriented programming is as important as functional programming
+
+- [Plain Functional Programming, 2017, at Devoxx](https://www.youtube.com/watch?v=YXDm3WHZT5g)
 
 ## Misc
 
