@@ -11,6 +11,12 @@
   - Object oriented programming is as important as functional programming
 
 - [Plain Functional Programming, 2017, at Devoxx](https://www.youtube.com/watch?v=YXDm3WHZT5g)
+  - Kleisli triples v.s. implicit function type
+  - with a reference to [Strategic Scala Style: Principle of Least Power](http://www.lihaoyi.com/post/StrategicScalaStylePrincipleofLeastPower.html)
+
+## Scala Days Conferences
+
+- [Youtube Channel](https://www.youtube.com/channel/UCOHg8YCiyMVRRxb3mJT_0Mg)
 
 ## Misc
 
