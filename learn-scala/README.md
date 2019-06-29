@@ -14,9 +14,16 @@
   - Kleisli triples v.s. implicit function type
   - with a reference to [Strategic Scala Style: Principle of Least Power](http://www.lihaoyi.com/post/StrategicScalaStylePrincipleofLeastPower.html)
 
+- [From DOT to Dotty by Martin Odersky](https://www.youtube.com/watch?v=iobC5yGRWoo)
+  - About the theoretic foundation of Scala, i.e. DOT (with dependent type restricted to path)
+  - implicit function type in dotty (scala 3.x)
+
 ## Scala Days Conferences
 
 - [Youtube Channel](https://www.youtube.com/channel/UCOHg8YCiyMVRRxb3mJT_0Mg)
+
+- Scala Days Chicago 2017
+  - [Keynote - What to Leave Implicit by Martin Odersky](https://www.youtube.com/watch?v=Oij5V7LQJsA)
 
 ## Misc
 
