@@ -25,6 +25,13 @@
 - Scala Days Chicago 2017
   - [Keynote - What to Leave Implicit by Martin Odersky](https://www.youtube.com/watch?v=Oij5V7LQJsA)
 
+## DOT (Dependent Object Type)
+
+- So called "Dependent Object Type" means dependent type restricted to path.
+
+- [DOT: Scala Types from Theory to Practice—Nada Amin](https://www.youtube.com/watch?v=fjj_fv346lY)
+  - Scala World, 2017
+
 ## Misc
 
 - [The Last 10 Percent by Stefan Zeiger](https://www.youtube.com/watch?v=RmEMUwfQoSc)
