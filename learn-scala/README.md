@@ -6,6 +6,9 @@
   - In this talk the author describes the design principles of the Scala programming language,
     which has scalability as its primary design objective.
 
+- ["Working Hard to Keep It Simple" - OSCON Java 2011](https://www.youtube.com/watch?v=3jg1AheF4n0)
+  - Why we need functional programming and actor model
+
 ## Misc
 
 - [The Last 10 Percent by Stefan Zeiger](https://www.youtube.com/watch?v=RmEMUwfQoSc)
