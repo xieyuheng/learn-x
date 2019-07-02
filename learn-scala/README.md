@@ -27,7 +27,7 @@
 
 ## Slick
 
-- [Polymorphic record types in a lifted enbedding - by Stefan Zeiger](https://www.youtube.com/watch?v=tS6N5AaZTLA)
+- [Polymorphic record types in a lifted embedding - by Stefan Zeiger](https://www.youtube.com/watch?v=tS6N5AaZTLA)
   - Scala Days New York, 2016
   - an overview of the "lifted embedding" at the core of the Scala DSL in Slick.
   - "embedding" means designing AST and writing interpreter in scala
