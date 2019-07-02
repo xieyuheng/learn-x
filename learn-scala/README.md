@@ -32,7 +32,7 @@
   - an overview of the "lifted embedding" at the core of the Scala DSL in Slick.
   - "embedding" means designing AST and writing interpreter in scala
   - "lifted" means `T` to `F[T]`
-  - "lifted embedding" is a tech to enable type check of target language in scala
+  - "lifted embedding" is a tech to enable type check of target language in scala's type system
 
 ## DOT (Dependent Object Type)
 
