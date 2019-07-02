@@ -1,5 +1,9 @@
 # learn-scala
 
+## Youtube Channels
+
+- [Scala Days Conferences](https://www.youtube.com/channel/UCOHg8YCiyMVRRxb3mJT_0Mg)
+
 ## Martin Odersky
 
 - [FOSDEM 2009 Scala - A Scalable Language](https://www.youtube.com/watch?v=zqFryHC018k)
@@ -18,12 +22,17 @@
   - About the theoretic foundation of Scala, i.e. DOT (with dependent type restricted to path)
   - implicit function type in dotty (scala 3.x)
 
-## Scala Days Conferences
+- [Keynote - What to Leave Implicit by Martin Odersky](https://www.youtube.com/watch?v=Oij5V7LQJsA)
+  - Scala Days Chicago 2017
 
-- [Youtube Channel](https://www.youtube.com/channel/UCOHg8YCiyMVRRxb3mJT_0Mg)
+## Slick
 
-- Scala Days Chicago 2017
-  - [Keynote - What to Leave Implicit by Martin Odersky](https://www.youtube.com/watch?v=Oij5V7LQJsA)
+- [Polymorphic record types in a lifted enbedding - by Stefan Zeiger](https://www.youtube.com/watch?v=tS6N5AaZTLA)
+  - Scala Days New York, 2016
+  - an overview of the "lifted embedding" at the core of the Scala DSL in Slick.
+  - "embedding" means designing AST and writing interpreter in scala
+  - "lifted" means `T` to `F[T]`
+  - "lifted embedding" is a tech to enable type check of target language in scala
 
 ## DOT (Dependent Object Type)
 
