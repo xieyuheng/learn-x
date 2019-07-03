@@ -30,9 +30,10 @@
 - [Polymorphic record types in a lifted embedding - by Stefan Zeiger](https://www.youtube.com/watch?v=tS6N5AaZTLA)
   - Scala Days New York, 2016
   - an overview of the "lifted embedding" at the core of the Scala DSL in Slick.
-  - "embedding" means designing AST and writing interpreter in scala
-  - "lifted" means `T` to `F[T]`
   - "lifted embedding" is a tech to enable type check of target language in scala's type system
+    - "embedding" means designing AST and writing interpreter in scala
+    - "lifted" means `T` to `F[T]`
+    - I would rather writing type checker by myself, than using type related tricks.
 
 ## DOT (Dependent Object Type)
 
