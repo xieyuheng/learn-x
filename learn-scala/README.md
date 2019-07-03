@@ -9,7 +9,12 @@
 - [Essential Scala: Six Core Principles for Learning Scala](https://www.youtube.com/watch?v=J8wUy1XxL5o)
   - Essential Keyboard Cat
   - discuss six fundamental concepts that underly effective Scala; How can programmers quickly and effectively learn to write idiomatic Scala?
-
+    - Expressions, types, and values
+    - Objects and classes
+    - Algebraic data types
+    - Structural recursion
+    - Sequencing computations
+    - Type classes
 
 ## Martin Odersky
 
