@@ -4,6 +4,11 @@
 
 - [Scala Days Conferences](https://www.youtube.com/channel/UCOHg8YCiyMVRRxb3mJT_0Mg)
 
+## Introduction
+
+- [Essential Scala: Six Core Principles for Learning Scala](https://www.youtube.com/watch?v=J8wUy1XxL5o)
+  - discuss six fundamental concepts that underly effective Scala; How can programmers quickly and effectively learn to write idiomatic Scala?
+
 ## Martin Odersky
 
 - [FOSDEM 2009 Scala - A Scalable Language](https://www.youtube.com/watch?v=zqFryHC018k)
