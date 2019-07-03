@@ -33,7 +33,6 @@
   - "lifted embedding" is a tech to enable type check of target language in scala's type system
     - "embedding" means designing AST and writing interpreter in scala
     - "lifted" means `T` to `F[T]`
-    - I would rather writing type checker by myself, than using type related tricks.
 
 ## DOT (Dependent Object Type)
 
