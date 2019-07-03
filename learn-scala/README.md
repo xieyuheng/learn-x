@@ -15,6 +15,9 @@
     - Structural recursion
     - Sequencing computations
     - Type classes
+  - Use type class, when you need common behavior, but do not have (useful) common type.
+    (to achieve polymorphism without class hierarchy)
+    (so called ad-hoc polymorphism)
 
 ## Martin Odersky
 
