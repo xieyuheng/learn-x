@@ -58,6 +58,18 @@
 - [DOT: Scala Types from Theory to Practice—Nada Amin](https://www.youtube.com/watch?v=fjj_fv346lY)
   - Scala World, 2017
 
+## Type System
+
+- [Daniel Beskin at #ScalaUA - Compile Time Logic Programming in Scala](https://www.youtube.com/watch?v=wHrdrRvC1Wg)
+  - implicitly searching type is like prolog's searching
+    | prolog           | scala type system                                            |
+    |------------------|--------------------------------------------------------------|
+    | atom and functor | trait with or without type arguments                         |
+    | fact             | implicit value                                               |
+    | rule             | chained implicit (implicit function with implicit arguments) |
+  - Do not be afraid of complex type, view them as prolog relations.
+  - Examples: `CanBuildFrom`, implicit instances of typeclasses.
+
 ## Misc
 
 - [The Last 10 Percent by Stefan Zeiger](https://www.youtube.com/watch?v=RmEMUwfQoSc)
