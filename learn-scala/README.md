@@ -69,8 +69,11 @@
     | fact             | implicit value                                               |
     | rule             | chained implicit (implicit function with implicit arguments) |
 
-  - Do not be afraid of complex type, view them as prolog relations.
-  - Examples: `CanBuildFrom`, implicit instances of typeclasses.
+  - read chained implicit backward and think of prolog.
+  - Examples:
+    - `CanBuildFrom`
+    - implicit instances of typeclasses
+    - Akka stream graph's `ClosedShape`
 
 ## Misc
 
