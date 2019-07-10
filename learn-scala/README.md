@@ -40,6 +40,8 @@
 - [Keynote - What to Leave Implicit by Martin Odersky](https://www.youtube.com/watch?v=Oij5V7LQJsA)
   - Scala Days Chicago 2017
 
+- [ScalaUA 2019 - Video Q&A session with Martin Odersky, Creator of Scala, EPFL, Lightbend](https://www.youtube.com/watch?v=wm2DhYrZVno)
+
 ## Slick
 
 - [Polymorphic record types in a lifted embedding - by Stefan Zeiger](https://www.youtube.com/watch?v=tS6N5AaZTLA)
