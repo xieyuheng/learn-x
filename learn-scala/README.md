@@ -75,6 +75,13 @@
     - implicit instances of typeclasses
     - Akka stream graph's `ClosedShape`
 
+## Web App
+
+- [Monadic Logging and You - NE Scala 2016](https://www.youtube.com/watch?v=t-YX55ZF4g0)
+  - log without sync
+  - log less
+  - when to log ?
+
 ## Misc
 
 - [The Last 10 Percent by Stefan Zeiger](https://www.youtube.com/watch?v=RmEMUwfQoSc)
