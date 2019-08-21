@@ -101,4 +101,24 @@ object selecting_data extends App {
     .quick
     .unsafeRunSync
 
+  sql"select code, name, population, gnp from country"
+    .query[(Code, Country2)]
+    .stream.take(5)
+    .compile.toList
+    .map(_.toMap)
+    .quick
+    .unsafeRunSync
+
+  val p: Stream[IO, Country2] = {
+    sql"select name, population, gnp from country"
+      .query[Country2] // Query0[Country2]
+      .stream          // Stream[ConnectionIO, Country2]
+      .transact(xa)    // Stream[IO, Country2]
+  }
+
+  p.take(5)
+    .compile.toVector
+    .unsafeRunSync
+    .foreach(println)
+
 }
