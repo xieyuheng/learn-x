@@ -21,3 +21,8 @@ libraryDependencies ++= Seq(
   "org.tpolecat" %% "doobie-specs2" % doobieVersion,
   "org.scalatest" %% "scalatest" % "3.0.8" % "test",
 )
+
+enablePlugins(JavaAppPackaging)
+resolvers += Resolver.sonatypeRepo("releases")
+addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.3")
+addCompilerPlugin("org.typelevel" % "kind-projector" % "0.10.3" cross CrossVersion.binary)
