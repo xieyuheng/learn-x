@@ -91,4 +91,14 @@ object selecting_data extends App {
     .quick
     .unsafeRunSync
 
+  case class Code(code: String)
+  case class Country2(name: String, pop: Int, gnp: Option[Double])
+
+  sql"select code, name, population, gnp from country"
+    .query[(Code, Country2)]
+    .stream
+    .take(5)
+    .quick
+    .unsafeRunSync
+
 }
