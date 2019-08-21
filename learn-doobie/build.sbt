@@ -1,6 +1,9 @@
 scalaVersion := "2.12.9"
 
 scalacOptions ++= Seq(
+  "-opt:l:method",
+  "-opt:l:inline",
+  "-opt-inline-from:**",
   "-Ypartial-unification",
   "-deprecation",
   "-encoding", "UTF-8",
