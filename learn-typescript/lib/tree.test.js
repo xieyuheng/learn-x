@@ -22,12 +22,12 @@ function height(tree) {
         return 1;
     else if (tree instanceof Tree.Branch) {
         let { left, right } = tree;
-        return Math.max(height(left), height(right));
+        return 1 + Math.max(height(left), height(right));
         // NOTE alternative style:
-        //   return Math.max(height(tree.left), height(tree.right))
+        //   return 1 + Math.max(height(tree.left), height(tree.right))
         // NOTE alternative style:
         //   let branch = tree
-        //   return Math.max(height(branch.left), height(branch.right))
+        //   return 1 + Math.max(height(branch.left), height(branch.right))
     }
     else
         throw new Err.Unhandled(tree);
