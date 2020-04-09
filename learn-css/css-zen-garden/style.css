@@ -1,1245 +1,1001 @@
-/* css Zen Garden submission 216 - 'Fountain Kiss', by Jeremy Carlson, http://jeremycarlson.com  */
+/* css Zen Garden submission 214 - 'Verde Moderna', by Dave Shea, http://www.mezzoblue.com/ */
 /* css released under Creative Commons License - http://creativecommons.org/licenses/by-nc-sa/1.0/  */
-/* All associated graphics copyright 2013, Jeremy Carlson  */
-
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    CSS Zen Garden 2013
-
-    Theme: Fountain Kiss
-    by Jeremy Carlson
-    @eyesofjeremy :: http://jeremycarlson.com
-
-    A theme inspired by an enchanted summer evening
-    at the end of a fine Bumbershoot in Seattle.
+/* All associated graphics copyright 2013, Dave Shea */
 
 
-             _.===._
-          .oooooooooo._
-        .oooooooooooooo.  .=oooo=.._
-       .oooooooooooooooo.ooooooooooo:.
-       .oooooooooooooooooooooooooooooo.
-        ooooooooooooooooooooooooooooooo
-        :oooooooooooooooooooooooooooooo
-         ooooooooooooooooooooooooooooo:
-          :oooooooooooooooooooooooooo:
-            ooooooooooooooooooooooo=
-             :oooooooooooooooooo=~
-               ~oooooooooooo=~
-                 ooooooo=~
-                   ~
+/* IMPORTANT */
+/* This design is not a template. You may not reproduce it elsewhere without the
+   designer's written permission. However, feel free to study the CSS and use
+   techniques you learn from it elsewhere. */
 
 
-    css released under Creative Commons License
-    http://creativecommons.org/licenses/by-nc-sa/1.0/
+/*
+        Verde Moderna by Dave Shea
 
-    =Typography
+        10 Years. http://mezzoblue.com/archives/2013/05/07/10_years/
 
-    First, let's talk type, colors, that kind of thing.
-    --------------------------------------------------    */
 
-/*  Ultra & Montserrat: a charming pair. */
-@import url(http://fonts.googleapis.com/css?family=Ultra|Montserrat:700);
+        We've come a long way. Here it is, the first of what will hopefully be
+        many more modern designs in the CSS Zen Garden.
 
-body {
-    font-family: Georgia, serif;
-    line-height: 1.4;
-    padding: 0;
-    margin: 0;
-    }
+        With this design, I've attempted to hit as many of today's front end
+        buzzwords as possible. It's a mobile-first, responsive layout that was
+        designed in the browser from start to finish. CSS3 is used liberally
+        with fallbacks where necessary.
 
-body, .preamble h3 {
-    color: #724;
-    }
+        All photos are mine, and were taken in the Japanese Garden at the
+        Huntington Botanical Garden in Southern California.
 
-abbr { border: none }
 
-h3, .design-archives a:before {
-    font-size: 1.1875em;
-}
-/* These selection declarations have to be separate.
-   No text-shadow: twitter.com/miketaylr/status/12228805301
+        Other production notes:
+
+        * Vector assets are used where appropriate. The logo is an SVG file,
+          the icons are a custom web font built with icomoon.io
+
+        * The column effect is a CSS gradient instead of a background image.
+          By forcing a sharp transition at 66%, we can simulate columns. The way
+          Chrome rounds gradient values causes the columns to jump unexpectedly when
+      the window is resized, which means that using an equal padding or width
+      value doesn't align the way you think it would. That forced a bit of
+      extra contortion to get the header and body columns perfectly lined up.
+
+        * Various sidebar H3s were hidden with display:none; This was a design
+          decision. Their inclusion seemed extraneous. Same goes for HTML/CSS
+      download links at low screen sizes, presumably that screen is a phone
+      and can't download the files anyway.
+
+        * The sidebar positioning style is (necessarily) quite a mess on wider
+      windows, especially the resource list. When flexbox is a bit closer to
+      usable, maybe I'll take another crack at fixing that up.
+
+        * A more logical place for the design list to appear in the mobile
+          version would have been up closer to the top, possibly disclosed with a
+      menu toggle of some kind. Not something that's easily doable with CSS
+      alone, if you don't want to rely on hovers.
+
+        * The medium- and low-res versions don't differ that much; I may still push
+          the tablet layout a bit further, it doesn't quite feel right.
+
+        * Parallax scrolling isn't doable without Javascript so you won't find it
+          in this design. I was able to use a bit of multiple background-position
+          trickery to create a slightly more interesting scrolling effect.
+
 */
-::-moz-selection{ background: #fff; color:#804; text-shadow: none; }
-::selection { background:#fff; color:#804; text-shadow: none; }
 
-a abbr { border-bottom: none }
 
-a:link, p:hover a abbr { color: #804 }
-.sidebar a:link {
-    color: #550028;
-}
-.sidebar .designer-name:link, a:visited { color: #935 }
-.sidebar .designer-name:visited { color: #b68 }
+@import url(http://fonts.googleapis.com/css?family=Julius+Sans+One|Libre+Baskerville:400,400italic);
 
-a:hover, p:hover a:hover abbr, .sidebar a:hover, .sidebar .designer-name:hover {
-    color: #000;
-    text-shadow: 2px 2px 0 rgba(255,255,255,0.51);
-    }
-
-p:hover abbr, h3:hover abbr {
-    color: #000;
-    }
-
-.summary p:hover abbr, footer a:hover {
-    color: #fff;
-    text-shadow: none;
+/* base CSS */
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-h1, h2, h3, .design-archives a:before, footer a,
-footer:after, .supporting p:nth-child(2)::first-letter {
-    font-family: 'Ultra', 'Arial Black', serif;
-    -webkit-font-smoothing: antialiased;
-    font-weight: normal;
-    font-style: normal;
+html, body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  color: #325050;
+  background: #fff;
+  font-family: 'Libre Baskerville', sans-serif;
+  font-size: 70%;
 }
 
 a {
-    font-family: 'Montserrat', Verdana, Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    font-style: normal;
-    font-size: .875em;
-    text-decoration: none;
-    text-transform: uppercase;
+  color: #0d8ba1;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+  text-decoration: none;
+}
+  a:visited {
+    color: #1a5952;
+  }
+  a:hover, a:focus {
+    color: #0599c2;
+    text-decoration: underline;
+  }
+abbr {
+  border: none;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.01em;
+}
+header {
+  height: 230px;
+  padding: 20px 0 70px 0;
+
+  background: #2d6360 50% 0 url(huntington.jpg) no-repeat; /* old IE fallback */
+
+  background-attachment: fixed, fixed, fixed, scroll;
+  background-image: url(contours.png), url(noise.png), url(gridlines.png), url(huntington.jpg);
+  background-position: 0 0, 0 0, -5px -25px, 0 50%;
+  background-repeat: repeat, repeat, repeat, no-repeat;
+  background-size: auto, auto, auto, cover;
+  text-align: center;
 }
 
-.supporting p:nth-child(2)::first-letter {
-    font-size: 2.8em;
-    line-height: 0.8;
-    float: left;
-    margin: .1em .1em 0 -.2em;
-    color: #804;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+
+h1, h2 {
+  padding: 0 10%;
+  margin: 0;
+  color: #fff;
+  font-weight: normal;
 }
-.benefits p:nth-child(2)::first-letter, .requirements p:nth-child(2)::first-letter {
-    margin-left: -.4em;
+h1 {
+  padding-top: 0;
+  padding-bottom: 5px;
+  border-bottom: none;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 3.2em;
+  text-transform: uppercase;
+}
+h1::before {
+  display: inline-block;
+  position: relative;
+  top: 20px;
+  content: "";
+  width: 80px;
+  height: 80px;
+  margin: -20px 20px 0 0;
+  background: url(enso.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.6;
+}
+h2 {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 30px;
+  border-top: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 1.6em;
+  font-style: italic;
+}
+h2::before {
+  content: " ";
+  padding: 50px;
+}
+h3 {
+  margin: 2em 0 0 0;
+  color: #2e484c;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 1.8em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+p {
+  margin: 0.75em 0;
+  line-height: 2;
 }
 
-h3:before, h3:after, footer:before {
-    font-family: Georgia;
-    font-style: italic;
-}
-
-footer a {
-    text-transform: lowercase;
-}
-h1, h3 {
-    color: #fff;
-}
-.supporting h3 {
-    background-color: #804;
-}
-
-.sidebar h3 {
-    color: #fff;
-    background: #5b0a2a;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.summary p, .preamble {
-    font-size: .875em;
-}
-
-header[role=banner] {
-    font-size: 30px;
-}
-
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    =Layout
-
-    All righty then. Let's roll.
-
-    First, backgrounds + set up the page wrapper
-    --------------------------------------------------    */
-
-body {
-    text-align: right;
-    max-width: 540px;
-    margin-left: 40px;
-}
-@media screen and (max-width: 420px) { body { margin-left: 0 } }
 
 .page-wrapper {
-    position: relative;
-    max-width: 460px;
-    padding: 30px 0 0;
-    margin: 0 0 0 auto;
-    text-align: left;
-    -webkit-box-shadow: 0 0 24px rgba(0,0,0,0.3);
-       -moz-box-shadow: 0 0 24px rgba(0,0,0,0.3);
-            box-shadow: 0 0 24px rgba(0,0,0,0.3);
+  position: relative;
 }
-@media screen and (max-width: 580px) { .page-wrapper { z-index: 3 } }
-
-@media screen and (min-width: 581px) {
-    body {
-        text-align: left;
-        max-width: 100%;
-    }
-    .page-wrapper {
-        margin-left: 80px;
-    }
+.summary, .preamble {
+  width: 80%;
+  margin: 0 auto;
 }
-
-body, .page-wrapper:before, .page-wrapper:after {
-    background: #3c1d08 url('kiss.jpg') no-repeat fixed 50% top;
-}
-.page-wrapper, .intro:after, .supporting div, .supporting footer {
-    background: #fceec6 url('kiss_light.jpg') no-repeat fixed 50% top;
-}
-/*  Somewhat torn about these bg images.
-
-    The large-sized images are not ideal for mobile devices.
-    But serving up a smaller image really requires background-size,
-    and this compromises the design severely on older browsers.
-*/
-
-.page-wrapper:before {
-    content: ' ';
-    position: fixed;
-    display: block;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-}
-
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    =Intro
-    Note: IE<9 ignores styles for HTML5 elements. .intro is one.
-    --------------------------------------------------    */
-
-.intro {
-    padding: 96px 0 36px;
-    position: relative;
-    text-align: center;
-    margin: -30px 0 0;
-    background: rgba(250,243,204,0.6);
-    background:    -moz-radial-gradient(center, ellipse cover,  rgba(249,249,249,1) 0%, rgba(250,223,154,0.4) 100%); /* FF3.6+ */
-    background:        -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(249,249,249,1)), color-stop(100%,rgba(250,223,154,0.4))); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover,  rgba(249,249,249,1) 0%,rgba(250,223,154,0.4) 100%); /* Chrome10+,Safari5.1+ */
-    background:      -o-radial-gradient(center, ellipse cover,  rgba(249,249,249,1) 0%,rgba(250,223,154,0.4) 100%); /* Opera 12+ */
-    background:     -ms-radial-gradient(center, ellipse cover,  rgba(249,249,249,1) 0%,rgba(250,223,154,0.4) 100%); /* IE10+ */
-    background:         radial-gradient(ellipse at center,  rgba(249,249,249,1) 0%,rgba(250,223,154,0.4) 100%); /* W3C */
-    border-color: rgba(250,223,154,0.3);
-    border-style: solid;
-    -webkit-transition: all .2s ease;
-       -moz-transition: all .2s ease;
-        -ms-transition: all .2s ease;
-         -o-transition: all .2s ease;
-            transition: all .2s ease;
-}
-
-.intro:after {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-}
-
-.summary, .preamble, header[role=banner] {
-    text-align: center;
-}
-
-.preamble {
-    padding: 0 20px;
-}
-
-header[role=banner] {
-    margin: 0 auto;
-    width: 7.1em;
-    position: relative;
-    z-index: 1;
-    top: -186px;
+.supporting h3, .supporting p {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .summary {
-    padding: 0 3em .1em;
+  padding-top: 2em;
 }
 
-.summary p:last-child {
-    padding: .4em .5em;
-    border-top: 1px solid rgba(255,255,255,0.6);
-    border-bottom: 1px solid rgba(255,255,255,0.6);
+
+/* intro block links -- download HTML/CSS */
+.intro a, .intro a:visited {
+  position: relative;
+  display: inline-block;
+  padding: 1px 10px 1px 32px;
+  margin: -1px -10px -1px -6px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+
+  color: #809b7e;
+  font-family: 'Julius Sans One', sans-serif;
+  text-transform: uppercase;
+}
+.intro a:hover, .intro a:focus {
+  z-index: 2;
+  color: #fff;
+  background: #3d8a9f;
+  text-decoration: none;
 }
 
-.summary p {
-    position: relative;
-    margin-top: 0;
-    margin-bottom: 0;
+.intro a::before {
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  padding: 2px;
+  color: #a9b995;
+  background: #d9e1cd;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+
+  content: "D";
+  font-size: 16px;
+  text-indent: 0;
+
+
+  /* icomoon.io defaults */
+  font-family: 'verdemoderna';
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
 }
-
-.summary p:first-child {
-    margin-top: 60px;
-    padding: 30px .5em 1em;
-}
-.summary p:first-child:before {
-    content: ' ';
-    height: 60px;
-    width: 70px;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    margin-left: -35px;
-    display: block;
-    background: url('heart-and-lips.png') no-repeat 50% top;
-}
-
-.preamble h3 {
-    padding-bottom: 60px;
-    background: url('heart-and-lips.png') no-repeat 50% bottom;
-}
-
-.preamble h3:before, .preamble h3:after {
-    display: block;
-}
-
-.preamble h3:before {
-    content: 'when walking on ';
-}
-.preamble h3:after {
-    content: ' donâ€™t forget to kiss a stranger.';
-}
-
-/* h1 - "CSS Zen Garden" */
-h1 {
-    position: fixed;
-    left:-.3em;
-    top:0;
-    width: 1em;
-    font-size: 48px;
-    line-height: .8;
-    text-align: center;
-    text-transform: uppercase;
-    word-wrap: break-word;
-    text-shadow: 0 0 48px rgba(0,0,0,0.3);
-    -webkit-transition: all 0.2s ease-out;
-       -moz-transition: all 0.2s ease-out;
-        -ms-transition: all 0.2s ease-out;
-         -o-transition: all 0.2s ease-out;
-            transition: all 0.2s ease-out;
-}
-@media screen and (min-height: 650px) { h1 { font-size: 60px } }
-@media screen and (min-height: 800px) { h1 { font-size: 72px } }
-@media screen and (min-height: 950px) { h1 { font-size: 96px } }
-@media screen and (min-height: 1200px) { h1 { font-size: 108px } }
-@media screen and (max-width: 480px) {
-    .intro {
-        z-index: 3;
-    }
-    h1 {
-        width: auto;
-        left: 0;
-        right: 0;
-        top: -22px;
-        font-size: 24px;
-        background: #804;
-        z-index: 3;
-        padding: 8px 0;
-        -webkit-box-shadow: 0 0 8px #000;
-           -moz-box-shadow: 0 0 8px #000;
-                box-shadow: 0 0 8px #000;
-
-    }
-    .summary {
-        padding: 0 0 .1em;
-    }
-}
-
-/* h2 - "The Beauty..." */
-h2 {
-    text-align: center;
-}
-
-@media screen and (min-width: 240px) {
-    h2 {
-        position: absolute;
-        top: 3em;
-        right: 0;
-        left: 0;
-        margin: 0 auto;
-        font-size: 1em;
-        width: 10em;
-        height: 6em;
-        clip:rect(0,7.2em,6em,-.5em);
-        line-height: 2;
-        text-align: left;
-        color:#fff;
-        text-shadow: 0 0 4px rgba(68,0,32,0.6);
-        filter: progid:DXImageTransform.Microsoft.Shadow(color='#aa3355',direction=135,strength=1);
-    }
-    h2:before {
-        content: 'of';
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        width: 6.9em;
-        text-align: center;
-        top: 1em;
-        color: rgba(136,0,68,1);
-        font-family: Georgia;
-        font-weight: bold;
-        font-style: italic;
-    }
-    /* Making little lines around the "of" */
-    h2 abbr:before, h2 abbr:after {
-        display: block;
-        content: ' ';
-        border-top: 3px solid rgb(136,0,68);
-        border-top: 3px solid rgba(136,0,68,0.7);
-        -webkit-box-shadow: 0 0 4px rgba(136,0,68,0.3);
-           -moz-box-shadow: 0 0 4px rgba(136,0,68,0.3);
-                box-shadow: 0 0 4px rgba(136,0,68,0.3);
-
-        width: 2.5em;
-        height: 0;
-        position: absolute;
-        top: 2em;
-        }
-    h2 abbr:before {
-        left: .1em;
-    }
-    h2 abbr:after {
-        right: 3.1em;
-    }
-
-}
-
-@media screen and (min-width: 840px) {
-    header[role=banner], .summary {
-        position: fixed;
-    }
-
-    header[role=banner] {
-        top: -1.7em;
-        right: 0;
-        left: 580px; /* abut page-wrapper */
-        height: 9em;
-    }
-
-    .intro { padding-top: 36px }
-
-    .summary {
-        right: 0;
-        left: 580px; /* abut page-wrapper */
-        bottom: 0;
-        padding: 0 1.2em 10px;
-    }
-
-    .summary p {
-        max-width: 26.5em;
-        margin-right: 0;
-        margin-left: auto;
-        font-family: Montserrat;
-        font-size: .75em;
-        text-shadow: 1px 1px 0 rgba(68,0,32,0.2);
-    }
-    .summary p, .summary p:last-child:after {
-        background: rgba(138,0,68,0.3);
-    }
-    .summary p:first-child {
-        -webkit-border-top-left-radius: 50%;
-        -webkit-border-top-right-radius: 50%;
-        -moz-border-radius-topleft: 50%;
-        -moz-border-radius-topright: 50%;
-        border-top-left-radius: 50%;
-        border-top-right-radius: 50%;
-    }
-    .summary p:first-child:before {
-        top: -35px;
-        -webkit-border-radius: 50%;
-           -moz-border-radius: 50%;
-                border-radius: 50%;
-        background: url('heart-and-lips.png') no-repeat 50% top, url('kiss.jpg') no-repeat fixed 50% top;
-    }
-    .summary p:last-child {
-        font-family: Georgia, serif;
-        font-style: italic;
-        border-color: rgba(255,255,255,0.3);
-    }
-    .summary p:last-child:after {
-        content: ' ';
-        height: 11px;
-        display: block;
-        position: absolute;
-        bottom: -12px;
-        left: 0;
-        right: 0;
-    }
-    .summary, .summary a {
-        color: #fff;
-    }
-
-}
-
-@media screen and (min-width: 960px) {
-    .intro {
-        padding: 36px 100px;
-        margin: 0 -52px 30px;
-        border-width: 2px;
-   }
-   .intro:before {
-        content: ' ';
-        position: absolute;
-        top: -16px;
-        left: -16px;
-        right: -16px;
-        bottom: -16px;
-        border: 2px solid rgba(250,223,154,0.4);
-   }
-    .intro, .intro:before {
-        -webkit-border-radius: 50%;
-           -moz-border-radius: 50%;
-                border-radius: 50%;
-   }
-    .intro:after {
-        top: -34px;
-        right: 50px;
-        left: 50px;
-        bottom: -32px;
-    }
-    .intro div:last-child p:last-child {
-        margin: 0 0 3em;
-    }
-
-    header[role=banner] {
-        width: auto;
-    }
-
-    h2 {
-        right: -.3em;
-        left: auto;
-    }
-}
-
-@media screen and (max-width: 480px), screen and (max-device-width: 480px) {
-    .intro {
-        padding-top: 120px;
-    }
-    header[role=banner] {
-        font-size: 24px;
-        top: -6.5em;
-    }
-}
-
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    Background Sizing for main elements
-    --------------------------------------------------    */
-
-@media screen and (min-width: 1201px) {
-    body, .page-wrapper, .page-wrapper:before, .page-wrapper:after, .intro:after, .supporting div, .supporting footer {
-        background-size: 100%; /* if wider than bg image, make those suckers grow! */
-    }
-    .summary p:first-child:before {
-        background-size: auto, 100%; /* match for keyhole */
-    }
-}
-@media screen and (min-width: 580px) and (max-width: 960px) {
-    body, .page-wrapper, .page-wrapper:before, .page-wrapper:after, .intro:after, .supporting div, .supporting footer {
-        background-position: 25% top; /* shift image for medium-tight compositions */
-    }
-    .summary p:first-child:before {
-        background-position: 50% top, 25% top; /* match for keyhole */
-    }
-}
-
-@media screen and (max-device-width: 1024px) {
-    /*
-    Necessary b/c Mobile Safari does not support fixed background positioning
-    http://stackoverflow.com/questions/3011226/using-background-attachmentfixed-in-safari-on-the-ipad
-    */
-    .intro:after {
-        background: none;
-    }
-    .intro, .supporting >div, .supporting footer, .page-wrapper {
-        background: rgba(250,223,154,0.6);
-    }
-}
-@media screen and (max-device-width: 600px) { body, .page-wrapper:before { background-size: 800px } }
-@media screen and (max-device-width: 400px) { body, .page-wrapper:before { background-size: 600px } }
-
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    =Supporting Content
-
-    Primarily backgrounds and added content on h3s
-
-    Because we want the bgs to show up on scrolling,
-    background-position does get a little involved,
-    with a fair amount of fine-tuning required.
-    --------------------------------------------------    */
-
-.supporting {
-    position: relative;
-    z-index: 1;
-}
-
-.supporting h3 {
-    margin: 0;
-    padding: 1em 20px;
-}
-.supporting h3, .supporting footer:before {
-    -webkit-box-shadow: inset 0 0 18px rgba(70,15,35,0.8);
-       -moz-box-shadow: inset 0 0 18px rgba(70,15,35,0.8);
-            box-shadow: inset 0 0 18px rgba(70,15,35,0.8);
-
-    background-image: url('story.gif');
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-}
-.explanation h3 { background-position: 300px 200px }
-.participation h3 { background-position: -600px 200px }
-.benefits h3 { background-position: -1200px 250px }
-.requirements h3 { background-position: -2200px 250px }
-.supporting footer:before { background-position: -2900px 300px }
-
-/*  If a wider screen, shift the images
-    (footer:before gets special SPECIAL treatment, below) */
-@media screen and (min-width: 1360px) {
-    .explanation h3 { background-position: 550px 200px }
-    .participation h3 { background-position: -450px 200px }
-    .benefits h3 { background-position: -950px 250px }
-    .requirements h3 { background-position: -1980px 250px }
-}
-
-/*  If a taller screen, reveal the images lower */
-@media screen and (min-height: 800px) {
-    .explanation h3 { background-position: 300px 350px }
-    .participation h3 { background-position: -600px 350px }
-    .benefits h3 { background-position: -1200px 350px }
-    .requirements h3 { background-position: -2200px 350px }
-}
-
-/*  If a wider AND taller screen, well... */
-@media screen and (min-width: 1360px) and (min-height: 800px) {
-    .explanation h3 { background-position: 550px 350px }
-    .participation h3 { background-position: -450px 350px }
-    .benefits h3 { background-position: -950px 350px }
-    .requirements h3 { background-position: -1980px 350px }
-}
-
-/* Target smaller screens ... and the iPad, since mobile safari does not support bg attach: fixed */
-@media screen and (max-width: 580px), screen and (max-device-width: 580px),
-screen and (device-width: 768px), screen and (device-width: 1024px) {
-    .supporting h3, .supporting footer:before {
-        background-size: 3375px; /* 90% size */
-        background-attachment: scroll;
-        min-height: 4em;
-    }
-    .explanation h3 { background-position: 200px -10px }
-    .participation h3 { background-position: -620px 0 }
-    .benefits h3 { background-position: -1150px 0 }
-    .requirements h3 { background-position: -2080px 5px }
-    .supporting footer:before { background-position: -2700px -20px }
-}
-
-/* target smallest screen setup */
-@media screen and (max-width: 420px) {
-    .supporting h3, .supporting footer:before {
-        background-size: 2625px; /* 75% size */
-    }
-    .explanation h3 { background-position: 120px 10px }
-    .participation h3 { background-position: -500px 20px }
-    .benefits h3 { background-position: -930px 0 }
-    .requirements h3 { background-position: -1600px 10px }
-    .supporting footer:before { background-position: -2100px -15px }
-}
-
-.explanation h3, .benefits h3 {
-    padding-right: 60%;
-}
-.explanation h3:before {
-    content: 'she asked ';
-    display: block;
-}
-.supporting .participation h3, .supporting .requirements h3 {
-    text-align: right;
-    padding-left: 55%;
-}
-@media(max-width: 480px) {
-    .explanation h3, .benefits h3 {
-        padding-right: 40%;
-    }
-    .supporting .participation h3, .supporting .requirements h3 {
-        padding-left: 40%;
-    }
-}
-.participation h3:before {
-    content: 'he requested her ';
-    display: block;
-}
-.benefits h3:before {
-    content: 'they became friends with ';
-}
-.requirements h3:before {
-    content: 'before long, though, ';
-}
-.requirements h3:after {
-    content: ' had crept in';
-}
-.supporting div {
-    padding: 0 0 3em;
-}
-
-.supporting p {
-    margin: 0;
-    padding: 1em 40px 0;
-}
-
-.supporting p:nth-child(2) {
-    padding-top: 2em;
-    background: url('letter-flourish.png') no-repeat .45em .7em;
-}
-
-div[class^=design] a, div[class^=zen] a {
-    padding: 2px 4px;
-}
-
-.supporting footer {
-    font-size: 125%;
-    position: relative;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-    border-top: 6em solid #804;
-    background: #41071e;
-}
-.supporting footer:before, .supporting footer:after {
-    display: block;
-    position: absolute;
+  .intro a:hover::before {
     color: #fff;
-    right: 20px;
+    background: #357d93;
+  }
+
+
+/* coloured cutoff */
+div.participation, div.benefits {
+  background-attachment: scroll, scroll, fixed;
+  background-color: rgba(138,188,159,0.5);
+  background-image: url(contours-opaque.png), url(gridlines-opaque.png), url(bamboo.png);
+  background-repeat: repeat, repeat, no-repeat;
+  background-size: auto, auto, cover;
+}
+/* extra padding at the cutoffs */
+div.participation {
+  padding: 3em 0;
+  margin-top: 3em;
+}
+div.benefits {
+  padding-bottom: 3em;
+  margin-bottom: 3em;
+}
+div.participation h3, div.benefits h3 {
+  margin-top: 0;
+}
+div.participation p, div.benefits p {
+  margin-bottom: 0;
 }
 
-.supporting footer:before {
-    top: -6em;
-    height: 5em;
-    right: 0;
-    left: 0;
-    text-align: right;
-    padding: 1em 20px 0;
-    content: '... and all because of a ';
+
+/* sidebar base styles */
+.sidebar {
+  background: #edf4f0;
 }
-
-.supporting footer:after {
-    top: -3.7em;
-    content: 'fountain kiss ';
-}
-
-
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    =Sidebar Styling
-
-    We are using borders liberally instead of padding
-    so iOS devices can just have an image shine through.
-    Desktop has background: fixed, but mobile Safari no likey.
-
-    Again, IE<9 ignores styles for HTML5 elements.
-    .sidebar is one. We will take advantage of that...
-    --------------------------------------------------    */
-
-.sidebar .wrapper div {
-    padding: 20px;
-}
-
-.wrapper h3 {
-    padding: 1em 20px;
-    margin: 0;
-    background: #5b0a2a url('border.png') no-repeat 50% -120px;
-}
-
 .sidebar h3 {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 30px 20px 1em;
-    margin: -20px -20px 0;
+  display: none;
+}
+.sidebar a {
+  color: #607476;
+  text-decoration: none;
+}
+  .sidebar a:hover, .sidebar a:focus {
+    color: #49968e;
+  }
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow: hidden;
 }
 
-.wrapper li {
-    padding: 3px 1em;
-    font-style: italic;
-    color: #c57e88;
-    font-size: .75em;
+
+/* shared sidebar styling */
+.design-selection ul, .zen-resources ul {
+  margin: 0;
 }
-.wrapper a, footer a {
-    font-size: 1em;
+.design-selection li, .zen-resources li {
+  float: left;
+  width: 50%;
+  padding: 1.5em 10%;
+  border-top: solid 1px #d9e3dc;
+  color: #c0cac3;
+  font-style: italic;
+}
+  .design-selection li:hover, .design-selection li:focus {
+    background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,0.5)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%); /* W3C */
+  }
+.design-selection li:nth-child(2n+1), .zen-resources li:nth-child(2n+1) {
+  clear: left;
+}
+.design-selection .design-name, .zen-resources a, li.viewall a {
+  display: block;
+  margin-bottom: 0.25em;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 1.2em;
+  font-style: normal;
+  text-transform: uppercase;
 }
 
-.design-selection li {
-    padding: 4px 1.5em 4px 1em;
-    clear: left;
-    text-align: right;
+
+/* select a design */
+.design-selection h3 {
+  display: none;
+}
+.design-selection .designer-name {
+  color: #616857;
+  font-size: 0.9em;
+  font-style: normal;
 }
 
-.design-selection li:hover {
-    background: rgba(255,255,255,0.2);
+
+
+/* archives navigation */
+.design-archives {
+  position: absolute;
+  top: 160px;
+  right: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255,255,255,0.2);
+}
+.design-archives h3 {
+  display: none;
+}
+.design-archives ul {
+  margin: 0;
+}
+.design-archives li {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  list-style: none;
+}
+.design-archives li.viewall {
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 71px;
+  line-height: 50px;
+}
+.previous, .next {
+  left: 0;
+  z-index: 3;
+}
+.next {
+  left: auto;
+  right: 0;
+}
+.design-archives a, .design-archives a:visited {
+  color: rgba(255, 255, 255, 0.65);
+}
+.design-archives a:hover, .design-archives a:focus {
+  color: #fff;
+}
+.design-archives .previous a, .design-archives .next a {
+  display: block;
+  overflow: hidden;
+  width: 70px;
+  height: 70px;
+  text-indent: 100%;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.design-archives .viewall a {
+  z-index: 2;
+  width: 100%;
+  min-height: 70px;
+  padding: 12px 0 0 0;
+  text-align: center;
+}
+.design-archives a::before {
+  position: absolute;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  text-indent: 0;
+  font-size: 44px;
+
+  /* icomoon.io defaults */
+  font-family: 'verdemoderna';
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 70px;
+  -webkit-font-smoothing: antialiased;
+}
+.design-archives .viewall a:hover, .design-archives .viewall a:focus, .design-archives .viewall a:active,
+.design-archives a:hover::before, .design-archives a:focus::before, .design-archives a:active::before {
+  background-color: rgba(255,255,255,0.25);
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+}
+.design-archives .previous a::before {
+  content: "<";
+}
+.design-archives .next a::before {
+  content: ">";
 }
 
-.design-name {
-    float: left;
-    max-width: 66%;
-    text-align: left;
-    margin: -1px -4px -4px 0;
-    padding-right: .5em;
-}
-.designer-name {
-    margin-right: -5px;
-}
 
-/* >> The Magnificent CLEARFIX << */
-.zen-resources ul:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-.zen-resources ul { display: inline-block; }
-* html .zen-resources ul { height: 1%; } /* Hides from IE-mac \*/
-.zen-resources ul { display: block; }
 
+/* resources */
+.zen-resources {
+  overflow: hidden;
+  background-color: rgba(138,188,159,0.5);
+  background-image: url(bamboo.png);
+}
 .zen-resources li {
-    width: 42%;
+  border-top: solid 1px #a0b9ad;
+  font-style: normal;
+}
+.zen-resources li:last-child {
+  float: none;
+  width: auto;
+  border-bottom: solid 1px #a0b9ad;
+}
+
+
+/* busting out the credits block */
+.requirements p:nth-child(5) {
+  padding-bottom: 2em;
+}
+.supporting .requirements {
+  float: none;
+  clear: both;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.supporting .requirements a {
+  text-decoration: none;
+}
+  .supporting .requirements a:hover, .supporting .requirements a:focus {
+    text-decoration: underline;
+  }
+.supporting .requirements h3 {
+  padding-top: 0;
+}
+.requirements p:last-child {
+  width: auto;
+  padding: 1em 12%;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.4);
+  background: #3e5d67;
+
+  background-attachment: fixed, fixed, fixed, scroll;
+  background-image: url(contours.png), url(gridlines.png), url(noise.png), url(koi.jpg);
+  background-position: 0 0, -5px -25px, 0 0, 0 50%;
+  background-repeat: repeat, repeat, repeat, no-repeat;
+  background-size: auto, auto, auto, cover;
+
+  font-size: 2em;
+  font-style: italic;
+  text-align: center;
+}
+.requirements p:last-child a {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
+}
+
+
+
+/* main footer */
+footer {
+  clear: both;
+  padding: 3em 10%;
+  color: #fff;
+  background: #134347;
+  text-align: center;
+}
+footer a {
+  display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  padding: 40px 0 0 0;
+  margin: 0 0.5em;
+  position: relative;
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: color 0.25s ease-out, box-shadow 0.25s ease-out;
+  -moz-transition: color 0.25s ease-out, box-shadow 0.25s ease-out;
+  transition: color 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+footer a:hover, footer a:focus {
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
+footer a:visited {
+  color: rgba(255, 255, 255, 0.2);
+}
+footer a::before {
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 0;
+  overflow: visible;
+  font-size: 36px;
+  text-indent: 0;
+
+  /* icomoon.io defaults */
+  font-family: 'verdemoderna';
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+  footer a.zen-validate-html::before {content: "5";}
+  footer a.zen-validate-html:hover::before, footer a.zen-validate-html:focus::before {content: "%";}
+  footer a.zen-validate-css::before {content: "3";}
+  footer a.zen-validate-css:hover::before, footer a.zen-validate-css:focus::before {content: "#";}
+  footer a.zen-license::before {content: "c";}
+  footer a.zen-license:hover::before, footer a.zen-license:focus::before {content: "C";}
+  footer a.zen-accessibility::before {content: "a";}
+  footer a.zen-accessibility:hover::before, footer a.zen-accessibility:focus::before {content: "A";}
+  footer a.zen-github::before {content: "g";}
+  footer a.zen-github:hover::before, footer a.zen-github:focus::before {content: "G";}
+
+
+
+/* low-res CSS */
+@media only screen and (max-width: 600px) {
+
+  /* these download links make approximately zero sense
+     on a phone without a user-accessible file system. */
+  .summary p:last-child {
+    display: none;
+  }
+
+  /* type adjustments */
+  h1 {
+    margin-top: 30px;
+    font-size: 2.5em;
+  }
+  h1::before {
+    width: 50px;
+    height: 50px;
+  }
+  h2::before {
+    padding: 25px;
+  }
+
+  .requirements p:last-child {
+    padding: 1em 6%;
+  }
+
+}
+
+
+@media only screen and (max-width: 500px) {
+
+  header {
+    height: 250px;
+    padding-top: 0;
+  }
+  h1 {
+    margin: 0;
+  }
+  h1::before {
+    display: block;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 0 0 0 -25px;
+    padding: 0 0 35px 0;
+  }
+  h2::before {
+    padding: 0;
+  }
+
+  .design-archives {
+    top: 180px;
+  }
+  .design-selection li, .zen-resources li {
+    padding: 1em 5%;
+  }
+
+  footer a {
+    margin: 0 0.5em;
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+
+    /* adjusting the site header type size */
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+
+    /* linearizing the design list on small screens */
+    .design-selection li, .zen-resources li {
+        float: none;
+        width: 100%;
+    }
+
+    /* adjusting footer type, icons */
+    .requirements p:last-child {
+        font-size: 1.4em;
+    }
+    footer {
+        padding: 2em 5%;
+    }
+    footer a {
+        width: 35px;
+        height: 35px;
+        padding: 35px 0 0 0;
+        margin: 0 0.5em;
+    }
+    footer a::before {
+        font-size: 32px;
+    }
+
+}
+
+
+/* mid-res CSS */
+@media only screen and (max-width: 1132px) {
+  header {
+    border-top: solid 10px rgba(19, 67, 71, 0.9);
+  }
+  p, li {
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1150px) {
+
+  .requirements p:last-child {
+    padding-bottom: 2em;
+    padding-top: 2em;
+  }
+
+  /* page footer */
+  footer {
+    padding: 3em 0;
+  }
+  footer a {
+    width: 52px;
+    height: 52px;
+    padding: 52px 0 0 0;
+    margin: 0 2em;
+  }
+  footer a::before {
+    font-size: 48px;
+  }
+}
+
+
+/* high-res CSS */
+@media only screen and (min-width: 1132px) {
+  body {
+    background: #ffffff;
+    background: -moz-linear-gradient(left,  #ffffff 0%, #ffffff 66%, #e5ede8 66%, #e5ede8 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(66%,#ffffff), color-stop(66%,#e5ede8), color-stop(100%,#e5ede8));
+    background: -webkit-linear-gradient(left,  #ffffff 0%,#ffffff 66%,#e5ede8 66%,#e5ede8 100%);
+    background: -o-linear-gradient(left,  #ffffff 0%,#ffffff 66%,#e5ede8 66%,#e5ede8 100%);
+    background: -ms-linear-gradient(left,  #ffffff 0%,#ffffff 66%,#e5ede8 66%,#e5ede8 100%);
+    background: linear-gradient(to right,  #ffffff 0%,#ffffff 66%,#e5ede8 66%,#e5ede8 100%);
+    font-size: 100%;
+  }
+  header {
+    width: 100%;
+    height: 310px;
+    padding: 0 10%;
+    border-top: solid 12px rgba(19, 67, 71, 0.8);
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.3);
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  header::before, header::after {
+    display: block;
+    content: " ";
+    position: absolute;
+    z-index: 3;
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: rgba(0, 39, 43, 0.2);
+  }
+  header::after {
+    top: 306px;
+    height: 4px;
+    background: rgba(0, 39, 43, 0.075);
+  }
+  h1 {
+    display: inline-block;
+    position: relative;
+    margin: 15px 0 0 0;
+    padding: 60px 0 5px 0;
+  }
+  h1::before {
+    display: inline-block;
+    position: relative;
+    top: 65px;
+    content: "";
+    width: 125px;
+    height: 125px;
+    margin: -65px 40px 0 0;
+    background: url(enso.svg);
+    background-size: 100%;
+    opacity: 0.6;
+
+    -webkit-animation: koan 36000s infinite alternate;
+    -moz-animation: koan 36000s infinite alternate;
+    animation: koan 36000s infinite alternate;
+  }
+  h2 {
+    display: block;
+    margin: 0;
+    padding: 5px 0 60px 70px;
+  }
+  p {
+    font-size: 1em;
+  }
+
+  /* main layout blocks */
+  nav, .supporting {
+    display: inline;
+  }
+  .summary, .preamble, .supporting div, .requirements h3, .requirements p {
     float: left;
-}
-.zen-resources li:nth-child(2n+1) {
-    float: right;
-    text-align: right;
-}
-.zen-resources li.view-css {
+    clear: left;
+    width: 66%;
+    padding: 1em 5% 1em 10%;
+  }
+  .explanation h3, .explanation p,
+  .participation h3, .participation p,
+  .benefits h3, .benefits p {
+    width: 100%;
+  }
+  .summary {
+    padding-top: 3.25em;
+  }
+  .requirements h3, .requirements p {
+    margin: 0;
+    padding-bottom: 0;
+  }
+
+
+  /* coloured cutoff */
+  div.participation, div.benefits {
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 38%;
+    margin: 0;
+  }
+  /* extra padding at the cutoffs */
+  div.participation, div.requirements {
+    padding-top: 4em;
+  }
+  div.explanation, div.benefits {
+    padding-bottom: 4em;
+  }
+  .requirements p:nth-child(5) {
+    padding-bottom: 4em;
+  }
+
+
+  .intro h3, .supporting h3 {
+    margin-top: 0;
+  }
+  .intro p:last-child, .supporting p:last-child {
+    margin-bottom: 0;
+  }
+
+
+  .requirements p:last-child {
+    padding-bottom: 3em;
+    padding-top: 3em;
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.3);
+  }
+
+
+  /* sidebar styling */
+  .design-selection, .zen-resources {
+    position: absolute;
+    top: 360px;
+    right: 0;
+    width: 33.3%;
+    padding: 0 0 20px 0;
+    margin: 0;
+    overflow: visible;
+    background: transparent;
+  }
+  .sidebar li {
     float: none;
     width: auto;
-    position: relative;
-    text-align: center;
-    text-indent: 0;
-    padding-bottom: 9px;
-}
-.view-css:before, .view-css:after {
-    content: ' ';
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 29.4% 0 14.7%; /* 0 10% 0 5% of total width */
+  }
+
+
+  /* select a design */
+  .design-selection li:first-child {
+    border-top: 0;
+  }
+  .design-selection li:hover, .design-selection li:focus {
+    background: none;
+  }
+
+  /* archives navigation */
+  .design-archives {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 310px;
+
+    background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 66%, rgba(0,0,0,0.2) 66%, rgba(33,84,95,0.3) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(66%,rgba(255,255,255,0)), color-stop(66%,rgba(33,84,95,0.3)), color-stop(100%,rgba(33,84,95,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 66%,rgba(33,84,95,0.3) 66%,rgba(33,84,95,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 66%,rgba(33,84,95,0.3) 66%,rgba(33,84,95,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 66%,rgba(33,84,95,0.3) 66%,rgba(33,84,95,0) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 66%,rgba(33,84,95,0.3) 66%,rgba(33,84,95,0) 100%); /* W3C */
+  }
+  .design-archives nav {
     display: block;
     position: absolute;
-    top: .75em;
-    border-top: 2px solid rgba(136,0,68,0.2);
-    width: 4em;
-}
-.view-css:after { right: 1em }
+    right: 1%;
+    top: 120px;
+    width: 32%;
+  }
+  .design-archives li {
+    margin: 0;
+  }
+  .design-archives .viewall a, .design-archives a::before {
+    background: rgba(255,255,255,0.1);
+    text-decoration: none;
+  }
 
-.zen-resources .view-css a {
-    padding: 1.5em 0;
-}
+  .design-archives .viewall a:hover, .design-archives a:hover::before {
+    background-color: rgba(255,255,255,0.2);
+  }
 
 
-/* Next / Previous / View All */
+  /* resources navigation */
+  .zen-resources {
+    position: absolute;
+    top: 1310px;
+    right: 0;
+    width: 34%;
+    background: transparent;
+  }
+  .zen-resources h3 {
+    display: none;
+  }
+  .zen-resources ul {
+    width: 55.9%;
+    margin: 0 29.4% 0 14.7%;
+  }
+  .zen-resources li {
+    padding: 1.5em 0 1.25em 0;
+    margin: 0;
+  }
 
-.design-archives ul {
-    padding: 0 !important;
-}
-@media screen and (min-width: 240px) {
-
-    .design-archives {
-        text-align: center;
-    }
-
-    .design-archives li {
-        padding: 0;
-        margin: 0;
-    }
-
-    .design-archives a {
-        padding: 1em 0 !important;
-        display: block;
-    }
-
-    .design-archives .next, .design-archives .previous {
-        width: 33%;
-        padding: 0;
-        position: absolute;
-        top: 0;
-        z-index: 3;
-        font-size: 1em;
-    }
-
-    .design-archives .next {
-        right: 0;
-    }
-
-    .design-archives .previous {
-        left: 0;
-    }
-
-    .design-archives .next a, .design-archives .previous a {
-        text-indent: 100%;
-        white-space: nowrap;
-        text-transform: none;
-        overflow: hidden;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .design-archives .next a:before, .design-archives .previous a:before {
-        display: block;
-        position: absolute;
-        top: .8em;
-        text-indent: 0;
-    }
-    .design-archives .next a:before {
-        content: 'Next';
-        right: 2.25em;
-    }
-    .design-archives .previous a:before {
-        content: 'Prev.';
-        left: 2.25em;
-    }
-
-    .design-archives .next a:after, .design-archives .previous a:after {
-        display: block;
-        content: ' ';
-        position: absolute;
-        top: 1.4em;
-        left: 8px;
-        margin-top: -2px;
-        border: 10px solid transparent;
-        border-width: 8px 12px;
-    }
-    .design-archives .next a:after{
-        right: 8px;
-        left: auto;
-        border-left-color: #804;
-    }
-    .design-archives .next a:hover:after {  border-left-color: #000 }
-    .design-archives .previous a:after { border-right-color: #804 }
-    .design-archives .previous a:hover:after { border-right-color: #000 }
-
-    .design-archives .viewall {
-        width: 8em;
-        margin: 0 auto;
-    }
 }
 
 
-.sidebar .design-selection nav,
-.sidebar .design-archives ul,
-.sidebar .zen-resources ul {
-    position: relative;
-    display: block;
-    margin: 0 -20px -20px;
-    padding: 1em 0;
-    background: rgba(250,154,223,0.2);
+@media only screen and (min-width: 1150px) {
+  /* page footer */
+  footer a {
+    width: 76px;
+    height: 76px;
+    padding: 76px 0 0 0;
+    margin: 0 3em;
+  }
+  footer a::before {
+    font-size: 72px;
+  }
 }
 
-.design-selection nav ul,
-.design-archives ul li,
-.zen-resources ul li {
-    position: relative;
-    z-index: 2;
-}
+/*
+  Okay, look, I feel rather awful about this. But due to source order it
+  seems like the only way to pull off the separated sidebar. Perhaps
+  flexbox is the way forward here, once the syntax settles down a bit.
+*/
+@media only screen and (min-width: 1120px) {.zen-resources {top: 1490px;}}
+@media only screen and (min-width: 1240px) {.zen-resources {top: 1460px;}}
+@media only screen and (min-width: 1260px) {.zen-resources {top: 1420px;}}
+@media only screen and (min-width: 1320px) {.zen-resources {top: 1390px;}}
+@media only screen and (min-width: 1370px) {.zen-resources {top: 1360px;}}
+@media only screen and (min-width: 1520px) {.zen-resources {top: 1330px;}}
+@media only screen and (min-width: 1812px) {.zen-resources {top: 1300px;}}
+@media only screen and (min-width: 1848px) {.zen-resources {top: 1270px;}}
+@media only screen and (min-width: 2015px) {.zen-resources {top: 1240px;}}
+@media only screen and (min-width: 2115px) {.zen-resources {top: 1210px;}}
+@media only screen and (min-width: 2400px) {/* you're kidding, right? */}
 
-.design-selection h3 {
-    -webkit-box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-       -moz-box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-            box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-}
 
-/*  xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo
-    =Responsive Sidebars
-
-    Depending on screen dimensions, we can place sidebar
-    elements on the right of the screen.
-    --------------------------------------------------    */
-
-@media screen and (min-width: 960px) and (min-height: 700px) {
-    .sidebar .wrapper .design-selection {
-        border: none;
-        position: fixed;
-        top: 200px;
-        right: 0;
-        padding: 0 2em;
-        left: 580px; /* abut page-wrapper */
-    }
-    .sidebar .wrapper .design-selection:before {
-        content: ' ';
-        position: absolute;
-        top: -35px;
-        right: 2em;
-        width: 310px;
-        height: 75px;
-        background: url('border.png') no-repeat 50% 0;
-    }
-    .sidebar .wrapper .design-selection:after {
-        content: ' ';
-        position: absolute;
-        bottom: -30px;
-        right: 2em;
-        width: 310px;
-        height: 30px;
-        background: url('border.png') no-repeat 50% bottom;
-    }
-    .sidebar .design-selection h3 {
-        background: url('heart-and-lips.png') no-repeat 90% -440px;
-        -webkit-box-shadow: none;
-           -moz-box-shadow: none;
-                box-shadow: none;
-        padding: .5em 19px .2em;
-        width: 272px;
-        margin: 0 0 0 auto;
-    }
-    .sidebar .design-selection nav {
-        border: none;
-        max-width: 310px;
-        margin: 0 0 0 auto;
-        background: #fceec6 url('kiss_light.jpg') no-repeat fixed 50% top;
-    }
-    .sidebar .design-archives h3 {
-        -webkit-box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-           -moz-box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-                box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-    }
-}
-
-@media screen and (min-width: 960px) and (min-height: 700px) and (max-height: 739px) { .supporting footer:before { background-position: -2900px 180px } }
-@media screen and (min-width: 960px) and (min-height: 740px) and (max-height: 779px) { .supporting footer:before { background-position: -2900px 220px } }
-@media screen and (min-width: 960px) and (min-height: 780px) and (max-height: 819px) { .supporting footer:before { background-position: -2900px 260px } }
-
-@media screen and (min-width: 1360px) and (min-height: 700px) and (max-height: 739px) { .supporting footer:before { background-position: -2730px 180px } }
-@media screen and (min-width: 1360px) and (min-height: 740px) and (max-height: 779px) { .supporting footer:before { background-position: -2730px 220px } }
-@media screen and (min-width: 1360px) and (min-height: 780px) and (max-height: 819px) { .supporting footer:before { background-position: -2730px 260px } }
-
-@media screen and (min-width: 960px) and (min-height: 820px) {
-    .sidebar .wrapper .design-archives {
-        border: none;
-        position: fixed;
-        top: 510px;
-        right: 0;
-        padding: 0 2em;
-        left: 580px; /* abut page-wrapper */
-    }
-    .sidebar .wrapper .design-selection:after { display: none }
-    .sidebar .wrapper .design-archives:after {
-        content: ' ';
-        position: absolute;
-        bottom: -30px;
-        right: 2em;
-        width: 310px;
-        height: 30px;
-        background: url('border.png') no-repeat 50% bottom;
-    }
-    .sidebar .design-archives h3 {
-        background: #771139 url('heart-and-lips.png') no-repeat 10% -450px;
-        -webkit-box-shadow: none;
-           -moz-box-shadow: none;
-                box-shadow: none;
-        padding: .5em 19px .2em;
-        width: 272px;
-        margin: 0 0 0 auto;
-    }
-    .sidebar .design-archives ul {
-        max-width: 310px;
-        margin: 0 0 0 auto;
-        background: #fceec6 url('kiss_light.jpg') no-repeat fixed 50% top;
-    }
-    .sidebar .design-selection nav {
-        height: 280px;
-    }
-    .sidebar .zen-resources h3 {
-        -webkit-box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-           -moz-box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-                box-shadow: inset 0 12px 18px -6px rgba(0,0,0,0.4);
-    }
-    .supporting footer:before { background-position: -2900px 430px }
-}
-@media screen and (min-width: 960px) and (min-height: 860px) and (max-height: 899px) { .supporting footer:before { background-position: -2900px 470px } }
-@media screen and (min-width: 960px) and (min-height: 900px) and (max-height: 939px) { .supporting footer:before { background-position: -2900px 510px } }
-@media screen and (min-width: 960px) and (min-height: 940px) and (max-height: 969px) { .supporting footer:before { background-position: -2900px 550px } }
-
-@media screen and (min-width: 1360px) and (min-height: 820px) { .supporting footer:before { background-position: -2730px 430px } }
-@media screen and (min-width: 1360px) and (min-height: 860px) and (max-height: 899px) { .supporting footer:before { background-position: -2730px 470px } }
-@media screen and (min-width: 1360px) and (min-height: 900px) and (max-height: 939px) { .supporting footer:before { background-position: -2730px 510px } }
-@media screen and (min-width: 1360px) and (min-height: 940px) and (max-height: 969px) { .supporting footer:before { background-position: -2730px 550px } }
-
-    .sidebar .wrapper .zen-resources:after {
-        content: ' ';
-        position: absolute;
-        bottom: -40px;
-        right: 0;
-        left: 0;
-        height: 40px;
-        background: #5b0a2a url('border.png') no-repeat 50% 4px;
-        -webkit-box-shadow: inset 0 -12px 18px -6px rgba(0,0,0,0.4);
-           -moz-box-shadow: inset 0 -12px 18px -6px rgba(0,0,0,0.4);
-                box-shadow: inset 0 -12px 18px -6px rgba(0,0,0,0.4);
-    }
-@media screen and (min-width: 960px) and (min-height: 960px) {
-    .sidebar .wrapper .zen-resources {
-        border: none;
-        position: fixed;
-        top: 610px;
-        right: 0;
-        padding: 0 2em;
-        left: 580px; /* abut page-wrapper */
-    }
-    .sidebar .wrapper .design-archives:after { display: none }
-    .sidebar .wrapper .zen-resources:after {
-        bottom: -30px;
-        right: 2em;
-        left: auto;
-        width: 310px;
-        height: 30px;
-        background: url('border.png') no-repeat 50% bottom;
-        -webkit-box-shadow: none;
-           -moz-box-shadow: none;
-                box-shadow: none;
-    }
-    .sidebar .zen-resources h3 {
-        background: #771139 url('heart-and-lips.png') no-repeat 80% -460px;
-        -webkit-box-shadow: none;
-           -moz-box-shadow: none;
-                box-shadow: none;
-        padding: .5em 19px .2em;
-        width: 272px;
-        margin: 0 0 0 auto;
-    }
-    .sidebar .zen-resources ul {
-        border: none;
-        max-width: 310px;
-        margin: 0 0 0 auto;
-        background: #fceec6 url('kiss_light.jpg') no-repeat fixed 50% top;
-    }
-    .sidebar .design-archives ul {
-        height: 80px;
-    }
-
-    .supporting footer {
-        padding-bottom: 2em;
-        background-image: url('border.png');
-        background-repeat: no-repeat;
-        background-position: 50% 50px;
-    }
-    .supporting footer:before { background-position: -2900px bottom }
-}
-@media screen and (min-width: 1360px) and (min-height: 960px) { .supporting footer:before { background-position: -2730px bottom } }
-
-.design-selection li, .wrapper>div a {
-    -webkit-transition: all 0.2s ease-out;
-       -moz-transition: all 0.2s ease-out;
-        -ms-transition: all 0.2s ease-out;
-         -o-transition: all 0.2s ease-out;
-            transition: all 0.2s ease-out;
-}
-.wrapper>div a {
-    text-shadow: 2px 2px 0 rgba(255,255,255,0.51);
-}
-.wrapper>div a:hover {
+@-webkit-keyframes koan {
+    from {
+      -webkit-transform: scale(1);
     opacity: 1;
+    }
+    to {
+      -webkit-transform: scale(3);
+    opacity: 0;
+    }
+}
+@-moz-keyframes koan {
+    from {
+      -moz-transform: scale(1);
+    opacity: 1;
+    }
+    to {
+      -moz-transform: scale(3);
+    opacity: 0;
+    }
+}
+@keyframes koan {
+    from {
+      transform: scale(1);
+    opacity: 1;
+    }
+    to {
+      transform: scale(3);
+    opacity: 0;
+    }
 }
 
-@media screen and (min-width: 1201px) {
-    .sidebar .design-selection nav, .sidebar .design-archives ul, .sidebar .zen-resources ul {
-        background-size: 100%; /* if wider than bg image, make those suckers grow! */
+/* high-DPI adjustments */
+@media
+    (min--moz-device-pixel-ratio: 1.5),
+    (-o-min-device-pixel-ratio: 3 / 2),
+    (-webkit-min-device-pixel-ratio: 1.5),
+    (min-device-pixel-ratio: 1.5),
+    (min-resolution: 1.5dppx) {
+
+    header {
+        background-image: url(contours@2x.png), url(noise.png), url(gridlines.png), url(huntington.jpg);
+        background-size: 50% auto, auto, auto, cover;
     }
-.intro {
-    -webkit-transition: none;
-       -moz-transition: none;
-        -ms-transition: none;
-         -o-transition: none;
-            transition: none;
-}
-}
-@media screen and (min-width: 1360px) {
-    .page-wrapper {
-        max-width: 660px;
-        margin-left: 160px;
+
+    .requirements p:last-child {
+        background-image: url(contours@2x.png), url(gridlines.png), url(noise.png), url(koi.jpg);
+        background-size: 50% auto, auto, auto, cover;
     }
-    .explanation h3, .benefits h3 {
-        padding-left: 40px;
-        padding-right: 70%;
+
+    /*
+        This shouldn't be necessary, but it is. Due to differences in how
+        Chrome calculates gradients and % widths / padding, the archives
+        spill out of the visual container at some screen sizes.
+    */
+    .design-archives nav {
+        right: 3%;
+        width: 29%;
     }
-    .supporting .participation h3, .supporting .requirements h3, .supporting footer:before {
-        padding-left: 65%;
-        padding-right: 40px;
-    }
-}
-@media screen and (min-width: 1360px) and (max-height: 819px) {
-    .intro {
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-}
-@media screen and (min-width: 1360px) and (min-height: 820px) {
-    .intro {
-        padding: 84px 150px 96px;
-    }
-    .preamble {
-        font-size: 1em;
-        line-height: 1.5;
-    }
-    .preamble h3, .supporting h3 {
-        font-size: 1.3125em;
-    }
-    .preamble h3 {
-        padding-bottom: 72px;
-        margin-bottom: 36px;
-    }
-    .supporting footer:after {
-        padding-right: 20px;
-    }
-    .supporting p {
-        line-height: 1.5;
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-    .supporting p:nth-child(2) {
-        padding-top: 3em;
-        background-position: 1.65em 1.7em;
-    }
-}
-@media screen and (min-width: 1360px) {
-    header[role=banner], .summary {
-        right: 50%;
-        margin-right: -672px;
-    }
-    h2 {
-        right: 10px;
-    }
-    #zen-summary p {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
- }
-@media screen and (min-width: 1360px) and (min-height: 700px) {
-    .sidebar .wrapper .design-selection {
-        right: 50%;
-        margin-right: -672px;
-    }
-    .sidebar .design-selection h3 {
-        width: 314px;
-    }
-    .sidebar .wrapper .design-selection nav {
-        max-width: 352px;
-    }
-    .sidebar .wrapper .design-selection:before,
-    .sidebar .wrapper .design-selection:after {
-        width: 352px !important;
-    }
-}
-@media screen and (min-width: 1360px) and (min-height: 820px) {
-    .sidebar .wrapper .design-archives {
-        right: 50%;
-        margin-right: -672px;
-    }
-    .sidebar .design-archives h3 {              width: 314px }
-    .sidebar .wrapper .design-archives ul {     max-width: 352px }
-    .sidebar .wrapper .design-archives:after {  width: 352px !important }
-}
-@media screen and (min-width: 1360px) and (min-height: 960px) {
-    .sidebar .wrapper .zen-resources {
-        right: 50%;
-        margin-right: -672px;
-    }
-    .sidebar .zen-resources h3 {              width: 314px }
-    .sidebar .wrapper .zen-resources ul {     max-width: 352px }
-    .sidebar .wrapper .zen-resources:after {  width: 352px !important }
 }
 
-/* -fin- */
+/* icon fonts */
+@font-face {
+        font-family: 'verdemoderna';
+        src:url('verdemoderna.eot');
+        src:url('verdemoderna.eot?#iefix') format('embedded-opentype'),
+                url('verdemoderna.woff') format('woff'),
+                url('verdemoderna.ttf') format('truetype'),
+                url('verdemoderna.svg#verdemoderna') format('svg');
+        font-weight: normal;
+        font-style: normal;
+}                                                                                                               /* 1000 lines?! */
