@@ -34,7 +34,7 @@ function elm(...args) {
 class RoadmapUsage extends HTMLElement {
   constructor() {
     super()
-    const shadow = this.attachShadow({mode: 'open'})
+    const shadow = this.attachShadow({ mode: "open" })
 
     shadow.append(elm("p", [ "element-1" ]))
     shadow.append(elm("p", [ "element-2" ]))
