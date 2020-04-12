@@ -34,17 +34,14 @@ function elm(...args) {
 class RoadmapUsage extends HTMLElement {
   constructor() {
     super()
+
     const shadow = this.attachShadow({ mode: "open" })
 
     shadow.append(elm("p", [ "element-1" ]))
     shadow.append(elm("p", [ "element-2" ]))
     shadow.append(elm("p", [ "element-3" ]))
 
-    const template = elm("template", { "id": "my-paragraph" }, [
-      elm("p", [ "My paragraph" ])
-    ])
-
-    shadow.append(template.content.cloneNode(true))
+    shadow.append(elm("slot", { "name": "url" }))
   }
 }
 
