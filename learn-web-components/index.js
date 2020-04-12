@@ -31,13 +31,14 @@ function elm(...args) {
     throw new Error("args.length > 3\n")
 }
 
+
 class RoadmapUsage extends HTMLElement {
   constructor() {
     super()
     const shadow = this.attachShadow({ mode: "open" })
-    shadow.append(elm("p", [ "element-1" ]))
-    shadow.append(elm("p", [ "element-2" ]))
-    shadow.append(elm("p", [ "element-3" ]))
+    shadow.append(elm("p", [ "e-1" ]))
+    shadow.append(elm("p", [ "e-2" ]))
+    shadow.append(elm("p", [ "e-3" ]))
     shadow.append(elm("slot", { "name": "url" }))
     shadow.append(elm("slot", { "name": "x" }))
     shadow.append(elm("slot", { "name": "y" }))
