@@ -32,7 +32,7 @@ function elm(...args) {
 }
 
 
-class RoadmapUsage extends HTMLElement {
+class roadmap_usage_t extends HTMLElement {
   constructor() {
     super()
     const shadow = this.attachShadow({ mode: "open" })
@@ -45,13 +45,13 @@ class RoadmapUsage extends HTMLElement {
   }
 }
 
-customElements.define("roadmap-usage", RoadmapUsage)
+customElements.define("roadmap-usage-t", roadmap_usage_t)
 
-class RoadmapMain extends HTMLElement {
+class roadmap_main_t extends HTMLElement {
   constructor() {
     super()
     const shadow = this.attachShadow({ mode: "open" })
-    shadow.append(elm("roadmap-usage", [
+    shadow.append(elm("roadmap-usage-t", [
       elm("div", { "slot": "url" }, [ "http://example.com" ]),
       elm("div", { "slot": "x" }, [ "xxx" ]),
       elm("div", { "slot": "y" }, [ "yyy" ]),
@@ -59,4 +59,4 @@ class RoadmapMain extends HTMLElement {
   }
 }
 
-customElements.define("roadmap-main", RoadmapMain)
+customElements.define("roadmap-main-t", roadmap_main_t)
