@@ -82,13 +82,13 @@ function tag_gen(tag_class) {
 class roadmap_usage_t extends HTMLElement {
   constructor() {
     super()
-    const shadow = this.attachShadow({ mode: "open" })
-    shadow.append(elm("p", [ "e-1" ]))
-    shadow.append(elm("p", [ "e-2" ]))
-    shadow.append(elm("p", [ "e-3" ]))
-    shadow.append(elm("slot", { "name": "url" }))
-    shadow.append(elm("slot", { "name": "x" }))
-    shadow.append(elm("slot", { "name": "y" }))
+    const root = this.attachShadow({ mode: "open" })
+    root.append(elm("p", [ "e-1" ]))
+    root.append(elm("p", [ "e-2" ]))
+    root.append(elm("p", [ "e-3" ]))
+    root.append(elm("slot", { "name": "url" }))
+    root.append(elm("slot", { "name": "x" }))
+    root.append(elm("slot", { "name": "y" }))
   }
 }
 
@@ -99,8 +99,8 @@ tag_register(roadmap_usage_t)
 class roadmap_main_t extends HTMLElement {
   constructor() {
     super()
-    const shadow = this.attachShadow({ mode: "open" })
-    shadow.append(elm(roadmap_usage_t, [
+    const root = this.attachShadow({ mode: "open" })
+    root.append(elm(roadmap_usage_t, [
       elm("div", { "slot": "url" }, [ "http://example.com" ]),
       elm("div", { "slot": "x" }, [ "xxx" ]),
       elm("div", { "slot": "y" }, [ "yyy" ]),
