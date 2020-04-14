@@ -1,0 +1,14 @@
+# pkg
+target
+
+# parcel
+.cache
+.parcel-cache
+
+# js
+node_modules
+
+# emacs
+*~
+*#*
+.#*
