@@ -1,6 +1,9 @@
 # pkg
 target
 
+# webpack
+dist
+
 # parcel
 .cache
 .parcel-cache

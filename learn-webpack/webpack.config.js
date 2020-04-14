@@ -13,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
-    rules: [ { test: /\.css$/, use: ['to-string-loader', 'css-loader'] } ],
+    rules: [ { test: /\.css$/, use: ['css-loader'] } ],
   },
   plugins: [
     new CleanWebpackPlugin(),
