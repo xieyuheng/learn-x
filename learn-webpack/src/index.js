@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import style from './style.css'
+// import style from './style.css'
+const style = require('./style.css')
 import printMe from './print.js'
 
 console.log(style.toString())
