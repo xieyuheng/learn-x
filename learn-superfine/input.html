@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">
+      import { h, text, patch } from "https://unpkg.com/superfine"
+
+      const setState = (state) => {
+        patch(
+          document.getElementById("app"),
+          h("main", {}, [
+            h("h1", {}, text(state)),
+            h("input", {
+              type: "text",
+              value: state,
+              oninput: (e) => setState(e.target.value),
+              autofocus: true,
+            }),
+          ])
+        )
+      }
+
+      setState("Hello!")
+    </script>
+  </head>
+  <body>
+    <main id="app"></main>
+  </body>
+</html>

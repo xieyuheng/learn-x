@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">
+      import { h, text, patch } from "https://unpkg.com/superfine"
+
+      const setState = (state) => {
+        patch(
+          document.getElementById("app"),
+          h("main", {}, [
+            h("h1", {}, text(state)),
+            h("button", { onclick: () => setState(state - 1) }, text("-")),
+            h("button", { onclick: () => setState(state + 1) }, text("+")),
+          ])
+        )
+      }
+
+      setState(0)
+    </script>
+  </head>
+  <body>
+    <main id="app"></main>
+  </body>
+</html>
