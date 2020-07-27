@@ -4,7 +4,7 @@
     <script type="module">
       import { h, text, patch } from "https://unpkg.com/superfine"
 
-      const setState = (state) => {
+      const setState = (state) =>
         patch(
           document.getElementById("app"),
           h("main", {}, [
@@ -13,7 +13,6 @@
             h("button", { onclick: () => setState(state + 1) }, text("+")),
           ])
         )
-      }
 
       setState(0)
     </script>
