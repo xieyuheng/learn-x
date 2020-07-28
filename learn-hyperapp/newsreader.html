@@ -10,19 +10,37 @@
 
       // -- ACTIONS --
 
+      const StartEditingFilter = (state) => ({ ...state, editingFilter: true })
+      const StopEditingFilter = (state) => ({ ...state, editingFilter: false })
+      const SetFilter = (state, word) => ({ ...state, filter: word })
+      const SelectStory = (state, id) => ({
+        ...state,
+        reading: id,
+        stories: {
+          ...state.stories, //keep stories the same, except for:
+          [id]: {
+            ...state.stories[id], //keep this story the same, except for:
+            seen: true,
+          },
+        },
+      })
+
       // -- VIEWS ---
 
       const emphasize = (word, string) =>
         string
           .split(" ")
-          .map((x) =>
-            x.toLowerCase() === word.toLowerCase() ? h("em", {}, text(x + " ")) : text(x + " ")
-          )
+          .map((x) => {
+            console.log(word)
+            console.log(typeof word)
+            return x.toLowerCase() === word.toLowerCase() ? h("em", {}, text(x + " ")) : text(x + " ")
+          })
 
       const storyThumbnail = (props) =>
         h(
           "li",
           {
+            onclick: [SelectStory, props.id],
             class: {
               unread: props.unread,
               reading: props.reading,
@@ -55,8 +73,18 @@
       const filterView = (props) =>
         h("div", { class: "filter" }, [
           text("Filter:"),
-          h("span", { class: "filter-word" }, text(props.filter)),
-          h("button", {}, text("\u270E")),
+
+          props.editingFilter
+          ? h("input", {
+            type: "text",
+            value: props.filter,
+            oninput: [SetFilter, (event) => event.target.value],
+          })
+          : h("span", { class: "filter-word" }, text(props.filter)),
+
+          props.editingFilter
+          ? h("button", { onclick: StopEditingFilter }, text("\u2713"))
+          : h("button", { onclick: StartEditingFilter }, text("\u270E")),
         ])
 
       const storyDetail = (props) =>
