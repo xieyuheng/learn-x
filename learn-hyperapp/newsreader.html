@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Hyperapp Tutorial</title>
-    <link href="newsreader-style.css" rel="stylesheet" type="text/css">
+    <link href="newsreader-style.css" rel="stylesheet" type="text/css" />
     <script type="module">
       import { h, text, app } from "./hyperapp.js"
 
@@ -30,11 +30,11 @@
       const emphasize = (word, string) =>
         string
           .split(" ")
-          .map((x) => {
-            console.log(word)
-            console.log(typeof word)
-            return x.toLowerCase() === word.toLowerCase() ? h("em", {}, text(x + " ")) : text(x + " ")
-          })
+          .map((x) =>
+            x.toLowerCase() === word.toLowerCase()
+              ? h("em", {}, text(x + " "))
+              : text(x + " ")
+          )
 
       const storyThumbnail = (props) =>
         h(
@@ -75,33 +75,33 @@
           text("Filter:"),
 
           props.editingFilter
-          ? h("input", {
-            type: "text",
-            value: props.filter,
-            oninput: [SetFilter, (event) => event.target.value],
-          })
-          : h("span", { class: "filter-word" }, text(props.filter)),
+            ? h("input", {
+                type: "text",
+                value: props.filter,
+                oninput: (state, event) => SetFilter(state, event.target.value),
+              })
+            : h("span", { class: "filter-word" }, text(props.filter)),
 
           props.editingFilter
-          ? h("button", { onclick: StopEditingFilter }, text("\u2713"))
-          : h("button", { onclick: StartEditingFilter }, text("\u270E")),
+            ? h("button", { onclick: StopEditingFilter }, text("\u2713"))
+            : h("button", { onclick: StartEditingFilter }, text("\u270E")),
         ])
 
       const storyDetail = (props) =>
         h("div", { class: "story" }, [
           props && h("h1", {}, text(props.title)),
           props &&
-          h(
-            "p",
-            {},
-            text(`
+            h(
+              "p",
+              {},
+              text(`
     Lorem ipsum dolor sit amet, consectetur adipiscing
     elit, sed do eiusmod tempor incididunt ut labore et
     dolore magna aliqua. Ut enim ad minim veniam, qui
     nostrud exercitation ullamco laboris nisi ut aliquip
     ex ea commodo consequat.
             `)
-          ),
+            ),
           props && h("p", { class: "signature" }, text(props.author)),
         ])
 
@@ -134,17 +134,17 @@
               title: "Family friendly fun at the ocean exhibit",
               author: "Guy Prosales",
               seen: true,
-            }
-          }
+            },
+          },
         },
         node: document.getElementById("app"),
-        view: state =>
+        view: (state) =>
           container([
             filterView(state),
             storyList(state),
             storyDetail(state.reading && state.stories[state.reading]),
             autoUpdateView(state),
-          ])
+          ]),
       })
     </script>
   </head>
