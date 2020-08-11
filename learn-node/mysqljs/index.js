@@ -1,30 +1,30 @@
-const mysql = require("mysql")
+const db = require("./db")
 
-const connection = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "forchange",
-})
+async function main() {
+  // await db.exe("create_countries.sql")
+  // await db.exe("insert_countries.sql")
+  // await db.query(`SELECT * FROM countries;`, { log: true })
+  // await db.query(`DELETE FROM countries WHERE country_code = 'll';`)
+  // await db.query(`SELECT * FROM countries;`, { log: true })
 
-connection.connect((err) => {
-  if (err) {
-    console.error("error connecting: " + err.stack)
-    return
-  }
+  // await db.exe("create_cities.sql")
+  // await db.exe("insert_cities.sql")
+  // await db.query(`SELECT * FROM cities;`, { log: true })
+  // await db.query(
+  //   `UPDATE cities SET postal_code = '97205' WHERE name = 'Portland';`
+  // )
+  // await db.query(`SELECT * FROM cities;`, { log: true })
 
-  console.log(`connection start: ${connection.threadId}`)
-})
+  await db.query(
+    `
+SELECT cities.*, country_name
+FROM cities INNER JOIN countries
+ON cities.country_code = countries.country_code;
+`,
+    { log: true }
+  )
 
-connection.query("SELECT 1 + 1 AS solution", (err, rows, fields) => {
-  if (err) throw err
-  console.log("The rows:", rows)
-})
+  await db.end()
+}
 
-connection.end((err) => {
-  if (err) {
-    console.error("error ending: " + err.stack)
-    return
-  }
-
-  console.log(`connection end: ${connection.threadId}`)
-})
+main()
