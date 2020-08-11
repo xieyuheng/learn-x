@@ -1,5 +1,7 @@
 const db = require("./db")
 
+// TODO finish the example.
+
 async function main() {
   // await db.exe("create_countries.sql")
   // await db.exe("insert_countries.sql")
