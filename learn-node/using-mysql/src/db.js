@@ -1,6 +1,5 @@
 const { promisify } = require("util")
 const mysql = require("mysql2")
-mysql.promise = require("mysql2/promise")
 const fs = require("fs")
 
 const name = "db1"
