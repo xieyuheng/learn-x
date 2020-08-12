@@ -1,11 +1,11 @@
 const { promisify } = require("util")
-const mysql = require("mysql2")
+const mysql = require("mysql")
 const fs = require("fs")
 
-function connect(opts) {
-  const database = opts.database
+function connect(config) {
+  const database = config.database
 
-  const connection = mysql.createConnection({ ...opts, database: undefined })
+  const connection = mysql.createConnection({ ...config, database: undefined })
 
   connection.connect((err) => {
     if (err) {
