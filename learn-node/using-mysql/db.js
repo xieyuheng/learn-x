@@ -1,5 +1,6 @@
 const { promisify } = require("util")
-const mysql = require("mysql")
+const mysql = require("mysql2")
+mysql.promise = require("mysql2/promise")
 const fs = require("fs")
 
 const name = "db1"
@@ -57,7 +58,7 @@ function query(stmt, { echo, log } = { echo: false, log: false }) {
     .catch(onerror)
 }
 
-function exe(file, opts) {
+function run(file, opts) {
   return fs.promises.readFile(file, "utf8").then((stmt) => query(stmt, opts))
 }
 
@@ -70,5 +71,5 @@ function end() {
 module.exports = {
   query,
   end,
-  exe,
+  run,
 }

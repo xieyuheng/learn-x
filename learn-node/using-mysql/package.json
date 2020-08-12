@@ -20,7 +20,7 @@
     "find-up": "^4.1.0",
     "fs-readdir-recursive": "^1.1.0",
     "glob": "^7.1.6",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
     "portfinder": "^1.0.27"
   },
   "license": "UNLICENSED"
