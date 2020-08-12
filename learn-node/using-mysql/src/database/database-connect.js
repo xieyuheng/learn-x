@@ -36,7 +36,11 @@ function connect(config) {
 
   function query(stmt, { echo, log } = { echo: false, log: false }) {
     const queryAsync = promisify((stmt, cb) => {
-      const q = connection.query(stmt, cb)
+      const q = stmt.file
+        ? fs.promises
+            .readFile(stmt.file, "utf8")
+            .then((stmt) => connection.query(stmt, cb))
+        : connection.query(stmt, cb)
       if (echo) {
         console.log(q.sql)
       }
@@ -58,20 +62,15 @@ function connect(config) {
       .catch(onerror)
   }
 
-  function run(file, opts) {
-    return fs.promises.readFile(file, "utf8").then((stmt) => query(stmt, opts))
-  }
-
   function end() {
     const endAsync = promisify((cb) => connection.end(cb))
     const onfinally = () =>
-          console.log(`connection end: ${connection.threadId}`)
+      console.log(`connection end: ${connection.threadId}`)
     return endAsync().finally(onfinally)
   }
 
   return {
     query,
-    run,
     end,
   }
 }

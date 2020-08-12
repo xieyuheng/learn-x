@@ -9,9 +9,8 @@ const db = Database.connect({
 })
 
 async function main() {
-  await db.run(path.resolve(__dirname, "countries/create.sql"))
-  await db.run(path.resolve(__dirname, "countries/insert.sql"))
-
+  await db.query({ file: path.resolve(__dirname, "countries/create.sql") })
+  await db.query({ file: path.resolve(__dirname, "countries/insert.sql") })
   await db.query(`SELECT * FROM countries;`, { log: true })
   // await db.query(`DELETE FROM countries WHERE country_code = 'll';`)
   await db.query({
@@ -20,8 +19,8 @@ async function main() {
   }, { log: true })
   await db.query(`SELECT * FROM countries;`, { log: true })
 
-  await db.run(path.resolve(__dirname, "cities/create.sql"))
-  await db.run(path.resolve(__dirname, "cities/insert.sql"))
+  await db.query({ file: path.resolve(__dirname, "cities/create.sql") })
+  await db.query({ file: path.resolve(__dirname, "cities/insert.sql") })
 
   await db.query(`SELECT * FROM cities;`, { log: true })
 
@@ -40,8 +39,8 @@ ON cities.country_code = countries.country_code;
     { log: true }
   )
 
-  await db.run(path.resolve(__dirname, "venues/create.sql"))
-  await db.run(path.resolve(__dirname, "venues/insert.sql"))
+  await db.query({ file: path.resolve(__dirname, "venues/create.sql") })
+  await db.query({ file: path.resolve(__dirname, "venues/insert.sql") })
 
   await db.query(
     `
@@ -53,8 +52,8 @@ AND venue.country_code = city.country_code;
     { log: true }
   )
 
-  await db.run(path.resolve(__dirname, "events/create.sql"))
-  await db.run(path.resolve(__dirname, "events/insert.sql"))
+  await db.query({ file: path.resolve(__dirname, "events/create.sql") })
+  await db.query({ file: path.resolve(__dirname, "events/insert.sql") })
 
   await db.query(
     `
