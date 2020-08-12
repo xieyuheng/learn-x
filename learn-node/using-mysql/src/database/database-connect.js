@@ -38,7 +38,7 @@ function connect(config) {
     const queryAsync = promisify((stmt, cb) => {
       const q = connection.query(stmt, cb)
       if (echo) {
-        console.log(q.stmt)
+        console.log(q.sql)
       }
     })
     const onerror = (error) => console.log(error.sqlMessage)
