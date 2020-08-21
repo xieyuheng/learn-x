@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DATABASE=db1
+
 echo $DATABASE
 
 mysql -u root -h 127.0.0.1 -pforchange -e "DROP DATABASE IF EXISTS $DATABASE;"
