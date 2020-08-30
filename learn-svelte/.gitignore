@@ -1,0 +1,13 @@
+# pkg
+target
+
+# typescript
+lib
+
+# js
+node_modules
+
+# emacs
+*~
+*#*
+.#*
