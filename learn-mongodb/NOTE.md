@@ -17,6 +17,12 @@ We will connect to a db called "book":
 mongo "mongodb+srv://cluster-0.e4yi2.mongodb.net/book" --username xieyuheng
 ```
 
+We can also connect without naming a db:
+
+``` sh
+mongo "mongodb+srv://cluster-0.e4yi2.mongodb.net" --username xieyuheng
+```
+
 In the shell:
 - help -- to get help
 - show dbs -- to list dbs
@@ -74,7 +80,5 @@ function insertCity(name, population, lastCensus, famousFor, mayorInfo) {
 }
 
 insertCity("Punxsutawney", 6200, '2016-01-31', ["Punxsutawney Phil"], { name : "Richard Alexander" })
-
 insertCity("Portland", 582000, '2016-09-20', ["beer", "food", "Portlandia"], { name : "Ted Wheeler", party : "D" })
-
 ```
