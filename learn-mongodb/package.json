@@ -1,0 +1,8 @@
+{
+  "name": "learn-mongodb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^3.6.2"
+  }
+}
