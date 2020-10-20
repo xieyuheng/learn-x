@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+
+    <script>
+      let app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+        },
+        created: function () {
+          console.log("The message is: " + this.message)
+        },
+      })
+    </script>
+  </body>
+</html>
