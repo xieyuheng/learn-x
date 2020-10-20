@@ -52,3 +52,29 @@ We can find all documents in the collection by:
 ``` js
 db.towns.find()
 ```
+
+To see methods and simple documentations on db and collection:
+
+``` js
+db.help()
+db.towns.help()
+```
+
+We can define helper function to insert data:
+
+``` js
+function insertCity(name, population, lastCensus, famousFor, mayorInfo) {
+  db.towns.insert({
+    name: name,
+    population: population,
+    lastCensus: ISODate(lastCensus),
+    famousFor: famousFor,
+    mayor : mayorInfo
+  });
+}
+
+insertCity("Punxsutawney", 6200, '2016-01-31', ["Punxsutawney Phil"], { name : "Richard Alexander" })
+
+insertCity("Portland", 582000, '2016-09-20', ["beer", "food", "Portlandia"], { name : "Ted Wheeler", party : "D" })
+
+```
