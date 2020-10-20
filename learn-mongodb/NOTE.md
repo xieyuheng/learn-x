@@ -22,12 +22,12 @@ In the shell:
 - show dbs -- to list dbs
 - use <dbname> -- to switch db
 
-The hierarchy of mongodb have three levels:
+The three-level built-in hierarchy of mongodb:
 - (1) db
 - (2) collection
-- (3) documentation
+- (3) document
 
-When connected to the db,
+After connected to the db (named "book"),
 inserting to non-existing db's non-existing collection
 will create the whole hierarchy:
 
@@ -44,3 +44,11 @@ db.towns.insert({
 })
 ```
 
+After insertion, the collection is created, we can see it by:
+- show collections
+
+We can find all documents in the collection by:
+
+``` js
+db.towns.find()
+```
