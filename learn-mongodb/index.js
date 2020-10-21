@@ -4,19 +4,19 @@ const process = require("process")
 const fs = require("fs")
 
 async function main() {
-  const uri = process.env.MONGODB_CLUSTER_URI
+  const uri = process.env.MONGODB_URI
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
 
-  client.connect((err) => {
-    assert.equal(null, err)
-    console.log("Connected successfully to server")
-    const db = client.db("book")
-    console.log(db.collection("towns"))
-    client.close()
-  })
+  await client.connect()
+  console.log("[ok] connected successfully to server.")
+  const db = client.db("book")
+  const towns = db.collection("towns")
+  const result = await towns.find().toArray()
+  console.log(result)
+  client.close()
 }
 
 main()
