@@ -4,9 +4,7 @@ const process = require("process")
 const fs = require("fs")
 
 async function main() {
-  const file = process.env.MONGODB_CONNECTION
-  const text = await fs.promises.readFile(file, "utf8")
-  const uri = JSON.parse(text)
+  const uri = process.env.MONGODB_CLUSTER_URI
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
