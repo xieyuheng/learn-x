@@ -82,3 +82,51 @@ function insertCity(name, population, lastCensus, famousFor, mayorInfo) {
 insertCity("Punxsutawney", 6200, '2016-01-31', ["Punxsutawney Phil"], { name : "Richard Alexander" })
 insertCity("Portland", 582000, '2016-09-20', ["beer", "food", "Portlandia"], { name : "Ted Wheeler", party : "D" })
 ```
+
+We can call find with a filter and a field selector:
+
+``` js
+db.towns.find(
+  { name : /^P/, population : { $lt : 10000 } },
+  { _id: 0, name : 1, population : 1 }
+)
+
+const population_range = {
+  $lt: 1000000,
+  $gt: 10000
+}
+
+db.towns.find(
+  { name : /^P/, population : population_range },
+  { _id: 0, name : 1, population : 1 }
+)
+
+db.towns.find(
+  { lastCensus : { $gte : ISODate('2016-06-01') } },
+  { _id : 0, name: 1 }
+)
+```
+
+You can query nested array data by matching exact values:
+
+``` js
+db.towns.find(
+  { famousFor : 'food' },
+  { _id : 0, name : 1, famousFor : 1 }
+)
+
+db.towns.find(
+  { famousFor : /moma/i },
+  { _id : 0, name : 1, famousFor : 1 }
+)
+
+db.towns.find(
+  { famousFor : { $all : ['food', 'beer'] } },
+  { _id : 0, name:1, famousFor:1 }
+)
+
+db.towns.find(
+  { famousFor : { $nin : ['food', 'beer'] } },
+  { _id : 0, name : 1, famousFor : 1 }
+)
+```
