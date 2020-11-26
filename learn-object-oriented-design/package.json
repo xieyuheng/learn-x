@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "npx tsc",
+    "watch": "npx tsc --watch",
+    "format": "npx prettier src examples --write"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "@types/assert": "^1.5.2",
+    "@types/node": "^14.14.10",
+    "prettier": "^2.2.0",
+    "typescript": "^4.1.2"
+  },
+  "license": "GPL-3.0-or-later"
+}
