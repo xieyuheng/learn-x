@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+function t {
+    test-lib node js
+}
+
+function test-lib {
+    prog=$1
+    ext=$2
+
+    for file in $(find . | grep -v "node_modules/" | grep "./*/lib/" | grep "\.${ext}$")
+    do
+        echo ""
+        echo "[test] $file"
+        if ! time $prog $file
+        then
+            exit 1
+        fi
+    done
+}
+
+function h {
+    echo "commands:"
+    for subcommand in $(declare -F | sed 's/declare -f//g')
+    do
+        echo "  $subcommand"
+    done
+}
+
+if [ $# == 0 ]
+then
+    h
+else
+    for TASK in $@
+    do
+        $TASK
+    done
+fi
