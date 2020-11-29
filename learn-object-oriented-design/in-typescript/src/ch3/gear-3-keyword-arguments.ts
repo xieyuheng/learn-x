@@ -23,8 +23,13 @@ export class Gear {
 }
 
 class Wheel {
-  // TODO
-  constructor(public rim: number, public tire: number) {}
+  rim: number
+  tire: number
+
+  constructor(the: { rim: number; tire: number }) {
+    this.rim = the.rim
+    this.tire = the.tire
+  }
 
   get diameter(): number {
     return this.rim + this.tire * 2
@@ -36,11 +41,37 @@ class Wheel {
 }
 
 console.log(
-  new Gear({ chainring: 52, cog: 11, wheel: new Wheel(26, 1.5) }).gear_inches
-)
-console.log(
-  new Gear({ chainring: 52, cog: 11, wheel: new Wheel(24, 1.25) }).gear_inches
+  new Gear({
+    chainring: 52,
+    cog: 11,
+    wheel: new Wheel({
+      rim: 26,
+      tire: 1.5,
+    }),
+  }).gear_inches
 )
 
-console.log(new Wheel(26, 1.5).circumference)
-console.log(new Wheel(24, 1.25).circumference)
+console.log(
+  new Gear({
+    chainring: 52,
+    cog: 11,
+    wheel: new Wheel({
+      rim: 24,
+      tire: 1.25,
+    }),
+  }).gear_inches
+)
+
+console.log(
+  new Wheel({
+    rim: 26,
+    tire: 1.5,
+  }).circumference
+)
+
+console.log(
+  new Wheel({
+    rim: 24,
+    tire: 1.25,
+  }).circumference
+)
