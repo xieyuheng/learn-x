@@ -1,8 +1,5 @@
 export class Gear {
-  constructor(
-    public chainring: number,
-    public cog: number,
-  ) {}
+  constructor(public chainring: number, public cog: number) {}
 
   get ratio(): number {
     return this.chainring / this.cog
