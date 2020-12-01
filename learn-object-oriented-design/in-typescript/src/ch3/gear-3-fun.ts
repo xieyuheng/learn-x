@@ -1,4 +1,4 @@
-type Gear = {
+export type Gear = {
   chainring: number
   cog: number
   wheel: { diameter: number }
@@ -6,7 +6,7 @@ type Gear = {
   gear_inches: number
 }
 
-function Gear(
+export function Gear(
   chainring: number,
   cog: number,
   wheel: { diameter: number }
@@ -23,14 +23,14 @@ function Gear(
   }
 }
 
-type Wheel = {
+export type Wheel = {
   rim: number
   tire: number
   diameter: number
   circumference: number
 }
 
-function Wheel(rim: number, tire: number): Wheel {
+export function Wheel(rim: number, tire: number): Wheel {
   const diameter = rim + tire * 2
   const circumference = diameter * Math.PI
 
