@@ -37,6 +37,7 @@ export class RecumbentBike extends Bicycle {
 }
 
 {
-  console.log(new RoadBike({ size: "M" }))
+  console.log(new RoadBike({ size: "S" }))
+  console.log(new MountainBike({ size: "M" }))  
   console.log(new RecumbentBike({ size: "L" }))
 }
