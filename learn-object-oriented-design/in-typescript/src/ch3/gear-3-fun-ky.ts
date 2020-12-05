@@ -49,20 +49,4 @@ export function Wheel(the: { rim: number; tire: number }): Wheel {
   }
 }
 
-console.log(
-  Gear({
-    chainring: 52,
-    cog: 11,
-    wheel: Wheel({ rim: 26, tire: 1.5 }),
-  }).gear_inches
-)
-console.log(
-  Gear({
-    chainring: 52,
-    cog: 11,
-    wheel: Wheel({ rim: 24, tire: 1.25 }),
-  }).gear_inches
-)
-
-console.log(Wheel({ rim: 26, tire: 1.5 }).circumference)
-console.log(Wheel({ rim: 24, tire: 1.25 }).circumference)
+import "./gear-3-fun-ky-create"
