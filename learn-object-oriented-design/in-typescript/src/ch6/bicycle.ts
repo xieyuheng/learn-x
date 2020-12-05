@@ -13,10 +13,7 @@ export abstract class Bicycle {
     this.size = the.size
     this.chain = the.chain || this.default_chain
     this.tire_size = the.tire_size || this.default_tire_size
-    this.post_create(the)
   }
-
-  post_create(the: { [key: string]: undefined | string }): void {}
 
   get spares(): { [key: string]: string } {
     return {
@@ -57,12 +54,38 @@ export class RoadBike extends Bicycle {
 }
 
 export class MountainBike extends Bicycle {
+  front_shock: string
+  rear_shock: string
+
+  constructor(
+    the: BicycleEssential & { front_shock: string; rear_shock: string }
+  ) {
+    super(the)
+    this.front_shock = the.front_shock
+    this.rear_shock = the.rear_shock
+  }
+
+  get local_spares(): { [key: string]: string } {
+    return { front_shock: this.front_shock }
+  }
+
   get default_tire_size(): string {
     return "2.1"
   }
 }
 
 export class RecumbentBike extends Bicycle {
+  flag: string
+
+  constructor(the: BicycleEssential & { flag: string }) {
+    super(the)
+    this.flag = the.flag
+  }
+
+  get local_spares(): { [key: string]: string } {
+    return { flag: this.flag }
+  }
+
   get default_chain(): string {
     return "10-speed"
   }
@@ -72,8 +95,12 @@ export class RecumbentBike extends Bicycle {
   }
 }
 
-{
-  console.log(new RoadBike({ size: "S", tape_color: "red" }))
-  console.log(new MountainBike({ size: "M" }))
-  console.log(new RecumbentBike({ size: "L" }))
+const bikes = [
+  new RoadBike({ size: "S", tape_color: "red" }),
+  new MountainBike({ size: "M", front_shock: "Manitou", rear_shock: "Fox" }),
+  new RecumbentBike({ size: "L", flag: "tall and orange" }),
+]
+
+for (const bike of bikes) {
+  console.log({ ...bike, spares: bike.spares })
 }
