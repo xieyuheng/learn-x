@@ -1,16 +1,16 @@
 import { Gear, Wheel } from "./gear-3-fun-ky"
 
 declare module "./gear-3-fun-ky" {
-  export namespace Gear {
-    export function create(
+  namespace Gear {
+    function create(
       chainring: number,
       cog: number,
       wheel: { diameter: number }
     ): Gear
   }
 
-  export namespace Wheel {
-    export function create(rim: number, tire: number): Wheel
+   namespace Wheel {
+     function create(rim: number, tire: number): Wheel
   }
 }
 
