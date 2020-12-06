@@ -8,7 +8,7 @@ function test-lib {
     prog=$1
     ext=$2
 
-    for file in $(find . | grep -v "node_modules/" | grep "./*/lib/" | grep "\.${ext}$")
+    for file in $(find . | grep -v "node_modules/" | grep "./*/lib/" | grep "\.test.*$" | grep "\.${ext}$")
     do
         echo ""
         echo "[test] $file"
