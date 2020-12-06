@@ -1,8 +1,8 @@
 import { Schedulable } from "./schedulable"
 
-type Bicycle = Schedulable & {
+type Bicycle = {
   kind: "Bicycle"
-}
+} & Schedulable
 
 function Bicycle(): Bicycle {
   return {
@@ -11,9 +11,9 @@ function Bicycle(): Bicycle {
   }
 }
 
-type Vehicle = Schedulable & {
+type Vehicle = {
   kind: "Vehicle"
-}
+} & Schedulable
 
 function Vehicle(): Vehicle {
   return {
@@ -22,9 +22,9 @@ function Vehicle(): Vehicle {
   }
 }
 
-type Mechanic = Schedulable & {
+type Mechanic = {
   kind: "Mechanic"
-}
+} & Schedulable
 
 function Mechanic(): Mechanic {
   return {
