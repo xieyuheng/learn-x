@@ -1,34 +1,34 @@
 import { Schedulable } from "./schedulable"
 
 type Bicycle = {
-  kind: "Bicycle"
+  name: "Bicycle"
 } & Schedulable
 
 function Bicycle(): Bicycle {
   return {
-    kind: "Bicycle",
+    name: "Bicycle",
     ...Schedulable({ lead_days: 1 }),
   }
 }
 
 type Vehicle = {
-  kind: "Vehicle"
+  name: "Vehicle"
 } & Schedulable
 
 function Vehicle(): Vehicle {
   return {
-    kind: "Vehicle",
+    name: "Vehicle",
     ...Schedulable({ lead_days: 3 }),
   }
 }
 
 type Mechanic = {
-  kind: "Mechanic"
+  name: "Mechanic"
 } & Schedulable
 
 function Mechanic(): Mechanic {
   return {
-    kind: "Mechanic",
+    name: "Mechanic",
     ...Schedulable({ lead_days: 4 }),
   }
 }
