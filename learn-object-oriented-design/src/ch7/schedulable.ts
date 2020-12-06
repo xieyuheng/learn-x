@@ -6,9 +6,9 @@ export type Schedulable = {
   schedulable_p(starting: number, ending: number): boolean
 }
 
-export function Schedulable(self: { lead_days: number }): Schedulable {
+export function Schedulable(the: { lead_days: number }): Schedulable {
   const schedule = Schedule()
-  const lead_days = self.lead_days
+  const lead_days = the.lead_days
 
   return {
     schedule,
