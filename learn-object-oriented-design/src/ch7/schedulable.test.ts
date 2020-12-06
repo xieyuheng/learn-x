@@ -1,22 +1,39 @@
 import { Schedulable } from "./schedulable"
 
-function Bicycle(): Schedulable {
-  return Schedulable({ lead_days: 1 })
+type Bicycle = Schedulable & {
+  kind: "Bicycle"
 }
 
-function Vehicle(): Schedulable {
-  return Schedulable({ lead_days: 3 })
+function Bicycle(): Bicycle {
+  return {
+    kind: "Bicycle",
+    ...Schedulable({ lead_days: 1 }),
+  }
 }
 
-function Mechanic(): Schedulable {
-  return Schedulable({ lead_days: 4 })
+type Vehicle = Schedulable & {
+  kind: "Vehicle"
 }
 
-const schedulables = [
-  Bicycle(),
-  Vehicle(),
-  Mechanic(),
-]
+function Vehicle(): Vehicle {
+  return {
+    kind: "Vehicle",
+    ...Schedulable({ lead_days: 3 }),
+  }
+}
+
+type Mechanic = Schedulable & {
+  kind: "Mechanic"
+}
+
+function Mechanic(): Mechanic {
+  return {
+    kind: "Mechanic",
+    ...Schedulable({ lead_days: 4 }),
+  }
+}
+
+const schedulables = [Bicycle(), Vehicle(), Mechanic()]
 
 for (const schedulable of schedulables) {
   console.log(schedulable.schedulable_p(13, 14))
