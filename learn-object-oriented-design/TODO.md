@@ -1,0 +1,3 @@
+- separate tests from implementation
+- example from ch8
+- example from ch9
