@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "tcr": "onchange 'src/**/*.ts' -- ts-node {{file}} && git commit -am ok || git reset -hard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
