@@ -1,0 +1,2 @@
+- note about MVC of rails
+- finish the guide
