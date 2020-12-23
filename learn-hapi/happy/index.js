@@ -9,15 +9,13 @@ const init = async () => {
   server.route({
     method: "GET",
     path: "/",
-    handler: async (request, h) => {
-      return h.redirect("/hello")
-    },
+    handler: (request, h) => h.redirect("/hello"),
   })
 
   server.route({
     method: "GET",
     path: "/hello/{name?}",
-    handler: async (request, h) => {
+    handler: (request, h) => {
       const { name } = request.params
       return `Hello ${name}!`
     },
@@ -26,9 +24,34 @@ const init = async () => {
   server.route({
     method: "GET",
     path: "/json/{name?}",
-    handler: async (request, h) => {
+    handler: (request, h) => {
       const { name } = request.params
       return { name }
+    },
+  })
+
+  server.route({
+    method: "GET",
+    path: "/user",
+    handler: (request, h) => {
+      return {
+        firstName: "John",
+        lastName: "Doe",
+        userName: "JohnDoe",
+        id: 123,
+      }
+    },
+  })
+
+  server.route({
+    method: "POST",
+    path: "/hello",
+    handler: (request) => {
+      const { name } = request.payload
+      console.log(request.payload)
+      return {
+        message: `Hello ${name}`,
+      }
     },
   })
 
