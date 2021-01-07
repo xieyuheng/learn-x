@@ -2,9 +2,9 @@ FROM node:lts-alpine
 
 EXPOSE 3000
 
-RUN mkdir /src
-COPY app.js /src
+RUN mkdir /app
+COPY app.js /app
 
-WORKDIR /src
+WORKDIR /app
 
 CMD node app.js
