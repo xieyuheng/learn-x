@@ -1,4 +1,3 @@
-- prepare router
 - fix chat views
 - position
   - https://tailwindcss.com/docs/position
