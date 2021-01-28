@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "format": "prettier src --write"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "vueIndentScriptAndStyle": true
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.1",
@@ -22,12 +28,9 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "prettier": "^2.2.1",
+    "prettier-plugin-tailwind-css": "^1.4.0",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }

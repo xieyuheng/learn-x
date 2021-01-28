@@ -1,9 +1,9 @@
 <template>
   <div
-    class="p-6 max-w-sm mx-auto rounded-xl shadow-md flex items-center space-x-4"
+    class="rounded-xl flex items-center max-w-sm p-6 mx-auto space-x-4 shadow-md"
   >
     <div class="flex-shrink-0">
-      <img class="h-12 w-12" src="../assets/logo.png" alt="ChitChat Logo" />
+      <img class="w-12 h-12" src="../assets/logo.png" alt="ChitChat Logo" />
     </div>
     <div>
       <div class="text-xl font-medium text-black">ChitChat</div>
