@@ -1,3 +1,2 @@
-- fix chat views
-- position
-  - https://tailwindcss.com/docs/position
+- position: https://tailwindcss.com/docs/position
+  - PositionSticky
