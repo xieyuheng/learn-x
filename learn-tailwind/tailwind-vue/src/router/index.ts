@@ -9,7 +9,8 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    { path: "/", component: Home },
+    { path: "/", redirect: "/Home" },
+    { path: "/Home", component: Home },
     { path: "/About", component: About },
     { path: "/ChitChat", component: ChitChat },
     { path: "/PositionFixed", component: PositionFixed },

@@ -1,12 +1,12 @@
 <template>
   <div class="text-2xl">
-    <div class="fixed p-5 bg-yellow-300 text-yellow-800 w-full">
+    <div class="fixed w-full p-5 text-yellow-800 bg-yellow-300">
       Fixed child
     </div>
 
-    <div class="p-5 bg-yellow-300 text-yellow-800 w-full">Placeholder</div>
+    <div class="w-full p-5 text-yellow-800 bg-yellow-300">Placeholder</div>
 
-    <div class="py-4 px-10 text-yellow-800 bg-yellow-100 leading-normal">
+    <div class="px-10 py-4 leading-normal text-yellow-800 bg-yellow-100">
       <p>Scroll me!</p>
 
       <p>
