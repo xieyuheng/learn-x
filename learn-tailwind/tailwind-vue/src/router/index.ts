@@ -6,7 +6,6 @@ import ChitChat from "../views/ChitChat.vue"
 import PositionFixed from "../views/PositionFixed.vue"
 import PositionSticky from "../views/PositionSticky.vue"
 
-
 Vue.use(VueRouter)
 
 const router = new VueRouter({

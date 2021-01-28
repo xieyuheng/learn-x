@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-green-100 p-10 h-screen">
+  <div class="h-screen p-10 bg-green-100">
     <div class="h-full overflow-y-scroll">
       <div>
         <div class="heading">Sticky Heading 1</div>
