@@ -1,2 +1,1 @@
 - position: https://tailwindcss.com/docs/position
-  - PositionSticky

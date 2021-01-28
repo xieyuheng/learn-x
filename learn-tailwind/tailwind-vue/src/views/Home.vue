@@ -4,5 +4,6 @@
     <router-link to="/About">About</router-link>
     <router-link to="/ChitChat">ChitChat</router-link>
     <router-link to="/PositionFixed">PositionFixed</router-link>
+    <router-link to="/PositionSticky">PositionSticky</router-link>
   </div>
 </template>
