@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>2. How to structure a web form</title>
+
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
   </head>
 
   <body>
     <p>2. How to structure a web form</p>
+
+    <form>
+      <fieldset>
+        <legend>Fruit juice size</legend>
+
+        <p>
+          <input type="radio" name="size" id="size_1" value="small" />
+          <label for="size_1">Small</label>
+        </p>
+
+        <p>
+          <input type="radio" name="size" id="size_2" value="medium" />
+          <label for="size_2">Medium</label>
+        </p>
+
+        <p>
+          <input type="radio" name="size" id="size_3" value="large" />
+          <label for="size_3">Large</label>
+        </p>
+      </fieldset>
+    </form>
   </body>
 </html>

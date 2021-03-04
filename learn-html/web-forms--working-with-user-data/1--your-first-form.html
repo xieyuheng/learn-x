@@ -5,11 +5,10 @@
     <title>1. Your first form</title>
 
     <style>
-    form {
-      display: flex;
-      flex-direction: column;
-      width: 500px;
-    }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
     </style>
   </head>
 
@@ -17,16 +16,24 @@
     <p>1. Your first form</p>
 
     <form action="/some-server" method="post">
-      <label for="name">Name:</label>
-      <input required type="text" id="name" name="user_name" />
+      <p>
+        <label for="name">Name:</label>
+        <input required type="text" id="name" name="user_name" />
+      </p>
 
-      <label for="mail">E-mail:</label>
-      <input required type="email" id="mail" name="user_email" />
+      <p>
+        <label for="mail">E-mail:</label>
+        <input required type="email" id="mail" name="user_email" />
+      </p>
 
-      <label for="msg">Message:</label>
-      <textarea id="msg" name="user_message"></textarea>
+      <p>
+        <label for="msg">Message:</label>
+        <textarea id="msg" name="user_message"></textarea>
+      </p>
 
-      <button type="submit">Send your message</button>
+      <p>
+        <button type="submit">Send your message</button>
+      </p>
     </form>
   </body>
 </html>
