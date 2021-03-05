@@ -3,37 +3,107 @@
   <head>
     <meta charset="utf-8" />
     <title>2. How to structure a web form</title>
-
-    <style>
-      form {
-        display: flex;
-        flex-direction: column;
-      }
-    </style>
   </head>
 
   <body>
     <p>2. How to structure a web form</p>
 
     <form>
-      <fieldset>
-        <legend>Fruit juice size</legend>
+      <h1>Payment form</h1>
+
+      <p>
+        Required fields are followed by
+        <strong><abbr title="required">*</abbr></strong
+        >.
+      </p>
+
+      <section>
+        <h2>Contact information</h2>
+
+        <fieldset>
+          <legend>Title</legend>
+          <ul>
+            <li>
+              <label for="title_1">
+                <input type="radio" id="title_1" name="title" value="K" />
+                King
+              </label>
+            </li>
+            <li>
+              <label for="title_2">
+                <input type="radio" id="title_2" name="title" value="Q" />
+                Queen
+              </label>
+            </li>
+            <li>
+              <label for="title_3">
+                <input type="radio" id="title_3" name="title" value="J" />
+                Joker
+              </label>
+            </li>
+          </ul>
+        </fieldset>
 
         <p>
-          <input type="radio" name="size" id="size_1" value="small" />
-          <label for="size_1">Small</label>
+          <label for="name">
+            <span>Name: </span>
+            <strong><abbr title="required">*</abbr></strong>
+          </label>
+          <input type="text" id="name" name="username" />
         </p>
 
         <p>
-          <input type="radio" name="size" id="size_2" value="medium" />
-          <label for="size_2">Medium</label>
+          <label for="mail">
+            <span>E-mail: </span>
+            <strong><abbr title="required">*</abbr></strong>
+          </label>
+          <input type="email" id="mail" name="usermail" />
         </p>
 
         <p>
-          <input type="radio" name="size" id="size_3" value="large" />
-          <label for="size_3">Large</label>
+          <label for="pwd">
+            <span>Password: </span>
+            <strong><abbr title="required">*</abbr></strong>
+          </label>
+          <input type="password" id="pwd" name="password" />
         </p>
-      </fieldset>
+      </section>
+
+      <section>
+        <h2>Payment information</h2>
+
+        <p>
+          <label for="card">
+            <span>Card type:</span>
+          </label>
+          <select id="card" name="usercard">
+            <option value="visa">Visa</option>
+            <option value="mc">Mastercard</option>
+            <option value="amex">American Express</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="number">
+            <span>Card number:</span>
+            <strong><abbr title="required">*</abbr></strong>
+          </label>
+          <input type="tel" id="number" name="cardnumber" />
+        </p>
+
+        <p>
+          <label for="date">
+            <span>Expiration date:</span>
+            <strong><abbr title="required">*</abbr></strong>
+            <em>formatted as mm/dd/yyyy</em>
+          </label>
+          <input type="date" id="date" name="expiration" />
+        </p>
+      </section>
+
+      <p>
+        <button type="submit">Validate the payment</button>
+      </p>
     </form>
   </body>
 </html>
