@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+run-when-changed \
+    --watch "src/**/*.ts" \
+    --exec "ts-node %filepath && git commit -am ok || git reset --hard"
