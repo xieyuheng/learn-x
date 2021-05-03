@@ -1,38 +1,34 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
-function t {
-    test-lib node js
+const { run, test, expect, snapshot, info } = require("@xieyuheng/test-runner")
+const path = require("path")
+const fs = require("fs")
+
+let commands = {}
+
+commands.t = async () => {
+  await commands.test_all()
 }
 
-function test-lib {
-    prog=$1
-    ext=$2
-
-    for file in $(find . | grep -v "node_modules/" | grep "./*/lib/" | grep "\.test.*$" | grep "\.${ext}$")
-    do
-        echo ""
-        echo "[test] $file"
-        if ! time $prog $file
-        then
-            exit 1
-        fi
-    done
+commands.test_all = async () => {
+  await commands.test_lib()
+  await commands.test_snapshot()
 }
 
-function h {
-    echo "commands:"
-    for subcommand in $(declare -F | sed 's/declare -f//g')
-    do
-        echo "  $subcommand"
-    done
+commands.test_lib = async () => {
+  await test("node $file", { file: "lib/**/*.test.js" }, expect.ok)
 }
 
-if [ $# == 0 ]
-then
-    h
-else
-    for TASK in $@
-    do
-        $TASK
-    done
-fi
+commands.test_snapshot = async () => {
+  await test(
+    "node $file",
+    { file: "lib/**/*.snapshot.js" },
+    snapshot.out(({ file }) =>
+      path.resolve("snapshot", changeCase.paramCase(file) + ".out")
+    )
+  )
+}
+
+info()
+
+run(commands)
