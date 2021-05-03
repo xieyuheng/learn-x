@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+
+const { run, test, expect, snapshot, info } = require("@xieyuheng/test-runner")
+const path = require("path")
+const fs = require("fs")
+
+let commands = {}
+
+commands.t = async () => {
+  await commands.test_all()
+}
+
+commands.test_all = async () => {
+  await commands.test_lib()
+  await commands.test_snapshot()
+}
+
+commands.test_lib = async () => {
+  await test("node $file", { file: "lib/**/*.test.js" }, expect.ok)
+}
+
+commands.test_snapshot = async () => {
+  await test(
+    "node $file",
+    { file: "lib/**/*.snapshot.js" },
+    snapshot.out(({ file }) =>
+      path.resolve("snapshot", changeCase.paramCase(file) + ".out")
+    )
+  )
+}
+
+info()
+
+run(commands)
