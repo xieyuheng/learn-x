@@ -1,1 +1,1 @@
-- Composite code example
+- composite/equipment -- test
