@@ -92,3 +92,14 @@ export class FloppyDisk extends PrimitiveEquipment {
     this.discountPrice = opts.discountPrice
   }
 }
+
+export class Chassis extends CompositeEquipment {
+  name: string
+  parts: Array<Equipment>
+
+  constructor(opts: { name: string; parts: Array<Equipment> }) {
+    super()
+    this.name = opts.name
+    this.parts = opts.parts
+  }
+}
