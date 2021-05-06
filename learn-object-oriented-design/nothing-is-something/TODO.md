@@ -1,2 +1,1 @@
-- the null object pattern example
 - house example -- strategy pattern
