@@ -1,4 +1,8 @@
 export class Bottles {
+  verses(...ns: Array<number>): string {
+    return ns.map((n) => this.verse(n)).join("\n")
+  }
+
   verse(n: number): string {
     if (n === 0) {
       return (

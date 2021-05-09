@@ -61,19 +61,22 @@ import * as ut from "./ut"
   ut.assertEqual(new Bottles().verse(0), expected)
 }
 
-// test.skip("a couple verses", () => {
-//   const expected =
-//     "99 bottles of milk on the wall, " +
-//     "99 bottles of milk.\n" +
-//     "Take one down and pass it around, " +
-//     "98 bottles of milk on the wall.\n" +
-//     "\n" +
-//     "98 bottles of milk on the wall, " +
-//     "98 bottles of milk.\n" +
-//     "Take one down and pass it around, " +
-//     "97 bottles of milk on the wall.\n"
-//   expect(new Bottles().verses(99, 98)).toBe(expected)
-// })
+{
+  console.log("[test] a couple verses")
+
+  const expected =
+    "99 bottles of milk on the wall, " +
+    "99 bottles of milk.\n" +
+    "Take one down and pass it around, " +
+    "98 bottles of milk on the wall.\n" +
+    "\n" +
+    "98 bottles of milk on the wall, " +
+    "98 bottles of milk.\n" +
+    "Take one down and pass it around, " +
+    "97 bottles of milk on the wall.\n"
+
+  ut.assertEqual(new Bottles().verses(99, 98), expected)
+}
 
 // test.skip("a few verses", () => {
 //   const expected =
