@@ -1,6 +1,10 @@
 import * as ut from "./ut"
 
 export class Bottles {
+  song(): string {
+    return this.verses(99, 0)
+  }
+
   verses(max: number, min: number): string {
     return ut
       .downTo(max, min)
