@@ -2,7 +2,7 @@ import { Bottles } from "./bottles"
 import * as ut from "./ut"
 
 {
-  console.log("the first verse")
+  console.log("[test] the first verse")
 
   const expected =
     "99 bottles of milk on the wall, " +
@@ -13,14 +13,17 @@ import * as ut from "./ut"
   ut.assertEqual(new Bottles().verse(99), expected)
 }
 
-// test.skip("another verse", () => {
-//   const expected =
-//     "3 bottles of milk on the wall, " +
-//     "3 bottles of milk.\n" +
-//     "Take one down and pass it around, " +
-//     "2 bottles of milk on the wall.\n"
-//   expect(new Bottles().verse(3)).toBe(expected)
-// })
+{
+  console.log("[test] another verse")
+
+  const expected =
+    "3 bottles of milk on the wall, " +
+    "3 bottles of milk.\n" +
+    "Take one down and pass it around, " +
+    "2 bottles of milk on the wall.\n"
+
+  ut.assertEqual(new Bottles().verse(3), expected)
+}
 
 // test.skip("verse 2", () => {
 //   const expected =
