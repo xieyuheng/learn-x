@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "npx tsc",
+    "watch": "npx tsc --watch",
+    "test": "./dev t",
+    "format": "npx prettier src --write"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "@types/assert": "^1.5.4",
+    "@types/node": "^15.0.1",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.4"
+  },
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@xieyuheng/test-runner": "^0.1.20"
+  }
+}
