@@ -3,13 +3,16 @@ export class Bottles {
     return (
       `${n} ${this.bottles(n)} of milk on the wall, ` +
       `${n} ${this.bottles(n)} of milk.\n` +
-      `Take one down and pass it around, ` +
       this.ending(n - 1)
     )
   }
 
   ending(n: number): string {
-    return `${n} ${this.bottles(n)} of milk on the wall.\n`
+    return n === 0
+      ? `Take it down and pass it around, ` +
+          `no more bottles of milk on the wall.\n`
+      : `Take one down and pass it around, ` +
+          `${n} ${this.bottles(n)} of milk on the wall.\n`
   }
 
   bottles(n: number): string {
