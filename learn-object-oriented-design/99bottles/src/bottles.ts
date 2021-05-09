@@ -1,21 +1,40 @@
 export class Bottles {
   verse(n: number): string {
-    return (
-      `${n} ${this.bottles(n)} of milk on the wall, ` +
-      `${n} ${this.bottles(n)} of milk.\n` +
-      this.ending(n - 1)
-    )
+    if (n === 0) {
+      return (
+        `No more bottles of milk on the wall, ` +
+        `no more bottles of milk.\n` +
+        `Go to the store and buy some more, ` +
+        `99 bottles of milk on the wall.\n`
+      )
+    } else {
+      return (
+        `${n} ${this.bottles(n)} of milk on the wall, ` +
+        `${n} ${this.bottles(n)} of milk.\n` +
+        this.ending(n - 1)
+      )
+    }
   }
 
   ending(n: number): string {
-    return n === 0
-      ? `Take it down and pass it around, ` +
-          `no more bottles of milk on the wall.\n`
-      : `Take one down and pass it around, ` +
-          `${n} ${this.bottles(n)} of milk on the wall.\n`
+    if (n === 0) {
+      return (
+        `Take it down and pass it around, ` +
+        `no more bottles of milk on the wall.\n`
+      )
+    } else {
+      return (
+        `Take one down and pass it around, ` +
+        `${n} ${this.bottles(n)} of milk on the wall.\n`
+      )
+    }
   }
 
   bottles(n: number): string {
-    return n > 1 ? "bottles" : "bottle"
+    if (n > 1) {
+      return "bottles"
+    } else {
+      return "bottle"
+    }
   }
 }

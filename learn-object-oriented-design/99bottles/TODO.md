@@ -1,4 +1,3 @@
-- [test] verse 0
 - [test] a couple verses
 - [test] a few verses
 - [test] the whole song
