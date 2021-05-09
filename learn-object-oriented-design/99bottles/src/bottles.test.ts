@@ -25,14 +25,17 @@ import * as ut from "./ut"
   ut.assertEqual(new Bottles().verse(3), expected)
 }
 
-// test.skip("verse 2", () => {
-//   const expected =
-//     "2 bottles of milk on the wall, " +
-//     "2 bottles of milk.\n" +
-//     "Take one down and pass it around, " +
-//     "1 bottle of milk on the wall.\n"
-//   expect(new Bottles().verse(2)).toBe(expected)
-// })
+{
+  console.log("[test] verse 2")
+
+  const expected =
+    "2 bottles of milk on the wall, " +
+    "2 bottles of milk.\n" +
+    "Take one down and pass it around, " +
+    "1 bottle of milk on the wall.\n"
+
+  ut.assertEqual(new Bottles().verse(2), expected)
+}
 
 // test.skip("verse 1", () => {
 //   const expected =

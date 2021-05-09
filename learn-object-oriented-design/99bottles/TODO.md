@@ -1,4 +1,3 @@
-- [test] verse 2
 - [test] verse 1
 - [test] verse 0
 - [test] a couple verses
