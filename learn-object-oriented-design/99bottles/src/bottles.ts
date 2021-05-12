@@ -22,8 +22,8 @@ export class Bottles {
       )
     } else {
       return (
-        `${n} ${this.bottles(n)} of milk on the wall, ` +
-        `${n} ${this.bottles(n)} of milk.\n` +
+        `${n} ${this.container(n)} of milk on the wall, ` +
+        `${n} ${this.container(n)} of milk.\n` +
         this.ending(n - 1)
       )
     }
@@ -38,16 +38,16 @@ export class Bottles {
     } else {
       return (
         `Take one down and pass it around, ` +
-        `${n} ${this.bottles(n)} of milk on the wall.\n`
+        `${n} ${this.container(n)} of milk on the wall.\n`
       )
     }
   }
 
-  bottles(n: number): string {
-    if (n > 1) {
-      return "bottles"
-    } else {
+  container(n: number): string {
+    if (n === 1) {
       return "bottle"
+    } else {
+      return "bottles"
     }
   }
 }
