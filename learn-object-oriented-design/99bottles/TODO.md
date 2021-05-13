@@ -1,1 +1,2 @@
 - extract `successor`
+- use abstraction `successor`

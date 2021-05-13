@@ -21,7 +21,9 @@ export class Bottles {
           )} of milk on the wall, ` +
           `${this.quantity(n)} ${this.container(n)} of milk.\n` +
           this.action(n) +
-          `99 bottles of milk on the wall.\n`
+          `${this.quantity(99)} ${this.container(
+            n - 1
+          )} of milk on the wall.\n`
         )
       default:
         return (
