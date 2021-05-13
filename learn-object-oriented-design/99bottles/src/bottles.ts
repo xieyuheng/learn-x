@@ -21,8 +21,8 @@ export class Bottles {
           )} of milk on the wall, ` +
           `${this.quantity(n)} ${this.container(n)} of milk.\n` +
           this.action(n) +
-          `${this.quantity(99)} ${this.container(
-            n - 1
+          `${this.quantity(this.successor(n))} ${this.container(
+            this.successor(n)
           )} of milk on the wall.\n`
         )
       default:
@@ -32,10 +32,18 @@ export class Bottles {
           )} of milk on the wall, ` +
           `${this.quantity(n)} ${this.container(n)} of milk.\n` +
           this.action(n) +
-          `${this.quantity(n - 1)} ${this.container(
-            n - 1
+          `${this.quantity(this.successor(n))} ${this.container(
+            this.successor(n)
           )} of milk on the wall.\n`
         )
+    }
+  }
+
+  successor(n: number): number {
+    if (n === 0) {
+      return 99
+    } else {
+      return n - 1
     }
   }
 

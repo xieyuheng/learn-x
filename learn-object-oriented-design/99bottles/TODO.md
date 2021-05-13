@@ -1,2 +1,1 @@
-- extract `successor`
-- use abstraction `successor`
+- remove case
