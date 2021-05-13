@@ -25,19 +25,19 @@ export class Bottles {
     )
   }
 
-  successor(n: number): number {
-    if (n === 0) {
-      return 99
-    } else {
-      return n - 1
-    }
-  }
-
   action(n: number): string {
     if (n === 0) {
       return "Go to the store and buy some more, "
     } else {
       return `Take ${this.pronoun(n)} down and pass it around, `
+    }
+  }
+
+  successor(n: number): number {
+    if (n === 0) {
+      return 99
+    } else {
+      return n - 1
     }
   }
 
