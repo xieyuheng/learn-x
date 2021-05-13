@@ -20,7 +20,7 @@ export class Bottles {
             n
           )} of milk on the wall, ` +
           `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-          `Go to the store and buy some more, ` +
+          this.action(n) +
           `99 bottles of milk on the wall.\n`
         )
       default:
@@ -29,11 +29,19 @@ export class Bottles {
             n
           )} of milk on the wall, ` +
           `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-          `Take ${this.pronoun(n)} down and pass it around, ` +
+          this.action(n) +
           `${this.quantity(n - 1)} ${this.container(
             n - 1
           )} of milk on the wall.\n`
         )
+    }
+  }
+
+  action(n: number): string {
+    if (n === 0) {
+      return `Go to the store and buy some more, `
+    } else {
+      return `Take ${this.pronoun(n)} down and pass it around, `
     }
   }
 
