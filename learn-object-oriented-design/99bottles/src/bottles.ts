@@ -26,6 +26,34 @@ export class Bottles {
   }
 
   action(n: number): string {
+    return new BottleNumber(n).action(n)
+  }
+
+  successor(n: number): number {
+    return new BottleNumber(n).successor(n)
+  }
+
+  quantity(n: number): string {
+    return new BottleNumber(n).quantity(n)
+  }
+
+  pronoun(n: number): string {
+    return new BottleNumber(n).pronoun(n)
+  }
+
+  container(n: number): string {
+    return new BottleNumber(n).container(n)
+  }
+}
+
+export class BottleNumber {
+  n: number
+
+  constructor(n: number) {
+    this.n = n
+  }
+
+  action(n: number): string {
     if (n === 0) {
       return "Go to the store and buy some more"
     } else {

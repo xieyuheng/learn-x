@@ -1,0 +1,1 @@
+- reduce arg of `BottleNumber` methods
