@@ -18,7 +18,7 @@ export class Bottles {
         n
       )} of milk on the wall, ` +
       `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-      this.action(n) +
+      `${this.action(n)}, ` +
       `${this.quantity(this.successor(n))} ${this.container(
         this.successor(n)
       )} of milk on the wall.\n`
@@ -27,9 +27,9 @@ export class Bottles {
 
   action(n: number): string {
     if (n === 0) {
-      return "Go to the store and buy some more, "
+      return "Go to the store and buy some more"
     } else {
-      return `Take ${this.pronoun(n)} down and pass it around, `
+      return `Take ${this.pronoun(n)} down and pass it around`
     }
   }
 
