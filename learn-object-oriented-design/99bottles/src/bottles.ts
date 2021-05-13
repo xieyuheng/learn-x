@@ -16,15 +16,19 @@ export class Bottles {
     switch (n) {
       case 0:
         return (
-          `No more bottles of milk on the wall, ` +
-          `no more bottles of milk.\n` +
+          `${ut.capitalize(this.quantity(n))} ${this.container(
+            n
+          )} of milk on the wall, ` +
+          `${this.quantity(n)} ${this.container(n)} of milk.\n` +
           `Go to the store and buy some more, ` +
           `99 bottles of milk on the wall.\n`
         )
       default:
         return (
-          `${n} ${this.container(n)} of milk on the wall, ` +
-          `${n} ${this.container(n)} of milk.\n` +
+          `${ut.capitalize(this.quantity(n))} ${this.container(
+            n
+          )} of milk on the wall, ` +
+          `${this.quantity(n)} ${this.container(n)} of milk.\n` +
           `Take ${this.pronoun(n)} down and pass it around, ` +
           `${this.quantity(n - 1)} ${this.container(
             n - 1
