@@ -35,7 +35,7 @@ export class Bottles {
 
   action(n: number): string {
     if (n === 0) {
-      return `Go to the store and buy some more, `
+      return "Go to the store and buy some more, "
     } else {
       return `Take ${this.pronoun(n)} down and pass it around, `
     }
