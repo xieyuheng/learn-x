@@ -13,30 +13,16 @@ export class Bottles {
   }
 
   verse(n: number): string {
-    switch (n) {
-      case 0:
-        return (
-          `${ut.capitalize(this.quantity(n))} ${this.container(
-            n
-          )} of milk on the wall, ` +
-          `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-          this.action(n) +
-          `${this.quantity(this.successor(n))} ${this.container(
-            this.successor(n)
-          )} of milk on the wall.\n`
-        )
-      default:
-        return (
-          `${ut.capitalize(this.quantity(n))} ${this.container(
-            n
-          )} of milk on the wall, ` +
-          `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-          this.action(n) +
-          `${this.quantity(this.successor(n))} ${this.container(
-            this.successor(n)
-          )} of milk on the wall.\n`
-        )
-    }
+    return (
+      `${ut.capitalize(this.quantity(n))} ${this.container(
+        n
+      )} of milk on the wall, ` +
+      `${this.quantity(n)} ${this.container(n)} of milk.\n` +
+      this.action(n) +
+      `${this.quantity(this.successor(n))} ${this.container(
+        this.successor(n)
+      )} of milk on the wall.\n`
+    )
   }
 
   successor(n: number): number {
