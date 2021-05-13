@@ -26,15 +26,25 @@ export class Bottles {
           `${n} ${this.container(n)} of milk on the wall, ` +
           `${n} ${this.container(n)} of milk.\n` +
           `Take ${this.pronoun(n)} down and pass it around, ` +
-          `no more bottles of milk on the wall.\n`
+          `${this.quantity(n - 1)} bottles of milk on the wall.\n`
         )
       default:
         return (
           `${n} ${this.container(n)} of milk on the wall, ` +
           `${n} ${this.container(n)} of milk.\n` +
           `Take ${this.pronoun(n)} down and pass it around, ` +
-          `${n - 1} ${this.container(n - 1)} of milk on the wall.\n`
+          `${this.quantity(n - 1)} ${this.container(
+            n - 1
+          )} of milk on the wall.\n`
         )
+    }
+  }
+
+  quantity(n: number): string {
+    if (n === 0) {
+      return "no more"
+    } else {
+      return n.toString()
     }
   }
 
