@@ -25,16 +25,24 @@ export class Bottles {
         return (
           `${n} ${this.container(n)} of milk on the wall, ` +
           `${n} ${this.container(n)} of milk.\n` +
-          `Take it down and pass it around, ` +
+          `Take ${this.pronoun(n)} down and pass it around, ` +
           `no more bottles of milk on the wall.\n`
         )
       default:
         return (
           `${n} ${this.container(n)} of milk on the wall, ` +
           `${n} ${this.container(n)} of milk.\n` +
-          `Take one down and pass it around, ` +
+          `Take ${this.pronoun(n)} down and pass it around, ` +
           `${n - 1} ${this.container(n - 1)} of milk on the wall.\n`
         )
+    }
+  }
+
+  pronoun(n: number): string {
+    if (n === 1) {
+      return "it"
+    } else {
+      return "one"
     }
   }
 
