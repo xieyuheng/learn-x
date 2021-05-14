@@ -26,23 +26,23 @@ export class Bottles {
   }
 
   action(n: number): string {
-    return new BottleNumber(n).action(n)
+    return new BottleNumber(n).action()
   }
 
   successor(n: number): number {
-    return new BottleNumber(n).successor(n)
+    return new BottleNumber(n).successor()
   }
 
   quantity(n: number): string {
-    return new BottleNumber(n).quantity(n)
+    return new BottleNumber(n).quantity()
   }
 
   pronoun(n: number): string {
-    return new BottleNumber(n).pronoun(n)
+    return new BottleNumber(n).pronoun()
   }
 
   container(n: number): string {
-    return new BottleNumber(n).container(n)
+    return new BottleNumber(n).container()
   }
 }
 
@@ -53,43 +53,43 @@ export class BottleNumber {
     this.n = n
   }
 
-  action(n: number): string {
-    if (n === 0) {
+  action(): string {
+    if (this.n === 0) {
       return "Go to the store and buy some more"
     } else {
-      return `Take ${this.pronoun(n)} down and pass it around`
+      return `Take ${this.pronoun()} down and pass it around`
     }
   }
 
-  successor(n: number): number {
-    if (n === 0) {
+  successor(): number {
+    if (this.n === 0) {
       return 99
     } else {
-      return n - 1
+      return this.n - 1
     }
   }
 
-  quantity(n: number): string {
-    if (n === 0) {
+  quantity(): string {
+    if (this.n === 0) {
       return "no more"
     } else {
-      return n.toString()
+      return this.n.toString()
     }
   }
 
-  pronoun(n: number): string {
-    if (n === 1) {
-      return "it"
-    } else {
-      return "one"
-    }
-  }
-
-  container(n: number): string {
-    if (n === 1) {
+  container(): string {
+    if (this.n === 1) {
       return "bottle"
     } else {
       return "bottles"
+    }
+  }
+
+  pronoun(): string {
+    if (this.n === 1) {
+      return "it"
+    } else {
+      return "one"
     }
   }
 }

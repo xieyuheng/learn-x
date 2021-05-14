@@ -1,1 +1,2 @@
-- reduce arg of `BottleNumber` methods
+- cache created `BottleNumber` in `Bottle.verse`
+- remove `Bottle`s methods
