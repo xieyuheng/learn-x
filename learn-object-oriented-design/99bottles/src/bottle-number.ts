@@ -9,9 +9,11 @@ export class BottleNumber {
 
   static for(n: number): BottleNumber {
     switch (n) {
-      // case 0: return new BottleNumber0()
+      case 0:
+        return new BottleNumber0()
       // case 1: return new BottleNumber1()
-      default: return new BottleNumber(n)
+      default:
+        return new BottleNumber(n)
     }
   }
 
@@ -20,27 +22,15 @@ export class BottleNumber {
   }
 
   action(): string {
-    if (this.n === 0) {
-      return "Go to the store and buy some more"
-    } else {
-      return `Take ${this.pronoun()} down and pass it around`
-    }
+    return `Take ${this.pronoun()} down and pass it around`
   }
 
   successor(): number {
-    if (this.n === 0) {
-      return 99
-    } else {
-      return this.n - 1
-    }
+    return this.n - 1
   }
 
   quantity(): string {
-    if (this.n === 0) {
-      return "no more"
-    } else {
-      return this.n.toString()
-    }
+    return this.n.toString()
   }
 
   container(): string {
@@ -57,5 +47,23 @@ export class BottleNumber {
     } else {
       return "one"
     }
+  }
+}
+
+export class BottleNumber0 extends BottleNumber {
+  constructor() {
+    super(0)
+  }
+
+  action(): string {
+    return "Go to the store and buy some more"
+  }
+
+  successor(): number {
+    return 99
+  }
+
+  quantity(): string {
+    return "no more"
   }
 }
