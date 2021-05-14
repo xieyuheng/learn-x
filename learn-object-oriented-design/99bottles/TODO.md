@@ -1,1 +1,1 @@
-- extract class `BottleNumber`
+- extract `BottleNumber.toString`
