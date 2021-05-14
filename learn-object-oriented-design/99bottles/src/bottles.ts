@@ -13,15 +13,14 @@ export class Bottles {
   }
 
   verse(n: number): string {
+    const b = new BottleNumber(n)
+    const nb = new BottleNumber(b.successor())
+
     return (
-      `${ut.capitalize(this.quantity(n))} ${this.container(
-        n
-      )} of milk on the wall, ` +
-      `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-      `${this.action(n)}, ` +
-      `${this.quantity(this.successor(n))} ${this.container(
-        this.successor(n)
-      )} of milk on the wall.\n`
+      `${ut.capitalize(b.quantity())} ${b.container()} of milk on the wall, ` +
+      `${b.quantity()} ${b.container()} of milk.\n` +
+      `${b.action()}, ` +
+      `${nb.quantity()} ${nb.container()} of milk on the wall.\n`
     )
   }
 
