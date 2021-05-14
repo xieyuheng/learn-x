@@ -14,8 +14,8 @@ export class Bottles {
   }
 
   verse(n: number): string {
-    const b = new BottleNumber(n)
-    const bs = new BottleNumber(b.successor())
+    const b = BottleNumber.for(n)
+    const bs = BottleNumber.for(b.successor())
 
     return (
       ut.capitalize(`${b} of milk on the wall, `) +

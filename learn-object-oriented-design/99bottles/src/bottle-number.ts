@@ -7,6 +7,14 @@ export class BottleNumber {
     this.n = n
   }
 
+  static for(n: number): BottleNumber {
+    switch (n) {
+      // case 0: return new BottleNumber0()
+      // case 1: return new BottleNumber1()
+      default: return new BottleNumber(n)
+    }
+  }
+
   toString(): string {
     return `${this.quantity()} ${this.container()}`
   }
