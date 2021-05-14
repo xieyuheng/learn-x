@@ -1,4 +1,5 @@
 import * as ut from "./ut"
+import { BottleNumber } from "./bottle-number"
 
 export class Bottles {
   song(): string {
@@ -22,53 +23,5 @@ export class Bottles {
       `${b.action()}, ` +
       `${bs.quantity()} ${bs.container()} of milk on the wall.\n`
     )
-  }
-}
-
-export class BottleNumber {
-  n: number
-
-  constructor(n: number) {
-    this.n = n
-  }
-
-  action(): string {
-    if (this.n === 0) {
-      return "Go to the store and buy some more"
-    } else {
-      return `Take ${this.pronoun()} down and pass it around`
-    }
-  }
-
-  successor(): number {
-    if (this.n === 0) {
-      return 99
-    } else {
-      return this.n - 1
-    }
-  }
-
-  quantity(): string {
-    if (this.n === 0) {
-      return "no more"
-    } else {
-      return this.n.toString()
-    }
-  }
-
-  container(): string {
-    if (this.n === 1) {
-      return "bottle"
-    } else {
-      return "bottles"
-    }
-  }
-
-  pronoun(): string {
-    if (this.n === 1) {
-      return "it"
-    } else {
-      return "one"
-    }
   }
 }
