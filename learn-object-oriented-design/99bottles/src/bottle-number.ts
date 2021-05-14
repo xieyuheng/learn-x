@@ -13,6 +13,8 @@ export class BottleNumber {
         return new BottleNumber0()
       case 1:
         return new BottleNumber1()
+      case 6:
+        return new BottleNumber6()
       default:
         return new BottleNumber(n)
     }
@@ -72,5 +74,19 @@ export class BottleNumber1 extends BottleNumber {
 
   pronoun(): string {
     return "it"
+  }
+}
+
+export class BottleNumber6 extends BottleNumber {
+  constructor() {
+    super(6)
+  }
+
+  container(): string {
+    return "six-pack"
+  }
+
+  quantity(): string {
+    return "1"
   }
 }
