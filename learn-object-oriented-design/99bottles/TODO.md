@@ -1,3 +1,2 @@
-- fix `BottleNumber.successor` return type
 - add test for the six-pack requirement
 - implement `BottleNumber6`

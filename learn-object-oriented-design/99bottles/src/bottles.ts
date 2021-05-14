@@ -15,13 +15,12 @@ export class Bottles {
 
   verse(n: number): string {
     const b = BottleNumber.for(n)
-    const bs = BottleNumber.for(b.successor())
 
     return (
       ut.capitalize(`${b} of milk on the wall, `) +
       `${b} of milk.\n` +
       `${b.action()}, ` +
-      `${bs} of milk on the wall.\n`
+      `${b.successor()} of milk on the wall.\n`
     )
   }
 }

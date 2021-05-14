@@ -26,8 +26,8 @@ export class BottleNumber {
     return `Take ${this.pronoun()} down and pass it around`
   }
 
-  successor(): number {
-    return this.n - 1
+  successor(): BottleNumber {
+    return BottleNumber.for(this.n - 1)
   }
 
   quantity(): string {
@@ -52,8 +52,8 @@ export class BottleNumber0 extends BottleNumber {
     return "Go to the store and buy some more"
   }
 
-  successor(): number {
-    return 99
+  successor(): BottleNumber {
+    return BottleNumber.for(99)
   }
 
   quantity(): string {
