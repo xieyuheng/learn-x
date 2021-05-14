@@ -7,6 +7,10 @@ export class BottleNumber {
     this.n = n
   }
 
+  toString(): string {
+    return `${this.quantity()} ${this.container()}`
+  }
+
   action(): string {
     if (this.n === 0) {
       return "Go to the store and buy some more"

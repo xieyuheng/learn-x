@@ -18,10 +18,10 @@ export class Bottles {
     const bs = new BottleNumber(b.successor())
 
     return (
-      `${ut.capitalize(b.quantity())} ${b.container()} of milk on the wall, ` +
-      `${b.quantity()} ${b.container()} of milk.\n` +
+      ut.capitalize(`${b} of milk on the wall, `) +
+      `${b} of milk.\n` +
       `${b.action()}, ` +
-      `${bs.quantity()} ${bs.container()} of milk on the wall.\n`
+      `${bs} of milk on the wall.\n`
     )
   }
 }
