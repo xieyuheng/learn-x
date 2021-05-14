@@ -1,4 +1,5 @@
 import * as ut from "./ut"
+import { BottleNumber } from "./bottle-number"
 
 export class Bottles {
   song(): string {
@@ -13,55 +14,14 @@ export class Bottles {
   }
 
   verse(n: number): string {
+    const b = new BottleNumber(n)
+    const bs = new BottleNumber(b.successor())
+
     return (
-      `${ut.capitalize(this.quantity(n))} ${this.container(
-        n
-      )} of milk on the wall, ` +
-      `${this.quantity(n)} ${this.container(n)} of milk.\n` +
-      `${this.action(n)}, ` +
-      `${this.quantity(this.successor(n))} ${this.container(
-        this.successor(n)
-      )} of milk on the wall.\n`
+      `${ut.capitalize(b.quantity())} ${b.container()} of milk on the wall, ` +
+      `${b.quantity()} ${b.container()} of milk.\n` +
+      `${b.action()}, ` +
+      `${bs.quantity()} ${bs.container()} of milk on the wall.\n`
     )
-  }
-
-  action(n: number): string {
-    if (n === 0) {
-      return "Go to the store and buy some more"
-    } else {
-      return `Take ${this.pronoun(n)} down and pass it around`
-    }
-  }
-
-  successor(n: number): number {
-    if (n === 0) {
-      return 99
-    } else {
-      return n - 1
-    }
-  }
-
-  quantity(n: number): string {
-    if (n === 0) {
-      return "no more"
-    } else {
-      return n.toString()
-    }
-  }
-
-  pronoun(n: number): string {
-    if (n === 1) {
-      return "it"
-    } else {
-      return "one"
-    }
-  }
-
-  container(n: number): string {
-    if (n === 1) {
-      return "bottle"
-    } else {
-      return "bottles"
-    }
   }
 }
