@@ -11,7 +11,8 @@ export class BottleNumber {
     switch (n) {
       case 0:
         return new BottleNumber0()
-      // case 1: return new BottleNumber1()
+      case 1:
+        return new BottleNumber1()
       default:
         return new BottleNumber(n)
     }
@@ -34,19 +35,11 @@ export class BottleNumber {
   }
 
   container(): string {
-    if (this.n === 1) {
-      return "bottle"
-    } else {
-      return "bottles"
-    }
+    return "bottles"
   }
 
   pronoun(): string {
-    if (this.n === 1) {
-      return "it"
-    } else {
-      return "one"
-    }
+    return "one"
   }
 }
 
@@ -65,5 +58,19 @@ export class BottleNumber0 extends BottleNumber {
 
   quantity(): string {
     return "no more"
+  }
+}
+
+export class BottleNumber1 extends BottleNumber {
+  constructor() {
+    super(1)
+  }
+
+  container(): string {
+    return "bottle"
+  }
+
+  pronoun(): string {
+    return "it"
   }
 }
