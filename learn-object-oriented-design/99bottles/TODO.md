@@ -1,1 +1,0 @@
-- remove `Bottle`s methods

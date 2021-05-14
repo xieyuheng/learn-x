@@ -14,34 +14,14 @@ export class Bottles {
 
   verse(n: number): string {
     const b = new BottleNumber(n)
-    const nb = new BottleNumber(b.successor())
+    const bs = new BottleNumber(b.successor())
 
     return (
       `${ut.capitalize(b.quantity())} ${b.container()} of milk on the wall, ` +
       `${b.quantity()} ${b.container()} of milk.\n` +
       `${b.action()}, ` +
-      `${nb.quantity()} ${nb.container()} of milk on the wall.\n`
+      `${bs.quantity()} ${bs.container()} of milk on the wall.\n`
     )
-  }
-
-  action(n: number): string {
-    return new BottleNumber(n).action()
-  }
-
-  successor(n: number): number {
-    return new BottleNumber(n).successor()
-  }
-
-  quantity(n: number): string {
-    return new BottleNumber(n).quantity()
-  }
-
-  pronoun(n: number): string {
-    return new BottleNumber(n).pronoun()
-  }
-
-  container(n: number): string {
-    return new BottleNumber(n).container()
   }
 }
 
