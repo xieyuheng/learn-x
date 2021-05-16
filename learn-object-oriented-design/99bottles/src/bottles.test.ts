@@ -2,7 +2,7 @@ import { Bottles } from "./bottles"
 import * as ut from "./ut"
 
 {
-  console.log("[test] the first verse")
+  console.log("[test] verse general rule upper bound")
 
   const expected =
     "99 bottles of milk on the wall, " +
@@ -14,7 +14,7 @@ import * as ut from "./ut"
 }
 
 {
-  console.log("[test] another verse")
+  console.log("[test] verse general rule lower bound")
 
   const expected =
     "3 bottles of milk on the wall, " +
@@ -23,6 +23,30 @@ import * as ut from "./ut"
     "2 bottles of milk on the wall.\n"
 
   ut.assertEqual(new Bottles().verse(3), expected)
+}
+
+{
+  console.log("[test] verse 7")
+
+  const expected =
+    "7 bottles of milk on the wall, " +
+    "7 bottles of milk.\n" +
+    "Take one down and pass it around, " +
+    "1 six-pack of milk on the wall.\n"
+
+  ut.assertEqual(new Bottles().verse(7), expected)
+}
+
+{
+  console.log("[test] verse 6")
+
+  const expected =
+    "1 six-pack of milk on the wall, " +
+    "1 six-pack of milk.\n" +
+    "Take one down and pass it around, " +
+    "5 bottles of milk on the wall.\n"
+
+  ut.assertEqual(new Bottles().verse(6), expected)
 }
 
 {
