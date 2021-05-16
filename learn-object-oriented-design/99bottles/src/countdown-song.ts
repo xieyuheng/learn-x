@@ -4,21 +4,29 @@ import * as ut from "./ut"
 
 interface Options {
   verseTemplate?: VerseTemplate
+  max?: number
+  min?: number
 }
 
 const defaultOptions = {
   verseTemplate: new BottleVerse(),
+  max: 99,
+  min: 0
 }
 
 export class CountdownSong {
   verseTemplate: VerseTemplate
+  max: number
+  min: number
 
   constructor(opts?: Options) {
     this.verseTemplate = opts?.verseTemplate || defaultOptions.verseTemplate
+    this.max = opts?.max || defaultOptions.max
+    this.min = opts?.min || defaultOptions.min
   }
 
   song(): string {
-    return this.verses(99, 0)
+    return this.verses(this.max, this.min)
   }
 
   verses(upper: number, lower: number): string {
