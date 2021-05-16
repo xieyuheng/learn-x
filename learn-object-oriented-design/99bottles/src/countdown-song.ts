@@ -8,7 +8,7 @@ interface Options {
 }
 
 const defaultOptions = {
-  max: 99,
+  max: 999999,
   min: 0,
 }
 
