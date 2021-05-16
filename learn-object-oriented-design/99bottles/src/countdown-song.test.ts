@@ -1,4 +1,4 @@
-import { Bottles } from "./bottles"
+import { CountdownSong } from "./countdown-song"
 import * as ut from "./ut"
 
 {
@@ -10,7 +10,7 @@ import * as ut from "./ut"
     "Take one down and pass it around, " +
     "98 bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(99), expected)
+  ut.assertEqual(new CountdownSong().verse(99), expected)
 }
 
 {
@@ -22,7 +22,7 @@ import * as ut from "./ut"
     "Take one down and pass it around, " +
     "2 bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(3), expected)
+  ut.assertEqual(new CountdownSong().verse(3), expected)
 }
 
 {
@@ -34,7 +34,7 @@ import * as ut from "./ut"
     "Take one down and pass it around, " +
     "1 six-pack of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(7), expected)
+  ut.assertEqual(new CountdownSong().verse(7), expected)
 }
 
 {
@@ -46,7 +46,7 @@ import * as ut from "./ut"
     "Take one down and pass it around, " +
     "5 bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(6), expected)
+  ut.assertEqual(new CountdownSong().verse(6), expected)
 }
 
 {
@@ -58,7 +58,7 @@ import * as ut from "./ut"
     "Take one down and pass it around, " +
     "1 bottle of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(2), expected)
+  ut.assertEqual(new CountdownSong().verse(2), expected)
 }
 
 {
@@ -70,7 +70,7 @@ import * as ut from "./ut"
     "Take it down and pass it around, " +
     "no more bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(1), expected)
+  ut.assertEqual(new CountdownSong().verse(1), expected)
 }
 
 {
@@ -82,7 +82,7 @@ import * as ut from "./ut"
     "Go to the store and buy some more, " +
     "99 bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verse(0), expected)
+  ut.assertEqual(new CountdownSong().verse(0), expected)
 }
 
 {
@@ -99,7 +99,7 @@ import * as ut from "./ut"
     "Take one down and pass it around, " +
     "97 bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verses(99, 98), expected)
+  ut.assertEqual(new CountdownSong().verses(99, 98), expected)
 }
 
 {
@@ -121,7 +121,7 @@ import * as ut from "./ut"
     "Go to the store and buy some more, " +
     "99 bottles of milk on the wall.\n"
 
-  ut.assertEqual(new Bottles().verses(2, 0), expected)
+  ut.assertEqual(new CountdownSong().verses(2, 0), expected)
 }
 
 {
@@ -428,5 +428,5 @@ No more bottles of milk on the wall, no more bottles of milk.
 Go to the store and buy some more, 99 bottles of milk on the wall.
 `
 
-  ut.assertEqual(new Bottles().song(), expected)
+  ut.assertEqual(new CountdownSong().song(), expected)
 }

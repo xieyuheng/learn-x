@@ -1,5 +1,6 @@
 import { VerseTemplate } from "./verse-template"
 import { BottleVerse } from "./bottle-verse"
+import * as ut from "./ut"
 
 interface Options {
   verseTemplate?: VerseTemplate
@@ -9,7 +10,7 @@ const defaultOptions = {
   verseTemplate: new BottleVerse(),
 }
 
-export class Bottles {
+export class CountdownSong {
   verseTemplate: VerseTemplate
 
   constructor(opts?: Options) {
@@ -28,6 +29,6 @@ export class Bottles {
   }
 
   verse(n: number): string {
-    return this.verseTemplate.lyrics((n))
+    return this.verseTemplate.lyrics(n)
   }
 }

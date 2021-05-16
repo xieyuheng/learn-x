@@ -1,4 +1,3 @@
 - refactor the test to tell story about the domain
 - use `VerseFake` to test `CountdownSong`
-- rename `Bottles` to `CountdownSong`
 - `CountdownSong` has `max` and `min` for `song`
