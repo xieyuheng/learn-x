@@ -3,12 +3,14 @@ import { BottleNumber } from "./bottle-number"
 import { VerseTemplate } from "./verse-template"
 
 export class BottleVerse implements VerseTemplate {
-  lyrics(n: BottleNumber): string {
+  lyrics(n: number): string {
+    const b = BottleNumber.for(n)
+
     return (
-      ut.capitalize(`${n} of milk on the wall, `) +
-      `${n} of milk.\n` +
-      `${n.action()}, ` +
-      `${n.successor()} of milk on the wall.\n`
+      ut.capitalize(`${b} of milk on the wall, `) +
+      `${b} of milk.\n` +
+      `${b.action()}, ` +
+      `${b.successor()} of milk on the wall.\n`
     )
   }
 }

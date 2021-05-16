@@ -2,4 +2,3 @@
 - use `VerseFake` to test `CountdownSong`
 - rename `Bottles` to `CountdownSong`
 - `CountdownSong` has `max` and `min` for `song`
-- `CountdownSong` should not know about `BottleNumber`

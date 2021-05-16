@@ -1,5 +1,3 @@
-import * as ut from "./ut"
-import { BottleNumber } from "./bottle-number"
 import { VerseTemplate } from "./verse-template"
 import { BottleVerse } from "./bottle-verse"
 
@@ -30,6 +28,6 @@ export class Bottles {
   }
 
   verse(n: number): string {
-    return this.verseTemplate.lyrics(BottleNumber.for(n))
+    return this.verseTemplate.lyrics((n))
   }
 }
