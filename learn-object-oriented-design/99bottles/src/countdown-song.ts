@@ -11,7 +11,7 @@ interface Options {
 const defaultOptions = {
   verseTemplate: new BottleVerse(),
   max: 99,
-  min: 0
+  min: 0,
 }
 
 export class CountdownSong {
