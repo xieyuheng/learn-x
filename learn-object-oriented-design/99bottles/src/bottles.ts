@@ -22,9 +22,9 @@ export class Bottles {
     return this.verses(99, 0)
   }
 
-  verses(max: number, min: number): string {
+  verses(upper: number, lower: number): string {
     return ut
-      .downTo(max, min)
+      .downTo(upper, lower)
       .map((n) => this.verse(n))
       .join("\n")
   }
