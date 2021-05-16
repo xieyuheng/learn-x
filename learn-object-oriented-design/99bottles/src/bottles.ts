@@ -1,7 +1,23 @@
 import * as ut from "./ut"
 import { BottleNumber } from "./bottle-number"
+import { VerseTemplate } from "./verse-template"
+import { BottleVerse } from "./bottle-verse"
+
+interface Options {
+  verseTemplate?: VerseTemplate
+}
+
+const defaultOptions = {
+  verseTemplate: new BottleVerse(),
+}
 
 export class Bottles {
+  verseTemplate: VerseTemplate
+
+  constructor(opts?: Options) {
+    this.verseTemplate = opts?.verseTemplate || defaultOptions.verseTemplate
+  }
+
   song(): string {
     return this.verses(99, 0)
   }
@@ -14,22 +30,6 @@ export class Bottles {
   }
 
   verse(n: number): string {
-    const verseTemplate: VerseTemplate = new BottleVerse()
-    return verseTemplate.lyrics(BottleNumber.for(n))
+    return this.verseTemplate.lyrics(BottleNumber.for(n))
   }
-}
-
-export class BottleVerse implements VerseTemplate {
-  lyrics(n: BottleNumber): string {
-    return (
-      ut.capitalize(`${n} of milk on the wall, `) +
-      `${n} of milk.\n` +
-      `${n.action()}, ` +
-      `${n.successor()} of milk on the wall.\n`
-    )
-  }
-}
-
-export interface VerseTemplate {
-  lyrics(n: BottleNumber): string
 }
