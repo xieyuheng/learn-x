@@ -1,15 +1,13 @@
 import { VerseTemplate } from "./verse-template"
-import { BottleVerse } from "./bottle-verse"
 import * as ut from "./ut"
 
 interface Options {
-  verseTemplate?: VerseTemplate
+  verseTemplate: VerseTemplate
   max?: number
   min?: number
 }
 
 const defaultOptions = {
-  verseTemplate: new BottleVerse(),
   max: 99,
   min: 0,
 }
@@ -19,8 +17,8 @@ export class CountdownSong {
   max: number
   min: number
 
-  constructor(opts?: Options) {
-    this.verseTemplate = opts?.verseTemplate || defaultOptions.verseTemplate
+  constructor(opts: Options) {
+    this.verseTemplate = opts.verseTemplate
     this.max = opts?.max || defaultOptions.max
     this.min = opts?.min || defaultOptions.min
   }
