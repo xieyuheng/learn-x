@@ -1,1 +1,1 @@
-- inject `verseTemplate`
+- refactor the test to tell story about the domain
