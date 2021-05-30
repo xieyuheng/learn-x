@@ -3,8 +3,8 @@ function* generator(): Generator<string, void, number> {
   yield bar.toString()
 }
 
-const iterator = generator()
+const iter = generator()
 
-console.log(iterator.next())
-console.log(iterator.next(100))
-console.log(iterator.next())
+console.log(iter.next())
+console.log(iter.next(100))
+console.log(iter.next())

@@ -1,4 +1,4 @@
-async function* numGen(): AsyncGenerator<number, void, void> {
+async function* numGenerator(): AsyncGenerator<number, void, void> {
   let i = 0
   while (i < 3) {
     yield i++
@@ -6,7 +6,8 @@ async function* numGen(): AsyncGenerator<number, void, void> {
 }
 
 async function play(): Promise<void> {
-  for await (let n of numGen()) {
+  const iter = numGenerator()
+  for await (let n of iter) {
     console.log(n)
   }
 }
