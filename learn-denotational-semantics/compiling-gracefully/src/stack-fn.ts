@@ -18,10 +18,6 @@ export class StackFn<A, B, Z> {
   }
 }
 
-const stack_fn_category: Category<> = new Category({
-  
-})
-  
 function id_fn<A>(): Fn<A, A> {
   return (a) => a
 }
