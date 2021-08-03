@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const { run, test, expect, snapshot, info } = require("@xieyuheng/test-runner")
+const changeCase = require("change-case")
+const path = require("path")
+const fs = require("fs")
+const { ConfigLoader } = require("./lib/clients/config-loader")
+
+async function main() {
+  const configLoader = new ConfigLoader("./dev.config.json")
+  await configLoader.load("./dev.config.json")
+
+  let commands = {}
+
+  commands.t = async () => {
+    await commands.test_all()
+  }
+
+  commands.test_all = async () => {
+    await commands.test_lib()
+    await commands.test_impression()
+  }
+
+  commands.test_lib = async () => {
+    await test("node $file", { file: "lib/**/*.test.js" }, expect.ok)
+  }
+
+  commands.test_impression = async () => {
+    await test(
+      "node $file",
+      { file: "lib/**/*.impression.js" },
+      snapshot.out(({ file }) =>
+        path.resolve("snapshot", changeCase.paramCase(file) + ".out")
+      )
+    )
+  }
+
+  info()
+
+  run(commands)
+}
+
+main()
