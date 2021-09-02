@@ -7,17 +7,17 @@
 //   z: string
 // }
 
-type A = {
-  x: string
-  y: string
-}
+// type A = {
+//   x: string
+//   y: string
+// }
 
-type B = A & {
-  z: string
-}
+// type B = A & {
+//   z: string
+// }
 
-const b: B = {
-  x: "",
-  y: "",
-  z: "",
-}
+// const b: B = {
+//   x: "",
+//   y: "",
+//   z: "",
+// }

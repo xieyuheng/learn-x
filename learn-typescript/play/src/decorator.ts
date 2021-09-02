@@ -1,6 +1,10 @@
-// function simpleDecorator() {
-//   console.log('---hi I am a decorator---')
-// }
+function simpleDecorator(): any {
+  console.log('---hi I am a decorator---')
+}
 
-// @simpleDecorator
-// class A {}
+@simpleDecorator()
+class A {
+
+}
+
+new A()
