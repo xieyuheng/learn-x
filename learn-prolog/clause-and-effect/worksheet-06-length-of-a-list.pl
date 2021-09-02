@@ -1,6 +1,7 @@
 list_length([], 0) .
 list_length([_ | T], N) :-
-  list_length(T, Nt), N is Nt + 1.
+  list_length(T, Nt),
+  N is Nt + 1.
 
 %% note that
 %%   `Nt` must be instantiated after `list_length(T, Nt)`
