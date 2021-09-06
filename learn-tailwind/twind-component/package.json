@@ -1,10 +1,15 @@
 {
-  "name": "twind-component",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@xieyuheng/twind-component-example",
+  "version": "0.1.1",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "types": "src/components/index.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --mode production src/components/index.ts --target lib --dest lib --name twind-component",
     "format": "prettier src --write"
   },
   "prettier": {
@@ -12,19 +17,26 @@
     "trailingComma": "es5"
   },
   "dependencies": {
+    "core-js": "^3.6.5",
     "twind": "^0.16.16",
-    "vue": "^2.6.14",
-    "vue-class-component": "^7.2.6",
-    "vue-property-decorator": "^9.1.2",
-    "vue-router": "^3.5.2"
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-router": "~4.5.13",
-    "@vue/cli-plugin-typescript": "~4.5.13",
-    "@vue/cli-service": "~4.5.13",
-    "typescript": "~4.4.2",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
     "prettier": "^2.3.2",
     "prettier-plugin-tailwind-css": "^1.5.0",
-    "vue-template-compiler": "^2.6.14"
-  }
+    "typescript": "~4.1.5",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
