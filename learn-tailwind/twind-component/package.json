@@ -1,6 +1,6 @@
 {
   "name": "@xieyuheng/twind-component-example",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "files": [
     "lib",
     "src"
@@ -11,6 +11,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-lib": "vue-cli-service build --mode production src/components/index.ts --target lib --dest lib --name components",
+    "build-wc": "vue-cli-service build --mode production 'src/components/*.vue' --target wc --dest wc --name twc --inline-vue",
     "format": "prettier src --write"
   },
   "prettier": {
