@@ -4,25 +4,27 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "format": "prettier src --write"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5"
   },
   "dependencies": {
     "twind": "^0.16.16",
-    "vue": "^2.6.11",
-    "vue-class-component": "^7.2.3",
+    "vue": "^2.6.14",
+    "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "typescript": "~4.1.5",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@vue/cli-plugin-router": "~4.5.13",
+    "@vue/cli-plugin-typescript": "~4.5.13",
+    "@vue/cli-service": "~4.5.13",
+    "typescript": "~4.4.2",
+    "prettier": "^2.3.2",
+    "prettier-plugin-tailwind-css": "^1.5.0",
+    "vue-template-compiler": "^2.6.14"
+  }
 }
