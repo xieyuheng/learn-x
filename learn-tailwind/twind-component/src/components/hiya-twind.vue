@@ -4,13 +4,13 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 import { tw } from "@/styles/twind"
 
 @Component({
-  name: "hi-twind",
+  name: "hiya-twind",
 })
 export default class extends Vue {
   render(h: CreateElement): VNode {
     return (
-      <div class={tw`max-w-xl m-auto`}>
-        <div class={tw`text-rose-700 py-10 font-bold`}>hi</div>
+      <div class={tw`flex justify-center max-w-xl bg-orange-300`}>
+        <div class={tw`py-10 font-bold text-gray-700`}>hiya</div>
       </div>
     )
   }

@@ -5,5 +5,6 @@
     <router-link to="/ChitChat">ChitChat</router-link>
     <router-link to="/PositionFixed">PositionFixed</router-link>
     <router-link to="/PositionSticky">PositionSticky</router-link>
+    <router-link to="/twind">twind components demo</router-link>
   </div>
 </template>

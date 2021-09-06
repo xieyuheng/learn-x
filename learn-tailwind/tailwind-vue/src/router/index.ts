@@ -1,7 +1,6 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
-import Hi from "../views/hi.vue"
 import About from "../views/About.vue"
 import ChitChat from "../views/ChitChat.vue"
 import PositionFixed from "../views/PositionFixed.vue"
@@ -13,11 +12,11 @@ const router = new VueRouter({
   routes: [
     { path: "/", redirect: "/Home" },
     { path: "/Home", component: Home },
-    { path: "/hi", component: Hi },
     { path: "/About", component: About },
     { path: "/ChitChat", component: ChitChat },
     { path: "/PositionFixed", component: PositionFixed },
     { path: "/PositionSticky", component: PositionSticky },
+    { path: "/twind", component: require("../views/twind.vue").default },
   ],
 })
 
