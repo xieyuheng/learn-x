@@ -89,16 +89,16 @@
 </template>
 
 <style scoped>
-  .heading {
-    @apply p-2;
-    @apply sticky top-0;
-    @apply bg-green-300;
-    @apply rounded-md;
-    @apply text-lg text-green-700 font-bold;
-  }
+.heading {
+  @apply p-2;
+  @apply sticky top-0;
+  @apply bg-green-300;
+  @apply rounded-md;
+  @apply text-lg font-bold text-green-700;
+}
 
-  p {
-    @apply py-4;
-    @apply text-lg text-green-600 font-medium;
-  }
+p {
+  @apply py-4;
+  @apply text-lg font-medium text-green-600;
+}
 </style>

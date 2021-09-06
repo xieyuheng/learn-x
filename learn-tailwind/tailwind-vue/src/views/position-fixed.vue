@@ -73,7 +73,7 @@
 </template>
 
 <style scoped>
-  p {
-    @apply py-4;
-  }
+p {
+  @apply py-4;
+}
 </style>

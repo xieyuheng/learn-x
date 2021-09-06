@@ -6,13 +6,13 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from "vue-property-decorator"
-  import twindComponents from "@xieyuheng/twind-component-example"
+import { Component, Vue } from "vue-property-decorator"
+import twindComponents from "@xieyuheng/twind-component-example"
 
-  @Component({
-    components: {
-      ...twindComponents,
-    },
-  })
-  export default class extends Vue {}
+@Component({
+  components: {
+    ...twindComponents,
+  },
+})
+export default class extends Vue {}
 </script>

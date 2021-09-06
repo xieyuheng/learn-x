@@ -9,12 +9,11 @@
   },
   "prettier": {
     "semi": false,
-    "trailingComma": "es5",
-    "vueIndentScriptAndStyle": true
+    "trailingComma": "es5"
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.9",
-    "@xieyuheng/twind-component-example": "^0.1.5",
+    "@xieyuheng/twind-component-example": "^0.1.7",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",

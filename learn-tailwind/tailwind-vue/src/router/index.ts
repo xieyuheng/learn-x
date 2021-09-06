@@ -1,21 +1,17 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import Home from "../views/Home.vue"
-import About from "../views/About.vue"
-import ChitChat from "../views/ChitChat.vue"
-import PositionFixed from "../views/PositionFixed.vue"
-import PositionSticky from "../views/PositionSticky.vue"
 
 Vue.use(VueRouter)
 
+// prettier-ignore
 const router = new VueRouter({
   routes: [
-    { path: "/", redirect: "/Home" },
-    { path: "/Home", component: Home },
-    { path: "/About", component: About },
-    { path: "/ChitChat", component: ChitChat },
-    { path: "/PositionFixed", component: PositionFixed },
-    { path: "/PositionSticky", component: PositionSticky },
+    { path: "/", component: require("../views/home.vue").default },
+    { path: "/home", component: require("../views/home.vue").default },
+    { path: "/about", component: require("../views/about.vue").default },
+    { path: "/chit-chat", component: require("../views/chit-chat.vue").default },
+    { path: "/position-fixed", component: require("../views/position-fixed.vue").default },
+    { path: "/position-sticky", component: require("../views/position-sticky.vue").default },
     { path: "/twind", component: require("../views/twind.vue").default },
   ],
 })
