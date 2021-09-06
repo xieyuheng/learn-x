@@ -8,6 +8,8 @@
 
     <div>
       <h1>Web Component:</h1>
+      <twc-hi-twind />
+      <twc-hiya-twind />
     </div>
   </div>
 </template>
@@ -15,16 +17,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
 import twindComponents from "@xieyuheng/twind-component-example"
-import twc from "@xieyuheng/twind-component-example/wc/twc"
+import "@xieyuheng/twind-component-example/wc/twc"
 
 @Component({
   components: {
     ...twindComponents,
   },
 })
-export default class extends Vue {
-  mounted(): void {
-    console.log(twc)
-  }
-}
+export default class extends Vue {}
 </script>
