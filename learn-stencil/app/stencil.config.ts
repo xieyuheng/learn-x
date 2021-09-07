@@ -10,7 +10,7 @@ export const config: Config = {
   globalScript: "src/global/app.ts",
   taskQueue: "async",
   plugins: [
-    // for preset
+    // NOTE postcss for preflight
     postcss({
       plugins: [tailwindcss("tailwind.config.js")],
     }),
