@@ -1,4 +1,4 @@
-import "@xieyuheng/stencil-components"
+import "@xieyuheng/stencil-components/dist/custom-elements"
 
 export default async () => {
   /**

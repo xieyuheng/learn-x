@@ -12,12 +12,11 @@ export const config: Config = {
     }),
     tailwind({
       tailwind: tailwindcss("tailwind.config.js"),
-      includeTailwindCss: false,
     }),
   ],
   devServer: { reloadStrategy: "pageReload" },
   outputTargets: [
-    { type: "dist" },
+    { type: "dist", esmLoaderPath: "../loader" },
     { type: "dist-custom-elements-bundle" },
     { type: "www", serviceWorker: null },
   ],
