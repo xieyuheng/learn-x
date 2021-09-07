@@ -12,8 +12,11 @@ export class MyComponent {
 
   render() {
     return (
-      <div>
-        Hi {this.first} {this.middle} {this.last}
+      <div class="flex">
+        <h1 class="p-1 text-rose-300">Hi</h1>
+        <div class="p-1 text-rose-400">{this.first}</div>
+        <div class="p-1 text-rose-500">{this.middle}</div>
+        <div class="p-1 text-rose-500">{this.last}</div>
       </div>
     )
   }

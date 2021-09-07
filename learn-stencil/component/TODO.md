@@ -1,2 +1,1 @@
-- add tailwind
 - publish to npm

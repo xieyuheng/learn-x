@@ -16,7 +16,7 @@ export const config: Config = {
     }),
     tailwind({
       tailwind: tailwindcss("tailwind.config.js"),
-      includeTailwindCss: false,
+      includeTailwindCss: true,
     }),
   ],
   devServer: { reloadStrategy: "pageReload" },
