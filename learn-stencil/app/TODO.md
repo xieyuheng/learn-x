@@ -1,0 +1,14 @@
+- make sure web component with tailwind works -- compile `component` and use in `app`
+
+- API
+- Component
+- Lifecycle Methods
+- Properties
+- Internal State
+- Reactive Data
+- Using JSX
+- Events
+- Methods
+- Host Element
+- Styling
+- Functional Components
