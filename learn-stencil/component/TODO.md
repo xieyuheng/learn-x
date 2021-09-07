@@ -1,0 +1,2 @@
+- remove UI tests
+- add tailwind
