@@ -3,6 +3,7 @@ import { Component, Prop, h } from "@stencil/core"
 
 @Component({
   tag: "zk-note",
+  styleUrl: "zk-note.css",
   shadow: true,
 })
 export class ZkNote {
@@ -13,7 +14,7 @@ export class ZkNote {
   render() {
     return (
       <div>
-        <h1>{this.t}</h1>
+        <h1 class="font-bold text-2xl text-sky-600">{this.t}</h1>
       </div>
     )
   }

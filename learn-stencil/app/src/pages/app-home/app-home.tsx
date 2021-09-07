@@ -9,7 +9,7 @@ export class AppHome {
   render() {
     return (
       <div class="app-home">
-        <p>hiya!</p>
+        <p class="text-orange-600 font-bold px-4">hiya!</p>
 
         <zk-note t="xyh"></zk-note>
 
