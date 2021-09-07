@@ -1,7 +1,7 @@
 import { Config } from "@stencil/core"
-import tailwindcss from "tailwindcss"
 import { postcss } from "@stencil/postcss"
 import tailwind from "proto-stencil-tailwind"
+import tailwindcss from "tailwindcss"
 
 // https://stenciljs.com/docs/config
 
@@ -10,8 +10,9 @@ export const config: Config = {
   globalScript: "src/global/app.ts",
   taskQueue: "async",
   plugins: [
+    // for preset
     postcss({
-      plugins: [require("postcss-import"), tailwindcss()],
+      plugins: [tailwindcss("tailwind.config.js")],
     }),
     tailwind({
       tailwind: tailwindcss("tailwind.config.js"),
@@ -19,7 +20,7 @@ export const config: Config = {
       includeTailwindCss: false,
     }),
   ],
-  // devServer: { reloadStrategy: "pageReload" },
+  devServer: { reloadStrategy: "pageReload" },
   outputTargets: [
     {
       type: "www",

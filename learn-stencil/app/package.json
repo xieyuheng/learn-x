@@ -19,16 +19,13 @@
     "@stencil/core": "^2.8.0",
     "@stencil/postcss": "^2.0.0",
     "@stencil/router": "^1.0.1",
-    "postcss-import": "^14.0.2",
     "prettier": "^2.3.2",
     "prettier-plugin-tailwind-css": "^1.5.0",
-    "stencil-tailwind": "^0.0.6"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "autoprefixer": "^10.3.4",
+    "stencil-tailwind": "^0.0.6",
     "postcss": "^8.3.6",
-    "proto-stencil-tailwind": "^0.0.71",
+    "proto-stencil-tailwind": "^0.0.71"
+  },
+  "dependencies": {
     "tailwindcss": "^2.2.11"
   }
 }

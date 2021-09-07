@@ -1,4 +1,3 @@
-- imporve the use of tailwindcss
 - make sure web component with tailwind works -- compile `component` and use in `app`
 
 - API
