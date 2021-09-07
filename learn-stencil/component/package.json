@@ -26,6 +26,7 @@
   "dependencies": {
     "@stencil/core": "^2.7.0",
     "@stencil/postcss": "^2.0.0",
+    "postcss-import": "^14.0.2",
     "tailwindcss": "^2.2.11"
   },
   "devDependencies": {
