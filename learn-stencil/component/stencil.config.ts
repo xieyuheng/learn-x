@@ -8,7 +8,7 @@ export const config: Config = {
   plugins: [
     // use postcss to importing tailwindcss preflight module
     postcss({
-      plugins: [require("postcss-import")],
+      plugins: [require("postcss-import"), tailwindcss("tailwind.config.js")],
     }),
     tailwind({
       tailwind: tailwindcss("tailwind.config.js"),
