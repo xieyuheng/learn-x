@@ -17,8 +17,6 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "format": "prettier src --write"
   },
@@ -31,10 +29,6 @@
   },
   "devDependencies": {
     "prettier": "^2.3.2",
-    "prettier-plugin-tailwind-css": "^1.5.0",
-    "@types/jest": "^26.0.24",
-    "jest": "^26.6.3",
-    "jest-cli": "^26.6.3",
-    "puppeteer": "^10.0.0"
+    "prettier-plugin-tailwind-css": "^1.5.0"
   }
 }
