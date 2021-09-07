@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@xieyuheng/stencil-components": "^0.0.5",
-    "tailwindcss": "^2.2.11"
+    "tailwindcss": "^2.2.11",
+    "wc-discord-message": "^2.0.4"
   }
 }
