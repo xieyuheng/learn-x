@@ -16,7 +16,6 @@ export const config: Config = {
     }),
     tailwind({
       tailwind: tailwindcss("tailwind.config.js"),
-      inputFile: "./src/styles/app.css",
       includeTailwindCss: false,
     }),
   ],
