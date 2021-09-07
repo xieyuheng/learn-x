@@ -17,19 +17,8 @@ export const config: Config = {
   ],
   devServer: { reloadStrategy: "pageReload" },
   outputTargets: [
-    {
-      type: "dist",
-      esmLoaderPath: "../loader",
-    },
-    {
-      type: "dist-custom-elements-bundle",
-    },
-    {
-      type: "docs-readme",
-    },
-    {
-      type: "www",
-      serviceWorker: null, // disable service workers
-    },
+    { type: "dist" },
+    { type: "dist-custom-elements-bundle" },
+    { type: "www", serviceWorker: null },
   ],
 }
