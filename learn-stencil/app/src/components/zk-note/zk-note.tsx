@@ -1,7 +1,10 @@
 import { Component, Prop, h } from "@stencil/core"
 // import { ZkNoteState } from "./zk-note-state"
 
-@Component({ tag: "zk-note" })
+@Component({
+  tag: "zk-note",
+  shadow: true,
+})
 export class ZkNote {
   @Prop() t: string
 
