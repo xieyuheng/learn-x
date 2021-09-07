@@ -6,9 +6,9 @@ import tailwindcss from "tailwindcss"
 export const config: Config = {
   namespace: "component",
   plugins: [
-    // postcss for preflight
+    // use postcss to importing tailwindcss preflight module
     postcss({
-      plugins: [tailwindcss("tailwind.config.js")],
+      plugins: [require("postcss-import")],
     }),
     tailwind({
       tailwind: tailwindcss("tailwind.config.js"),
