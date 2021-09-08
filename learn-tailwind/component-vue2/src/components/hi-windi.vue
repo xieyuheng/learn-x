@@ -1,4 +1,4 @@
-<template dir="rtl">
+<template>
   <div class="max-w-xl m-auto">
     <div class="text-rose-700 py-10 font-bold">hi-windi</div>
   </div>

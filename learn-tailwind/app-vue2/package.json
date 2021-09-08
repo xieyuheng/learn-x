@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.9",
-    "@xieyuheng/tailwind-components-vue2": "^0.1.13",
+    "@xieyuheng/tailwind-components-vue2": "^0.1.14",
     "@xieyuheng/twind-component-example": "^0.1.10",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
