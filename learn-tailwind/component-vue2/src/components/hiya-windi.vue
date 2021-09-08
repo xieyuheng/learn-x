@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center max-w-xl bg-orange-300">
+  <div dir="rtl" class="flex justify-center max-w-xl bg-orange-300">
     <div class="py-10 font-bold text-gray-700">hiya-windi</div>
   </div>
 </template>

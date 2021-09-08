@@ -2,26 +2,26 @@
   <div>
     <div>
       <h1>Normal import:</h1>
-      <hi-twind />
-      <hiya-twind />
+      <hi-windi />
+      <hiya-windi />
     </div>
 
     <div>
       <h1>Web Component:</h1>
-      <twc-hi-twind />
-      <twc-hiya-twind />
+      <twc-hi-windi />
+      <twc-hiya-windi />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
-import twindComponents from "@xieyuheng/twind-component-example"
-import "@xieyuheng/twind-component-example/wc/twc"
+import twComponents from "@xieyuheng/tailwind-components-vue2"
+import "@xieyuheng/tailwind-components-vue2/wc/twc"
 
 @Component({
   components: {
-    ...twindComponents,
+    ...twComponents,
   },
 })
 export default class extends Vue {}
