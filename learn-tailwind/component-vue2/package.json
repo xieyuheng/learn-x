@@ -1,13 +1,6 @@
 {
-  "name": "@xieyuheng/twind-component-vue2",
-  "version": "0.1.12",
-  "files": [
-    "src",
-    "lib",
-    "wc"
-  ],
-  "main": "lib/components.umd.js",
-  "types": "src/components/index.ts",
+  "name": "@xieyuheng/tailwind-components-vue2",
+  "version": "0.1.13",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -15,10 +8,12 @@
     "build-wc": "vue-cli-service build --mode production 'src/components/*.vue' --target wc --dest wc --name twc --inline-vue",
     "format": "prettier src --write"
   },
-  "prettier": {
-    "semi": false,
-    "trailingComma": "es5"
-  },
+  "main": "lib/components.umd.js",
+  "files": [
+    "src",
+    "lib",
+    "wc"
+  ],
   "dependencies": {
     "core-js": "^3.6.5",
     "twind": "^0.16.16",
@@ -36,11 +31,17 @@
     "prettier": "^2.3.2",
     "prettier-plugin-tailwind-css": "^1.5.0",
     "typescript": "~4.1.5",
+    "vue-cli-plugin-windicss": "~1.0.4",
     "vue-template-compiler": "^2.6.11"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "types": "src/components/index.ts"
 }
