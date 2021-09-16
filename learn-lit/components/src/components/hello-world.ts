@@ -16,7 +16,7 @@ class HelloWorld extends LitElement {
         <div class="${tw`font-bold text-orange-600`}">
           A web component with runtime tailwind support!
         </div>
-        <h1 class="${tw`p-2`}">- tailwind preflight is enabled</h1>
+        <h1 class="${tw`p-2`}">- Tailwind preflight is enabled</h1>
       </main>
     `
   }
