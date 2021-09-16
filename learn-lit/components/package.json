@@ -2,7 +2,7 @@
   "name": "@xieyuheng/lit-components",
   "version": "0.0.1",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && parcel build public/index.html",
     "watch": "tsc --watch",
     "serve": "parcel public/index.html",
     "format": "prettier src --write"
