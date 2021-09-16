@@ -1,0 +1,23 @@
+{
+  "name": "@xieyuheng/lit-app",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "tsc && parcel build public/index.html",
+    "watch": "tsc --watch",
+    "serve": "parcel public/index.html",
+    "format": "prettier src --write"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.4.0",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "lit": "^2.0.0-rc.4",
+    "twind": "^0.16.16"
+  }
+}
