@@ -6,8 +6,8 @@ import { customElement } from "lit/decorators.js"
 const sheet = cssomSheet({ target: new CSSStyleSheet() })
 const { tw } = create({ sheet, theme: { extend: { colors } } })
 
-@customElement("sisuo-card")
-class SisuoCard extends LitElement {
+@customElement("hello-world")
+class HelloWorld extends LitElement {
   static styles = [sheet.target]
 
   render() {
@@ -24,6 +24,6 @@ class SisuoCard extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "sisuo-card": SisuoCard
+    "hello-world": HelloWorld
   }
 }
