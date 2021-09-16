@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit"
+import { customElement } from "lit/decorators.js"
 import { create, cssomSheet } from "twind"
 import * as colors from "twind/colors"
-import { customElement } from "lit/decorators.js"
 
 const sheet = cssomSheet({ target: new CSSStyleSheet() })
 const { tw } = create({ sheet, theme: { extend: { colors } } })
