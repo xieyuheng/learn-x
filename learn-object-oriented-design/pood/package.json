@@ -4,6 +4,7 @@
   "scripts": {
     "build": "npx tsc",
     "watch": "npx tsc --watch",
+    "test": "./dev t",
     "format": "npx prettier src --write"
   },
   "prettier": {
