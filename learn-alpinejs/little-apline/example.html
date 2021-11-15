@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <script src="alpine.js" defer></script>
+  </head>
+
+  <body>
+    <div x-data="{ count: 0 }">
+      <button @click="count++" @mouseenter="count++">+</button>
+      <button @click="count--" @mouseenter="count--">-</button>
+      <span x-text="count"></span>
+      <span x-show="count > 2">(greater than 2)</span>
+    </div>
+  </body>
+</html>
