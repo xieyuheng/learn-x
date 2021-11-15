@@ -12,12 +12,14 @@
       let root = document.querySelector("[x-data]")
       let rawData = getInitialData(root)
       let data = observe(rawData)
+      registerListeners()
       refreshDom()
 
       function observe(data) {
         return new Proxy(data, {
           set(target, key, value) {
             target[key] = value
+
             refreshDom()
           },
         })
@@ -27,7 +29,20 @@
         walkDom(root, (el) => {
           if (el.hasAttribute("x-text")) {
             let expression = el.getAttribute("x-text")
+
             el.innerText = eval(`with (data) (${expression})`)
+          }
+        })
+      }
+
+      function registerListeners() {
+        walkDom(root, (el) => {
+          if (el.hasAttribute("@click")) {
+            let expression = el.getAttribute("@click")
+
+            el.addEventListener("click", () => {
+              eval(`with (data) (${expression})`)
+            })
           }
         })
       }
