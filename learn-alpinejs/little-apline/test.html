@@ -6,6 +6,7 @@
       <button @click="count++">+</button>
       <button @click="count--">-</button>
       <span x-text="count"></span>
+      <span x-show="count > 2">(greater than 2)</span>
     </div>
 
     <script>
@@ -38,7 +39,7 @@
       function registerListeners() {
         walkDom(root, (el) => {
           Array.from(el.attributes).forEach((attribute) => {
-            if (！attribute.name.startsWith("@")) return
+            if (! attribute.name.startsWith("@")) return
 
             const event = attribute.name.slice(1)
 
