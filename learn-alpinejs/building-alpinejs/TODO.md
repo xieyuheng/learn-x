@@ -1,4 +1,3 @@
-- Making Things Reactive
 - Event Listening
 - Refactoring For Flexibility
 - How We Compare With "The Real" AlpineJS
