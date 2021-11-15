@@ -3,13 +3,22 @@
 
   <body>
     <div x-data="{ count: 0 }">
-      <button @click="count++">+</button>
-      <button @click="count--">-</button>
+      <button @click="count++" @mouseenter="count++">+</button>
+      <button @click="count--" @mouseenter="count--">-</button>
       <span x-text="count"></span>
       <span x-show="count > 2">(greater than 2)</span>
     </div>
 
     <script>
+      const directives = {
+        "x-text": (el, value) => {
+          el.innerText = value
+        },
+        "x-show": (el, value) => {
+          el.style.display = value ? "initial" : "none"
+        },
+      }
+
       const root = document.querySelector("[x-data]")
       const rawData = getInitialData(root)
       const data = observe(rawData)
@@ -28,18 +37,18 @@
 
       function refreshDom() {
         walkDom(root, (el) => {
-          if (el.hasAttribute("x-text")) {
-            const expression = el.getAttribute("x-text")
-
-            el.innerText = eval(`with (data) (${expression})`)
-          }
+          Array.from(el.attributes).forEach((attribute) => {
+            if (!Object.keys(directives).includes(attribute.name)) return
+            const directive = directives[attribute.name]
+            directive(el, eval(`with (data) (${attribute.value})`))
+          })
         })
       }
 
       function registerListeners() {
         walkDom(root, (el) => {
           Array.from(el.attributes).forEach((attribute) => {
-            if (! attribute.name.startsWith("@")) return
+            if (!attribute.name.startsWith("@")) return
 
             const event = attribute.name.slice(1)
 

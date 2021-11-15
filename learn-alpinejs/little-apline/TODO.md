@@ -1,4 +1,3 @@
-- Refactoring For Flexibility -- allow other directives
 - Refactoring For Flexibility -- extract API object
 
 https://laracasts.com/series/building-alpinejs/episodes/6
