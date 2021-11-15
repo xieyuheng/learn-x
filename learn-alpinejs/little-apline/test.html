@@ -9,9 +9,9 @@
     </div>
 
     <script>
-      let root = document.querySelector("[x-data]")
-      let rawData = getInitialData(root)
-      let data = observe(rawData)
+      const root = document.querySelector("[x-data]")
+      const rawData = getInitialData(root)
+      const data = observe(rawData)
       registerListeners()
       refreshDom()
 
@@ -28,7 +28,7 @@
       function refreshDom() {
         walkDom(root, (el) => {
           if (el.hasAttribute("x-text")) {
-            let expression = el.getAttribute("x-text")
+            const expression = el.getAttribute("x-text")
 
             el.innerText = eval(`with (data) (${expression})`)
           }
@@ -37,13 +37,15 @@
 
       function registerListeners() {
         walkDom(root, (el) => {
-          if (el.hasAttribute("@click")) {
-            let expression = el.getAttribute("@click")
+          Array.from(el.attributes).forEach((attribute) => {
+            if (！attribute.name.startsWith("@")) return
 
-            el.addEventListener("click", () => {
-              eval(`with (data) (${expression})`)
+            const event = attribute.name.slice(1)
+
+            el.addEventListener(event, () => {
+              eval(`with (data) (${attribute.value})`)
             })
-          }
+          })
         })
       }
 
@@ -57,7 +59,7 @@
       }
 
       function getInitialData(root) {
-        let dataString = root.getAttribute("x-data")
+        const dataString = root.getAttribute("x-data")
         return eval(`(${dataString})`)
       }
     </script>
