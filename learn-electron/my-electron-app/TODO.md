@@ -1,4 +1,5 @@
 # read electronjs docs
 
-- go throug "Getting Started" section
 - use typescript in electron
+- use vue in electron
+- use tailwind in electron
