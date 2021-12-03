@@ -6,7 +6,12 @@
     "start": "electron lib/main.js",
     "build": "tsc",
     "watch": "tsc --watch",
-    "format": "prettier src --write"
+    "format": "prettier src --write",
+    "package": "electron-forge package"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",

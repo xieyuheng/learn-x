@@ -10,7 +10,7 @@ function createWindow(): void {
     },
   })
 
-  win.loadFile("../index.html")
+  win.loadFile(Path.join(__dirname, "../public/index.html"))
 }
 
 async function start(): Promise<void> {
