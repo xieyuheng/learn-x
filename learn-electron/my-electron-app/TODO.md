@@ -1,5 +1,12 @@
-# read electronjs docs
+- remove `electron-forge`
 
-- use typescript in electron
+  - to be closer to the codebase at work
+
 - use vue in electron
+
 - use tailwind in electron
+
+- use uikit in electron
+  - https://getuikit.com/docs
+
+- use `electron-builder`

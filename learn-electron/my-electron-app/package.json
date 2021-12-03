@@ -1,18 +1,22 @@
 {
   "name": "my-electron-app",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "lib/main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start": "electron lib/main.js",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "format": "prettier src --write"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2",
     "electron": "^16.0.2"
   },
- "config": {
+  "config": {
     "forge": "./forge.config.js"
   }
 }
