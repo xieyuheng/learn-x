@@ -1,7 +1,7 @@
-const { app, BrowserWindow } = require("electron")
-const Path = require("path")
+import { app, BrowserWindow } from "electron"
+import Path from "path"
 
-function createWindow() {
+function createWindow(): void {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -13,7 +13,7 @@ function createWindow() {
   win.loadFile("../index.html")
 }
 
-async function start() {
+async function start(): Promise<void> {
   await app.whenReady()
 
   createWindow()
