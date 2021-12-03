@@ -16,12 +16,15 @@
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "electron": "^16.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.0",
-    "typescript": "^4.5.2",
-    "electron": "^16.0.2"
+    "typescript": "^4.5.2"
   },
   "config": {
     "forge": "./forge.config.js"
+  },
+  "dependencies": {
+    "uikit": "^3.9.4"
   }
 }

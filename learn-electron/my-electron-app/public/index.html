@@ -2,15 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../node_modules/uikit/dist/css/uikit.min.css" />
+    <script src="../node_modules/uikit/dist/js/uikit.min.js"></script>
+    <script src="../node_modules/uikit/dist/js/uikit-icons.min.js"></script>
     <title>Hello World!</title>
   </head>
   <body>
@@ -23,6 +18,14 @@
         <li>Chromium <span id="chrome-version"></span></li>
         <li>Electron <span id="electron-version"></span></li>
       </ul>
+    </div>
+
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+      <h3 class="uk-card-title">Default</h3>
+      <p>
+        Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
     </div>
   </body>
 </html>
