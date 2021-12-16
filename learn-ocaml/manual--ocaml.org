@@ -1,0 +1,718 @@
+#+title: the manual says
+
+* Chapter 1  The core language
+
+*** 1.1  Basics
+
+    #+begin_src caml
+    let pi = 4.0 *. atan 1.0;;
+
+    let square x = x *. x;;
+
+    square (sin pi) +. square (cos pi);;
+
+    let rec fib n =
+      if n < 2
+      then n
+      else fib (n-1) + fib (n-2);;
+
+    fib 10;;
+    #+end_src
+
+*** 1.2  Data types
+
+    #+begin_src caml
+    (2 < 1) = false;;
+    'a';;
+    "hello world";;
+    let l = ["is"; "a"; "tale"; "told"; "etc."];;
+    "life" :: l;;
+
+    let rec sort
+    : 'a list -> 'a list
+    = fun list ->
+        match list with
+        | [] -> []
+        | head :: tail -> insert head (sort tail)
+    and insert
+    : 'a -> 'a list -> 'a list
+    = fun element list ->
+        match element, list with
+        | element, [] -> [element]
+        | element, head :: tail ->
+          if element <= head
+          then element :: list
+          else head :: insert element tail
+    ;;
+
+    (* = 還有 <= 這兩個函數是 重載的
+       所以 sort 是 重載的 *)
+
+    sort;;
+    sort l;;
+    sort [6;2;5;3];;
+    sort [3.14; 2.718];;
+    #+end_src
+
+*** 1.3  Functions as values
+
+    #+begin_src caml
+    (* 微分算子
+       以函數爲參數
+       以函數爲返回值 *)
+
+    let deriv
+    : (float -> float) -> float -> (float -> float)
+    = fun f dx ->
+        fun x ->
+          (f (x +. dx) -. f x) /. dx
+    ;;
+
+    let sin'
+    : (float -> float)
+    = deriv sin 1e-6
+    ;;
+
+    sin' pi;;
+
+    let compose
+    : ('b -> 'c) -> ('a -> 'b) -> 'a -> 'c
+    = fun f g ->
+        fun x -> f (g x)
+    ;;
+
+    let cos2 = compose square cos;;
+    cos2 1.;;
+
+    List.map (fun n -> n * 2 + 1) [0; 1; 2; 3; 4];;
+
+    let rec map
+    : ('a -> 'a) -> 'a list -> 'a list
+    = fun f l ->
+      match l with
+        | [] -> []
+        | hd :: tl ->
+          f hd :: map f tl
+    ;;
+
+    map (function n -> n * 2 + 1) [0; 1; 2; 3; 4];;
+    map cos2 [0.; 1.; 2.; 3.; 4.];;
+    #+end_src
+
+*** 1.4  Records and variants
+
+    - records and variants
+      是用戶定義類型的兩種方式
+
+    - records
+      list with named fields
+
+    - variants
+      The declaration of a variant type
+      lists all possible shapes for values of that type
+      at run time pattern-matching use such as predicates
+      to do branch
+
+    - 定義新類型的時候
+      一定要以已有類型爲基礎
+      所以 variant 取衍化派生之義
+
+    #+begin_src caml
+    type ratio = {n: int; d: int}
+
+    let add_ratio =
+      fun r1 r2 ->
+        {n = r1.n * r2.d + r2.n * r1.d;
+         d = r1.d * r2.d}
+
+    let add_ratio r1 r2 =
+      match r1, r2 with
+      | {n= n1; d= d1},
+        {n= n2; d= d2}
+        -> {n= n1 * d2 + n2 * d1;
+            d= d1 * d2}
+
+    let _ =
+      add_ratio {n=1; d=3} {n=2; d=5}
+
+    (* need branch to handle function
+       that can apply to both int and float
+       use variants to define new type
+       do branch by pattern-matching *)
+
+    type number =
+      | Int of int
+      | Float of float
+      | Error
+    ;;
+
+    type number2 =
+      | Int of int
+      | Float of float
+      | Error
+    ;;
+
+    type number3 =
+      | Int of float
+      | Float of int
+      | Error
+    ;;
+
+    let k1
+    : number
+    = Int 1
+    ;;
+
+    let k2
+    : number2
+    = Int 1
+    ;;
+
+    let k3
+    : number3
+    = Int 1.
+    ;;
+
+    type sign =
+      | Positive
+      | Negative;;
+
+    let sign_int
+    : int -> sign
+    = fun n ->
+      if n >= 0
+      then Positive
+      else Negative;;
+
+    let add_num
+    : number -> number -> number
+    = fun n1 n2 ->
+      match n1, n2 with
+      | (Int i1, Int i2) ->
+          (* Check for overflow of integer addition *)
+          if sign_int i1 = sign_int i2
+            && sign_int (i1 + i2) <> sign_int i1
+          then Float(float i1 +. float i2)
+          else Int(i1 + i2)
+      | (Int i1, Float f2) -> Float(float i1 +. f2)
+      | (Float f1, Int i2) -> Float(f1 +. float i2)
+      | (Float f1, Float f2) -> Float(f1 +. f2)
+      | (Error, _) -> Error
+      | (_, Error) -> Error;;
+
+    add_num (Int 123) (Float 3.14159);;
+
+    type 'a btree =
+      | Empty
+      | Node of 'a * 'a btree * 'a btree
+    ;;
+
+    let rec member
+    : 'a -> 'a btree -> bool
+    = fun x btree ->
+      match btree with
+      | Empty -> false
+      | Node(y, left, right) ->
+          if x = y then true else
+          if x < y then member x left else member x right
+    ;;
+
+    let rec insert
+    : 'a -> 'a btree -> 'a btree
+    = fun x btree ->
+      match btree with
+      | Empty -> Node(x, Empty, Empty)
+      | Node(y, left, right) ->
+          if x <= y then Node(y, insert x left, right)
+          else Node(y, left, insert x right)
+    ;;
+    #+end_src
+
+*** 1.5  Imperative features
+
+    #+begin_src caml
+    let add_vect
+    : float array -> float array -> float array
+    = fun v1 v2 ->
+      let len = min (Array.length v1) (Array.length v2) in
+      let res = Array.make len 0.0 in
+      for i = 0 to len - 1 do
+        res.(i) <- v1.(i) +. v2.(i)
+      done;
+      res
+    ;;
+
+    add_vect [| 1.0; 2.0 |] [| 3.0; 4.0 |];;
+
+    (* Record fields can also be modified by assignment
+     ,* provided they are declared mutable in the definition of the record type *)
+
+    type mutable_point = { mutable x: float; mutable y: float };;
+
+    let translate
+    : mutable_point -> float -> float -> unit
+    = fun p dx dy ->
+      p.x <- p.x +. dx;
+      p.y <- p.y +. dy
+    ;;
+
+    let mypoint = { x = 0.0; y = 0.0 };;
+    translate mypoint 1.0 2.0;;
+    mypoint;;
+
+    let insertion_sort
+    : 'a array -> unit
+    = fun a ->
+      for i = 1 to Array.length a - 1 do
+        let val_i = a.(i) in
+        let j = ref i in
+        while !j > 0 && val_i < a.(!j - 1) do
+          a.(!j) <- a.(!j - 1);
+          j := !j - 1
+        done;
+        a.(!j) <- val_i
+      done
+    ;;
+
+    type 'a myref = { mutable contents: 'a };;
+    let ( ! ) r = r.contents;;
+    let ( := ) r newval = r.contents <- newval;;
+
+    let myref
+    : 'a -> 'a myref
+    = fun a -> { contents = a }
+    ;;
+
+    let current_rand = myref 0;;
+    let random
+    : unit -> int
+    = fun () ->
+        current_rand := !current_rand * 25713 + 1345;
+        !current_rand
+    ;;
+
+    random ();;
+    #+end_src
+
+*** 1.6  Exceptions
+
+    #+begin_src caml
+    exception Empty_list;;
+
+    let head
+    : 'a list -> 'a
+    = fun l ->
+      match l with
+        [] -> raise Empty_list
+      | hd :: tl -> hd;;
+
+    head [1;2];;
+    head [];;
+
+
+    List.assoc 1 [(0, "zero"); (1, "one")];;
+    List.assoc 2 [(0, "zero"); (1, "one")];;
+
+    let name_of_binary_digit
+    : int -> string
+    = fun digit ->
+      try
+        List.assoc digit [0, "zero"; 1, "one"]
+      with Not_found ->
+        "not a binary digit"
+    ;;
+
+    name_of_binary_digit 0;;
+    name_of_binary_digit (-1);;
+    #+end_src
+
+*** 1.7  Symbolic processing of expressions
+
+    #+begin_src caml
+    type expression =
+      | Const of float
+      | Var of string
+      | Sum of expression * expression    (* e1 + e2 *)
+      | Diff of expression * expression   (* e1 - e2 *)
+      | Prod of expression * expression   (* e1 * e2 *)
+      | Quot of expression * expression   (* e1 / e2 *)
+    ;;
+
+    exception Unbound_variable of string;;
+
+    let rec eval env exp =
+      match exp with
+      | Const c -> c
+      | Var v ->
+          (try List.assoc v env
+           with Not_found ->
+            raise (Unbound_variable v))
+      | Sum(f, g) -> eval env f +. eval env g
+      | Diff(f, g) -> eval env f -. eval env g
+      | Prod(f, g) -> eval env f *. eval env g
+      | Quot(f, g) -> eval env f /. eval env g
+    ;;
+
+    eval [("x", 1.0); ("y", 3.14)]
+      (Prod(Sum(Var "x", Const 2.0), Var "y"))
+    ;;
+    eval [("x", 1.0); ("y", 3.14)]
+      (Prod(Sum(Var "x", Const 2.0), Var "z"))
+    ;;
+
+
+    let rec deriv exp dv =
+      match exp with
+      | Const c -> Const 0.0
+      | Var v -> if v = dv then Const 1.0 else Const 0.0
+      | Sum(f, g) -> Sum(deriv f dv, deriv g dv)
+      | Diff(f, g) -> Diff(deriv f dv, deriv g dv)
+      | Prod(f, g) -> Sum(Prod(f, deriv g dv), Prod(deriv f dv, g))
+      | Quot(f, g) -> Quot(Diff(Prod(deriv f dv, g), Prod(f, deriv g dv)),
+                           Prod(g, g))
+    ;;
+
+    deriv (Quot(Const 1.0, Var "x")) "x";;
+    #+end_src
+
+*** 1.8  Pretty-printing and parsing
+
+    #+begin_src caml
+    let print_expr exp =
+      (* Local function definitions *)
+      let open_paren prec op_prec =
+        if prec > op_prec then print_string "(" in
+      let close_paren prec op_prec =
+        if prec > op_prec then print_string ")" in
+      let rec print prec exp =
+        (* prec is the current precedence *)
+        match exp with
+          Const c -> print_float c
+        | Var v -> print_string v
+        | Sum(f, g) ->
+            open_paren prec 0;
+            print 0 f; print_string " + "; print 0 g;
+            close_paren prec 0
+        | Diff(f, g) ->
+            open_paren prec 0;
+            print 0 f; print_string " - "; print 1 g;
+            close_paren prec 0
+        | Prod(f, g) ->
+            open_paren prec 2;
+            print 2 f; print_string " * "; print 2 g;
+            close_paren prec 2
+        | Quot(f, g) ->
+            open_paren prec 2;
+            print 2 f; print_string " / "; print 3 g;
+            close_paren prec 2
+      in print 0 exp
+    ;;
+
+    let e = Sum(Prod(Const 2.0, Var "x"), Const 1.0);;
+
+    print_expr e; print_newline ();;
+
+    print_expr (deriv e "x"); print_newline ();;
+    #+end_src
+
+*** 1.9  Standalone OCaml programs
+
+    ocamlc -o fib fib.ml
+
+    #+begin_src caml
+    let rec fib n =
+      if n < 2
+      then 1
+      else fib (n-1) + fib (n-2)
+    ;;
+
+    let main () =
+      let arg = int_of_string Sys.argv.(1) in
+      print_int (fib arg);
+      print_newline ();
+      exit 0;;
+
+    main ();;
+    #+end_src
+
+* Chapter 2  The module system
+
+*** 2.1  Structures
+
+    - A primary motivation for modules
+      is to package together related definitions
+      - such as the definitions of a data type
+        and associated operations over that type
+      and enforce a consistent naming scheme for these definitions
+
+    #+begin_src caml
+    module PrioQueue  =
+      struct
+        type priority = int
+        type 'a queue = Empty | Node of priority * 'a * 'a queue * 'a queue
+        let empty = Empty
+        let rec insert queue prio elt =
+          match queue with
+            Empty -> Node(prio, elt, Empty, Empty)
+          | Node(p, e, left, right) ->
+              if prio <= p
+              then Node(prio, elt, insert right p e, left)
+              else Node(p, e, insert right prio elt, left)
+        exception Queue_is_empty
+        let rec remove_top = function
+            Empty -> raise Queue_is_empty
+          | Node(prio, elt, left, Empty) -> left
+          | Node(prio, elt, Empty, right) -> right
+          | Node(prio, elt, (Node(lprio, lelt, _, _) as left),
+                 (Node(rprio, relt, _, _) as right)) ->
+                   if lprio <= rprio
+                   then Node(lprio, lelt, remove_top left, right)
+                   else Node(rprio, relt, left, remove_top right)
+        let extract = function
+            Empty -> raise Queue_is_empty
+          | Node(prio, elt, _, _) as queue -> (prio, elt, remove_top queue)
+      end;;
+
+    PrioQueue.insert PrioQueue.empty 1 "hello";;
+    #+end_src
+
+*** 2.2  Signatures
+
+    #+begin_src caml
+    module type PRIOQUEUE =
+      sig
+        type priority = int         (* still concrete *)
+        type 'a queue               (* now abstract *)
+        val empty : 'a queue
+        val insert : 'a queue -> int -> 'a -> 'a queue
+        val extract : 'a queue -> int * 'a * 'a queue
+        exception Queue_is_empty
+      end;;
+
+    AbstractPrioQueue.remove_top;;
+    AbstractPrioQueue.insert AbstractPrioQueue.empty 1 "hello";;
+
+    module PrioQueue
+    : PRIOQUEUE
+    = struct
+      ...
+      end
+    ;;
+    #+end_src
+
+*** >< 2.3  Functors
+
+    #+begin_src caml
+
+    #+end_src
+
+*** >< 2.4  Functors and type abstraction
+
+    #+begin_src caml
+
+    #+end_src
+
+*** 2.5  Modules and separate compilation
+
+    #+begin_src caml
+    module A
+    : sig
+      (* contents of file A.mli *)
+      end
+    = struct
+      (* contents of file A.ml *)
+      end
+    ;;
+    #+end_src
+
+* Chapter 3  Objects in OCaml
+
+*** 3.1 Classes and objects
+
+    #+begin_src caml
+    class point =
+      object
+        val mutable x = 0
+        method get_x = x
+        method move d = x <- x + d
+      end
+    ;;
+
+    let p = new point;;
+
+    let x0 = ref 0;;
+
+    class point =
+      object
+        val mutable x = incr x0; !x0
+        method get_x = x
+        method move d = x <- x + d
+      end
+    ;;
+
+    new point#get_x;;
+    new point#get_x;;
+
+    class point = fun x_init ->
+      object
+        val mutable x = x_init
+        method get_x = x
+        method get_offset = x - x_init
+        method move d = x <- x + d
+      end
+    ;;
+
+    new point;;
+    let p = new point 7;;
+    p#get_x;;
+    p#get_offset;;
+    p#move 10;;
+    p#get_offset;;
+    p#move 10;;
+    p#get_offset;;
+
+    class adjusted_point
+    = fun x_init ->
+      let origin = (x_init / 10) * 10 in
+      object
+        val mutable x = origin
+        method get_x = x
+        method get_offset = x - origin
+        method move d = x <- x + d
+      end
+    ;;
+
+    class adjusted_point
+    = fun x_init ->
+      point ((x_init / 10) * 10)
+    ;;
+
+    (* or *)
+    let new_adjusted_point
+    = fun x_init ->
+      new point ((x_init / 10) * 10)
+    ;;
+    #+end_src
+
+*** 3.2 Immediate objects
+
+    - 此時類型是無名的
+      其由接口函數編碼的事實尤爲明顯
+
+    #+begin_src caml
+    let p
+    : < get_x : int; move : int -> unit >
+    = object
+        val mutable x = 0
+        method get_x = x
+        method move d = x <- x + d
+      end
+    ;;
+
+    p#get_x;;
+    p#move 3;;
+    p#get_x;;
+
+    let minmax
+    : 'a -> 'a -> < max : 'a; min : 'a >
+    = fun x y ->
+      if x < y
+      then object method min = x method max = y end
+      else object method min = y method max = x end
+    ;;
+    #+end_src
+
+*** 3.3 Reference to self
+
+    #+begin_src caml
+    class printable_point
+    = fun x_init ->
+      object (s)
+        val mutable x = x_init
+        method get_x = x
+        method move d = x <- x + d
+        method print = print_int s#get_x
+      end
+    ;;
+
+    let p = new printable_point (123, 123);;
+    p#print;;
+
+    let ints = ref [];;
+
+    class my_int =
+      object (self)
+        method n = 1
+        method register = ints := self :: !ints
+      end
+    ;;
+    (* Error: Self type cannot escape its class *)
+    (* for its type may be extended in subclasses *)
+
+    (* immediate objects are not extensible *)
+    let my_int =
+      object (self)
+        method n = 1
+        method register = ints := self :: !ints
+      end
+    ;;
+    #+end_src
+
+*** 3.4 Initializers
+
+    #+begin_src caml
+    class printable_point
+    : int ->
+      object
+        val mutable x : int
+        method get_x : int
+        method move : int -> unit
+        method print : unit
+      end
+    = fun x_init ->
+      let origin = (x_init / 10) * 10 in
+      object (self)
+        val mutable x
+        : int
+        = origin
+        method get_x = x
+        method move d = x <- x + d
+        method print = print_int self#get_x
+        initializer
+          print_string "new point at ";
+          self#print;
+          print_newline ();
+      end;;
+
+    let p = new printable_point 17;;
+    #+end_src
+
+*** >< 3.5 Virtual methods
+
+    #+begin_src caml
+
+    #+end_src
+
+*** 3.6 Private methods
+
+*** 3.7 Class interfaces
+
+*** 3.8 Inheritance
+
+*** 3.9 Multiple inheritance
+
+*** 3.10 Parameterized classes
+
+*** 3.11 Polymorphic methods
+
+*** 3.12 Using coercions
+
+*** 3.13 Functional objects
+
+*** 3.14 Cloning objects
+
+*** 3.15 Recursive classes
+
+*** 3.16 Binary methods
+
+*** 3.17 Friends
