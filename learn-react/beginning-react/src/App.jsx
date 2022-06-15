@@ -19,6 +19,7 @@ function App() {
     const newTodo = { id: todoCount, title: todoInput, isComplete: false };
     setTodos([newTodo, ...todos]);
     setTodoCount(count => count + 1);
+    setTodoInput('');
   }
 
   function handleInput(event) {
@@ -30,7 +31,7 @@ function App() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="my-10 flex justify-center items-center">
       <div className="border-2 p-4">
         <h2 className="py-2 font-bold text-xl">Todo App</h2>
         <form className="shadow" action="#" onSubmit={addTodo}>
