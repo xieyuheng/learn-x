@@ -30,6 +30,18 @@ function App() {
     setTodos([...todos.filter(todo => todo.id !== id)]);
   }
 
+  function completeTodo(id) {
+    setTodos([
+      ...todos.map(todo => {
+        // NOTE Is it ok to use this side effect here?
+        if (todo.id === id) {
+          todo.isComplete = !todo.isComplete;
+        }
+        return todo;
+      }),
+    ]);
+  }
+
   return (
     <div className="my-10 flex justify-center items-center">
       <div className="border-2 p-4">
@@ -48,8 +60,16 @@ function App() {
           {todos.map(todo => (
             <li key={todo.id} className="flex justify-between py-2">
               <div>
-                <input name="" type="checkbox" value="" />
-                <span className="pl-2">{todo.title}</span>
+                <input
+                  type="checkbox"
+                  checked={todo.isComplete}
+                  onChange={() => completeTodo(todo.id)}
+                />
+                <span
+                  className={`pl-2 ${todo.isComplete ? 'line-through' : ''}`}
+                >
+                  {todo.title}
+                </span>
               </div>
               <button
                 className="text-gray-600"
