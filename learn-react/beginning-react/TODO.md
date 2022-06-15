@@ -1,6 +1,5 @@
+- Event Listeners -- delete
 - Event Listeners
-
-  - Edit and delete todos
 
 - Editing Todos
 - Extracting Components
