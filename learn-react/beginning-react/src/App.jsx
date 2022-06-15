@@ -16,15 +16,8 @@ function App() {
 
     if (!todoInput.trim()) return;
 
-    setTodos([
-      {
-        id: todoCount,
-        title: todoInput,
-        isComplete: false,
-      },
-      ...todos,
-    ]);
-
+    const newTodo = { id: todoCount, title: todoInput, isComplete: false };
+    setTodos([newTodo, ...todos]);
     setTodoCount(count => count + 1);
   }
 
