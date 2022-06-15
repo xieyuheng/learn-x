@@ -1,4 +1,7 @@
 - Event Listeners
+
+  - Edit and delete todos
+
 - Editing Todos
 - Extracting Components
 - More Todo Features

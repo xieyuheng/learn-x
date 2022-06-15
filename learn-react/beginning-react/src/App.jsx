@@ -8,17 +8,41 @@ function App() {
     { id: 3, title: 'Get some sleep', isComplete: true },
   ]);
 
+  const [todoInput, setTodoInput] = useState('');
+  const [todoId, setTodoId] = useState(4);
+
+  function addTodo(event) {
+    event.preventDefault();
+
+    if (!todoInput.trim()) return;
+
+    setTodos([
+      {
+        id: todoId,
+        title: todoInput,
+        isComplete: false,
+      },
+      ...todos,
+    ]);
+
+    setTodoId(id => id + 1);
+  }
+
+  function handleInput(event) {
+    setTodoInput(event.target.value);
+  }
+
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="border-2 p-4">
         <h2 className="py-2 font-bold text-xl">Todo App</h2>
-        <form action="#">
+        <form className="shadow" action="#" onSubmit={addTodo}>
           <input
             className="p-2"
-            name=""
             type="text"
-            value=""
             placeholder="Add todo"
+            value={todoInput}
+            onChange={handleInput}
           />
         </form>
 
