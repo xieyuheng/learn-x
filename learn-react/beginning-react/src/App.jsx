@@ -1,24 +1,22 @@
-import logo from "./logo.svg"
+import { useState } from "react"
 import "./App.css"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
+  const [count, setCount] = useState(0)
+  function decrement() {
+    setCount((count) => count - 1)
+  }
+  function increment() {
+    setCount((count) => count + 1)
+  }
 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <div className="border-2 p-2">
+        <span className="p-2">{count}</span>
+        <button onClick={decrement} className="border-2 bg-gray-100 p-2">-</button>
+        <button onClick={increment} className="border-2 bg-gray-100 p-2">+</button>
+      </div>
     </div>
   )
 }

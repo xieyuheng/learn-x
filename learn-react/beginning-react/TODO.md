@@ -1,4 +1,3 @@
-- Introduction and Demo
 - A Better Development Experience
 
 - Make Use of State
