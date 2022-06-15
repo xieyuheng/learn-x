@@ -1,5 +1,3 @@
-- A Better Development Experience
-
 - Make Use of State
 - Event Listeners
 - Editing Todos
