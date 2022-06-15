@@ -3,9 +3,24 @@ import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([
-    { id: 3, title: 'Get some sleep', isComplete: true },
-    { id: 2, title: 'Eat something', isComplete: true },
-    { id: 1, title: 'Finish React Series', isComplete: false },
+    {
+      id: 3,
+      title: 'Get some sleep',
+      isComplete: true,
+      isEditing: false,
+    },
+    {
+      id: 2,
+      title: 'Eat something',
+      isComplete: true,
+      isEditing: false,
+    },
+    {
+      id: 1,
+      title: 'Finish React Series',
+      isComplete: false,
+      isEditing: false,
+    },
   ]);
 
   const [todoInput, setTodoInput] = useState('');
@@ -33,10 +48,43 @@ function App() {
   function completeTodo(id) {
     setTodos([
       ...todos.map(todo => {
-        // NOTE Is it ok to use this side effect here?
+        // NOTE Is it OK to use this side effect here?
+        //   Is it true that side effect is OK but not enough?
+        //   If this kind of side effects are OK,
+        //   I think we can use MVVM in React.
         if (todo.id === id) {
           todo.isComplete = !todo.isComplete;
         }
+
+        return todo;
+      }),
+    ]);
+  }
+
+  function editingTodo(id) {
+    setTodos([
+      ...todos.map(todo => {
+        if (todo.id === id) {
+          todo.isEditing = true;
+        }
+
+        return todo;
+      }),
+    ]);
+  }
+
+  function updateTodo(event, id) {
+    console.log('updateTodo');
+
+    setTodos([
+      ...todos.map(todo => {
+        if (todo.id === id) {
+          todo.isEditing = false;
+          if (event.target.value.trim() !== '') {
+            todo.title = event.target.value;
+          }
+        }
+
         return todo;
       }),
     ]);
@@ -46,7 +94,7 @@ function App() {
     <div className="my-10 flex justify-center items-center">
       <div className="border-2 p-4">
         <h2 className="py-2 font-bold text-xl">Todo App</h2>
-        <form className="shadow" action="#" onSubmit={addTodo}>
+        <form className="border-2" action="#" onSubmit={addTodo}>
           <input
             className="p-2"
             type="text"
@@ -59,17 +107,35 @@ function App() {
         <ul>
           {todos.map(todo => (
             <li key={todo.id} className="flex justify-between py-2">
-              <div>
+              <div className="flex items-center ">
                 <input
                   type="checkbox"
                   checked={todo.isComplete}
                   onChange={() => completeTodo(todo.id)}
                 />
-                <span
-                  className={`pl-2 ${todo.isComplete ? 'line-through' : ''}`}
-                >
-                  {todo.title}
-                </span>
+                <div className="px-2">
+                  {!todo.isEditing ? (
+                    <div
+                      className={`${todo.isComplete ? 'line-through' : ''}`}
+                      onDoubleClick={() => editingTodo(todo.id)}
+                    >
+                      {todo.title}
+                    </div>
+                  ) : (
+                    <input
+                      className="border-2"
+                      type="text"
+                      defaultValue={todo.title}
+                      autoFocus
+                      onBlur={event => updateTodo(event, todo.id)}
+                      onKeyDown={event => {
+                        if (event.key === 'Enter') {
+                          updateTodo(event, todo.id);
+                        }
+                      }}
+                    />
+                  )}
+                </div>
               </div>
               <button
                 className="text-gray-600"

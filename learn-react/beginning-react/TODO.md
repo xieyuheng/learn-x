@@ -1,5 +1,3 @@
-- Editing Todos -- double click to edit a todo item
-
 - Extracting Components
 - More Todo Features
 - Other Built-in React Hooks
