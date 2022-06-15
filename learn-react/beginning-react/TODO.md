@@ -1,4 +1,3 @@
-- Event Listeners -- delete
 - Event Listeners
 
 - Editing Todos

@@ -9,7 +9,7 @@ function App() {
   ]);
 
   const [todoInput, setTodoInput] = useState('');
-  const [todoId, setTodoId] = useState(4);
+  const [todoCount, setTodoCount] = useState(4);
 
   function addTodo(event) {
     event.preventDefault();
@@ -18,18 +18,22 @@ function App() {
 
     setTodos([
       {
-        id: todoId,
+        id: todoCount,
         title: todoInput,
         isComplete: false,
       },
       ...todos,
     ]);
 
-    setTodoId(id => id + 1);
+    setTodoCount(count => count + 1);
   }
 
   function handleInput(event) {
     setTodoInput(event.target.value);
+  }
+
+  function deleteTodo(id) {
+    setTodos([...todos.filter(todo => todo.id !== id)]);
   }
 
   return (
@@ -53,7 +57,12 @@ function App() {
                 <input name="" type="checkbox" value="" />
                 <span className="pl-2">{todo.title}</span>
               </div>
-              <botton>X</botton>
+              <button
+                className="text-gray-600"
+                onClick={() => deleteTodo(todo.id)}
+              >
+                X
+              </button>
             </li>
           ))}
         </ul>
