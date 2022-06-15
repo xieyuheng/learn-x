@@ -3,9 +3,9 @@ import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([
-    { id: 1, title: 'Finish React Series', isComplete: false },
-    { id: 2, title: 'Eat something', isComplete: true },
     { id: 3, title: 'Get some sleep', isComplete: true },
+    { id: 2, title: 'Eat something', isComplete: true },
+    { id: 1, title: 'Finish React Series', isComplete: false },
   ]);
 
   const [todoInput, setTodoInput] = useState('');
@@ -48,7 +48,7 @@ function App() {
 
         <ul>
           {todos.map(todo => (
-            <li className="flex justify-between py-2">
+            <li key={todo.id} className="flex justify-between py-2">
               <div>
                 <input name="" type="checkbox" value="" />
                 <span className="pl-2">{todo.title}</span>
