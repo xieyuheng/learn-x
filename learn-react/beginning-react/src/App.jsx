@@ -4,28 +4,7 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
 export default function App() {
-  const initTodos = [
-    {
-      id: 3,
-      title: 'Get some sleep',
-      isComplete: true,
-      isEditing: false,
-    },
-    {
-      id: 2,
-      title: 'Eat something',
-      isComplete: true,
-      isEditing: false,
-    },
-    {
-      id: 1,
-      title: 'Finish React Series',
-      isComplete: false,
-      isEditing: false,
-    },
-  ];
-
-  const [todos, setTodos] = useState([...initTodos]);
+  const [todos, setTodos] = useState(initTodos());
   const [todoCount, setTodoCount] = useState(4);
 
   function addTodo(todoTitle) {
@@ -49,4 +28,27 @@ export default function App() {
       </div>
     </div>
   );
+}
+
+function initTodos() {
+  return [
+    {
+      id: 3,
+      title: 'Get some sleep',
+      isComplete: true,
+      isEditing: false,
+    },
+    {
+      id: 2,
+      title: 'Eat something',
+      isComplete: true,
+      isEditing: false,
+    },
+    {
+      id: 1,
+      title: 'Finish React Series',
+      isComplete: false,
+      isEditing: false,
+    },
+  ];
 }
