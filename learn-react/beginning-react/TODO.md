@@ -1,3 +1,4 @@
+- extract todo
 - React Router
 
 - use MobX for state (VM) -- https://mobx.js.org
