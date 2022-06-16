@@ -1,4 +1,4 @@
-export default function TodoList(props) {
+export default function TodoStats(props) {
   const { todos } = props;
 
   function remaining() {

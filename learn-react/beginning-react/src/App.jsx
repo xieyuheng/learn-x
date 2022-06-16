@@ -1,13 +1,15 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import NoTodos from './components/NoTodos';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import TodoToolbar from './components/TodoToolbar';
 import useLocalStorage from './hooks/useLocalStorage';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import './styles/transitions/index.css';
 
 export default function App() {
   const [todos, setTodos] = useLocalStorage('todos', []);
+  const [filterName, setFilterName] = useState('all');
 
   const refTodoList = useRef(null);
   const refNoTodos = useRef(null);
@@ -26,7 +28,19 @@ export default function App() {
             unmountOnExit
           >
             {todos.length > 0 ? (
-              <TodoList ref={refTodoList} todos={todos} setTodos={setTodos} />
+              <div ref={refTodoList}>
+                <TodoList
+                  todos={todos}
+                  setTodos={setTodos}
+                  filterName={filterName}
+                />
+                <TodoToolbar
+                  todos={todos}
+                  setTodos={setTodos}
+                  filterName={filterName}
+                  setFilterName={setFilterName}
+                />
+              </div>
             ) : (
               <NoTodos ref={refNoTodos} />
             )}

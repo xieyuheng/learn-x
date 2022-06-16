@@ -1,14 +1,10 @@
-import { useState, createRef } from 'react';
-import TodoStats from './TodoStats';
-import TodoFilters from './TodoFilters';
+import { createRef } from 'react';
 import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../styles/transitions/index.css';
 
 export default function TodoList(props) {
-  const { todos, setTodos } = props;
-
-  const [filterName, setFilterName] = useState('all');
+  const { todos, setTodos, filterName } = props;
 
   function deleteTodo(id) {
     setTodos([...todos.filter(todo => todo.id !== id)]);
@@ -57,19 +53,6 @@ export default function TodoList(props) {
     ]);
   }
 
-  function clearCompleted() {
-    setTodos([...todos.filter(todo => !todo.isComplete)]);
-  }
-
-  function checkAll() {
-    setTodos([
-      ...todos.map(todo => {
-        todo.isComplete = true;
-        return todo;
-      }),
-    ]);
-  }
-
   function todosFiltered() {
     switch (filterName) {
       case 'active':
@@ -83,77 +66,60 @@ export default function TodoList(props) {
   }
 
   return (
-    <>
-      <TransitionGroup component="ul">
-        {todosFiltered().map(todo => {
-          const nodeRef = createRef(null);
+    <TransitionGroup component="ul">
+      {todosFiltered().map(todo => {
+        const nodeRef = createRef(null);
 
-          return (
-            <CSSTransition
-              nodeRef={nodeRef}
-              key={todo.id}
-              timeout={300}
-              classNames="slide-from-right"
-            >
-              <li ref={nodeRef} className="flex justify-between py-2">
-                <div className="flex items-center ">
-                  <input
-                    type="checkbox"
-                    checked={todo.isComplete}
-                    onChange={() => completeTodo(todo.id)}
-                  />
-                  <div className="px-2">
-                    {!todo.isEditing ? (
-                      <div
-                        className={classNames({
-                          'line-through': todo.isComplete,
-                        })}
-                        onDoubleClick={() => editingTodo(todo.id)}
-                      >
-                        {todo.title}
-                      </div>
-                    ) : (
-                      <input
-                        className="border-2"
-                        type="text"
-                        defaultValue={todo.title}
-                        autoFocus
-                        onBlur={event => updateTodo(event, todo.id)}
-                        onKeyDown={event => {
-                          if (event.key === 'Enter') {
-                            updateTodo(event, todo.id);
-                          }
-                        }}
-                      />
-                    )}
-                  </div>
+        return (
+          <CSSTransition
+            nodeRef={nodeRef}
+            key={todo.id}
+            timeout={300}
+            classNames="slide-from-right"
+          >
+            <li ref={nodeRef} className="flex justify-between py-2">
+              <div className="flex items-center ">
+                <input
+                  type="checkbox"
+                  checked={todo.isComplete}
+                  onChange={() => completeTodo(todo.id)}
+                />
+                <div className="px-2">
+                  {!todo.isEditing ? (
+                    <div
+                      className={classNames({
+                        'line-through': todo.isComplete,
+                      })}
+                      onDoubleClick={() => editingTodo(todo.id)}
+                    >
+                      {todo.title}
+                    </div>
+                  ) : (
+                    <input
+                      className="border-2"
+                      type="text"
+                      defaultValue={todo.title}
+                      autoFocus
+                      onBlur={event => updateTodo(event, todo.id)}
+                      onKeyDown={event => {
+                        if (event.key === 'Enter') {
+                          updateTodo(event, todo.id);
+                        }
+                      }}
+                    />
+                  )}
                 </div>
-                <button
-                  className="text-gray-600"
-                  onClick={() => deleteTodo(todo.id)}
-                >
-                  <div className="font-bold">X</div>
-                </button>
-              </li>
-            </CSSTransition>
-          );
-        })}
-      </TransitionGroup>
-
-      <div className="flex border-t-2 py-2 items-center justify-between">
-        <button className="border-2 p-2" onClick={() => checkAll()}>
-          Check All
-        </button>
-        <TodoStats todos={todos} />
-      </div>
-
-      <div className="flex flex-col border-t-2 py-2">
-        <TodoFilters filterName={filterName} setFilterName={setFilterName} />
-
-        <button className="border-2 p-2" onClick={() => clearCompleted()}>
-          Clear completed
-        </button>
-      </div>
-    </>
+              </div>
+              <button
+                className="text-gray-600"
+                onClick={() => deleteTodo(todo.id)}
+              >
+                <div className="font-bold">X</div>
+              </button>
+            </li>
+          </CSSTransition>
+        );
+      })}
+    </TransitionGroup>
   );
 }
