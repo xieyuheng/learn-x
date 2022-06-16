@@ -1,3 +1,5 @@
+import TodoStats from './TodoStats';
+
 export default function TodoList(props) {
   const { todos, setTodos } = props;
 
@@ -95,8 +97,7 @@ export default function TodoList(props) {
 
       <div className="flex border-t-2 py-2 items-center justify-between">
         <button className="border-2 p-2">Check All</button>
-
-        <span>3 items remaining</span>
+        <TodoStats todos={todos} />
       </div>
 
       <div className="flex flex-col border-t-2 py-2">
