@@ -50,6 +50,10 @@ export default function TodoList(props) {
     ]);
   }
 
+  function clearCompleted() {
+    setTodos([...todos.filter(todo => !todo.isComplete)]);
+  }
+
   return (
     <>
       <ul>
@@ -107,7 +111,9 @@ export default function TodoList(props) {
           <button className="border-2 p-2">Completed</button>
         </div>
 
-        <button className="border-2 p-2">Clear completed</button>
+        <button className="border-2 p-2" onClick={() => clearCompleted()}>
+          Clear completed
+        </button>
       </div>
     </>
   );
