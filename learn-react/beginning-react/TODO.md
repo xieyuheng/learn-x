@@ -1,6 +1,7 @@
-- Context for State Management
 - CSS Transitions with React Transition Group
 - React Router
+
+- use MobX for state (VM) -- https://mobx.js.org
 
 - Fetching Data
 - Fetching Data with Custom Hooks
