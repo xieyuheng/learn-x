@@ -1,4 +1,3 @@
-- Custom Hooks
 - Context for State Management
 - CSS Transitions with React Transition Group
 - React Router

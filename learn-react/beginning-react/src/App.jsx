@@ -2,10 +2,11 @@ import { useState } from 'react';
 import NoTodos from './components/NoTodos';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import useLocalStorage from './hooks/useLocalStorage';
 
 export default function App() {
-  const [todos, setTodos] = useState(initTodos());
-  const [todoCount, setTodoCount] = useState(4);
+  const [todos, setTodos] = useLocalStorage('todos', []);
+  const [todoCount, setTodoCount] = useLocalStorage('todoCount', 0);
 
   function addTodo(todoTitle) {
     const newTodo = { id: todoCount, title: todoTitle, isComplete: false };
@@ -28,27 +29,4 @@ export default function App() {
       </div>
     </div>
   );
-}
-
-function initTodos() {
-  return [
-    {
-      id: 3,
-      title: 'Get some sleep',
-      isComplete: true,
-      isEditing: false,
-    },
-    {
-      id: 2,
-      title: 'Eat something',
-      isComplete: true,
-      isEditing: false,
-    },
-    {
-      id: 1,
-      title: 'Finish React Series',
-      isComplete: false,
-      isEditing: false,
-    },
-  ];
 }
