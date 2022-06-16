@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import TodoStats from './TodoStats';
+import TodoFilters from './TodoFilters';
+import classNames from 'classnames';
 
 export default function TodoList(props) {
   const { todos, setTodos } = props;
+
+  const [filterName, setFilterName] = useState('all');
 
   function deleteTodo(id) {
     setTodos([...todos.filter(todo => todo.id !== id)]);
@@ -58,15 +63,27 @@ export default function TodoList(props) {
     setTodos([
       ...todos.map(todo => {
         todo.isComplete = true;
-        return todo
+        return todo;
       }),
     ]);
+  }
+
+  function todosFiltered() {
+    switch (filterName) {
+      case 'active':
+        return todos.filter(todo => !todo.isComplete);
+      case 'completed':
+        return todos.filter(todo => todo.isComplete);
+      case 'all':
+      default:
+        return todos;
+    }
   }
 
   return (
     <>
       <ul>
-        {todos.map(todo => (
+        {todosFiltered().map(todo => (
           <li key={todo.id} className="flex justify-between py-2">
             <div className="flex items-center ">
               <input
@@ -77,7 +94,7 @@ export default function TodoList(props) {
               <div className="px-2">
                 {!todo.isEditing ? (
                   <div
-                    className={`${todo.isComplete ? 'line-through' : ''}`}
+                    className={classNames({ 'line-through': todo.isComplete })}
                     onDoubleClick={() => editingTodo(todo.id)}
                   >
                     {todo.title}
@@ -116,11 +133,7 @@ export default function TodoList(props) {
       </div>
 
       <div className="flex flex-col border-t-2 py-2">
-        <div className="flex justify-between pb-2">
-          <button className="border-2 p-2">All</button>
-          <button className="border-2 p-2">Active</button>
-          <button className="border-2 p-2">Completed</button>
-        </div>
+        <TodoFilters filterName={filterName} setFilterName={setFilterName} />
 
         <button className="border-2 p-2" onClick={() => clearCompleted()}>
           Clear completed
