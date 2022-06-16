@@ -1,4 +1,3 @@
-- Extracting Components
 - More Todo Features
 - Other Built-in React Hooks
 - Custom Hooks
