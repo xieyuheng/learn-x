@@ -119,7 +119,7 @@ export default function TodoList(props) {
               className="text-gray-600"
               onClick={() => deleteTodo(todo.id)}
             >
-              X
+              <div className="font-bold">X</div>
             </button>
           </li>
         ))}
