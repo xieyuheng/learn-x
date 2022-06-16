@@ -1,4 +1,3 @@
-- CSS Transitions with React Transition Group
 - React Router
 
 - use MobX for state (VM) -- https://mobx.js.org
