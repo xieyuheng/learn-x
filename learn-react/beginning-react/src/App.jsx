@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import NoTodos from './components/NoTodos';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
