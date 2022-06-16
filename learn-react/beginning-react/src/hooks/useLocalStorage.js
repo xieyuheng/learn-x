@@ -10,5 +10,5 @@ export default function useLocalStorage(key, initValue) {
     localStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
 
-  return [value, setValue]
+  return [value, setValue];
 }
