@@ -5,5 +5,5 @@ export default function TodoList(props) {
     return todos.filter(todo => !todo.isComplete).length;
   }
 
-  return <span>{remaining()} items remaining</span>;
+  return <span>{remaining()} remaining</span>;
 }

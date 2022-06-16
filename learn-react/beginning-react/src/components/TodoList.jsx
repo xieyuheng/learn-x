@@ -54,6 +54,15 @@ export default function TodoList(props) {
     setTodos([...todos.filter(todo => !todo.isComplete)]);
   }
 
+  function checkAll() {
+    setTodos([
+      ...todos.map(todo => {
+        todo.isComplete = true;
+        return todo
+      }),
+    ]);
+  }
+
   return (
     <>
       <ul>
@@ -100,7 +109,9 @@ export default function TodoList(props) {
       </ul>
 
       <div className="flex border-t-2 py-2 items-center justify-between">
-        <button className="border-2 p-2">Check All</button>
+        <button className="border-2 p-2" onClick={() => checkAll()}>
+          Check All
+        </button>
         <TodoStats todos={todos} />
       </div>
 
