@@ -38,9 +38,22 @@ export default function Navbar() {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
             }
-            to="/echo/hello"
+            to="/play/echo/hello"
           >
             ECHO
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            className={nav =>
+              classNames('border-2 p-2', {
+                'border-rose-300 bg-rose-100': nav.isActive,
+              })
+            }
+            to="/play/fetch"
+          >
+            FETCH
           </NavLink>
         </li>
       </ul>
