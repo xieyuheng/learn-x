@@ -1,7 +1,7 @@
 import { createRef } from 'react';
 import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import '../styles/transitions/index.css';
+import '../../styles/transitions/index.css';
 
 export default function TodoList(props) {
   const { todos, setTodos, filterName } = props;
