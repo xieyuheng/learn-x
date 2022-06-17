@@ -1,4 +1,3 @@
-- extract `Navbar.jsx`
 - extract `routes.js`
 
 - Fetching Data
