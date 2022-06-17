@@ -1,5 +1,3 @@
-- extract `routes.js`
-
 - Fetching Data
 - Fetching Data with Custom Hooks
 - Fetching Data with React Query
