@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function FetchPage() {
-  const [posts, setPosts] = useState();
+  const [joke, setJoke] = useState();
 
   useEffect(() => {
     async function fetchData() {
