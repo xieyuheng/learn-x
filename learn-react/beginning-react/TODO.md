@@ -7,11 +7,3 @@
 
 - React With Laravel
 - Conclusion
-
-- use MobX for state (VM) -- https://mobx.js.org
-
-  use a new repo `beginning-react-mobx`
-
-  - learn mobx -- without react first
-    - a class is reactive after definition
-    - better (than plain-object (vue style)) for testing
