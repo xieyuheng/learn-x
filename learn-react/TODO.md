@@ -1,18 +1,22 @@
-# beginning-react
+# starting-react
 
-- https://laracasts.com/series/beginning-react
+<https://laracasts.com/series/beginning-react>
+
+- finish `starting-react` make it an example simple app for learning frontend basic.
 
 # react-beyond-the-basics
 
-- https://laracasts.com/series/react-beyond-the-basics
+<https://laracasts.com/series/react-beyond-the-basics>
 
-# beginning-nextjs
+# starting-nextjs
 
-TODO
+<https://nextjs.org>
 
-# beginning-react-mobx
+# starting-react-mobx
 
-- use MobX for state (VM) -- https://mobx.js.org
+<https://mobx.js.org>
+
+- use MobX for state (VM)
 
   - learn mobx -- without react first
     - a class is reactive after definition
