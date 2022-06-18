@@ -1,36 +1,21 @@
-import { useState, useEffect } from 'react';
+import useFetch from '../../hooks/useFetch';
 
 export default function FetchPage() {
-  const [joke, setJoke] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState();
-
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      setErrorMessage();
-      try {
-        const response = await fetch('https://v2.jokeapi.dev/joke/Any');
-        const result = await response.json();
-        setJoke(result);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setErrorMessage(error.message);
-      }
-    }
-
-    fetchData().catch(console.error);
-  }, []);
+  const { result, isLoading, errorMessage } = useFetch(
+    'https://v2.jokeapi.dev/joke/Any'
+  );
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div>
       {isLoading && <div>Loading...</div>}
       {errorMessage && <div>{errorMessage}</div>}
-      {joke && (
-        <pre className="w-full overflow-x-auto">
-          {JSON.stringify(joke, null, 2)}
-        </pre>
+      {result?.type === 'single' && <div>{result.joke}</div>}
+      {result?.type === 'twopart' && (
+        <div className="space-y-2">
+          <div>{result.setup}</div>
+          <hr />
+          <div>{result.delivery}</div>
+        </div>
       )}
     </div>
   );

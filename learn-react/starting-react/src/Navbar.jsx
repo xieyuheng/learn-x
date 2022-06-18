@@ -25,9 +25,9 @@ export default function Navbar() {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
             }
-            to="/about"
+            to="/play/fetch"
           >
-            ABOUT
+            FETCH
           </NavLink>
         </li>
 
@@ -51,9 +51,9 @@ export default function Navbar() {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
             }
-            to="/play/fetch"
+            to="/about"
           >
-            FETCH
+            ABOUT
           </NavLink>
         </li>
       </ul>

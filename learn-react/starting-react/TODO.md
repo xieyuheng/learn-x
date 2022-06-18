@@ -1,4 +1,3 @@
-- Fetching Data with Custom Hooks
 - Fetching Data with React Query
 
 - GitHub Issues Project: Part 1
