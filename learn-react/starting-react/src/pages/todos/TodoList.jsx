@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 
 export default function TodoList(props) {
-  const { todos, setTodos, filterName } = props;
+  const { todos, setTodos, filterName } = props.state;
 
   function deleteTodo(id) {
     setTodos([...todos.filter(todo => todo.id !== id)]);

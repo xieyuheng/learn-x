@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, createRef, useRef } from 'react';
 import NoTodos from './NoTodos';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
@@ -11,8 +11,7 @@ export default function TodoPage() {
   const [todos, setTodos] = useLocalStorage('todos', []);
   const [filterName, setFilterName] = useState('all');
 
-  const refTodoList = useRef(null);
-  const refNoTodos = useRef(null);
+  const state = { todos, setTodos, filterName, setFilterName };
 
   return (
     <div className="border-2 p-4">
@@ -27,21 +26,12 @@ export default function TodoPage() {
           unmountOnExit
         >
           {todos.length > 0 ? (
-            <div ref={refTodoList}>
-              <TodoList
-                todos={todos}
-                setTodos={setTodos}
-                filterName={filterName}
-              />
-              <TodoToolbar
-                todos={todos}
-                setTodos={setTodos}
-                filterName={filterName}
-                setFilterName={setFilterName}
-              />
+            <div>
+              <TodoList state={state} />
+              <TodoToolbar state={state} />
             </div>
           ) : (
-            <NoTodos ref={refNoTodos} />
+            <NoTodos />
           )}
         </CSSTransition>
       </SwitchTransition>
