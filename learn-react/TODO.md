@@ -8,6 +8,8 @@
 
 <https://laracasts.com/series/react-beyond-the-basics>
 
+- react with typescript
+
 # starting-nextjs
 
 <https://nextjs.org>
@@ -16,8 +18,8 @@
 
 <https://mobx.js.org>
 
-- use MobX for state (VM)
+- `my-observable.js`
 
-  - learn mobx -- without react first
-    - a class is reactive after definition
-    - better (than plain-object (vue style)) for testing
+## References
+
+- [[React Live 2019] 8. Max Gallo - Reinventing MobX-P](https://www.youtube.com/watch?v=P_WqKZxpX8g)
