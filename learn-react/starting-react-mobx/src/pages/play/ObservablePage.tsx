@@ -1,20 +1,10 @@
+import { observer } from './observer';
+import { observable, autorun } from './observable';
+// import { observer } from 'mobx-react';
 // import { observable, autorun, configure } from 'mobx';
-
 // configure({
 //   enforceActions: 'never',
 // });
-
-function observable<A>(target: A): A {
-  return new Proxy(target, {
-    
-  });
-}
-
-function autorun(runner: () => void): void {
-  // 1. find all the observables.
-  runner();  
-  // 2. re-run the runner every time an observable changes.
-}
 
 interface Album {
   title: string;
@@ -38,6 +28,10 @@ setTimeout(() => (album.playCount = 1), 1000);
 setTimeout(() => (album.playCount = 2), 2000);
 setTimeout(() => (album.playCount = 3), 3000);
 
-export default function ObservablePage() {
-  return <div>ObservablePage</div>;
-}
+export default observer(() => (
+  <div className="p-2 flex flex-col items-center border-2">
+    <div>{album.title}</div>
+    <div>{album.year}</div>
+    <div className="text-2xl font-bold">{album.playCount}</div>
+  </div>
+));
