@@ -44,6 +44,20 @@ export default function Navbar() {
           </NavLink>
         </li>
 
+
+        <li>
+          <NavLink
+            className={nav =>
+              classNames('border-2 p-2', {
+                'border-rose-300 bg-rose-100': nav.isActive,
+              })
+            }
+            to="/play/observable"
+          >
+            OBSERVABLE
+          </NavLink>
+        </li>
+
         <li>
           <NavLink
             className={nav =>

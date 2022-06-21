@@ -1,3 +1,1 @@
-# starting-nextjs
-
-<https://nextjs.org>
+- `starting-nextjs` -- https://nextjs.org
