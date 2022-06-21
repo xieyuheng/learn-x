@@ -39,13 +39,18 @@ export default function TodoList(props: { state: TodoState }) {
     ]);
   }
 
-  function updateTodo(event: any, id: number) {
+  function updateTodo(
+    event:
+      | React.FocusEvent<HTMLInputElement, Element>
+      | React.KeyboardEvent<HTMLInputElement>,
+    id: number
+  ) {
     setTodos([
       ...todos.map(todo => {
         if (todo.id === id) {
           todo.isEditing = false;
-          if (event.target.value.trim() !== '') {
-            todo.title = event.target.value;
+          if (event.currentTarget.value.trim() !== '') {
+            todo.title = event.currentTarget.value;
           }
         }
 
