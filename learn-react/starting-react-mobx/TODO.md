@@ -4,6 +4,11 @@
 
 - prepare for a talk about MVVM.
 
+  - TODO We need a clear understand of why React requires hand optimizations.
+    - Maybe we should implement a mini React first:
+      https://github.com/jorgebucaran/hyperapp
+      - Which might help me to appreciate the contribution of React.
+
   - clear dependency boundary,
     thus easy to understand,
     thus easy to change.
