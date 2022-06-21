@@ -1,4 +1,3 @@
-import { createRef } from 'react';
 import classNames from 'classnames';
 import { Todo, TodoState } from './TodoState';
 import { observer } from 'mobx-react';

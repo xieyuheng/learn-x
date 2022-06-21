@@ -1,9 +1,6 @@
-import { createRef } from 'react';
-import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import '../../styles/transitions/index.css';
 import TodoListItem from './TodoListItem';
-import { Todo, TodoState } from './TodoState';
+import { TodoState } from './TodoState';
 import { observer } from 'mobx-react';
 
 export default observer(({ state }: { state: TodoState }) => (

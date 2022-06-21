@@ -3,7 +3,6 @@ import TodoList from './TodoList';
 import { TodoState } from './TodoState';
 import TodoToolbar from './TodoToolbar';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import '../../styles/transitions/index.css';
 import { observer } from 'mobx-react';
 
 export default observer(({ state }: { state: TodoState }) => (
