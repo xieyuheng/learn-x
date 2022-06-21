@@ -1,9 +1,3 @@
-# react-beyond-the-basics
-
-<https://laracasts.com/series/react-beyond-the-basics>
-
-- react with typescript
-
 # starting-nextjs
 
 <https://nextjs.org>
