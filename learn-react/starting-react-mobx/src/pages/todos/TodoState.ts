@@ -8,11 +8,10 @@ export interface Todo {
 }
 
 export class TodoState {
-  todos: Array<Todo> = [];
   filterName: string = 'all';
   todoInput: string = '';
 
-  constructor() {
+  constructor(public todos: Array<Todo> = []) {
     makeAutoObservable(this);
   }
 

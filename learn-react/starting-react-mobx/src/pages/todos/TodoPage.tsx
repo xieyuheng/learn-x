@@ -5,7 +5,7 @@ import { TodoState } from './TodoState';
 import { observer } from 'mobx-react';
 
 export default observer(() => {
-  const [state] = useState<TodoState>(new TodoState());
+  const state = new TodoState();
 
   return (
     <div className="border-2 p-4">

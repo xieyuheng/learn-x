@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 
 export default observer(({ state }: { state: TodoState }) => (
   <TransitionGroup component="ul">
-    {state.todos.map(todo => (
+    {state.todosFiltered.map(todo => (
       <CSSTransition key={todo.id} timeout={300} classNames="slide-from-right">
         <li key={todo.id} className="flex justify-between py-2">
           <TodoListItem state={state} todo={todo} />
