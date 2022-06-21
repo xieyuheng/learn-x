@@ -44,7 +44,6 @@ export default function Navbar() {
           </NavLink>
         </li>
 
-
         <li>
           <NavLink
             className={nav =>

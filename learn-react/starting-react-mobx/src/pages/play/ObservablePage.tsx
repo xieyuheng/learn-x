@@ -1,5 +1,6 @@
 import { observer } from './observer';
 import { observable, autorun } from './observable';
+
 // import { observer } from 'mobx-react';
 // import { observable, autorun, configure } from 'mobx';
 // configure({
@@ -24,9 +25,7 @@ autorun(() => {
 
 console.log(`--- reactions ---`);
 
-setTimeout(() => (album.playCount = 1), 1000);
-setTimeout(() => (album.playCount = 2), 2000);
-setTimeout(() => (album.playCount = 3), 3000);
+setInterval(() => album.playCount++, 1000);
 
 export default observer(() => (
   <div className="p-2 flex flex-col items-center border-2">

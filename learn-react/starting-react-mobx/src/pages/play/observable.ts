@@ -34,7 +34,7 @@ export class Reaction {
       derivationGraph[key].push(this.onChange);
     }
 
-    return result
+    return result;
   }
 }
 

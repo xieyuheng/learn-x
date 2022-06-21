@@ -1,40 +1,23 @@
 import TodoStats from './TodoStats';
 import TodoFilters from './TodoFilters';
 import { TodoState } from './TodoState';
+import { observer } from 'mobx-react';
 
-export default function TodoToolbar(props: { state: TodoState }) {
-  const { state } = props;
-  const { todos, setTodos } = state;
+export default observer(({ state }: { state: TodoState }) => (
+  <>
+    <div className="flex border-t-2 py-2 items-center justify-between">
+      <button className="border-2 p-2" onClick={() => state.checkAll()}>
+        Check All
+      </button>
+      <TodoStats state={state} />
+    </div>
 
-  function clearCompleted() {
-    setTodos([...todos.filter(todo => !todo.isComplete)]);
-  }
+    <div className="flex flex-col border-t-2 py-2">
+      <TodoFilters state={state} />
 
-  function checkAll() {
-    setTodos([
-      ...todos.map(todo => {
-        todo.isComplete = true;
-        return todo;
-      }),
-    ]);
-  }
-
-  return (
-    <>
-      <div className="flex border-t-2 py-2 items-center justify-between">
-        <button className="border-2 p-2" onClick={() => checkAll()}>
-          Check All
-        </button>
-        <TodoStats state={state} />
-      </div>
-
-      <div className="flex flex-col border-t-2 py-2">
-        <TodoFilters state={state} />
-
-        <button className="border-2 p-2" onClick={() => clearCompleted()}>
-          Clear completed
-        </button>
-      </div>
-    </>
-  );
-}
+      <button className="border-2 p-2" onClick={() => state.clearCompleted()}>
+        Clear completed
+      </button>
+    </div>
+  </>
+));
