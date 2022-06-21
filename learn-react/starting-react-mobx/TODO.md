@@ -1,0 +1,2 @@
+- `observable.ts`
+- use mobx to write state class

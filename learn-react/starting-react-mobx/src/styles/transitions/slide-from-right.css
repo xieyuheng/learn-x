@@ -1,0 +1,21 @@
+.slide-from-right-enter {
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+.slide-from-right-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all 300ms;
+}
+
+.slide-from-right-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.slide-from-right-exit-active {
+  opacity: 0;
+  transition: all 300ms;
+  transform: translateX(16px);
+}
