@@ -7,15 +7,7 @@ export default observer(({ state }: { state: TodoState }) => (
   <TransitionGroup component="ul">
     {state.todosFiltered.map(todo => (
       <CSSTransition key={todo.id} timeout={300} classNames="slide-from-right">
-        <li key={todo.id} className="flex justify-between py-2">
-          <TodoListItem state={state} todo={todo} />
-          <button
-            className="text-gray-600"
-            onClick={() => state.deleteTodo(todo.id)}
-          >
-            <div className="font-bold">X</div>
-          </button>
-        </li>
+        <TodoListItem state={state} todo={todo} key={todo.id} />
       </CSSTransition>
     ))}
   </TransitionGroup>

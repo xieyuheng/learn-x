@@ -8,6 +8,8 @@
     - Maybe we should implement a mini React first:
       https://github.com/jorgebucaran/hyperapp
       - Which might help me to appreciate the contribution of React.
+      - Also note that, with a mini MobX and a mini React,
+        we have a mini MVVM framework.
 
   - clear dependency boundary,
     thus easy to understand,
