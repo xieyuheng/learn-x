@@ -1,9 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { configure } from 'mobx';
-
-configure({
-  enforceActions: 'never',
-});
 
 export interface Todo {
   id: number;
@@ -22,7 +17,7 @@ export class TodoState {
   }
 
   deleteTodo(id: number) {
-    this.todos = [...this.todos.filter(todo => todo.id !== id)];
+    this.todos = this.todos.filter(todo => todo.id !== id);
   }
 
   checkAll() {

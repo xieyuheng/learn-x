@@ -1,9 +1,11 @@
 import TodoForm from './TodoForm';
 import TodoBody from './TodoBody';
+import { useState } from 'react';
 import { TodoState } from './TodoState';
+import { observer } from 'mobx-react';
 
-export default () => {
-  const state = new TodoState();
+export default observer(() => {
+  const [state] = useState<TodoState>(new TodoState());
 
   return (
     <div className="border-2 p-4">
@@ -13,4 +15,4 @@ export default () => {
       <TodoBody state={state} />
     </div>
   );
-};
+});

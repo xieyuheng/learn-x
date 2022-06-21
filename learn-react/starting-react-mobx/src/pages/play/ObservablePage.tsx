@@ -19,13 +19,13 @@ const album = observable({
   playCount: 0,
 });
 
-autorun(() => {
-  console.log(`album.playCount: ${album.playCount}`);
-});
+// autorun(() => {
+//   console.log(`album.playCount: ${album.playCount}`);
+// });
 
-console.log(`--- reactions ---`);
+// console.log(`--- reactions ---`);
 
-setInterval(() => album.playCount++, 1000);
+// setInterval(() => album.playCount++, 1000);
 
 export default observer(() => (
   <div className="p-2 flex flex-col items-center border-2">
