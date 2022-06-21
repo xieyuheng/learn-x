@@ -1,9 +1,3 @@
-# starting-react
-
-<https://laracasts.com/series/beginning-react>
-
-- finish `starting-react` make it an example simple app for learning frontend basic.
-
 # react-beyond-the-basics
 
 <https://laracasts.com/series/react-beyond-the-basics>
