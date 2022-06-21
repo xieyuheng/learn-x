@@ -2,9 +2,8 @@ import { useRef, useState } from 'react';
 import { Reaction } from './observable';
 
 function useForceUpdate() {
-  const [flag, setFlag] = useState(true);
-  const flip = () => setFlag(flag => !flag);
-  return flip;
+  const [, setFlag] = useState(true);
+  return () => setFlag(flag => !flag);
 }
 
 export function observer<A>(
