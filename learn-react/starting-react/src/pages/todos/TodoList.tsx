@@ -2,15 +2,16 @@ import { createRef } from 'react';
 import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../styles/transitions/index.css';
+import { TodoState } from './TodoState';
 
-export default function TodoList(props) {
+export default function TodoList(props: { state: TodoState }) {
   const { todos, setTodos, filterName } = props.state;
 
-  function deleteTodo(id) {
+  function deleteTodo(id: number) {
     setTodos([...todos.filter(todo => todo.id !== id)]);
   }
 
-  function completeTodo(id) {
+  function completeTodo(id: number) {
     setTodos([
       ...todos.map(todo => {
         // NOTE Is it OK to use this side effect here?
@@ -26,7 +27,7 @@ export default function TodoList(props) {
     ]);
   }
 
-  function editingTodo(id) {
+  function editingTodo(id: number) {
     setTodos([
       ...todos.map(todo => {
         if (todo.id === id) {
@@ -38,7 +39,7 @@ export default function TodoList(props) {
     ]);
   }
 
-  function updateTodo(event, id) {
+  function updateTodo(event: any, id: number) {
     setTodos([
       ...todos.map(todo => {
         if (todo.id === id) {
@@ -68,7 +69,7 @@ export default function TodoList(props) {
   return (
     <TransitionGroup component="ul">
       {todosFiltered().map(todo => {
-        const nodeRef = createRef(null);
+        const nodeRef = createRef<HTMLLIElement>();
 
         return (
           <CSSTransition

@@ -1,4 +1,6 @@
-export default function TodoStats(props) {
+import { TodoState } from './TodoState';
+
+export default function TodoStats(props: { state: TodoState }) {
   const { todos } = props.state;
 
   function remaining() {

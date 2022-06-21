@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { TodoState } from './TodoState';
 
-export default function TodoForm(props) {
-  const { todos, setTodos } = props;
+export default function TodoForm(props: { state: TodoState }) {
+  const { todos, setTodos } = props.state;
 
   const [todoInput, setTodoInput] = useState('');
 
@@ -11,7 +12,7 @@ export default function TodoForm(props) {
     return Math.max(...ids) + 1;
   }
 
-  function addTodo(event) {
+  function addTodo(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     if (!todoInput.trim()) return;
     const newTodo = { id: freshId(), title: todoInput, isComplete: false };
@@ -19,18 +20,18 @@ export default function TodoForm(props) {
     setTodoInput('');
   }
 
-  function handleInput(event) {
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>): void {
     setTodoInput(event.target.value);
   }
 
   return (
-    <form className="border-2" action="#" onSubmit={addTodo}>
+    <form className="border-2" action="#" onSubmit={event => addTodo(event)}>
       <input
         className="p-2"
         type="text"
         placeholder="Add todo"
         value={todoInput}
-        onChange={handleInput}
+        onChange={event => handleInput(event)}
       />
     </form>
   );

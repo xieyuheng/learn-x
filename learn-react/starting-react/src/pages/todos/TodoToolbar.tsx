@@ -1,9 +1,10 @@
 import TodoStats from './TodoStats';
 import TodoFilters from './TodoFilters';
+import { TodoState } from './TodoState';
 
-export default function TodoToolbar(props) {
+export default function TodoToolbar(props: { state: TodoState }) {
   const { state } = props;
-  const { todos, setTodos, filterName, setFilterName } = state;
+  const { todos, setTodos } = state;
 
   function clearCompleted() {
     setTodos([...todos.filter(todo => !todo.isComplete)]);
@@ -28,7 +29,7 @@ export default function TodoToolbar(props) {
       </div>
 
       <div className="flex flex-col border-t-2 py-2">
-        <TodoFilters filterName={filterName} setFilterName={setFilterName} />
+        <TodoFilters state={state} />
 
         <button className="border-2 p-2" onClick={() => clearCompleted()}>
           Clear completed

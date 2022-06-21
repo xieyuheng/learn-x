@@ -1,7 +1,8 @@
 import classNames from 'classnames';
+import { TodoState } from './TodoState';
 
-export default function TodoFilters(props) {
-  const { filterName, setFilterName } = props;
+export default function TodoFilters(props: { state: TodoState }) {
+  const { filterName, setFilterName } = props.state;
 
   return (
     <div className="flex justify-between pb-2">
