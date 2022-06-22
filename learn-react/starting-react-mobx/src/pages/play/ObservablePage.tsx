@@ -1,7 +1,7 @@
 import { observer } from './observer';
 import { observable, autorun } from './observable';
 
-// import { observer } from 'mobx-react';
+// import { observer } from 'mobx-react-lite';
 // import { observable, autorun, configure } from 'mobx';
 // configure({
 //   enforceActions: 'never',

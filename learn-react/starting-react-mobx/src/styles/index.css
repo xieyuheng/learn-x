@@ -2,4 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './styles/transitions/index.css';
+@import './transitions/index.css';

@@ -1,7 +1,7 @@
 import TodoForm from './TodoForm';
 import TodoBody from './TodoBody';
 import { TodoState } from './TodoState';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
 export default observer(() => {
   const state = new TodoState();

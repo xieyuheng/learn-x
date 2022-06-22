@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Todo, TodoState } from './TodoState';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
 export default observer(({ state, todo }: { state: TodoState; todo: Todo }) => (
   <li className="flex justify-between py-2">
