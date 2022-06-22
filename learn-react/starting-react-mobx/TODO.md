@@ -41,7 +41,9 @@
 
   - clear boundary of re-rendering -- component.
 
-  - https://mobx.js.org/the-gist-of-mobx.html
+  - feels like spreadsheet
+
+    https://mobx.js.org/the-gist-of-mobx.html
 
     Three core concepts:
 
