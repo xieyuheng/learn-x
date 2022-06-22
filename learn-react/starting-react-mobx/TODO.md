@@ -36,3 +36,6 @@
     MVVM is used by Windows, IOS, Android,
     and Vue, Angular, Svelte, Ember, Alpine, ...
     almost all other frontend web framework.
+
+  - easy to refactor component into subcomponents,
+    because they have the same context.
