@@ -7,12 +7,35 @@ export interface Todo {
   isEditing?: boolean;
 }
 
+interface TodoStateJson {
+  todos: Array<Todo>;
+  filterName: string;
+  todoInput: string;
+}
+
 export class TodoState {
+  todos: Array<Todo> = [];
   filterName: string = 'all';
   todoInput: string = '';
 
-  constructor(public todos: Array<Todo> = []) {
+  constructor() {
     makeAutoObservable(this);
+  }
+
+  static create(json: TodoStateJson): TodoState {
+    const state = new TodoState();
+    state.todos = json.todos;
+    state.filterName = json.filterName;
+    state.todoInput = json.todoInput;
+    return state;
+  }
+
+  json(): TodoStateJson {
+    return {
+      todos: this.todos,
+      filterName: this.filterName,
+      todoInput: this.todoInput,
+    };
   }
 
   deleteTodo(id: number) {

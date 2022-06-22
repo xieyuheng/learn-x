@@ -1,10 +1,14 @@
 import TodoForm from './TodoForm';
 import TodoBody from './TodoBody';
 import { TodoState } from './TodoState';
+import useTodoState from './useTodoState';
 import { observer } from 'mobx-react-lite';
+import { autorun } from 'mobx';
 
 export default observer(() => {
-  const state = new TodoState();
+  const { state, saveState } = useTodoState();
+
+  autorun(() => saveState(state));
 
   return (
     <div className="border-2 p-4">
