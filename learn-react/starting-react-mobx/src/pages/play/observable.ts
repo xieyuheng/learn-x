@@ -9,10 +9,7 @@ export function observable<A extends object>(target: A): A {
     },
     set(obj, key, value) {
       obj[key] = value;
-      for (const f of derivationGraph[key]) {
-        f();
-      }
-
+      derivationGraph[key].forEach(f => f());
       return true;
     },
   };
@@ -31,7 +28,9 @@ export class Reaction {
     // 2. re-run the function every time an observable changes.
     for (const key of accessedObservables) {
       derivationGraph[key] = derivationGraph[key] || [];
-      derivationGraph[key].push(this.onChange);
+      if (!derivationGraph[key].includes(this.onChange)) {
+        derivationGraph[key].push(this.onChange);
+      }
     }
 
     return result;
