@@ -11,12 +11,7 @@ export default function TodoToolbar(props: { state: TodoState }) {
   }
 
   function checkAll() {
-    setTodos([
-      ...todos.map((todo) => {
-        todo.isComplete = true;
-        return todo;
-      }),
-    ]);
+    setTodos([...todos.map((todo) => ({ ...todo, isComplete: true }))]);
   }
 
   return (

@@ -30,12 +30,8 @@ export const todoSlice = createSlice({
   },
 });
 
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { setTodos, setFilterName } = todoSlice.actions;
 
-// export const incrementAsync = (amount) => (dispatch) => {
-//   setTimeout(() => {
-//     dispatch(incrementByAmount(amount));
-//   }, 1000);
-// };
-
-// export default counterSlice.reducer;
+export const selectTodos = (state: { todos: TodoState }) => state.todos.todos;
+export const selectFilterName = (state: { todos: TodoState }) =>
+  state.todos.filterName;

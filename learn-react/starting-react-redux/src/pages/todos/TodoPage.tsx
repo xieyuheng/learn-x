@@ -3,20 +3,26 @@ import NoTodos from './NoTodos';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import { TodoState } from './TodoState';
-import {} from './todoSlice';
 import TodoToolbar from './TodoToolbar';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { todoSlice, selectTodos, selectFilterName } from './todoSlice';
 
 export default function TodoPage() {
   const dispatch = useDispatch();
 
-  const [todos, setTodos] = useLocalStorage('todos', []);
-  const [filterName, setFilterName] = useState('all');
+  const todos = useSelector(selectTodos);
+  const filterName = useSelector(selectFilterName);
 
-  const state: TodoState = { todos, setTodos, filterName, setFilterName };
+  const state: TodoState = {
+    todos,
+    setTodos: (todos) => dispatch(todoSlice.actions.setTodos(todos)),
+    filterName,
+    setFilterName: (filterName) =>
+      dispatch(todoSlice.actions.setFilterName(filterName)),
+  };
 
   return (
     <div className="border-2 p-4">

@@ -14,12 +14,8 @@ export default function TodoList(props: { state: TodoState }) {
   function completeTodo(id: number) {
     setTodos([
       ...todos.map((todo) => {
-        // NOTE Is it OK to use this side effect here?
-        //   Is it true that side effect is OK but not enough?
-        //   If this kind of side effects are OK,
-        //   I think we can use MVVM in React.
         if (todo.id === id) {
-          todo.isComplete = !todo.isComplete;
+          return { ...todo, isComplete: !todo.isComplete };
         }
 
         return todo;
@@ -31,7 +27,7 @@ export default function TodoList(props: { state: TodoState }) {
     setTodos([
       ...todos.map((todo) => {
         if (todo.id === id) {
-          todo.isEditing = true;
+          return { ...todo, isEditing: true };
         }
 
         return todo;
