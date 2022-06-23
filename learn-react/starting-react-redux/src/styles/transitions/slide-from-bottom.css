@@ -1,0 +1,21 @@
+.slide-from-bottom-enter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.slide-from-bottom-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 300ms;
+}
+
+.slide-from-bottom-exit {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.slide-from-bottom-exit-active {
+  opacity: 0;
+  transition: all 300ms;
+  transform: translateY(16px);
+}
