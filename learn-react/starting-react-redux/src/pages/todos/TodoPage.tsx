@@ -3,12 +3,16 @@ import NoTodos from './NoTodos';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import { TodoState } from './TodoState';
+import {} from './todoSlice';
 import TodoToolbar from './TodoToolbar';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../styles/transitions/index.css';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function TodoPage() {
+  const dispatch = useDispatch();
+
   const [todos, setTodos] = useLocalStorage('todos', []);
   const [filterName, setFilterName] = useState('all');
 
