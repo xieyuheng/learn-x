@@ -1,1 +1,3 @@
 - add redux
+- use redux store
+- refactor redux store
