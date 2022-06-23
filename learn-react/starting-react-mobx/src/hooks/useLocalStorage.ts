@@ -7,8 +7,8 @@ export default function useLocalStorage<A>(
     json: (value: A) => any;
     create: (json: any) => A;
   } = {
-    json: value => value,
-    create: json => json,
+    json: (value) => value,
+    create: (json) => json,
   }
 ) {
   const [value, setValue] = useState<any>(() => {

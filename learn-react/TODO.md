@@ -1,2 +1,1 @@
-- `starting-react-redux`
 - `starting-nextjs` -- https://nextjs.org

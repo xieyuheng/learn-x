@@ -9,7 +9,7 @@ export function observable<A extends object>(target: A): A {
     },
     set(obj, key, value) {
       obj[key] = value;
-      derivationGraph[key].forEach(f => f());
+      derivationGraph[key].forEach((f) => f());
       return true;
     },
   };

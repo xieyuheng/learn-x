@@ -5,7 +5,7 @@ function useForceUpdate() {
   const [, setFlag] = useState(1);
   // NOTE Should not use boolean as flag,
   //   because `false` is a special value.
-  return () => setFlag(flag => (flag === 1 ? 2 : 1));
+  return () => setFlag((flag) => (flag === 1 ? 2 : 1));
 }
 
 export function observer<A>(

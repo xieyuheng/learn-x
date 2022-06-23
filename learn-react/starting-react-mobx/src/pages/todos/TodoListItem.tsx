@@ -30,11 +30,11 @@ export default observer(({ state, todo }: { state: TodoState; todo: Todo }) => (
             type="text"
             defaultValue={todo.title}
             autoFocus
-            onBlur={event => {
+            onBlur={(event) => {
               todo.title = event.currentTarget.value;
               todo.isEditing = false;
             }}
-            onKeyDown={event => {
+            onKeyDown={(event) => {
               if (event.key === 'Enter') {
                 todo.title = event.currentTarget.value;
                 todo.isEditing = false;

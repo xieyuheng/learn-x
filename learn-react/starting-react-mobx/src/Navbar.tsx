@@ -7,7 +7,7 @@ export default function Navbar() {
       <ul className="flex space-x-2">
         <li>
           <NavLink
-            className={nav =>
+            className={(nav) =>
               classNames('border-2 p-2', {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
@@ -20,7 +20,7 @@ export default function Navbar() {
 
         <li>
           <NavLink
-            className={nav =>
+            className={(nav) =>
               classNames('border-2 p-2', {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
@@ -33,7 +33,7 @@ export default function Navbar() {
 
         <li>
           <NavLink
-            className={nav =>
+            className={(nav) =>
               classNames('border-2 p-2', {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
@@ -46,7 +46,7 @@ export default function Navbar() {
 
         <li>
           <NavLink
-            className={nav =>
+            className={(nav) =>
               classNames('border-2 p-2', {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })
@@ -59,7 +59,7 @@ export default function Navbar() {
 
         <li>
           <NavLink
-            className={nav =>
+            className={(nav) =>
               classNames('border-2 p-2', {
                 'border-rose-300 bg-rose-100': nav.isActive,
               })

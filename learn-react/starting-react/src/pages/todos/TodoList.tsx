@@ -8,12 +8,12 @@ export default function TodoList(props: { state: TodoState }) {
   const { todos, setTodos, filterName } = props.state;
 
   function deleteTodo(id: number) {
-    setTodos([...todos.filter(todo => todo.id !== id)]);
+    setTodos([...todos.filter((todo) => todo.id !== id)]);
   }
 
   function completeTodo(id: number) {
     setTodos([
-      ...todos.map(todo => {
+      ...todos.map((todo) => {
         // NOTE Is it OK to use this side effect here?
         //   Is it true that side effect is OK but not enough?
         //   If this kind of side effects are OK,
@@ -29,7 +29,7 @@ export default function TodoList(props: { state: TodoState }) {
 
   function editingTodo(id: number) {
     setTodos([
-      ...todos.map(todo => {
+      ...todos.map((todo) => {
         if (todo.id === id) {
           todo.isEditing = true;
         }
@@ -46,7 +46,7 @@ export default function TodoList(props: { state: TodoState }) {
     id: number
   ) {
     setTodos([
-      ...todos.map(todo => {
+      ...todos.map((todo) => {
         if (todo.id === id) {
           todo.isEditing = false;
           if (event.currentTarget.value.trim() !== '') {
@@ -62,9 +62,9 @@ export default function TodoList(props: { state: TodoState }) {
   function todosFiltered() {
     switch (filterName) {
       case 'active':
-        return todos.filter(todo => !todo.isComplete);
+        return todos.filter((todo) => !todo.isComplete);
       case 'completed':
-        return todos.filter(todo => todo.isComplete);
+        return todos.filter((todo) => todo.isComplete);
       case 'all':
       default:
         return todos;
@@ -73,7 +73,7 @@ export default function TodoList(props: { state: TodoState }) {
 
   return (
     <TransitionGroup component="ul">
-      {todosFiltered().map(todo => {
+      {todosFiltered().map((todo) => {
         const nodeRef = createRef<HTMLLIElement>();
 
         return (
@@ -106,8 +106,8 @@ export default function TodoList(props: { state: TodoState }) {
                       type="text"
                       defaultValue={todo.title}
                       autoFocus
-                      onBlur={event => updateTodo(event, todo.id)}
-                      onKeyDown={event => {
+                      onBlur={(event) => updateTodo(event, todo.id)}
+                      onKeyDown={(event) => {
                         if (event.key === 'Enter') {
                           updateTodo(event, todo.id);
                         }

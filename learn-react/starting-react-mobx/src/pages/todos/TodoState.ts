@@ -39,7 +39,7 @@ export class TodoState {
   }
 
   deleteTodo(id: number) {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+    this.todos = this.todos.filter((todo) => todo.id !== id);
   }
 
   checkAll() {
@@ -49,11 +49,11 @@ export class TodoState {
   }
 
   clearCompleted() {
-    this.todos = [...this.todos.filter(todo => !todo.isComplete)];
+    this.todos = [...this.todos.filter((todo) => !todo.isComplete)];
   }
 
   remaining() {
-    return this.todos.filter(todo => !todo.isComplete).length;
+    return this.todos.filter((todo) => !todo.isComplete).length;
   }
 
   addTodo(): void {
@@ -72,7 +72,7 @@ export class TodoState {
   }
 
   private freshId() {
-    const ids = this.todos.map(todo => todo.id);
+    const ids = this.todos.map((todo) => todo.id);
     if (ids.length === 0) return 0;
     return Math.max(...ids) + 1;
   }
@@ -80,9 +80,9 @@ export class TodoState {
   get todosFiltered() {
     switch (this.filterName) {
       case 'active':
-        return this.todos.filter(todo => !todo.isComplete);
+        return this.todos.filter((todo) => !todo.isComplete);
       case 'completed':
-        return this.todos.filter(todo => todo.isComplete);
+        return this.todos.filter((todo) => todo.isComplete);
       case 'all':
       default:
         return this.todos;

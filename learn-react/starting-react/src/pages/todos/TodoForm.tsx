@@ -7,7 +7,7 @@ export default function TodoForm(props: { state: TodoState }) {
   const [todoInput, setTodoInput] = useState('');
 
   function freshId() {
-    const ids = todos.map(todo => todo.id);
+    const ids = todos.map((todo) => todo.id);
     if (ids.length === 0) return 0;
     return Math.max(...ids) + 1;
   }
@@ -25,13 +25,13 @@ export default function TodoForm(props: { state: TodoState }) {
   }
 
   return (
-    <form className="border-2" action="#" onSubmit={event => addTodo(event)}>
+    <form className="border-2" action="#" onSubmit={(event) => addTodo(event)}>
       <input
         className="p-2"
         type="text"
         placeholder="Add todo"
         value={todoInput}
-        onChange={event => handleInput(event)}
+        onChange={(event) => handleInput(event)}
       />
     </form>
   );

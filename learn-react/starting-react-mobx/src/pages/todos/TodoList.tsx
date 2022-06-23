@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 export default observer(({ state }: { state: TodoState }) => (
   <TransitionGroup component="ul">
-    {state.todosFiltered.map(todo => (
+    {state.todosFiltered.map((todo) => (
       <CSSTransition key={todo.id} timeout={300} classNames="slide-from-right">
         <TodoListItem state={state} todo={todo} key={todo.id} />
       </CSSTransition>
