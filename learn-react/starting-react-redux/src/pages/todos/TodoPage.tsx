@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import NoTodos from './NoTodos';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import { TodoState } from './TodoState';
 import TodoToolbar from './TodoToolbar';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 import { useSelector, useDispatch } from 'react-redux';
