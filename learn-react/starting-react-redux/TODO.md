@@ -1,3 +1,4 @@
 - add redux
 - use redux store
 - refactor redux store
+- try @reduxjs/toolkit
