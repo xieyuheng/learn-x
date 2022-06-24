@@ -41,7 +41,7 @@ export default function TodoPage() {
         >
           {todos.length > 0 ? (
             <div>
-              <TodoList state={state} />
+              <TodoList />
               <TodoToolbar />
             </div>
           ) : (

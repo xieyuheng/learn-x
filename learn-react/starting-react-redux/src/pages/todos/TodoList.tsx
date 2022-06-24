@@ -12,7 +12,7 @@ import {
   selectFilterName,
 } from './todoSlice';
 
-export default function TodoList(props: { state: TodoState }) {
+export default function TodoList() {
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
   const filterName = useSelector(selectFilterName);
