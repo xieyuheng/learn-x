@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTodos, selectTodos } from './todoSlice';
+import * as state from './todoSlice';
+import {  selectTodos } from './todoSlice';
 
 export default function TodoForm() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function TodoForm() {
     event.preventDefault();
     if (!todoInput.trim()) return;
     const newTodo = { id: freshId(), title: todoInput, isComplete: false };
-    dispatch(setTodos([newTodo, ...todos]));
+    dispatch(state.actions.setTodos([newTodo, ...todos]));
     setTodoInput('');
   }
 

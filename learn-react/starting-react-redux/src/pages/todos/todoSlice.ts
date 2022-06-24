@@ -17,7 +17,7 @@ const initialState: TodoState = {
   filterName: 'all',
 };
 
-export const todoSlice = createSlice({
+export const slice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
@@ -33,7 +33,7 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { setTodos, setFilterName, clearCompleted } = todoSlice.actions;
+export const actions = slice.actions
 
 // function checkAll() {
 //   dispatch(

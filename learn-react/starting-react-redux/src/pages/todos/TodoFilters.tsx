@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilterName, selectFilterName } from './todoSlice';
+import * as state from './todoSlice';
+import { selectFilterName } from './todoSlice';
 
 export default function TodoFilters() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function TodoFilters() {
         className={classNames('border-2 p-2', {
           'border-rose-300 bg-rose-100': filterName === 'all',
         })}
-        onClick={() => dispatch(setFilterName('all'))}
+        onClick={() => dispatch(state.actions.setFilterName('all'))}
       >
         All
       </button>
@@ -21,7 +22,7 @@ export default function TodoFilters() {
         className={classNames('border-2 p-2', {
           'border-rose-300 bg-rose-100': filterName === 'active',
         })}
-        onClick={() => dispatch(setFilterName('active'))}
+        onClick={() => dispatch(state.actions.setFilterName('active'))}
       >
         Active
       </button>
@@ -29,7 +30,7 @@ export default function TodoFilters() {
         className={classNames('border-2 p-2', {
           'border-rose-300 bg-rose-100': filterName === 'completed',
         })}
-        onClick={() => dispatch(setFilterName('completed'))}
+        onClick={() => dispatch(state.actions.setFilterName('completed'))}
       >
         Completed
       </button>

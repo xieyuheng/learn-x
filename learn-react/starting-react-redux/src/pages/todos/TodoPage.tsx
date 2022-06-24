@@ -6,6 +6,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 import { useSelector } from 'react-redux';
 import { selectTodos } from './todoSlice';
+import * as state from './todoSlice';
 
 export default function TodoPage() {
   const todos = useSelector(selectTodos);

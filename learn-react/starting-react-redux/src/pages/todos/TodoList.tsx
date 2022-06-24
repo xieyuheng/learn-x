@@ -3,7 +3,8 @@ import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTodos, selectTodos, selectFilterName } from './todoSlice';
+import { selectTodos, selectFilterName } from './todoSlice';
+import * as state from './todoSlice';
 
 export default function TodoList() {
   const dispatch = useDispatch();
@@ -12,12 +13,12 @@ export default function TodoList() {
   const filterName = useSelector(selectFilterName);
 
   function deleteTodo(id: number) {
-    dispatch(setTodos([...todos.filter((todo) => todo.id !== id)]));
+    dispatch(state.actions.setTodos([...todos.filter((todo) => todo.id !== id)]));
   }
 
   function completeTodo(id: number) {
     dispatch(
-      setTodos([
+      state.actions.setTodos([
         ...todos.map((todo) => {
           if (todo.id === id) {
             return { ...todo, isComplete: !todo.isComplete };
@@ -31,7 +32,7 @@ export default function TodoList() {
 
   function editingTodo(id: number) {
     dispatch(
-      setTodos([
+      state.actions.setTodos([
         ...todos.map((todo) => {
           if (todo.id === id) {
             return { ...todo, isEditing: true };
@@ -50,7 +51,7 @@ export default function TodoList() {
     id: number
   ) {
     dispatch(
-      setTodos([
+      state.actions.setTodos([
         ...todos.map((todo) => {
           if (todo.id === id) {
             todo = { ...todo, isEditing: false };
