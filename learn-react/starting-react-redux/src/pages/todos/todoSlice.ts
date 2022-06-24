@@ -88,6 +88,17 @@ export const selectors = {
   filterName: ({ todos }: { todos: TodoState }) => todos.filterName,
   remaining: ({ todos }: { todos: TodoState }) =>
     todos.todos.filter((todo: Todo) => !todo.isComplete).length,
+  todosFiltered: ({ todos }: { todos: TodoState }) => {
+    switch (todos.filterName) {
+      case 'active':
+        return todos.todos.filter((todo) => !todo.isComplete);
+      case 'completed':
+        return todos.todos.filter((todo) => todo.isComplete);
+      case 'all':
+      default:
+        return todos.todos;
+    }
+  },
 };
 
 function prepare(f: any): any {

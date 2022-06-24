@@ -9,22 +9,11 @@ export default function TodoList() {
   const dispatch = useDispatch();
   const todos = useSelector(state.selectors.todos);
   const filterName = useSelector(state.selectors.filterName);
-
-  function todosFiltered() {
-    switch (filterName) {
-      case 'active':
-        return todos.filter((todo) => !todo.isComplete);
-      case 'completed':
-        return todos.filter((todo) => todo.isComplete);
-      case 'all':
-      default:
-        return todos;
-    }
-  }
+  const todosFiltered = useSelector(state.selectors.todosFiltered);
 
   return (
     <TransitionGroup component="ul">
-      {todosFiltered().map((todo) => {
+      {todosFiltered.map((todo) => {
         const nodeRef = createRef<HTMLLIElement>();
 
         return (

@@ -5,7 +5,6 @@ import * as state from './todoSlice';
 
 export default function TodoToolbar() {
   const dispatch = useDispatch();
-
   const todos = useSelector(state.selectors.todos);
 
   return (
