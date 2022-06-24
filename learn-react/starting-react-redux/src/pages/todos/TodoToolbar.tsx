@@ -1,6 +1,6 @@
 import TodoStats from './TodoStats';
 import TodoFilters from './TodoFilters';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as state from './todoSlice';
 
 export default function TodoToolbar() {
