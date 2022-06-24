@@ -44,15 +44,13 @@ export const slice = createSlice({
   },
 });
 
-export const actions = slice.actions;
 export const reducer = slice.reducer;
 
-export const selectTodos = ({ todos }: { todos: TodoState }) => todos.todos;
+export const actions = slice.actions;
 
-export const selectFilterName = ({ todos }: { todos: TodoState }) =>
-  todos.filterName;
-
-export const selectRemaining = (state: { todos: TodoState }) => {
-  const todos = selectTodos(state);
-  return todos.filter((todo: Todo) => !todo.isComplete).length;
+export const selectors = {
+  todos: ({ todos }: { todos: TodoState }) => todos.todos,
+  filterName: ({ todos }: { todos: TodoState }) => todos.filterName,
+  remaining: ({ todos }: { todos: TodoState }) =>
+    todos.todos.filter((todo: Todo) => !todo.isComplete).length,
 };

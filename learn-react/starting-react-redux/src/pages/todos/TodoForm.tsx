@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as state from './todoSlice';
-import {  selectTodos } from './todoSlice';
 
 export default function TodoForm() {
   const dispatch = useDispatch();
 
-  const todos = useSelector(selectTodos);
+  const todos = useSelector(state.selectors.todos);
 
   const [todoInput, setTodoInput] = useState('');
 

@@ -3,17 +3,18 @@ import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTodos, selectFilterName } from './todoSlice';
 import * as state from './todoSlice';
 
 export default function TodoList() {
   const dispatch = useDispatch();
 
-  const todos = useSelector(selectTodos);
-  const filterName = useSelector(selectFilterName);
+  const todos = useSelector(state.selectors.todos);
+  const filterName = useSelector(state.selectors.filterName);
 
   function deleteTodo(id: number) {
-    dispatch(state.actions.setTodos([...todos.filter((todo) => todo.id !== id)]));
+    dispatch(
+      state.actions.setTodos([...todos.filter((todo) => todo.id !== id)])
+    );
   }
 
   function completeTodo(id: number) {

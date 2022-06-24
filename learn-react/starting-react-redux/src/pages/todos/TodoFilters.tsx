@@ -1,12 +1,11 @@
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import * as state from './todoSlice';
-import { selectFilterName } from './todoSlice';
 
 export default function TodoFilters() {
   const dispatch = useDispatch();
 
-  const filterName = useSelector(selectFilterName);
+  const filterName = useSelector(state.selectors.filterName);
 
   return (
     <div className="flex justify-between pb-2">
