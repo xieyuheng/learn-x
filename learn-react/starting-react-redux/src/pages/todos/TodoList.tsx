@@ -10,20 +10,6 @@ export default function TodoList() {
   const todos = useSelector(state.selectors.todos);
   const filterName = useSelector(state.selectors.filterName);
 
-  function completeTodo(id: number) {
-    dispatch(
-      state.actions.setTodos([
-        ...todos.map((todo) => {
-          if (todo.id === id) {
-            return { ...todo, isComplete: !todo.isComplete };
-          }
-
-          return todo;
-        }),
-      ])
-    );
-  }
-
   function editingTodo(id: number) {
     dispatch(
       state.actions.setTodos([
@@ -89,7 +75,7 @@ export default function TodoList() {
                 <input
                   type="checkbox"
                   checked={todo.isComplete}
-                  onChange={() => completeTodo(todo.id)}
+                  onChange={() => dispatch(state.actions.completeTodo(todo.id))}
                 />
                 <div className="px-2">
                   {!todo.isEditing ? (
