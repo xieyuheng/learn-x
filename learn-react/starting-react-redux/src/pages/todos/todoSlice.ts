@@ -17,12 +17,12 @@ const initialState: TodoState = {
   filterName: 'all',
 };
 
-function setTodos(state: TodoState, action: { payload: Array<Todo> }) {
-  state.todos = action.payload;
+function setTodos(state: TodoState, todos: Array<Todo>) {
+  state.todos = todos;
 }
 
-function setFilterName(state: TodoState, action: { payload: string }) {
-  state.filterName = action.payload;
+function setFilterName(state: TodoState, filterName: string) {
+  state.filterName = filterName;
 }
 
 function clearCompleted(state: TodoState) {
@@ -33,11 +33,11 @@ function checkAll(state: TodoState) {
   state.todos = [...state.todos.map((todo) => ({ ...todo, isComplete: true }))];
 }
 
-function deleteTodo(state: TodoState, { payload: id }: { payload: number }) {
+function deleteTodo(state: TodoState, id: number) {
   state.todos = [...state.todos.filter((todo) => todo.id !== id)];
 }
 
-function completeTodo(state: TodoState, { payload: id }: { payload: number }) {
+function completeTodo(state: TodoState, id: number) {
   state.todos.forEach((todo) => {
     if (todo.id === id) {
       todo.isComplete = !todo.isComplete;
@@ -45,7 +45,7 @@ function completeTodo(state: TodoState, { payload: id }: { payload: number }) {
   });
 }
 
-function editingTodo(state: TodoState, { payload: id }: { payload: number }) {
+function editingTodo(state: TodoState, id: number) {
   state.todos.forEach((todo) => {
     if (todo.id === id) {
       todo.isEditing = true;
@@ -53,10 +53,30 @@ function editingTodo(state: TodoState, { payload: id }: { payload: number }) {
   });
 }
 
+function prepare(f: any): any {
+  return {
+    prepare(...args: any[]) {
+      return { payload: args };
+    },
+    reducer(state: any, action: any) {
+      return f(state, ...action.payload);
+    },
+  };
+}
+
+function prepareReducers(reducers: any): any {
+  const results: any = {};
+  for (const [name, reducer] of Object.entries(reducers)) {
+    results[name] = prepare(reducer);
+  }
+
+  return results;
+}
+
 export const slice = createSlice({
   name: 'todos',
   initialState,
-  reducers: {
+  reducers: prepareReducers({
     setTodos,
     setFilterName,
     clearCompleted,
@@ -64,12 +84,12 @@ export const slice = createSlice({
     deleteTodo,
     completeTodo,
     editingTodo,
-  },
+  }),
 });
 
 export const reducer = slice.reducer;
 
-export const actions = slice.actions;
+export const actions: any = slice.actions;
 
 export const selectors = {
   todos: ({ todos }: { todos: TodoState }) => todos.todos,
