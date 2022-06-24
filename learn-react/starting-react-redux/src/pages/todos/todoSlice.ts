@@ -32,6 +32,12 @@ export const todoSlice = createSlice({
 
 export const { setTodos, setFilterName } = todoSlice.actions;
 
-export const selectTodos = (state: { todos: TodoState }) => state.todos.todos;
-export const selectFilterName = (state: { todos: TodoState }) =>
-  state.todos.filterName;
+export const selectTodos = ({ todos }: { todos: TodoState }) => todos.todos;
+
+export const selectFilterName = ({ todos }: { todos: TodoState }) =>
+  todos.filterName;
+
+export const selectRemaining = (state: { todos: TodoState }) => {
+  const todos = selectTodos(state);
+  return todos.filter((todo: Todo) => !todo.isComplete).length;
+};
