@@ -1,7 +1,15 @@
 import { TodoState } from './TodoState';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  todoSlice,
+  setTodos,
+  setFilterName,
+  selectTodos,
+  selectFilterName,
+} from './todoSlice';
 
-export default function TodoStats(props: { state: TodoState }) {
-  const { todos } = props.state;
+export default function TodoStats() {
+  const todos = useSelector(selectTodos);
 
   function remaining() {
     return todos.filter((todo) => !todo.isComplete).length;
