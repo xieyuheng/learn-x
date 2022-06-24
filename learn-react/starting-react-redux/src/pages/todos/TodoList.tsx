@@ -7,8 +7,6 @@ import * as state from './todoSlice';
 
 export default function TodoList() {
   const dispatch = useDispatch();
-  const todos = useSelector(state.selectors.todos);
-  const filterName = useSelector(state.selectors.filterName);
   const todosFiltered = useSelector(state.selectors.todosFiltered);
 
   return (
