@@ -3,36 +3,50 @@ import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../styles/transitions/index.css';
 import { TodoState } from './TodoState';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  todoSlice,
+  setTodos,
+  setFilterName,
+  selectTodos,
+  selectFilterName,
+} from './todoSlice';
 
 export default function TodoList(props: { state: TodoState }) {
-  const { todos, setTodos, filterName } = props.state;
+  const dispatch = useDispatch();
+  const todos = useSelector(selectTodos);
+  const filterName = useSelector(selectFilterName);
 
   function deleteTodo(id: number) {
-    setTodos([...todos.filter((todo) => todo.id !== id)]);
+    dispatch(setTodos([...todos.filter((todo) => todo.id !== id)]));
   }
 
   function completeTodo(id: number) {
-    setTodos([
-      ...todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isComplete: !todo.isComplete };
-        }
+    dispatch(
+      setTodos([
+        ...todos.map((todo) => {
+          if (todo.id === id) {
+            return { ...todo, isComplete: !todo.isComplete };
+          }
 
-        return todo;
-      }),
-    ]);
+          return todo;
+        }),
+      ])
+    );
   }
 
   function editingTodo(id: number) {
-    setTodos([
-      ...todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isEditing: true };
-        }
+    dispatch(
+      setTodos([
+        ...todos.map((todo) => {
+          if (todo.id === id) {
+            return { ...todo, isEditing: true };
+          }
 
-        return todo;
-      }),
-    ]);
+          return todo;
+        }),
+      ])
+    );
   }
 
   function updateTodo(
@@ -41,18 +55,20 @@ export default function TodoList(props: { state: TodoState }) {
       | React.KeyboardEvent<HTMLInputElement>,
     id: number
   ) {
-    setTodos([
-      ...todos.map((todo) => {
-        if (todo.id === id) {
-          todo.isEditing = false;
-          if (event.currentTarget.value.trim() !== '') {
-            todo.title = event.currentTarget.value;
+    dispatch(
+      setTodos([
+        ...todos.map((todo) => {
+          if (todo.id === id) {
+            todo = { ...todo, isEditing: false };
+            if (event.currentTarget.value.trim() !== '') {
+              todo = { ...todo, title: event.currentTarget.value };
+            }
           }
-        }
 
-        return todo;
-      }),
-    ]);
+          return todo;
+        }),
+      ])
+    );
   }
 
   function todosFiltered() {
