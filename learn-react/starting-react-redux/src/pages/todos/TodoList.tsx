@@ -10,19 +10,14 @@ export default function TodoList() {
   const todos = useSelector(state.selectors.todos);
   const filterName = useSelector(state.selectors.filterName);
 
-  function updateTodo(
-    event:
-      | React.FocusEvent<HTMLInputElement, Element>
-      | React.KeyboardEvent<HTMLInputElement>,
-    id: number
-  ) {
+  function updateTodo(title: string, id: number) {
     dispatch(
       state.actions.setTodos([
         ...todos.map((todo) => {
           if (todo.id === id) {
             todo = { ...todo, isEditing: false };
-            if (event.currentTarget.value.trim() !== '') {
-              todo = { ...todo, title: event.currentTarget.value };
+            if (title.trim() !== '') {
+              todo = { ...todo, title };
             }
           }
 
@@ -81,10 +76,12 @@ export default function TodoList() {
                       type="text"
                       defaultValue={todo.title}
                       autoFocus
-                      onBlur={(event) => updateTodo(event, todo.id)}
+                      onBlur={(event) =>
+                        updateTodo(event.currentTarget.value, todo.id)
+                      }
                       onKeyDown={(event) => {
                         if (event.key === 'Enter') {
-                          updateTodo(event, todo.id);
+                          updateTodo(event.currentTarget.value, todo.id);
                         }
                       }}
                     />
