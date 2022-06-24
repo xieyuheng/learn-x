@@ -45,6 +45,14 @@ function completeTodo(state: TodoState, { payload: id }: { payload: number }) {
   });
 }
 
+function editingTodo(state: TodoState, { payload: id }: { payload: number }) {
+  state.todos.forEach((todo) => {
+    if (todo.id === id) {
+      todo.isEditing = true;
+    }
+  });
+}
+
 export const slice = createSlice({
   name: 'todos',
   initialState,
@@ -55,6 +63,7 @@ export const slice = createSlice({
     checkAll,
     deleteTodo,
     completeTodo,
+    editingTodo,
   },
 });
 

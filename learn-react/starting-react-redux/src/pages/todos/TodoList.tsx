@@ -10,20 +10,6 @@ export default function TodoList() {
   const todos = useSelector(state.selectors.todos);
   const filterName = useSelector(state.selectors.filterName);
 
-  function editingTodo(id: number) {
-    dispatch(
-      state.actions.setTodos([
-        ...todos.map((todo) => {
-          if (todo.id === id) {
-            return { ...todo, isEditing: true };
-          }
-
-          return todo;
-        }),
-      ])
-    );
-  }
-
   function updateTodo(
     event:
       | React.FocusEvent<HTMLInputElement, Element>
@@ -83,7 +69,9 @@ export default function TodoList() {
                       className={classNames({
                         'line-through': todo.isComplete,
                       })}
-                      onDoubleClick={() => editingTodo(todo.id)}
+                      onDoubleClick={() =>
+                        dispatch(state.actions.editingTodo(todo.id))
+                      }
                     >
                       {todo.title}
                     </div>
