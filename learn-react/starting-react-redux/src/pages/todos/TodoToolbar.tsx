@@ -1,20 +1,12 @@
 import TodoStats from './TodoStats';
 import TodoFilters from './TodoFilters';
-import { TodoState } from './TodoState';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  todoSlice,
-  setTodos,
-  setFilterName,
-  selectTodos,
-  selectFilterName,
-} from './todoSlice';
+import { setTodos, selectTodos } from './todoSlice';
 
 export default function TodoToolbar() {
   const dispatch = useDispatch();
 
   const todos = useSelector(selectTodos);
-  const filterName = useSelector(selectFilterName);
 
   function clearCompleted() {
     dispatch(setTodos([...todos.filter((todo) => !todo.isComplete)]));

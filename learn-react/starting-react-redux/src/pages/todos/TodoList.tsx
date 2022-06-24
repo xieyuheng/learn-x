@@ -2,18 +2,12 @@ import { createRef } from 'react';
 import classNames from 'classnames';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../styles/transitions/index.css';
-import { TodoState } from './TodoState';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  todoSlice,
-  setTodos,
-  setFilterName,
-  selectTodos,
-  selectFilterName,
-} from './todoSlice';
+import { setTodos, selectTodos, selectFilterName } from './todoSlice';
 
 export default function TodoList() {
   const dispatch = useDispatch();
+
   const todos = useSelector(selectTodos);
   const filterName = useSelector(selectFilterName);
 

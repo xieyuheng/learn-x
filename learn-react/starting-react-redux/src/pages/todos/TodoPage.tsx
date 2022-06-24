@@ -1,31 +1,14 @@
 import NoTodos from './NoTodos';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
-import { TodoState } from './TodoState';
 import TodoToolbar from './TodoToolbar';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../styles/transitions/index.css';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  todoSlice,
-  setTodos,
-  setFilterName,
-  selectTodos,
-  selectFilterName,
-} from './todoSlice';
+import { useSelector } from 'react-redux';
+import { selectTodos } from './todoSlice';
 
 export default function TodoPage() {
-  const dispatch = useDispatch();
-
   const todos = useSelector(selectTodos);
-  const filterName = useSelector(selectFilterName);
-
-  const state: TodoState = {
-    todos,
-    setTodos: (todos) => dispatch(setTodos(todos)),
-    filterName,
-    setFilterName: (filterName) => dispatch(setFilterName(filterName)),
-  };
 
   return (
     <div className="border-2 p-4">

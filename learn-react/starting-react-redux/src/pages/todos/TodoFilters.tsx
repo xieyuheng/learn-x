@@ -1,16 +1,10 @@
 import classNames from 'classnames';
-import { TodoState } from './TodoState';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  todoSlice,
-  setTodos,
-  setFilterName,
-  selectTodos,
-  selectFilterName,
-} from './todoSlice';
+import { setFilterName, selectFilterName } from './todoSlice';
 
 export default function TodoFilters() {
   const dispatch = useDispatch();
+
   const filterName = useSelector(selectFilterName);
 
   return (

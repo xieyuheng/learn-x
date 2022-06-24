@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { TodoState } from './TodoState';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTodos, selectTodos } from './todoSlice';
 

@@ -1,12 +1,5 @@
-import { TodoState } from './TodoState';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  todoSlice,
-  setTodos,
-  setFilterName,
-  selectTodos,
-  selectFilterName,
-} from './todoSlice';
+import { useSelector } from 'react-redux';
+import { selectTodos } from './todoSlice';
 
 export default function TodoStats() {
   const todos = useSelector(selectTodos);

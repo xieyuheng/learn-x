@@ -1,1 +1,1 @@
-- remove `TodoState`
+- move methods to `todoSlice`
