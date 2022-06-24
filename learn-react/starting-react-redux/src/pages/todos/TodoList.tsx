@@ -10,23 +10,6 @@ export default function TodoList() {
   const todos = useSelector(state.selectors.todos);
   const filterName = useSelector(state.selectors.filterName);
 
-  function updateTodo(title: string, id: number) {
-    dispatch(
-      state.actions.setTodos([
-        ...todos.map((todo) => {
-          if (todo.id === id) {
-            todo = { ...todo, isEditing: false };
-            if (title.trim() !== '') {
-              todo = { ...todo, title };
-            }
-          }
-
-          return todo;
-        }),
-      ])
-    );
-  }
-
   function todosFiltered() {
     switch (filterName) {
       case 'active':
@@ -77,11 +60,21 @@ export default function TodoList() {
                       defaultValue={todo.title}
                       autoFocus
                       onBlur={(event) =>
-                        updateTodo(event.currentTarget.value, todo.id)
+                        dispatch(
+                          state.actions.updateTodo(
+                            todo.id,
+                            event.currentTarget.value
+                          )
+                        )
                       }
                       onKeyDown={(event) => {
                         if (event.key === 'Enter') {
-                          updateTodo(event.currentTarget.value, todo.id);
+                          dispatch(
+                            state.actions.updateTodo(
+                              todo.id,
+                              event.currentTarget.value
+                            )
+                          );
                         }
                       }}
                     />

@@ -53,6 +53,43 @@ function editingTodo(state: TodoState, id: number) {
   });
 }
 
+function updateTodo(state: TodoState, id: number, title: string) {
+  state.todos.forEach((todo) => {
+    if (todo.id === id) {
+      todo.isEditing = false;
+      if (title.trim() !== '') {
+        todo.title = title;
+      }
+    }
+  });
+}
+
+export const slice = createSlice({
+  name: 'todos',
+  initialState,
+  reducers: prepareReducers({
+    setTodos,
+    setFilterName,
+    clearCompleted,
+    checkAll,
+    deleteTodo,
+    completeTodo,
+    editingTodo,
+    updateTodo,
+  }),
+});
+
+export const reducer = slice.reducer;
+
+export const actions: any = slice.actions;
+
+export const selectors = {
+  todos: ({ todos }: { todos: TodoState }) => todos.todos,
+  filterName: ({ todos }: { todos: TodoState }) => todos.filterName,
+  remaining: ({ todos }: { todos: TodoState }) =>
+    todos.todos.filter((todo: Todo) => !todo.isComplete).length,
+};
+
 function prepare(f: any): any {
   return {
     prepare(...args: any[]) {
@@ -72,28 +109,3 @@ function prepareReducers(reducers: any): any {
 
   return results;
 }
-
-export const slice = createSlice({
-  name: 'todos',
-  initialState,
-  reducers: prepareReducers({
-    setTodos,
-    setFilterName,
-    clearCompleted,
-    checkAll,
-    deleteTodo,
-    completeTodo,
-    editingTodo,
-  }),
-});
-
-export const reducer = slice.reducer;
-
-export const actions: any = slice.actions;
-
-export const selectors = {
-  todos: ({ todos }: { todos: TodoState }) => todos.todos,
-  filterName: ({ todos }: { todos: TodoState }) => todos.filterName,
-  remaining: ({ todos }: { todos: TodoState }) =>
-    todos.todos.filter((todo: Todo) => !todo.isComplete).length,
-};

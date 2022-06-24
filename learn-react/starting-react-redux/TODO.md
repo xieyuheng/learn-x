@@ -1,4 +1,3 @@
-- `TodoList` -- extract `updateTodo`
 - `TodoList` -- extract `todosFiltered`
 
 - `todoSlice` -- well typed `slice.actions`
