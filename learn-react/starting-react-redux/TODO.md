@@ -1,0 +1,4 @@
+- `TodoList` -- extract `completeTodo`
+- `TodoList` -- extract `editingTodo`
+- `TodoList` -- extract `updateTodo`
+- `TodoList` -- extract `todosFiltered`

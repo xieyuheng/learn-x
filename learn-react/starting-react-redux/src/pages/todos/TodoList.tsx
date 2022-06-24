@@ -7,15 +7,8 @@ import * as state from './todoSlice';
 
 export default function TodoList() {
   const dispatch = useDispatch();
-
   const todos = useSelector(state.selectors.todos);
   const filterName = useSelector(state.selectors.filterName);
-
-  function deleteTodo(id: number) {
-    dispatch(
-      state.actions.setTodos([...todos.filter((todo) => todo.id !== id)])
-    );
-  }
 
   function completeTodo(id: number) {
     dispatch(
@@ -126,7 +119,7 @@ export default function TodoList() {
               </div>
               <button
                 className="text-gray-600"
-                onClick={() => deleteTodo(todo.id)}
+                onClick={() => dispatch(state.actions.deleteTodo(todo.id))}
               >
                 <div className="font-bold">X</div>
               </button>

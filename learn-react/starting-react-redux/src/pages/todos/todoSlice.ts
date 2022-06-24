@@ -33,6 +33,10 @@ function checkAll(state: TodoState) {
   state.todos = [...state.todos.map((todo) => ({ ...todo, isComplete: true }))];
 }
 
+function deleteTodo(state: TodoState, { payload: id }: { payload: number }) {
+  state.todos = [...state.todos.filter((todo) => todo.id !== id)];
+}
+
 export const slice = createSlice({
   name: 'todos',
   initialState,
@@ -41,6 +45,7 @@ export const slice = createSlice({
     setFilterName,
     clearCompleted,
     checkAll,
+    deleteTodo,
   },
 });
 

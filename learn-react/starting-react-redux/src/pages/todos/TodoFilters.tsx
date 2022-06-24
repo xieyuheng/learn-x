@@ -4,7 +4,6 @@ import * as state from './todoSlice';
 
 export default function TodoFilters() {
   const dispatch = useDispatch();
-
   const filterName = useSelector(state.selectors.filterName);
 
   return (
