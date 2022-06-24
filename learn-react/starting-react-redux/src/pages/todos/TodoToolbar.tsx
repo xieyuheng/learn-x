@@ -1,16 +1,14 @@
 import TodoStats from './TodoStats';
 import TodoFilters from './TodoFilters';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTodos, selectTodos } from './todoSlice';
+import { setTodos, selectTodos, clearCompleted } from './todoSlice';
 
 export default function TodoToolbar() {
   const dispatch = useDispatch();
 
   const todos = useSelector(selectTodos);
 
-  function clearCompleted() {
-    dispatch(setTodos([...todos.filter((todo) => !todo.isComplete)]));
-  }
+
 
   function checkAll() {
     dispatch(
@@ -30,7 +28,7 @@ export default function TodoToolbar() {
       <div className="flex flex-col border-t-2 py-2">
         <TodoFilters />
 
-        <button className="border-2 p-2" onClick={() => clearCompleted()}>
+        <button className="border-2 p-2" onClick={() => dispatch(clearCompleted())}>
           Clear completed
         </button>
       </div>

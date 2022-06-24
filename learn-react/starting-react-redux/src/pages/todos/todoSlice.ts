@@ -21,16 +21,25 @@ export const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    setTodos: (state, action) => {
+    setTodos(state, action) {
       state.todos = action.payload;
     },
-    setFilterName: (state, action) => {
+    setFilterName(state, action) {
       state.filterName = action.payload;
+    },
+    clearCompleted(state) {
+      state.todos = [...state.todos.filter((todo) => !todo.isComplete)];
     },
   },
 });
 
-export const { setTodos, setFilterName } = todoSlice.actions;
+export const { setTodos, setFilterName, clearCompleted } = todoSlice.actions;
+
+// function checkAll() {
+//   dispatch(
+//     setTodos([...todos.map((todo) => ({ ...todo, isComplete: true }))])
+//   );
+// }
 
 export const selectTodos = ({ todos }: { todos: TodoState }) => todos.todos;
 
