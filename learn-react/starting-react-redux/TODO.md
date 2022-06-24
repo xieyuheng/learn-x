@@ -1,1 +1,0 @@
-- `TodoToolbar` extract `checkAll`

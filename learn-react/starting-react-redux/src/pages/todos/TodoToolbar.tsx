@@ -9,18 +9,13 @@ export default function TodoToolbar() {
 
   const todos = useSelector(selectTodos);
 
-  function checkAll() {
-    dispatch(
-      state.actions.setTodos([
-        ...todos.map((todo) => ({ ...todo, isComplete: true })),
-      ])
-    );
-  }
-
   return (
     <>
       <div className="flex border-t-2 py-2 items-center justify-between">
-        <button className="border-2 p-2" onClick={() => checkAll()}>
+        <button
+          className="border-2 p-2"
+          onClick={() => dispatch(state.actions.checkAll())}
+        >
           Check All
         </button>
         <TodoStats />

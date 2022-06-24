@@ -17,29 +17,35 @@ const initialState: TodoState = {
   filterName: 'all',
 };
 
+function setTodos(state: TodoState, action: { payload: Array<Todo> }) {
+  state.todos = action.payload;
+}
+
+function setFilterName(state: TodoState, action: { payload: string }) {
+  state.filterName = action.payload;
+}
+
+function clearCompleted(state: TodoState) {
+  state.todos = [...state.todos.filter((todo) => !todo.isComplete)];
+}
+
+function checkAll(state: TodoState) {
+  state.todos = [...state.todos.map((todo) => ({ ...todo, isComplete: true }))];
+}
+
 export const slice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    setTodos(state, action) {
-      state.todos = action.payload;
-    },
-    setFilterName(state, action) {
-      state.filterName = action.payload;
-    },
-    clearCompleted(state) {
-      state.todos = [...state.todos.filter((todo) => !todo.isComplete)];
-    },
+    setTodos,
+    setFilterName,
+    clearCompleted,
+    checkAll,
   },
 });
 
-export const actions = slice.actions
-
-// function checkAll() {
-//   dispatch(
-//     setTodos([...todos.map((todo) => ({ ...todo, isComplete: true }))])
-//   );
-// }
+export const actions = slice.actions;
+export const reducer = slice.reducer;
 
 export const selectTodos = ({ todos }: { todos: TodoState }) => todos.todos;
 
