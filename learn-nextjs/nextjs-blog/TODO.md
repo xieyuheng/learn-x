@@ -1,8 +1,3 @@
-- About Next.js
-- From JavaScript to React
-- From React to Next.js
-- How Next.js Works
-
 - Navigate Between Pages
 - Assets, Metadata, and CSS
 - Pre-rendering and Data Fetching
@@ -18,3 +13,10 @@
 - Monitoring your Core Web Vitals
 
 - TypeScript
+
+# After
+
+- About Next.js
+- From JavaScript to React
+- From React to Next.js
+- How Next.js Works
