@@ -1,4 +1,3 @@
-- Assets, Metadata, and CSS
 - Pre-rendering and Data Fetching
 - Dynamic Routes
 - API Routes
