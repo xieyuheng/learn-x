@@ -1,6 +1,0 @@
-{
-  "prettier": {
-    "semi": false,
-    "trailingComma": "es5"
-  }
-}
