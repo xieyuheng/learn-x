@@ -8,21 +8,34 @@
   </head>
 
   <body>
-    <div class="flex justify-center">
+    <div class="flex justify-center py-12">
       <div
         x-data="{
           open: false,
+          toggle() {
+            this.open = !this.open
+          },
+          close() {
+            this.open = false
+          },
         }"
+        @keydown.escape.prevent.stop="close()"
         class="relative"
       >
         <!-- Button -->
-        <button type="button" class="px-4 py-2 border-2 border-gray-900">
+        <button
+          @click="toggle()"
+          type="button"
+          class="px-4 py-2 border-2 border-gray-900"
+        >
           <span>Actions</span>
         </button>
 
         <!-- Panel -->
         <div
           x-show="open"
+          @click.outside="close()"
+          style="display: none"
           class="absolute left-0 mt-2 w-40 border-2 border-gray-900"
         >
           <div>
@@ -55,6 +68,16 @@
               Delete task
             </a>
           </div>
+        </div>
+
+        <div class="mt-6">
+          <button type="button" class="px-4 py-2 border-2 border-gray-900">
+            <span>Other Button</span>
+          </button>
+
+          <button type="button" class="px-4 py-2 border-2 border-gray-900">
+            <span>Another Button</span>
+          </button>
         </div>
       </div>
     </div>

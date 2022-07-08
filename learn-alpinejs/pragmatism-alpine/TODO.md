@@ -1,6 +1,10 @@
 # components
 
 - Dropdown
+  - with `Button` and `Panel`
+  - click `Button` -- `toggle`
+  - escape keydown -- `close`
+  - click outside `Panel` -- `close`
 - Modal
 - Accordion
 - Carousel
