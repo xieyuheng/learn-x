@@ -13,49 +13,67 @@
         x-data="{
           open: false,
           toggle() {
-            this.open = !this.open
+            if (this.open) {
+              return this.close()
+            }
+
+            this.$refs.button.focus()
+
+            this.open = true
           },
-          close() {
+          close({ focusBackTo } = {}) {
+            if (! this.open) return
+
             this.open = false
+
+            focusBackTo && focusBackTo.focus()
           },
         }"
-        @keydown.escape.prevent.stop="close()"
+        @keydown.escape.prevent.stop="close({ focusBackTo: $refs.button })"
+        @focusin.window="!$refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-panel']"
         class="relative"
       >
         <!-- Button -->
         <button
+          x-ref="button"
           @click="toggle()"
+          :aria-expanded="open"
+          :aria-controls="$id('dropdown-panel')"
           type="button"
-          class="px-4 py-2 border-2 border-gray-900"
+          class="px-4 py-2 border-2 border-gray-900 focus:outline-none focus:ring focus:ring-cyan-400"
         >
           <span>Actions</span>
         </button>
 
         <!-- Panel -->
         <div
+          x-ref="panel"
           x-show="open"
-          @click.outside="close()"
+          x-transition.origin.top.left
+          :id="$id('dropdown-panel')"
+          @click.outside="close({ focusBackTo: $refs.button })"
           style="display: none"
-          class="absolute left-0 mt-2 w-40 border-2 border-gray-900"
+          class="absolute left-0 mt-2 w-40 border-2 border-gray-900 bg-white"
         >
           <div>
             <a
               href="#"
-              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring focus:ring-cyan-400"
             >
               Add task above
             </a>
 
             <a
               href="#"
-              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring focus:ring-cyan-400"
             >
               Add task below
             </a>
 
             <a
               href="#"
-              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring focus:ring-cyan-400"
             >
               Edit task
             </a>
@@ -63,7 +81,7 @@
             <a
               href="#"
               disabled
-              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring focus:ring-cyan-400"
             >
               Delete task
             </a>
@@ -71,11 +89,17 @@
         </div>
 
         <div class="mt-6">
-          <button type="button" class="px-4 py-2 border-2 border-gray-900">
+          <button
+            type="button"
+            class="px-4 py-2 border-2 border-gray-900 focus:outline-none focus:ring focus:ring-cyan-400"
+          >
             <span>Other Button</span>
           </button>
 
-          <button type="button" class="px-4 py-2 border-2 border-gray-900">
+          <button
+            type="button"
+            class="px-4 py-2 border-2 border-gray-900 focus:outline-none focus:ring focus:ring-cyan-400"
+          >
             <span>Another Button</span>
           </button>
         </div>
