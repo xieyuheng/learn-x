@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs"></script>
+  </head>
+
+  <body>
+    <div class="flex justify-center">
+      <div
+        x-data="{
+          open: false,
+        }"
+        class="relative"
+      >
+        <!-- Button -->
+        <button type="button" class="px-4 py-2 border-2 border-gray-900">
+          <span>Actions</span>
+        </button>
+
+        <!-- Panel -->
+        <div
+          x-show="open"
+          class="absolute left-0 mt-2 w-40 border-2 border-gray-900"
+        >
+          <div>
+            <a
+              href="#"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+            >
+              Add task above
+            </a>
+
+            <a
+              href="#"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+            >
+              Add task below
+            </a>
+
+            <a
+              href="#"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+            >
+              Edit task
+            </a>
+
+            <a
+              href="#"
+              disabled
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100 disabled:text-gray-500"
+            >
+              Delete task
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
