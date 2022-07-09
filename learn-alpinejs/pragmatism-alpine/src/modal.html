@@ -19,20 +19,29 @@
       </button>
 
       <!-- Modal -->
-      <div class="fixed inset-0 overflow-y-auto z-10">
+      <div
+        x-show="open"
+        style="display: none"
+        @keydown.escape.prevent.stop="open = false"
+        class="fixed inset-0 overflow-y-auto z-10"
+      >
         <!-- Overlay -->
         <div class="fixed inset-0 bg-black bg-opacity-50"></div>
 
         <!-- Panel -->
-        <div class="relative min-h-screen flex items-center justify-center p-4">
+        <div
+          @click="open = false"
+          class="relative min-h-screen flex items-center justify-center p-4"
+        >
           <div
+            @click.stop
             class="relative max-w-2xl w-full bg-white shadow-lg p-12 overflow-y-auto border-2 border-gray-900"
           >
             <!-- Title -->
             <h2 class="text-3xl font-bold">Confirm</h2>
             <!-- Content -->
             <p class="mt-2 text-gray-600">Are you sure you want to do that?</p>
-            <!-- Buttons -->
+            <!-- Controls -->
             <div class="mt-8 flex space-x-2">
               <button
                 type="button"

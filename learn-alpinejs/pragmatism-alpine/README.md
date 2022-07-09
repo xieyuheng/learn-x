@@ -12,17 +12,24 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
 
 **Structure:**
 
-A `Dropdown` has a `Button` and a `Panel`.
+- `Dropdown`
+  - `Button`
+  - `Panel`
 
 **Behavior:**
 
-- click the `Button` -- `toggle`
-- escape keydown -- `close`
+- Click the `Button` can `toggle` the `Panel`.
+
+- The `escape` key can `close` the `Panel`.
+
   - [for-keyboard] re-focus the `Button` (to maintain the last state).
-- click outside the `Panel` -- `close`
+
+- Click outside the `Panel` can `close` the `Panel`.
+
   - [for-keyboard] re-focus the `Button` (to maintain the last state).
   - [note] click listener listen to `mouseup`, not `mousedown`.
-- tab through the last item in the `Panel` -- `close`
+
+- Tab through the last item in the `Panel` can `close` the `Panel`.
 
 **Accessibility:**
 
@@ -45,8 +52,21 @@ TODO
 
 **Structure:**
 
-A `Modal` has a `Trigger` an `Overlay` and a `Panel`.
+- `Modal`
+  - `Trigger`
+  - `Modal`
+    - `Overlay`
+    - `Panel`
+      - `Title`
+      - `Content`
+      - `Controls`
 
 **Behavior:**
+
+- The `Trigger` can `open` the `Modal`.
+
+- The `escape` key can `close` the `Modal`.
+
+- Click the background can `close` the `Modal`.
 
 **Accessibility:**
