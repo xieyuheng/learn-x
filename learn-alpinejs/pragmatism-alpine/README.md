@@ -6,11 +6,13 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
 
 ### Dropdown
 
-A `Dropdown` contains of a `Button` and a `Panel`.
-
 **A.K.A.**
 
 - `Popover` (by [Bootstrap](https://getbootstrap.com))
+
+**Structure:**
+
+A `Dropdown` has a `Button` and a `Panel`.
 
 **Behavior:**
 
@@ -34,3 +36,17 @@ A `Dropdown` contains of a `Button` and a `Panel`.
 
   - Use Alpine's `x-id` to define the scope for some ids,
     and use `$id` to reference a scoped id.
+
+### Modal
+
+**A.K.A.**
+
+TODO
+
+**Structure:**
+
+A `Modal` has a `Trigger` an `Overlay` and a `Panel`.
+
+**Behavior:**
+
+**Accessibility:**
