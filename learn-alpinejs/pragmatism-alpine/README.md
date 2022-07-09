@@ -71,11 +71,15 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
 
 - Click the background can `close` the `Modal`.
 
+- [note] `Modal` can be nested or used inside fixed elements,
+  so we need to teleport the `Modal` to the `<body>` element.
+
 **Accessibility:**
 
 - Set `role`, `aria-modal` and `aria-labelledby` on `Modal`.
 
 - [fucus control] After opened, trap focus inside the `Modal`.
+
   - Using Alpine plugin `@alpinejs/focus`.
     - Disable scroll.
     - Set `aria-hidden` to all other elements.

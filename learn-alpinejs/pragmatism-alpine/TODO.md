@@ -1,7 +1,5 @@
 # components
 
-- Modal -- Accessibility
-
 - Accordion
 - Carousel
 - Tabs
