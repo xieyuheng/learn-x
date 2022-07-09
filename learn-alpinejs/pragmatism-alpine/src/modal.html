@@ -23,6 +23,10 @@
         x-show="open"
         style="display: none"
         @keydown.escape.prevent.stop="open = false"
+        role="dialog"
+        aria-modal="true"
+        x-id="['modal-title']"
+        :aria-labelledby="$id('modal-title')"
         class="fixed inset-0 overflow-y-auto z-10"
       >
         <!-- Overlay -->
@@ -38,9 +42,11 @@
             class="relative max-w-2xl w-full bg-white shadow-lg p-12 overflow-y-auto border-2 border-gray-900"
           >
             <!-- Title -->
-            <h2 class="text-3xl font-bold">Confirm</h2>
+            <h2 class="text-3xl font-bold" :id="$id('modal-title')">
+              Launch nuclear ballistic missile
+            </h2>
             <!-- Content -->
-            <p class="mt-2 text-gray-600">Are you sure you want to do that?</p>
+            <p class="mt-2 text-gray-600">Are you sure you want to do this?</p>
             <!-- Controls -->
             <div class="mt-8 flex space-x-2">
               <button

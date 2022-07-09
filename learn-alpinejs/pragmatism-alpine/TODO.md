@@ -1,6 +1,5 @@
 # components
 
-- Modal -- Behavior
 - Modal -- Accessibility
 
 - Accordion
