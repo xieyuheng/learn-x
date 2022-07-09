@@ -22,12 +22,12 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
 
 - The `escape` key can `close` the `Panel`.
 
-  - [focus control] re-focus the `Button` (to maintain the last state).
+  - [focus control] Refocus the `Button` (to maintain the last state).
 
 - Click outside the `Panel` can `close` the `Panel`.
 
-  - [focus control] re-focus the `Button` (to maintain the last state).
-  - [note] click listener listen to `mouseup`, not `mousedown`.
+  - [focus control] Refocus the `Button` (to maintain the last state).
+  - [note] The click-listener listens to `mouseup`, not `mousedown`.
 
 - Tab through the last item in the `Panel` can `close` the `Panel`.
 
@@ -67,10 +67,15 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
 
 - The `escape` key can `close` the `Modal`.
 
+  - Only works when an element inside the `Modal` is fucused.
+
 - Click the background can `close` the `Modal`.
 
 **Accessibility:**
 
 - Set `role`, `aria-modal` and `aria-labelledby` on `Modal`.
 
-- [fucus control]
+- [fucus control] After opened, trap focus inside the `Modal`.
+  - Using Alpine plugin `@alpinejs/focus`.
+    - Disable scroll.
+    - Set `aria-hidden` to all other elements.

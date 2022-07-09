@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs"></script>
+    <script
+      defer
+      src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
   </head>
 
   <body>
@@ -13,7 +20,7 @@
       <button
         x-on:click="open = true"
         type="button"
-        class="bg-white px-4 py-2 border-2 border-gray-900"
+        class="bg-white px-4 py-2 border-2 border-gray-900 focus:outline-none focus:ring focus:ring-cyan-400"
       >
         Open dialog
       </button>
@@ -39,6 +46,7 @@
         >
           <div
             @click.stop
+            x-trap.noscroll.inert="open"
             class="relative max-w-2xl w-full bg-white shadow-lg p-12 overflow-y-auto border-2 border-gray-900"
           >
             <!-- Title -->
@@ -51,13 +59,13 @@
             <div class="mt-8 flex space-x-2">
               <button
                 type="button"
-                class="bg-white px-4 py-2 border-2 border-gray-900"
+                class="bg-white px-4 py-2 border-2 border-gray-900 focus:outline-none focus:ring focus:ring-cyan-400"
               >
                 Confirm
               </button>
               <button
                 type="button"
-                class="bg-white px-4 py-2 border-2 border-gray-900"
+                class="bg-white px-4 py-2 border-2 border-gray-900 focus:outline-none focus:ring focus:ring-cyan-400"
               >
                 Cancel
               </button>
