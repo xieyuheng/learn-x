@@ -1,6 +1,5 @@
 # components
 
-- Accordion
 - Carousel
 - Tabs
 - Notifications

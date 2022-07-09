@@ -101,3 +101,7 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
 
   - When there are multiple items,
     only show expand one of them each time.
+
+### Carousel
+
+TODO
