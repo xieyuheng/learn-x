@@ -83,3 +83,21 @@ Pragmatism UI learned from [Alpinejs](https://alpinejs.dev/components).
   - Using Alpine plugin `@alpinejs/focus`.
     - Disable scroll.
     - Set `aria-hidden` to all other elements.
+
+### Accordion
+
+**Structure:**
+
+- `Accordion`
+  - `Button`
+  - `Panel`
+
+- [note] The difference between `Accordion` and `Dropdown` is that
+  `Accordion` reflow the page.
+
+**Behavior:**
+
+- Click the `Button` can `toggle` the `Panel`.
+
+  - When there are multiple items,
+    only show expand one of them each time.
