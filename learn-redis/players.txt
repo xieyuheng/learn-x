@@ -1,0 +1,34 @@
+# index
+
+redis-cli ft.dropindex Player:index
+
+redis-cli ft.create Player:index on json prefix 1 Player: schema '$.name' as name tag separator "," casesensitive '$.detail.version' as detail.version numeric '$.detail.nickname' as detail.nickname tag separator "," casesensitive '$.good' as good tag casesensitive
+
+# query
+
+redis-cli ft.search Player:index '@name:{xieyuheng}'
+redis-cli ft.search Player:index '@name:{xie\-yuheng}'
+redis-cli ft.search Player:index '@name:{Xie\ Yuheng}'
+redis-cli ft.search Player:index '@name:{xie\ yuheng}'
+redis-cli ft.search Player:index '@detail\.nickname:{xyh}'
+redis-cli ft.search Player:index '@detail\.version:[1 2]'
+
+redis-cli ft.search Player:index '@name:{Xie\ Yuheng}'
+redis-cli ft.search Player:index '@name:{Xie\ Yuheng} @detail\.version:[1 1]'
+
+redis-cli ft.search Player:index '@good:{true}'
+redis-cli ft.search Player:index '@good:{false}'
+
+# data
+
+redis-cli json.set Player:0 '$' '{ "name": "xieyuheng" }'
+redis-cli json.set Player:00 '$' '{ "name": "xie-yuheng" }'
+redis-cli json.set Player:1 '$' '{ "name": "Xie Yuheng" }'
+redis-cli json.set Player:1-1 '$' '{ "name": "Xie Yuheng", "detail": { "version": 1 } }'
+redis-cli json.set Player:1-2 '$' '{ "name": "Xie Yuheng", "detail": { "version": 2 } }'
+redis-cli json.set Player:1-3 '$' '{ "name": "Xie Yuheng", "detail": { "version": 3, "nickname": "xyh" } }'
+redis-cli json.set Player:1-4 '$' '{ "name": "Xie Yuheng", "detail": { "version": 4, "nickname": "xyh" } }'
+redis-cli json.set Player:2 '$' '{ "name": "Yu Xieheng" }'
+redis-cli json.set Player:3 '$' '{ "name": "Yu Hengxie" }'
+redis-cli json.set Player:4 '$' '{ "name": "Yu Xie Heng", "good": true }'
+redis-cli json.set Player:5 '$' '{ "name": "Yu Heng Xie", "good": false }'
