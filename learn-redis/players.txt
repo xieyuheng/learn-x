@@ -2,7 +2,7 @@
 
 redis-cli ft.dropindex Player:index
 
-redis-cli ft.create Player:index on json prefix 1 Player: schema '$.name' as name tag separator "," casesensitive '$.detail.version' as detail.version numeric '$.detail.nickname' as detail.nickname tag separator "," casesensitive '$.good' as good tag casesensitive
+redis-cli ft.create Player:index on json prefix 1 Player: schema '$.name' as name tag casesensitive  '$.email' as email tag casesensitive '$.detail.version' as detail.version numeric '$.detail.nickname' as detail.nickname tag casesensitive '$.good' as good tag casesensitive
 
 # query
 
@@ -19,9 +19,11 @@ redis-cli ft.search Player:index '@name:{Xie\ Yuheng} @detail\.version:[1 1]'
 redis-cli ft.search Player:index '@good:{true}'
 redis-cli ft.search Player:index '@good:{false}'
 
+redis-cli ft.search Player:index '@email:{ hi\\@xieyuheng\\.com }'
+
 # data
 
-redis-cli json.set Player:0 '$' '{ "name": "xieyuheng" }'
+redis-cli json.set Player:0 '$' '{ "name": "xieyuheng", "email": "hi@xieyuheng.com" }'
 redis-cli json.set Player:00 '$' '{ "name": "xie-yuheng" }'
 redis-cli json.set Player:1 '$' '{ "name": "Xie Yuheng" }'
 redis-cli json.set Player:1-1 '$' '{ "name": "Xie Yuheng", "detail": { "version": 1 } }'
