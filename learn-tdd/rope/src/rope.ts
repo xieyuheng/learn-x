@@ -1,4 +1,4 @@
- import * as ut from "./ut"
+import * as ut from "./ut"
 
 export type Rope = RopeRequired & RopeExp & RopeAPI
 
