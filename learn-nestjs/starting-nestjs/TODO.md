@@ -1,6 +1,6 @@
 provider and DI
 
-model
+model and map to mongodb
 
 try `nest g resource [name]`
 
