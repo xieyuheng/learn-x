@@ -6,6 +6,36 @@ title: Note about NestJs
 
 Comparing with Laravel.
 
-.controller.ts
-.module.ts
-.service.ts
+## Routing and Controller
+
+Laravel:
+
+- Routes route to controller actions.
+
+- Controllers: `app/Http/Controllers/*.php`.
+
+- Routes:
+
+  ```
+  routes/web.php
+  routes/api.php
+  routes/console.php
+  routes/channels.php
+  ```
+
+NestJs:
+
+- Use class method decorator to specify route of controller actions -- `*.controller.ts`.
+
+- List controllers in `@Module`.
+
+## Dependency Injection Container
+
+Laravel:
+
+- `ServiceContainer`
+- `ServiceProvider`
+
+NestJs:
+
+- TODO
