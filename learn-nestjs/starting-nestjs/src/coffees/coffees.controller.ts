@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common'
 
 export interface CoffeeJson {
   name: string
@@ -8,8 +17,9 @@ export interface CoffeeJson {
 @Controller('coffees')
 export class CoffeesController {
   @Get()
-  index() {
-    return 'hi coffees'
+  index(@Query() paginationQuery: any) {
+    const { limit, offset } = paginationQuery
+    return { message: 'coffees index', limit, offset }
   }
 
   @Get(':id')
