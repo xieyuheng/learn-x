@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 
 export interface CoffeeJson {
   name: string
@@ -20,5 +20,15 @@ export class CoffeesController {
   @Post()
   create(@Body() body: CoffeeJson) {
     return body
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() body: Partial<CoffeeJson>) {
+    return `update ${id}`
+  }
+
+  @Delete(':id')
+  destroy(@Param('id') id: string) {
+    return `destroy ${id}`
   }
 }

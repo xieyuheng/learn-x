@@ -1,6 +1,5 @@
 # course
 
-11 Handling Update and Delete Requests
 12 Implement Pagination with Query Parameters
 13 Creating a Basic Service
 14 Send UserFriendly Error Messages
