@@ -184,7 +184,7 @@ keymap ;; => {:a 1, :c 3, :b 2}
 (:b keymap) ;; => 2
 
 ;; Don't try this with strings.
-                                        ;("a" stringmap)
+;; ("a" stringmap)
 ;; => Exception: java.lang.String cannot be cast to clojure.lang.IFn
 
 ;; Retrieving a non-present key returns nil
@@ -234,6 +234,8 @@ keymap ;; => {:a 1, :b 2, :c 3}
 (do
   (print "Hello")
   "World") ;; => "World" (prints "Hello")
+
+TODO
 
 ;; Functions have an implicit do
 (defn print-and-say-hello [name]
