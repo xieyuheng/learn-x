@@ -36,10 +36,10 @@
 ;; Clojure uses Java's object types for booleans, strings and numbers.
 ;; Use `class` to inspect them.
 (class 1) ;; Integer literals are java.lang.Long by default
-(class 1.);; Float literals are java.lang.Double
-(class "");; Strings always double-quoted, and are java.lang.String
+(class 1.) ;; Float literals are java.lang.Double
+(class "") ;; Strings always double-quoted, and are java.lang.String
 (class false) ;; Booleans are java.lang.Boolean
-(class nil);; The "null" value is called nil
+(class nil) ;; The "null" value is called nil
 
 ;; If you want to create a literal list of data, use ' to stop it from
 ;; being evaluated
@@ -74,7 +74,7 @@
 ;; A seq need only provide an entry when it is accessed.
 ;; So, seqs which can be lazy -- they can define infinite series:
 (range 4) ;; => (0 1 2 3)
-(range) ;; => (0 1 2 3 4 ...) (an infinite series)
+;; (range) ;; => (0 1 2 3 4 ...) (an infinite series)
 (take 4 (range)) ;;  (0 1 2 3)
 
 ;; Use cons to add an item to the beginning of a list or vector
@@ -88,6 +88,7 @@
 
 ;; Use concat to add lists or vectors together
 (concat [1 2] '(3 4)) ;; => (1 2 3 4)
+(concat [1 2] [3 4]) ;; => (1 2 3 4)
 
 ;; Use filter, map to interact with collections
 (map inc [1 2 3]) ;; => (2 3 4)
