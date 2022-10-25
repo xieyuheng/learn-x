@@ -235,8 +235,6 @@ keymap ;; => {:a 1, :b 2, :c 3}
   (print "Hello")
   "World") ;; => "World" (prints "Hello")
 
-TODO
-
 ;; Functions have an implicit do
 (defn print-and-say-hello [name]
   (print "Saying hello to " name)
@@ -255,9 +253,9 @@ TODO
 ;; The "Thread-first" macro (->) inserts into each form the result of
 ;; the previous, as the first argument (second item)
 (->
-   {:a 1 :b 2}
-   (assoc :c 3) ;=> (assoc {:a 1 :b 2} :c 3)
-   (dissoc :b)) ;=> (dissoc (assoc {:a 1 :b 2} :c 3) :b)
+ {:a 1 :b 2}
+ (assoc :c 3) ;=> (assoc {:a 1 :b 2} :c 3)
+ (dissoc :b)) ;=> (dissoc (assoc {:a 1 :b 2} :c 3) :b)
 
 ;; This expression could be written as:
 ;; (dissoc (assoc {:a 1 :b 2} :c 3) :b)
@@ -267,11 +265,11 @@ TODO
 ;; each line at the *end* of the form. This is useful for collection
 ;; operations in particular:
 (->>
-   (range 10)
-   (map inc)     ;=> (map inc (range 10)
-   (filter odd?) ;=> (filter odd? (map inc (range 10))
-   (into []))    ;=> (into [] (filter odd? (map inc (range 10)))
-                 ;; Result: [1 3 5 7 9]
+ (range 10)
+ (map inc)     ;=> (map inc (range 10))
+ (filter odd?) ;=> (filter odd? (map inc (range 10)))
+ (into []))    ;=> (into [] (filter odd? (map inc (range 10))))
+;; Result: [1 3 5 7 9]
 
 ;; When you are in a situation where you want more freedom as where to
 ;; put the result of previous data transformations in an
