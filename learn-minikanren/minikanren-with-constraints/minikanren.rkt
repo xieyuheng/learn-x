@@ -8,8 +8,8 @@
 
 (define (var=? x1 x2) (= (vector-ref x1 0) (vector-ref x2 0)))
 
-(define (make-st S C)
-  (list S C))
+(define (make-st S C D)
+  (list S C D))
 
 (define (S-of st)
   (car st))
@@ -17,7 +17,10 @@
 (define (C-of st)
   (cadr st))
 
-(define empty-state (make-st '() 0))
+(define (D-of st)
+  (caddr st))
+
+(define empty-state (make-st '() 0 '()))
 
 (define mzero '())
 
@@ -46,7 +49,7 @@
 (define (== u v)
   (lambda (st)
     (let ([S (unify u v (S-of st))])
-      (if S (cons (make-st S (C-of st)) mzero) mzero))))
+      (if S (cons (make-st S (C-of st) (D-of st)) mzero) mzero))))
 
 (define-syntax fresh
   (syntax-rules ()
@@ -57,7 +60,7 @@
 (define (call/fresh f)
   (lambda (st)
     (let ([C (C-of st)])
-      ((f (var C)) (make-st (S-of st) (+ C 1))))))
+      ((f (var C)) (make-st (S-of st) (+ C 1) (D-of st))))))
 
 (define (disj g1 g2)
   (lambda (st)
@@ -153,3 +156,26 @@
                          (fresh (x) g0 g ...))))]))
 
 (define (call/empty-state g) (g empty-state))
+
+;; Disequality
+
+(define (=/= u v)
+  (lambda (st)
+    (let ([S (S-of st)]
+          [C (C-of st)]
+          [D (D-of st)])
+      (cond
+        [(unify u v S) => (post-unify-=/= S C D)]
+        [else (unit st)]))))
+
+(define (post-unify-=/= S C D)
+  (lambda (S+)
+    (cond
+      [(eq? S+ S) mzero]
+      [else (let ([d (prefix-S S+ S)])
+              (unit (make-st S C (cons d D))))])))
+
+(define (prefix-S S+ S)
+  (cond
+    [(eq? S+ S) '()]
+    [else (cons (car S+) (prefix-S (cdr S+) S))]))
