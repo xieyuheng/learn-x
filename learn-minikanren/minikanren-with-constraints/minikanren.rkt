@@ -9,7 +9,7 @@
 (define (var=? x1 x2) (= (vector-ref x1 0) (vector-ref x2 0)))
 
 (define (make-st S C)
-  '(,S ,C))
+  (list S C))
 
 (define (S-of st)
   (car st))
@@ -23,7 +23,7 @@
 
 (define (unit st) (cons st mzero))
 
-(define (ext-S u v S) '((,u . ,v) . ,S))
+(define (ext-S u v S) (cons (cons u v) S))
 
 (define (walk u S)
   (let ([pr (and (var? u) (assoc u S var=?))])
@@ -124,7 +124,7 @@
     (cond
       [(var? v)
        (let ([n (reify-name (length S))])
-         (cons '(,v . ,n) S))]
+         (cons (cons v n) S))]
       [(pair? v) (reify-S (cdr v) (reify-S (car v) S))]
       [else S]))); number, bool
 
