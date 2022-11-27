@@ -46,10 +46,23 @@
          (and S (unify (cdr u) (cdr v) S)))]
       [else (and (eqv? u v) S)])))
 
+;; (define (== u v)
+;;   (lambda (st)
+;;     (let ([S (unify u v (S-of st))])
+;;       (if S (cons (make-st S (C-of st) (D-of st)) mzero) mzero))))
+
 (define (== u v)
   (lambda (st)
-    (let ([S (unify u v (S-of st))])
-      (if S (cons (make-st S (C-of st) (D-of st)) mzero) mzero))))
+    (==-verify (unify u v (S-of st)) st)))
+
+(define (==-verify S+ st)
+  (cond
+    [(not S+) mzero]
+    [(eq? (S-of st) S+) (unit st)]
+    [(reform-D (D-of st) '() S+)
+     => (lambda (D)
+          (unit (make-st S+ (C-of st) D)))]
+    [else mzero]))
 
 (define-syntax fresh
   (syntax-rules ()
@@ -183,7 +196,17 @@
 (define (unify* d S)
   (cond
     [(null? d) S]
-    [(unify (caar d) (cdar d) S) =>
-                                 (lambda (S)
-                                   (unify* (cdr d) S))]
+    [(unify (caar d) (cdar d) S)
+     => (lambda (S) (unify* (cdr d) S))]
     [else #f]))
+
+(define (reform-D D D^ S)
+  (cond
+    [(null? D) D^]
+    [(unify* (car D) S)
+     => (lambda (S^)
+          (cond
+            [(eq? S S^) #f]
+            [else (let ([d (prefix-S S^ S)])
+                    (reform-D (cdr D) (cons d D^) S))]))]
+    [else (reform-D (cdr D) D^ S)]))
