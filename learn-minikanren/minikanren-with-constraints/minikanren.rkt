@@ -2,14 +2,18 @@
 
 (provide (all-defined-out))
 
+(define lhs car)
+
+(define rhs cdr)
+
 (define (var c) (vector c))
 
 (define var? vector?)
 
 (define (var=? x1 x2) (= (vector-ref x1 0) (vector-ref x2 0)))
 
-(define (make-st S C D)
-  (list S C D))
+(define (make-st S C D T)
+  (list S C D T))
 
 (define (S-of st)
   (car st))
@@ -20,7 +24,10 @@
 (define (D-of st)
   (caddr st))
 
-(define empty-state (make-st '() 0 '()))
+(define (T-of st)
+  (cadddr st))
+
+(define empty-state (make-st '() 0 '() '()))
 
 (define mzero '())
 
@@ -61,7 +68,7 @@
     [(eq? (S-of st) S+) (unit st)]
     [(reform-D (D-of st) '() S+)
      => (lambda (D)
-          (unit (make-st S+ (C-of st) D)))]
+          (unit (make-st S+ (C-of st) D (T-of st))))]
     [else mzero]))
 
 (define-syntax fresh
@@ -73,7 +80,7 @@
 (define (call/fresh f)
   (lambda (st)
     (let ([C (C-of st)])
-      ((f (var C)) (make-st (S-of st) (+ C 1) (D-of st))))))
+      ((f (var C)) (make-st (S-of st) (+ C 1) (D-of st) (T-of st))))))
 
 (define (disj g1 g2)
   (lambda (st)
@@ -242,23 +249,24 @@
 
 (define (call/empty-state g) (g empty-state))
 
-;; Disequality
+;; Disequality constraint
 
 (define (=/= u v)
   (lambda (st)
     (let ([S (S-of st)]
           [C (C-of st)]
-          [D (D-of st)])
+          [D (D-of st)]
+          [T (T-of st)])
       (cond
-        [(unify u v S) => (post-unify-=/= S C D)]
+        [(unify u v S) => (post-unify-=/= S C D T)]
         [else (unit st)]))))
 
-(define (post-unify-=/= S C D)
+(define (post-unify-=/= S C D T)
   (lambda (S+)
     (cond
       [(eq? S+ S) mzero]
       [else (let ([d (prefix-S S+ S)])
-              (unit (make-st S C (cons d D))))])))
+              (unit (make-st S C (cons d D) T)))])))
 
 (define (prefix-S S+ S)
   (cond
@@ -282,3 +290,91 @@
             [else (let ([d (prefix-S S^ S)])
                     (reform-D (cdr D) (cons d D^) S))]))]
     [else (reform-D (cdr D) D^ S)]))
+
+;; Type constraint
+
+(define (make-type-constraint tag pred)
+  (lambda (u)
+    (lambda (st)
+      (let ([S (S-of st)]
+            [C (C-of st)]
+            [D (D-of st)]
+            [T (T-of st)]
+            ;; [A (A-of st)]
+            )
+        (let ([u (walk u S)])
+          (cond
+            [(var? u)
+             (cond
+               ;; [(make-type-constraint/x u tag pred st S C D T A) => unit]
+               [(make-type-constraint/x u tag pred st S C D T) => unit]
+               [else mzero])]
+            [(pair? u) mzero]
+            ;; TODO T+ is undefined
+            ;; [else (let ([D (rem-subsumed-D<T T+ D)]
+            ;;             [T (append T+ T)])
+            ;;         (make-st S C D T))]
+            [else (cond
+                    [(pred u) (unit st)]
+                    [else mzero])]))))))
+
+
+(define tag-of car)
+(define tag=? eq?)
+(define pred-of cdr)
+
+(define symbolo (make-type-constraint 'sym symbol?))
+
+(define numbero (make-type-constraint 'num number?))
+
+(define (ext-T x tag pred S T)
+  (cond
+    ; Ran out of type constraints without any conflicts, add new type constraint
+    ; to the store.
+    [(null? T) `((,x . (,tag . ,pred)))]
+    [else (let ([t (car T)]
+                [T (cdr T)])
+            (let ([t-tag (tag-of t)])
+              (cond
+                ; Is the current constraint on x?
+                [(eq? (walk (car t) S) x)
+                 (cond
+                   ; Is it same as the new constraint? Then do not extend the
+                   ; store.
+                   [(tag=? t-tag tag) '()]
+                   ; Is it conflicting with the new constraint? Then fail.
+                   [else #f])]
+                ; The current constraint is not on x, continue going through
+                ; rest of the constraints
+                [else (ext-T x tag pred S T)])))]))
+
+(define (make-type-constraint/x u tag pred st S C D T)
+  (cond
+    [(ext-T u tag pred S T)
+     => (lambda (T+)
+          (cond
+            [(null? T+) st]
+            [else (let ([T (append T+ T)])
+                    (make-st S C D T))]))]
+    [else #f]))
+
+(define (subsumed-d-pr? T)
+  (lambda (d-pr)
+    (let ([u (rhs d-pr)])
+      (cond
+        ; We want the disequality to be between a variable and a constant, can
+        ; ignore constraints between two variables.
+        [(var? u) #f]
+        [else
+         (let ([sc (assq (lhs d-pr) T)])
+           ; Check if the variable is type constrained
+           (and sc
+                (let ([tag (tag-of sc)])
+                  (cond
+                    ; Check if the constant satisfies the type constraint
+                    [((pred-of sc) u) #f]
+                    [else #t]))))]))))
+
+(define (rem-subsumed-D<T T D)
+  (filter (lambda (d) (not (findf (subsumed-d-pr? T) d)))
+          D))
