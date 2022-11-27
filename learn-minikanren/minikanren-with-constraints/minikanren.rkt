@@ -179,3 +179,11 @@
   (cond
     [(eq? S+ S) '()]
     [else (cons (car S+) (prefix-S (cdr S+) S))]))
+
+(define (unify* d S)
+  (cond
+    [(null? d) S]
+    [(unify (caar d) (cdar d) S) =>
+                                 (lambda (S)
+                                   (unify* (cdr d) S))]
+    [else #f]))
