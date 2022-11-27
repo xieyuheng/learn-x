@@ -130,10 +130,82 @@
 (define (reify-1st st*)
   (map (reify-var-state (var 0)) st*))
 
-(define ((reify-var-state v) st)
-  (let ([v (walk* v (S-of st))])
-    (walk* v (reify-S v '()))))
+;; (define ((reify-var-state v) st)
+;;   (let ([v (walk* v (S-of st))])
+;;     (walk* v (reify-S v '()))))
 
+;; (define ((reify-var-state v) st)
+;;   (let ([S (S-of st)]
+;;         [D (D-of st)])
+;;     (let ([v (walk* v S)]
+;;           [D (walk* D S)])
+;;       (let ([r (reify-S v '())])
+;;         (let ([v (walk* v r)]
+;;               [D (walk* (drop-dot-D D) r)])
+;;           (prettify v D r))))))
+
+(define ((reify-var-state v) st)
+  (let ([S (S-of st)]
+        [D (D-of st)])
+    (let ([v (walk* v S)]
+          [D (walk* D S)])
+      (let ([r (reify-S v '())])
+        (let ([v (walk* v r)]
+              [D (walk* (drop-dot-D (rem-subsumed-D<D (purify-D D r) '())) r)])
+          (prettify v D r))))))
+
+(define (drop-dot-D D)
+  (map (lambda (d)
+         (map (lambda (d-pr)
+                (let ([x (car d-pr)]
+                      [u (cdr d-pr)])
+                  `(,x ,u)))
+              d))
+       D))
+
+(define (prettify v D r)
+  (let ([D (sorter (map sorter D))])
+    (cond
+      [(null? D) v]
+      [else `(,v (=/= . ,D))])))
+
+(define (sorter ls) (sort ls lex<?))
+
+(define (lex<? t1 t2)
+  (let ([t1 (datum->string t1)]
+        [t2 (datum->string t2)])
+    (string<? t1 t2)))
+
+(define (datum->string d)
+  (let ([op (open-output-string)])
+    (begin (display d op)
+           (get-output-string op))))
+
+(define (purify-D D* r)
+  (cond
+    [(null? D*) '()]
+    [(anyvar? (car D*) r)
+     (purify-D (cdr D*) r)]
+    [else (cons (car D*)
+                (purify-D (cdr D*) r))]))
+
+(define (anyvar? v r)
+  (cond
+    [(var? v) (var? (walk v r))]
+    [(pair? v) (or (anyvar? (car v) r) (anyvar? (cdr v) r))]
+    [else #f]))
+
+(define (rem-subsumed-D<D D D^)
+  (cond
+    [(null? D) D^]
+    [(or (subsumed? (car D) D^) (subsumed? (car D) (cdr D)))
+     (rem-subsumed-D<D (cdr D) D^)]
+    [else (rem-subsumed-D<D (cdr D) (cons (car D) D^))]))
+
+(define (subsumed? d D)
+  (and (not (null? D))
+       (or (eq? (unify* (car D) d) d)
+           (subsumed? d (cdr D)))))
 
 (define (reify-S v S)
   (let ([v (walk v S)])
