@@ -1,43 +1,26 @@
-;; (ns play
-;;   (:require [datascript.core :as d]))
-
 (require '[datascript.core :as d])
 
-(let [schema {:aka {:db/cardinality :db.cardinality/many}}
-      conn (d/create-conn schema)]
-  (d/transact! conn [{:db/id -1
-                      :name "Maksim"
-                      :age 45
-                      :aka ["Max Otto von Stierlitz", "Jack Ryan"]}])
-  (d/q '[:find ?n ?a
-         :where
-         [?e :aka "Max Otto von Stierlitz"]
-         [?e :name ?n]
-         [?e :age ?a]]
-       @conn))
+(def conn (d/create-conn))
 
-(d/q '[:find ?k ?x
-       :in [[?k [?min ?max]] ...] ?range
-       :where
-       [(?range ?min ?max) [?x ...]]
-       [(even? ?x)]]
-     {:a [1 7], :b [2 4]}
-     range)
+(def datoms [{:db/id -1 :name "Bob" :age 30}
+             {:db/id -2 :name "Sally" :age 15}])
 
-(d/q '[:find ?u1 ?u2
-       :in $ %
-       :where (follows ?u1 ?u2)]
-     [[1 :follows 2]
-      [2 :follows 3]
-      [3 :follows 4]]
-     '[[(follows ?e1 ?e2)
-        [?e1 :follows ?e2]]
-       [(follows ?e1 ?e2)
-        [?e1 :follows ?t]
-        (follows ?t ?e2)]])
+(d/transact! conn datoms)
 
-(d/q '[:find ?color (max ?amount ?x) (min ?amount ?x)
-       :in [[?color ?x]] ?amount]
-     [[:red 10] [:red 20] [:red 30] [:red 40] [:red 50]
-      [:blue 7] [:blue 8]]
-     3)
+(def q-young
+  '[:find ?n
+    :in $ ?min-age
+    :where
+    [?e :name ?n]
+    [?e :age ?a]
+    [(< ?a ?min-age)]])
+
+(d/q q-young @conn 18)
+
+(d/q
+ '[:find ?n
+   :where
+   [?e :name ?n]
+   [?e :age ?a]
+   [(< ?a 18)]]
+ @conn)
