@@ -31,3 +31,23 @@ mm @ mother(X, Y), mother(Y, Z) ==> grandmother(X, Z).
 % mother(ann, sue),
 % mother(joe, ann),
 % grandmother(joe, sue).
+
+md @ mother(X, Y) \ mother(X, Z) <=> Y = Z.
+
+% ?- mother(joe, ann), mother(joe, X).
+% X = ann,
+% mother(joe, ann).
+
+% ?- mother(joe, ann), mother(joe, sue).
+% false.
+
+:- chr_constraint company/2.
+
+% company(Name1, Value1), company(Name2, Value2)
+% <=> Value1 > Value2 | company(Name1:Name2, Value1 + Value2).
+
+company(Name1, Value1), company(Name2, Value2)
+<=> Value1 > Value2 | Value is Value1 + Value2, company(Name1:Name2, Value).
+
+% ?- company(tesla, 100), company(twitter, 30), company(google, 50).
+% company((tesla:twitter):google, 180).
