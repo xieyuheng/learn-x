@@ -6,5 +6,5 @@
 
 _start:
     movq $60, %rax
-    movq $8, %rdi
+    movq $6, %rdi
     syscall
