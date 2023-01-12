@@ -1,4 +1,4 @@
-targets=exit hello
+targets=exit hello echo
 
 all: $(targets)
 
@@ -9,5 +9,5 @@ $(targets): %: %.o
 	as -o $@ $< 
 
 clean:
-	rm $(targets)
-	rm *.o
+	rm -f $(targets)
+	rm -f *.o

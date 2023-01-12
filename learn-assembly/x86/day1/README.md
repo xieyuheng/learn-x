@@ -9,6 +9,11 @@
 对于汇编器的来说，hello world 是 exit -- [exit.s](exit.s)，
 也就是调用 syscall 退出程序，并且指定一个 exit 数字。
 
+linux syscall 的列表：
+
+- https://filippo.io/linux-syscall-table/
+- https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+
 hello world 要难一些 [hello.s](hello.s)
 
 编译的时候不能直接 gcc 而是要用 as + ld：
@@ -17,3 +22,5 @@ hello world 要难一些 [hello.s](hello.s)
 as -o hello.o hello.s
 ld -o hello hello.o
 ```
+
+顺便学习一下用 make：https://makefiletutorial.com
