@@ -1,17 +1,13 @@
-all: exit hello
+targets=exit hello
 
-exit: exit.o
-	ld -o exit exit.o
+all: $(targets)
 
-exit.o: exit.s
-	as -o exit.o exit.s
+$(targets): %: %.o
+	ld -o $@ $< 
 
-hello: hello.o
-	ld -o hello hello.o
-
-hello.o: hello.s
-	as -o hello.o hello.s
+%.o: %.s
+	as -o $@ $< 
 
 clean:
-	rm exit hello
+	rm $(targets)
 	rm *.o
