@@ -1,4 +1,4 @@
-# Day1
+# Day1 -- 2023-01-13
 
 这次学 gas，从 64bits 的 linux 开始。
 
@@ -9,7 +9,7 @@
 对于汇编器的来说，hello world 是 exit -- [exit.s](exit.s)，
 也就是调用 syscall 退出程序，并且指定一个 exit 数字。
 
-hello world 要难一些 [hello.s](hello.s)。
+hello world 要难一些 [hello.s](hello.s)
 
 编译的时候不能直接 gcc 而是要用 as + ld：
 
