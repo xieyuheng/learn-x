@@ -22,8 +22,8 @@ function reactiveState(): State {
 function stateReportX(state: State): void {
   watch(
     () => state.x,
-    (newX) => {
-      console.log(`x is ${newX}`)
+    (to, from) => {
+      console.log(`x is ${to}`)
       setTimeout(() => {
         state.x++
         state.y--
@@ -36,8 +36,8 @@ function stateReportX(state: State): void {
 function stateReportSum(state: State): void {
   watch(
     () => state.x + state.y,
-    (sum) => {
-      console.log(`sum of x + y is: ${sum}`)
+    (to, from) => {
+      console.log(`sum of x + y is: ${to}`)
     },
     { immediate: true },
   )

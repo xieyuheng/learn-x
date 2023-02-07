@@ -1,4 +1,4 @@
-import { watch, reactive } from "@vue/runtime-core"
+import { reactive, watch } from "@vue/runtime-core"
 import { wait } from "./utils/wait"
 
 interface State {
@@ -28,15 +28,13 @@ function reactiveState(): State {
 function stateStartCounting(state: State): void {
   watch(
     () => state.count,
-    async () => {
+    async (to, from) => {
       await wait(1000)
-
       console.log({
         "state.count": state.count,
         "state.add1": state.add1,
         "state.add(10)": state.add(10),
       })
-
       state.count++
     },
     { immediate: true },

@@ -22,7 +22,9 @@ function reactiveState(): State {
 function stateReportX(state: State): void {
   watch(
     () => state.x,
-    () => console.log({ "state.x": state.x }),
+    (to, from) => {
+      console.log({ "state.x": state.x })
+    },
     { immediate: true },
   )
 }
@@ -30,7 +32,9 @@ function stateReportX(state: State): void {
 function stateReportY(state: State): void {
   watch(
     () => state.y,
-    () => console.log({ "state.y": state.y }),
+    (to, from) => {
+      console.log({ "state.y": state.y })
+    },
     { immediate: true },
   )
 }
