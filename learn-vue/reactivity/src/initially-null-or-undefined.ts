@@ -1,38 +1,38 @@
 import { reactive, watch } from "@vue/runtime-core"
-import { wait } from "./utils/wait"
 
-type State = {
+interface State {
   x: null | undefined
   y: null | undefined
 }
 
-export function reactiveState() {
-  const state = reactive<State>({
+function createState(): State {
+  return {
     x: null,
     y: undefined,
-  })
+  }
+}
 
+function reactiveState(): State {
+  const state = reactive(createState())
+  stateReportX(state)
+  stateReportY(state)
+  return state
+}
+
+function stateReportX(state: State): void {
   watch(
     () => state.x,
-    () => {
-      console.log({
-        "state.x": state.x,
-      })
-    },
+    () => console.log({ "state.x": state.x }),
     { immediate: true },
   )
+}
 
+function stateReportY(state: State): void {
   watch(
     () => state.y,
-    () => {
-      console.log({
-        "state.y": state.y,
-      })
-    },
+    () => console.log({ "state.y": state.y }),
     { immediate: true },
   )
-
-  return state
 }
 
 const state = reactiveState()

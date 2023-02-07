@@ -1,24 +1,46 @@
-import { ref, watch } from "@vue/runtime-core"
+import { reactive, watch } from "@vue/runtime-core"
 
-const x = ref(0)
-const y = ref(0)
+interface State {
+  x: number
+  y: number
+}
 
-watch(
-  x,
-  (newX) => {
-    console.log(`x is ${newX}`)
-    setTimeout(() => {
-      x.value++
-      y.value--
-    }, 1000)
-  },
-  { immediate: true },
-)
+function createState(): State {
+  return {
+    x: 0,
+    y: 0,
+  }
+}
 
-watch(
-  () => x.value + y.value,
-  (sum) => {
-    console.log(`sum of x + y is: ${sum}`)
-  },
-  { immediate: true },
-)
+function reactiveState(): State {
+  const state = reactive(createState())
+  stateReportX(state)
+  stateReportSum(state)
+  return state
+}
+
+function stateReportX(state: State): void {
+  watch(
+    () => state.x,
+    (newX) => {
+      console.log(`x is ${newX}`)
+      setTimeout(() => {
+        state.x++
+        state.y--
+      }, 1000)
+    },
+    { immediate: true },
+  )
+}
+
+function stateReportSum(state: State): void {
+  watch(
+    () => state.x + state.y,
+    (sum) => {
+      console.log(`sum of x + y is: ${sum}`)
+    },
+    { immediate: true },
+  )
+}
+
+const state = reactiveState()
