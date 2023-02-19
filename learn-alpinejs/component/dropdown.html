@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<script defer src="https://unpkg.com/alpinejs@3"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<template x-component="dropdown">
+  <div x-data="{ ...dropdown(), ...$el.parentElement.data() }">
+    <button x-on:click="open">Open</button>
+
+    <div x-show="isOpen()" x-on:click.away="close" x-text="content"></div>
+  </div>
+</template>
+
+<script>
+  function dropdown() {
+    return {
+      show: false,
+      open() {
+        this.show = true
+      },
+      close() {
+        this.show = false
+      },
+      isOpen() {
+        return this.show === true
+      },
+      content: "Default content",
+    }
+  }
+
+  // The pure client-side code
+  document.querySelectorAll("[x-component]").forEach((component) => {
+    const componentName = `x-${component.getAttribute("x-component")}`
+    class Component extends HTMLElement {
+      connectedCallback() {
+        this.append(component.content.cloneNode(true))
+      }
+
+      data() {
+        const attributes = this.getAttributeNames()
+        const data = {}
+        attributes.forEach((attribute) => {
+          data[attribute] = this.getAttribute(attribute)
+        })
+        return data
+      }
+    }
+    customElements.define(componentName, Component)
+  })
+</script>
