@@ -16,6 +16,19 @@
           save() {
             this.notes.unshift(this.note)
             this.note = ''
+          },
+
+          init() {
+            $watch('notes', (notes) => {
+              const state = { notes: this.notes }
+              const stateText = JSON.stringify(state)
+              localStorage.setItem('notepad/state', stateText)
+            })
+
+            const stateText = localStorage.getItem('notepad/state')
+            if (!stateText) return
+            const state = JSON.parse(stateText)
+            this.notes = state.notes
           }
         }"
       >
@@ -37,7 +50,7 @@
 
         <div class="mt-3 border-t border-black"></div>
 
-        <template x-for="(note, i) in notes" >
+        <template x-for="(note, i) in notes">
           <textarea
             class="text-lg p-3 border border-black"
             x-model="notes[i]"
