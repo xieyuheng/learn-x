@@ -7,7 +7,7 @@
 
 步骤：
 
-- html 文件的结构，打开文件预览，或者用 [serve](https://github.com/vercel/serve) 预览。
+- html 文件的结构，打开文件预览。
 - 介绍 tailwindcss。
 - 用 counter 介绍 alpinejs。
 - 写笔记本 App。
