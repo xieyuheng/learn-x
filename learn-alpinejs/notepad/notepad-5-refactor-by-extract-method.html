@@ -18,24 +18,24 @@
             this.note = ''
           },
 
-          init() {
-            $watch('notes', () => {
-              const state = { note: this.note, notes: this.notes }
-              const stateText = JSON.stringify(state)
-              localStorage.setItem('notepad/state', stateText)
-            })
+          saveData() {
+            const state = { note: this.note, notes: this.notes }
+            const stateText = JSON.stringify(state)
+            localStorage.setItem('notepad/state', stateText)
+          },
 
-            $watch('note', () => {
-              const state = { note: this.note, notes: this.notes }
-              const stateText = JSON.stringify(state)
-              localStorage.setItem('notepad/state', stateText)
-            })
-
+          loadData() {
             const stateText = localStorage.getItem('notepad/state')
             if (!stateText) return
             const state = JSON.parse(stateText)
             this.note = state.note || ''
             this.notes = state.notes || []
+          },
+
+          init() {
+            $watch('notes', () => this.saveData())
+            $watch('note', () => this.saveData())
+            this.loadData()
           }
         }"
       >
