@@ -20,7 +20,7 @@
 
           init() {
             $watch('notes', (notes) => {
-              const state = { notes: this.notes }
+              const state = { note: this.note, notes: this.notes }
               const stateText = JSON.stringify(state)
               localStorage.setItem('notepad/state', stateText)
             })
@@ -28,6 +28,7 @@
             const stateText = localStorage.getItem('notepad/state')
             if (!stateText) return
             const state = JSON.parse(stateText)
+            this.note = state.note
             this.notes = state.notes
           }
         }"
