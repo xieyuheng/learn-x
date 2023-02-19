@@ -9,27 +9,9 @@
       <div
         class="flex flex-col space-y-3"
         x-data="{
-          notes: ['学 alpine.js', '学 html'],
-
           note: '',
 
-          save() {
-            this.notes.unshift(this.note)
-            this.note = ''
-          },
-
-          init() {
-            $watch('notes', (notes) => {
-              const state = { notes: this.notes }
-              const stateText = JSON.stringify(state)
-              localStorage.setItem('notepad/state', stateText)
-            })
-
-            const stateText = localStorage.getItem('notepad/state')
-            if (!stateText) return
-            const state = JSON.parse(stateText)
-            this.notes = state.notes
-          }
+          notes: ['学 alpine.js', '学 html'],
         }"
       >
         <div class="text-xl font-bold">笔记本</div>
@@ -40,13 +22,6 @@
           x-model="note"
           placeholder="新笔记"
         ></textarea>
-
-        <button
-          class="border-black border px-3 py-2 self-end"
-          x-on:click="save()"
-        >
-          保存
-        </button>
 
         <div class="border-t border-black"></div>
 

@@ -11,3 +11,7 @@
 - 介绍 tailwindcss。
 - 用 counter 介绍 alpinejs。
 - 写笔记本 App。
+
+作业：
+
+- 给 notes 列表中的每个 note 加上「删除」按钮，并且实现删除功能。
