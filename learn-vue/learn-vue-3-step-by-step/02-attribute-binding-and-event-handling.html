@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>02 Attribute Binding and Event Handling</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .text-red {
+        color: red;
+      }
+
+      .text-green {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <button :class="active ? 'text-red' : 'text-green'" @click="toggle()">
+        Click Me
+      </button>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            active: false,
+          }
+        },
+
+        methods: {
+          toggle() {
+            this.active = !this.active
+          },
+        },
+      }).mount("#app")
+    </script>
+  </body>
+</html>

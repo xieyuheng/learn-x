@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>01 Vue 3 Absolute Basics</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div>
+        <input type="text" v-model="greeting">
+      </div>
+
+      <div>{{ greeting }} ({{ greeting.length }})</div>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            greeting: "Hello world!",
+          }
+        },
+      }).mount("#app")
+    </script>
+  </body>
+</html>

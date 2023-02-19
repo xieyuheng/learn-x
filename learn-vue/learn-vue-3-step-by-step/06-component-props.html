@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <title>06 Component Props</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="h-full grid place-items-center">
+    <div id="app">
+      <app-button class="m-2" disabled>Hello</app-button>
+      <app-button class="m-2">World</app-button>
+    </div>
+
+    <script type="module">
+      import App from "./06-components/App.js"
+
+      Vue.createApp(App).mount("#app")
+    </script>
+  </body>
+</html>

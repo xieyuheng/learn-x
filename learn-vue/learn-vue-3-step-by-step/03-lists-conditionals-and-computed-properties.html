@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <title>03 Lists, Conditionals, and Computed Properties</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="h-full grid place-items-center">
+    <div id="app">
+      <section v-show="inProgressAssigments.length">
+        <h2 class="font-bold py-2">In Progress</h2>
+
+        <ul>
+          <li v-for="assigment in inProgressAssigments" :key="assigment.id">
+            <label>
+              {{ assigment.name }}
+              <input type="checkbox" v-model="assigment.complete" />
+            </label>
+          </li>
+        </ul>
+      </section>
+
+      <section v-show="completedAssigments.length">
+        <h2 class="font-bold py-2">Completed</h2>
+
+        <ul>
+          <li v-for="assigment in completedAssigments" :key="assigment.id">
+            <label>
+              {{ assigment.name }}
+              <input type="checkbox" v-model="assigment.complete" />
+            </label>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <script>
+      let app = {
+        data() {
+          return {
+            assigments: [
+              { name: "Finish project", complete: false, id: 1 },
+              { name: "Read chapter 4", complete: false, id: 2 },
+              { name: "Turn in homework", complete: false, id: 3 },
+            ],
+          }
+        },
+
+        computed: {
+          inProgressAssigments() {
+            return this.assigments.filter((assigment) => !assigment.complete)
+          },
+          completedAssigments() {
+            return this.assigments.filter((assigment) => assigment.complete)
+          },
+        },
+      }
+
+      Vue.createApp(app).mount("#app")
+    </script>
+  </body>
+</html>

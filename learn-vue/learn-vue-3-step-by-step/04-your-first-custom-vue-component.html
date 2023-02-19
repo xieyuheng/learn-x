@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <title>04 Your First Custom Vue Component</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="h-full grid place-items-center">
+    <div id="app">
+      <app-button class="m-2" disabled>Hello</app-button>
+      <app-button class="m-2">World</app-button>
+    </div>
+
+    <script>
+      let app = {
+        components: {
+          "app-button": {
+            template: `
+              <button
+                class="bg-gray-100 hover:bg-gray-200 border-2 border-gray-400 p-2 disabled:cursor-not-allowed"
+                :disabled="disabled">
+                <slot />
+              </botton>
+            `,
+            data() {
+              return {
+                disabled: false,
+              }
+            },
+          },
+        },
+      }
+
+      Vue.createApp(app).mount("#app")
+    </script>
+  </body>
+</html>
