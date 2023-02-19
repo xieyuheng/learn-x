@@ -6,7 +6,11 @@
   </head>
   <body>
     <div class="p-6">
-      TODO
+      <div x-data="{ count: 0 }">
+        <div x-text="count"></div>
+
+        <button x-on:click="count++">Add1</button>
+      </div>
     </div>
   </body>
 </html>
