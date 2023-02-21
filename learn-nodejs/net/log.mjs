@@ -17,8 +17,14 @@ const server = net.createServer((socket) => {
   })
 })
 
-server.listen({ port: 8080 }, () => {
-  console.log({
-    "server.address": server.address(),
-  })
-})
+server.listen(
+  {
+    host: "127.0.0.1",
+    port: 8080,
+  },
+  () => {
+    console.log({
+      server: server.address(),
+    })
+  },
+)
