@@ -1,5 +1,3 @@
-# request-reply
+# pub-sub
 
-zeromq request-reply double send-def
-
-http://zeromq.github.io/zeromq.js/#reqrep
+http://zeromq.github.io/zeromq.js/#pubsub
