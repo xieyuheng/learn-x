@@ -1,6 +1,6 @@
 import * as Zmq from "zeromq"
 
-async function run(): Promise<void> {
+async function run() {
   const sock = new Zmq.Pull()
 
   sock.connect("tcp://127.0.0.1:3000")
