@@ -6,10 +6,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "importsNotUsedAsValues": "error",
     "declaration": true,
+    "sourceMap": true,
     "strict": true,
     "outDir": "lib",
-    "baseUrl": ".",
-    "paths": { "*": ["node_modules/*"] }
+    "baseUrl": "."
   }
 }
