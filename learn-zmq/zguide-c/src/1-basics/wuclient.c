@@ -21,10 +21,9 @@ int main(int argc, char *argv[]) {
     int update_nbr;
     long total_temp = 0;
     for (update_nbr = 0; update_nbr < 100; update_nbr++) {
+        char *string = s_recv(subscriber);
         printf("*");
         fflush(stdout);
-
-        char *string = s_recv(subscriber);
 
         int zipcode, temperature, relhumidity;
         sscanf(string, "%d %d %d", &zipcode, &temperature, &relhumidity);
