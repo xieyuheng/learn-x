@@ -1,4 +1,4 @@
-targets=hwserver hwclient zmq-version wuserver wuclient
+targets=hwserver hwclient zmq-version wuserver wuclient taskvent taskwork tasksink
 
 all: $(targets)
 
