@@ -1,4 +1,4 @@
-targets=hwserver hwclient
+targets=hwserver hwclient zmq-version
 
 all: $(targets)
 
