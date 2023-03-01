@@ -10,9 +10,9 @@ async function run() {
   for await (const [topic, msg] of sock) {
     console.log(
       "received a message related to:",
-      topic,
+      String(topic),
       "containing message:",
-      msg,
+      String(msg),
     )
   }
 }
