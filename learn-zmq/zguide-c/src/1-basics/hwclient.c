@@ -10,14 +10,14 @@ int main(void) {
     void *requester = zmq_socket(context, ZMQ_REQ);
     zmq_connect(requester, "tcp://localhost:5555");
 
-    int count;
-    for (count = 0; count != 10; count++) {
-        printf("Sending Hello %d...\n", count);
+    int request_nbr;
+    for (request_nbr = 0; request_nbr != 10; request_nbr++) {
+        printf("Sending Hello %d...\n", request_nbr);
         zmq_send(requester, "Hello", 5, 0);
 
         char buffer[10];
         zmq_recv(requester, buffer, 10, 0);
-        printf("Received World %d\n", count);
+        printf("Received World %d\n", request_nbr);
     }
 
     zmq_close(requester);
