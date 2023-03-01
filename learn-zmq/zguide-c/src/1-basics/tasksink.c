@@ -2,7 +2,7 @@
 //  Binds PULL socket to tcp://localhost:5558
 //  Collects results from workers via that socket
 
-#include "zhelpers.h"
+#include "../zhelpers.h"
 
 int main(void) {
     //  Prepare our context and socket
