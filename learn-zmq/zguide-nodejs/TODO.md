@@ -1,2 +1,2 @@
-req-rep-reverse
-zguide chapter 1
+[zguide] 1-basic/hwserver.ts
+[zguide] 1-basic/hwclinet.ts
