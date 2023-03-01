@@ -19,23 +19,6 @@ async function run() {
     const [result] = await sock.receive()
     console.log(String(result))
   }
-
-  {
-    // TODO How about double send?
-
-    await sock.send("4")
-    await sock.send("4")
-
-    {
-      const [result] = await sock.receive()
-      console.log(String(result))
-    }
-
-    {
-      const [result] = await sock.receive()
-      console.log(String(result))
-    }
-  }
 }
 
 run()

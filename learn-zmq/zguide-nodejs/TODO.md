@@ -1,3 +1,5 @@
-# pub-sub
+pub-sub
 
-http://zeromq.github.io/zeromq.js/#pubsub
+req-rep-reverse
+
+zguide chapter 1
