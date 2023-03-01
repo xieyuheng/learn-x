@@ -16,18 +16,12 @@ extern "C" {
 //  Opaque class structure
 typedef struct _mdwrk_t mdwrk_t;
 
-mdwrk_t *
-    mdwrk_new (char *broker,char *service, int verbose);
-void
-    mdwrk_destroy (mdwrk_t **self_p);
-void
-    mdwrk_set_liveness (mdwrk_t *self, int liveness);
-void
-    mdwrk_set_heartbeat (mdwrk_t *self, int heartbeat);
-void
-    mdwrk_set_reconnect (mdwrk_t *self, int reconnect);
-zmsg_t *
-    mdwrk_recv (mdwrk_t *self, zmsg_t **reply_p);
+mdwrk_t *mdwrk_new(char *broker, char *service, int verbose);
+void mdwrk_destroy(mdwrk_t **self_p);
+void mdwrk_set_liveness(mdwrk_t *self, int liveness);
+void mdwrk_set_heartbeat(mdwrk_t *self, int heartbeat);
+void mdwrk_set_reconnect(mdwrk_t *self, int reconnect);
+zmsg_t *mdwrk_recv(mdwrk_t *self, zmsg_t **reply_p);
 
 #ifdef __cplusplus
 }

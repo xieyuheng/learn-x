@@ -16,16 +16,11 @@ extern "C" {
 //  Opaque class structure
 typedef struct _mdcli_t mdcli_t;
 
-mdcli_t *
-    mdcli_new (char *broker, int verbose);
-void
-    mdcli_destroy (mdcli_t **self_p);
-void
-    mdcli_set_timeout (mdcli_t *self, int timeout);
-void
-    mdcli_set_retries (mdcli_t *self, int retries);
-zmsg_t *
-    mdcli_send (mdcli_t *self, char *service, zmsg_t **request_p);
+mdcli_t *mdcli_new(char *broker, int verbose);
+void mdcli_destroy(mdcli_t **self_p);
+void mdcli_set_timeout(mdcli_t *self, int timeout);
+void mdcli_set_retries(mdcli_t *self, int retries);
+zmsg_t *mdcli_send(mdcli_t *self, char *service, zmsg_t **request_p);
 
 #ifdef __cplusplus
 }
