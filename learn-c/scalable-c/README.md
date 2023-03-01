@@ -5,8 +5,8 @@ Source:
 Compile:
 
 ```
-gcc <file>.c -lczmq -lzmq
-clang <file>.c -lczmq -lzmq
+gcc <file>.c -o <file> -lczmq -lzmq
+clang <file>.c -o <file> -lczmq -lzmq
 ```
 
 Format:
