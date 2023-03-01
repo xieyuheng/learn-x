@@ -1,3 +1,16 @@
+Source:
+
+- https://zguide.zeromq.org/docs/chapter1/
+
+Compile:
+
 ```
-clang-format -style=LLVM
+gcc <file>.c -lczmq -lzmq
+clang <file>.c -lczmq -lzmq
+```
+
+Format:
+
+```
+clang-format -style=LLVM src/*.c src/*.h -i
 ```
