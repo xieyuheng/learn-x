@@ -3,10 +3,10 @@ targets=exit hello echo
 all: $(targets)
 
 $(targets): %: %.o
-	ld -o $@ $< 
+	ld -o $@ $<
 
 %.o: %.s
-	as -o $@ $< 
+	as -o $@ $<
 
 clean:
 	rm -f $(targets)
