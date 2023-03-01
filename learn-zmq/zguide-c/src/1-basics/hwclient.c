@@ -15,7 +15,6 @@ int main(void) {
     char buffer[10];
     printf("Sending Hello %d...\n", count);
     zmq_send(requester, "Hello", 5, 0);
-    zmq_send(requester, "Hello", 5, 0);
     zmq_recv(requester, buffer, 10, 0);
     printf("Received World %d\n", count);
   }
