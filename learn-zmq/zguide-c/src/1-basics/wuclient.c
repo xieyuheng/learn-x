@@ -21,6 +21,9 @@ int main(int argc, char *argv[]) {
     int update_nbr;
     long total_temp = 0;
     for (update_nbr = 0; update_nbr < 100; update_nbr++) {
+        printf("*");
+        fflush(stdout);
+
         char *string = s_recv(subscriber);
 
         int zipcode, temperature, relhumidity;
@@ -28,6 +31,7 @@ int main(int argc, char *argv[]) {
         total_temp += temperature;
         free(string);
     }
+
     printf("Average temperature for zipcode '%s' was %dF\n", filter,
            (int)(total_temp / update_nbr));
 

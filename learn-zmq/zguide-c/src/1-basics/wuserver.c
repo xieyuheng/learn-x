@@ -23,6 +23,8 @@ int main(void) {
         //  Send message to all subscribers
         char update[20];
         sprintf(update, "%05d %d %d", zipcode, temperature, relhumidity);
+        printf(update, "%05d %d %d", zipcode, temperature, relhumidity);
+        printf("\n");
         s_send(publisher, update);
     }
     zmq_close(publisher);
