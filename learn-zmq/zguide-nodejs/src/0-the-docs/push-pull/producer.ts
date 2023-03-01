@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { wait } from "../../utils/wait"
 
 async function run() {
   const sock = new Zmq.Push()
@@ -9,7 +10,7 @@ async function run() {
   let counter = 0
   while (true) {
     await sock.send(`some work # ${counter++}`)
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await wait(500)
   }
 }
 

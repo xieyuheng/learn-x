@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { wait } from "../../utils/wait"
 
 async function run() {
   const sock = new Zmq.Publisher()
@@ -9,9 +10,7 @@ async function run() {
   while (true) {
     console.log("sending a multipart message envelope")
     await sock.send(["kitty cats", "meow!"])
-    await new Promise((resolve) => {
-      setTimeout(resolve, 500)
-    })
+    await wait(500)
   }
 }
 
