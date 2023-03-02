@@ -5,7 +5,8 @@
   ],
   "scripts": {
     "build": "npx tsc",
-    "build:watch": "npx tsc --watch"
+    "build:watch": "npx tsc --watch",
+    "format": "prettier src --write"
   },
   "dependencies": {
     "zeromq": "^6.0.0-beta.16"
