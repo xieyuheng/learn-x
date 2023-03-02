@@ -19,7 +19,8 @@ async function run() {
 
     const update = `${zipcode} ${temperature} ${relhumidity}`
     await publisher.send(update)
-    console.log({ who, update })
+    // NOTE `console.log` is slow.
+    // console.log({ who, update })
   }
 }
 

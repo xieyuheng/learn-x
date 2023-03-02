@@ -15,7 +15,7 @@ async function run() {
 
   let updateNbr = 0
   let totalTemp = 0
-  for (updateNbr; updateNbr < 100; updateNbr++) {
+  for (updateNbr; updateNbr < 30; updateNbr++) {
     const [update] = await subscriber.receive()
     process.stdout.write("*")
 
@@ -28,7 +28,7 @@ async function run() {
 
   const averageTemp = totalTemp / updateNbr
 
-  console.log({ who, zipcodeFilter, averageTemp })
+  console.log({ who, zipcodeFilter, averageTemp, updateNbr })
 }
 
 run()
