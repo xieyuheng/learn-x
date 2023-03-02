@@ -1,16 +1,16 @@
 import * as Zmq from "zeromq"
 
 async function run() {
-  const sock = new Zmq.Request()
+  const requester = new Zmq.Request()
 
-  await sock.connect("tcp://127.0.0.1:5555")
+  requester.connect("tcp://127.0.0.1:5555")
 
   for (let requestNbr = 0; requestNbr < 10; requestNbr++) {
     const requestText = String(requestNbr)
-    await sock.send(requestText)
+    await requester.send(requestText)
     console.log(`[hwclient / send]`, requestText)
 
-    const [reply] = await sock.receive()
+    const [reply] = await requester.receive()
     const replyText = reply.toString()
     console.log(`[hwclient / receive]`, replyText)
   }

@@ -2,19 +2,19 @@ import * as Zmq from "zeromq"
 import { wait } from "../utils/wait"
 
 async function run() {
-  const sock = new Zmq.Reply()
+  const responder = new Zmq.Reply()
 
-  await sock.bind("tcp://*:5555")
+  await responder.bind("tcp://*:5555")
 
   while (true) {
-    const [request] = await sock.receive()
+    const [request] = await responder.receive()
     const requestText = request.toString()
     console.log("[hwserver / receive]", requestText)
 
     await wait(500)
 
     const replyText = `hello ${requestText}`
-    await sock.send(replyText)
+    await responder.send(replyText)
     console.log("[hwserver / send]", replyText)
   }
 }
