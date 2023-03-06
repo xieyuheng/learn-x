@@ -32,7 +32,7 @@ async function run() {
     exportedAgainKey,
   })
 
-  const data = new TextEncoder().encode("hi")
+  const data = new TextEncoder().encode("top secret")
 
   const iv = crypto.getRandomValues(new Uint8Array(12))
 
