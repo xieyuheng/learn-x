@@ -1,6 +1,8 @@
 import net from "node:net"
 
-const server = net.createServer((socket) => {
+const server = net.createServer()
+
+server.on("connection", (socket) => {
   console.log({
     localAddress: socket.localAddress,
     localPort: socket.localPort,
