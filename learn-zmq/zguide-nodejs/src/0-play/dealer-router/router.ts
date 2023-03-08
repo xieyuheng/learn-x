@@ -23,15 +23,11 @@ async function run() {
 
     console.log({
       who,
-      id: decodeId(id),
+      id: id.toString(),
       message: Number(message),
       squared,
     })
   }
-}
-
-function decodeId(id: Uint8Array): number {
-  return new DataView(id.buffer).getUint32(1)
 }
 
 run()

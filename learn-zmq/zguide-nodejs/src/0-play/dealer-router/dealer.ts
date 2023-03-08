@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { randomHexString } from "../../utils/randomHexString"
 import { eventTypes } from "./eventTypes"
 
 async function run() {
@@ -6,6 +7,9 @@ async function run() {
 
   const who = "dealer"
   const url = "tcp://127.0.0.1:3000"
+
+  // We can set custom id before `connect`.
+  dealer.routingId = randomHexString(10)
 
   dealer.connect(url)
 
