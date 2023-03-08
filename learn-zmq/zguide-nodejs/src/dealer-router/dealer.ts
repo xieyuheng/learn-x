@@ -1,5 +1,5 @@
 import * as Zmq from "zeromq"
-import { randomHexString } from "../../utils/randomHexString"
+import { randomHexString } from "../utils/randomHexString"
 import { eventTypes } from "./eventTypes"
 
 async function run() {

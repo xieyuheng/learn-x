@@ -1,5 +1,5 @@
 import * as Zmq from "zeromq"
-import { wait } from "../../utils/wait"
+import { wait } from "../utils/wait"
 
 async function run() {
   const producer = new Zmq.Push()
