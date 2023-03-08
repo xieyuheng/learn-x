@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { eventTypes } from "./eventTypes"
 
 async function run() {
   const dealer = new Zmq.Dealer()
@@ -9,6 +10,12 @@ async function run() {
   dealer.connect(url)
 
   console.log({ who, url })
+
+  for (const eventType of eventTypes()) {
+    dealer.events.on(eventType, (event) => {
+      console.log({ who, event })
+    })
+  }
 
   await dealer.send(String(3))
   await dealer.send(String(4))

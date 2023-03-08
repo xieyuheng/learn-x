@@ -1,15 +1,15 @@
 import * as Zmq from "zeromq"
 
 async function run() {
-  const sock = new Zmq.Reply()
+  const client = new Zmq.Reply()
 
-  sock.connect("tcp://127.0.0.1:3000")
+  client.connect("tcp://127.0.0.1:3000")
   console.log("Producer bound to port 3000")
 
   while (true) {
-    const [request] = await sock.receive()
+    const [request] = await client.receive()
     console.log(`request: ${request}`)
-    await sock.send(["ok"])
+    await client.send(["ok"])
   }
 }
 

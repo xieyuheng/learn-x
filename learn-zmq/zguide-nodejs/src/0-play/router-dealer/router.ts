@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { eventTypes } from "./eventTypes"
 
 async function run() {
   const router = new Zmq.Router()
@@ -34,24 +35,3 @@ function decodeId(id: Uint8Array): number {
 }
 
 run()
-
-function eventTypes() {
-  return [
-    "end",
-    "close",
-    "unknown",
-    "connect",
-    "disconnect",
-    "accept",
-    "accept:error",
-    "bind",
-    "bind:error",
-    "connect:delay",
-    "connect:retry",
-    "close:error",
-    "handshake",
-    "handshake:error:protocol",
-    "handshake:error:auth",
-    "handshake:error:other",
-  ] as const
-}

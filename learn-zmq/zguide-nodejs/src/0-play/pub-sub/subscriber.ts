@@ -1,13 +1,13 @@
 import * as Zmq from "zeromq"
 
 async function run() {
-  const sock = new Zmq.Subscriber()
+  const subscriber = new Zmq.Subscriber()
 
-  sock.connect("tcp://127.0.0.1:3000")
-  sock.subscribe("kitty cats")
+  subscriber.connect("tcp://127.0.0.1:3000")
+  subscriber.subscribe("kitty cats")
   console.log("Subscriber connected to port 3000")
 
-  for await (const [topic, msg] of sock) {
+  for await (const [topic, msg] of subscriber) {
     console.log(
       "received a message related to:",
       String(topic),
