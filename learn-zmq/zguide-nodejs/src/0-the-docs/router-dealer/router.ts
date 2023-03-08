@@ -20,15 +20,15 @@ async function run() {
 
     console.log({
       who,
-      address: decodeId(id),
+      id: decodeId(id),
       message: Number(message),
       squared,
     })
   }
 }
 
-function decodeId(address: Uint8Array): number {
-  return new DataView(address.buffer).getUint32(1)
+function decodeId(id: Uint8Array): number {
+  return new DataView(id.buffer).getUint32(1)
 }
 
 run()
