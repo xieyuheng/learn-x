@@ -3,11 +3,12 @@ import * as Zmq from "zeromq"
 async function run() {
   const dealer = new Zmq.Dealer()
 
-  dealer.connect("tcp://127.0.0.1:3000")
-
   const who = "dealer"
+  const url = "tcp://127.0.0.1:3000"
 
-  console.log({ who, url: "tcp://127.0.0.1:3000" })
+  dealer.connect(url)
+
+  console.log({ who, url })
 
   await dealer.send(String(3))
   await dealer.send(String(4))

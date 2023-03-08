@@ -10,20 +10,24 @@ async function run() {
 
   console.log({ who, url })
 
-  for await (const [address, message] of router) {
+  router.events.on("accept", (event) => {
+    console.log({ who, event })
+  })
+
+  for await (const [routingId, message] of router) {
     const squared = Number(message) * Number(message)
-    await router.send([address, String(squared)])
+    await router.send([routingId, String(squared)])
 
     console.log({
       who,
-      address: decodeAddress(address),
+      address: decodeRoutingId(routingId),
       message: Number(message),
       squared,
     })
   }
 }
 
-function decodeAddress(address: Uint8Array): number {
+function decodeRoutingId(address: Uint8Array): number {
   return new DataView(address.buffer).getUint32(1)
 }
 
