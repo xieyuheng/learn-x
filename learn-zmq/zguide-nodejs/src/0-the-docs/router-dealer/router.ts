@@ -10,9 +10,11 @@ async function run() {
 
   console.log({ who, url })
 
-  router.events.on("*", (event) => {
-    console.log({ who, event })
-  })
+  for (const eventType of eventTypes()) {
+    router.events.on(eventType, (event) => {
+      console.log({ who, event })
+    })
+  }
 
   for await (const [id, message] of router) {
     const squared = Number(message) * Number(message)
@@ -32,3 +34,24 @@ function decodeId(id: Uint8Array): number {
 }
 
 run()
+
+function eventTypes() {
+  return [
+    "end",
+    "close",
+    "unknown",
+    "connect",
+    "disconnect",
+    "accept",
+    "accept:error",
+    "bind",
+    "bind:error",
+    "connect:delay",
+    "connect:retry",
+    "close:error",
+    "handshake",
+    "handshake:error:protocol",
+    "handshake:error:auth",
+    "handshake:error:other",
+  ] as const
+}
