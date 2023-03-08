@@ -10,7 +10,7 @@ async function run() {
 
   console.log({ who, url })
 
-  router.events.on("accept", (event) => {
+  router.events.on("*", (event) => {
     console.log({ who, event })
   })
 
