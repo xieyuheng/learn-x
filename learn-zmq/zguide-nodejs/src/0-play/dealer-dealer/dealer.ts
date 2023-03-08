@@ -11,8 +11,8 @@ async function run() {
   console.log({ who, url })
 
   for (const n of [3, 4, 5]) {
-    await dealer.send(["", String(n)])
-    const [delimiter, squared] = await dealer.receive()
+    await dealer.send(String(n))
+    const [squared] = await dealer.receive()
 
     console.log({
       who,

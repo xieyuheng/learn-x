@@ -1,9 +1,9 @@
 import * as Zmq from "zeromq"
 
 async function run() {
-  const server = new Zmq.Reply()
+  const server = new Zmq.Dealer()
 
-  const who = "server"
+  const who = "dealer-server"
   const url = "tcp://127.0.0.1:3000"
 
   await server.bind(url)
