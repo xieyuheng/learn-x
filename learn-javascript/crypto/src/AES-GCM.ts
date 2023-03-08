@@ -1,4 +1,4 @@
-// Learn from:
+// Learned from:
 //   https://github.com/diafygi/webcrypto-examples#aes-gcm
 
 async function run() {
