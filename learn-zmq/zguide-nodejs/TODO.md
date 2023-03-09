@@ -1,2 +1,2 @@
-[ch4] majordemo
+[ch4] understand majordemo
 [ch3] inter-broker-routing
