@@ -14,27 +14,22 @@ async function sleep(msec: number) {
   return new Promise((resolve) => setTimeout(resolve, msec))
 }
 
-class TeaWorker extends Worker {
-  service = "tea"
-
-  async process(...msgs: Buffer[]): Promise<Buffer[]> {
-    await sleep(Math.random() * 500)
-    return msgs
-  }
-}
-
-class CoffeeWorker extends Worker {
-  service = "coffee"
-
-  async process(...msgs: Buffer[]): Promise<Buffer[]> {
-    await sleep(Math.random() * 200)
-    return msgs
-  }
-}
-
 const broker = new Broker()
 
-const workers = [new TeaWorker(), new CoffeeWorker(), new TeaWorker()]
+const workers = [
+  new Worker("tcp://127.0.0.1:5555", "tea", async (...msgs) => {
+    await sleep(Math.random() * 500)
+    return msgs
+  }),
+  new Worker("tcp://127.0.0.1:5555", "coffee", async (...msgs) => {
+    await sleep(Math.random() * 200)
+    return msgs
+  }),
+  new Worker("tcp://127.0.0.1:5555", "tea", async (...msgs) => {
+    await sleep(Math.random() * 500)
+    return msgs
+  }),
+]
 
 async function request(
   service: string,

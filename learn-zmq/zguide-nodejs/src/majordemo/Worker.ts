@@ -3,10 +3,13 @@ import { Dealer } from "zeromq"
 import { Header, Message } from "./types"
 
 export class Worker {
-  service = ""
   private socket: Dealer = new Dealer()
 
-  constructor(private address = "tcp://127.0.0.1:5555") {
+  constructor(
+    public address: string,
+    public service: string,
+    public process: (...req: Buffer[]) => Promise<Buffer[]>,
+  ) {
     this.socket.connect(address)
   }
 
@@ -45,9 +48,5 @@ export class Worker {
       ])
       this.socket.close()
     }
-  }
-
-  async process(...req: Buffer[]): Promise<Buffer[]> {
-    return req
   }
 }
