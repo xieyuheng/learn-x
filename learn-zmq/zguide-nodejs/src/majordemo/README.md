@@ -1,10 +1,13 @@
 # Majordomo broker
 
-This is an example broker implementation that partially implements [7/MDP](https://rfc.zeromq.org/spec:7/MDP/). Notably, the broker and workers do not send or listen to heartbeats.
+This is an example broker implementation that partially implements
+[7/MDP](https://rfc.zeromq.org/spec:7/MDP/). Notably, the broker and
+workers do not send or listen to heartbeats.
 
 ## Expected behaviour
 
-The example will start a broker and some workers, then do some requests. The output will be similar to this:
+The example will start a broker and some workers, then do some
+requests. The output will be similar to this:
 
 ```
 starting broker on tcp://127.0.0.1:5555

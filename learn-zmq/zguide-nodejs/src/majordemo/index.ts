@@ -1,10 +1,9 @@
-import {Request} from "zeromq"
-
-import {Broker} from "./broker"
-import {Worker} from "./worker"
+import { Request } from "zeromq"
+import { Broker } from "./broker"
+import { Worker } from "./worker"
 
 async function sleep(msec: number) {
-  return new Promise(resolve => setTimeout(resolve, msec))
+  return new Promise((resolve) => setTimeout(resolve, msec))
 }
 
 class TeaWorker extends Worker {
@@ -33,7 +32,7 @@ async function request(
   service: string,
   ...req: string[]
 ): Promise<undefined | Buffer[]> {
-  const socket = new Request({receiveTimeout: 2000})
+  const socket = new Request({ receiveTimeout: 2000 })
   socket.connect(broker.address)
 
   console.log(`requesting '${req.join(", ")}' from '${service}'`)
@@ -73,7 +72,7 @@ async function main() {
   broker.stop()
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err)
   process.exit(1)
 })
