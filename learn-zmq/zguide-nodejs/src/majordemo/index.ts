@@ -1,6 +1,14 @@
 import { Request } from "zeromq"
-import { Broker } from "./broker"
-import { Worker } from "./worker"
+import { Broker } from "./Broker"
+import { Worker } from "./Worker"
+
+/**
+
+   This is an example broker implementation that partially implements
+   [7/MDP](https://rfc.zeromq.org/spec:7/MDP/). Notably, the broker and
+   workers do not send or listen to heartbeats.
+
+**/
 
 async function sleep(msec: number) {
   return new Promise((resolve) => setTimeout(resolve, msec))

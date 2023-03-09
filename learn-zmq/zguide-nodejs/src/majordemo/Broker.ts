@@ -1,5 +1,5 @@
 import { Router } from "zeromq"
-import { Service } from "./service"
+import { Service } from "./Service"
 import { Header, Message } from "./types"
 
 export class Broker {
