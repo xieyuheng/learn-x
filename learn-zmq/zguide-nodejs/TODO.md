@@ -1,4 +1,6 @@
-[majordemo] `Broker` -- inline some methods
-[majordemo] `Broker` -- use function instead of class
+[req-router] to test empty envelope delimiter frame is required.
+
+[mydemo] Like the majordemo but only use Dealer and Router,
+to avoid empty envelope delimiter frame.
 
 [ch3] inter-broker-routing

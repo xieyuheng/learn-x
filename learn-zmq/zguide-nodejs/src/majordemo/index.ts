@@ -5,6 +5,10 @@ import { Worker } from "./Worker"
 
 /**
 
+   Code taken from:
+
+   - https://github.com/zeromq/zeromq.js/tree/master/examples/majordomo
+
    This is an example broker implementation that partially implements
    [7/MDP](https://rfc.zeromq.org/spec:7/MDP/). Notably, the broker and
    workers do not send or listen to heartbeats.

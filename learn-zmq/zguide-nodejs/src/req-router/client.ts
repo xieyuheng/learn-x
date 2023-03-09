@@ -3,33 +3,34 @@ import { eventTypes } from "../utils/eventTypes"
 import { randomHexString } from "../utils/randomHexString"
 
 async function run() {
-  const dealer = new Zmq.Dealer()
+  const client = new Zmq.Request()
 
-  const who = "dealer"
+  const who = "client"
   const url = "tcp://127.0.0.1:3000"
 
   // We can set custom id before `connect`.
-  dealer.routingId = randomHexString(10)
+  client.routingId = randomHexString(10)
 
-  dealer.connect(url)
+  client.connect(url)
 
   console.log({ who, url })
 
   for (const eventType of eventTypes()) {
-    dealer.events.on(eventType, (event) => {
+    client.events.on(eventType, (event) => {
       console.log({ who, event })
     })
   }
 
-  await dealer.send(String(3))
-  await dealer.send(String(4))
-  await dealer.send(String(5))
+  const numbers = [3, 4, 5]
 
-  while (true) {
-    const [squared] = await dealer.receive()
+  for (const n of numbers) {
+    await client.send(["", String(n)])
+
+    const [squared] = await client.receive()
 
     console.log({
       who,
+      n,
       squared: Number(squared),
     })
   }

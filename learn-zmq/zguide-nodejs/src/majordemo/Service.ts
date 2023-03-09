@@ -27,7 +27,7 @@ export class Service {
   }
 
   private async dispatchPending() {
-    while (this.workers.size && this.requests.length) {
+    while (this.workers.size > 0 && this.requests.length > 0) {
       const [key, worker] = this.workers.entries().next().value!
       this.workers.delete(key)
       const [client, req] = this.requests.shift()!
