@@ -3,15 +3,10 @@ import type { Router } from "zeromq"
 import { Header, Message } from "./types"
 
 export class Service {
-  name: string
-  socket: Router
-  workers: Map<string, Buffer> = new Map()
-  requests: Array<[Buffer, Buffer[]]> = []
+  private workers: Map<string, Buffer> = new Map()
+  private requests: Array<[Buffer, Buffer[]]> = []
 
-  constructor(socket: Router, name: string) {
-    this.socket = socket
-    this.name = name
-  }
+  constructor(private socket: Router, private name: string) {}
 
   dispatchRequest(client: Buffer, ...req: Buffer[]) {
     this.requests.push([client, req])
@@ -31,7 +26,7 @@ export class Service {
     this.dispatchPending()
   }
 
-  async dispatchPending() {
+  private async dispatchPending() {
     while (this.workers.size && this.requests.length) {
       const [key, worker] = this.workers.entries().next().value!
       this.workers.delete(key)
