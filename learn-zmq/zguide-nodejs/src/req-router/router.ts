@@ -17,6 +17,10 @@ async function run() {
     })
   }
 
+  // A message between `Router` and `Request`,
+  // has an empty envelope delimiter frame
+  // between the id and the rest frames.
+
   for await (const [id, delimiter, n] of router) {
     const squared = Number(n) * Number(n)
     await router.send([id, delimiter, String(squared)])
