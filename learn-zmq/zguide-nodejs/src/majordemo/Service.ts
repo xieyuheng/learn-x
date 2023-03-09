@@ -1,4 +1,4 @@
-import type { Router } from "zeromq"
+import type * as Zmq from "zeromq"
 
 import { Header, Message } from "./types"
 
@@ -6,7 +6,7 @@ export class Service {
   private workers: Map<string, Buffer> = new Map()
   private requests: Array<[Buffer, Buffer[]]> = []
 
-  constructor(private socket: Router, private name: string) {}
+  constructor(private socket: Zmq.Router, private name: string) {}
 
   dispatchRequest(client: Buffer, ...req: Buffer[]) {
     this.requests.push([client, req])

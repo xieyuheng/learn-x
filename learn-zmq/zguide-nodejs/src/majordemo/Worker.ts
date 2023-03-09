@@ -1,9 +1,9 @@
-import { Dealer } from "zeromq"
+import * as Zmq from "zeromq"
 
 import { Header, Message } from "./types"
 
 export class Worker {
-  private socket: Dealer = new Dealer()
+  private socket = new Zmq.Dealer()
 
   constructor(
     public address: string,

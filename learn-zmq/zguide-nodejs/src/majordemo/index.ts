@@ -1,4 +1,5 @@
-import { Request } from "zeromq"
+import * as Zmq from "zeromq"
+import { wait } from "../utils/wait"
 import { Broker } from "./Broker"
 import { Worker } from "./Worker"
 
@@ -10,23 +11,19 @@ import { Worker } from "./Worker"
 
 **/
 
-async function sleep(msec: number) {
-  return new Promise((resolve) => setTimeout(resolve, msec))
-}
-
-const broker = new Broker()
+const broker = new Broker("tcp://127.0.0.1:5555")
 
 const workers = [
   new Worker("tcp://127.0.0.1:5555", "tea", async (...msgs) => {
-    await sleep(Math.random() * 500)
+    await wait(Math.random() * 500)
     return msgs
   }),
   new Worker("tcp://127.0.0.1:5555", "coffee", async (...msgs) => {
-    await sleep(Math.random() * 200)
+    await wait(Math.random() * 200)
     return msgs
   }),
   new Worker("tcp://127.0.0.1:5555", "tea", async (...msgs) => {
-    await sleep(Math.random() * 500)
+    await wait(Math.random() * 500)
     return msgs
   }),
 ]
@@ -35,7 +32,7 @@ async function request(
   service: string,
   ...req: string[]
 ): Promise<undefined | Buffer[]> {
-  const socket = new Request({ receiveTimeout: 2000 })
+  const socket = new Zmq.Request({ receiveTimeout: 2000 })
   socket.connect(broker.address)
 
   console.log(`requesting '${req.join(", ")}' from '${service}'`)

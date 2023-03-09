@@ -1,13 +1,17 @@
-import { Router } from "zeromq"
+import * as Zmq from "zeromq"
 import { Service } from "./Service"
 import { Header, Message } from "./types"
 
 export class Broker {
-  private socket: Router = new Router({ sendHighWaterMark: 1, sendTimeout: 1 })
+  private socket = new Zmq.Router({
+    sendHighWaterMark: 1,
+    sendTimeout: 1,
+  })
+
   private services: Map<string, Service> = new Map()
   private workers: Map<string, Buffer> = new Map()
 
-  constructor(public address: string = "tcp://127.0.0.1:5555") {}
+  constructor(public address: string) {}
 
   async start() {
     console.log(`starting broker on ${this.address}`)
