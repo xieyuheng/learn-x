@@ -11,6 +11,8 @@ async function run() {
   console.log({ who, url })
 
   for (const n of [3, 4, 5]) {
+    // a REP-friendly envelope consisting of
+    // an empty envelope delimiter frame.
     await dealer.send(["", String(n)])
     const [delimiter, squared] = await dealer.receive()
 
