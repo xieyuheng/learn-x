@@ -28,6 +28,37 @@ const workers = [
   }),
 ]
 
+async function main() {
+  for (const worker of workers) {
+    await worker.start()
+  }
+
+  await broker.start()
+
+  await Promise.all([
+    request("soda", "cola"),
+    request("tea", "oolong"),
+    request("tea", "sencha"),
+    request("tea", "earl grey", "with milk"),
+    request("tea", "jasmine"),
+    request("coffee", "cappuccino"),
+    request("coffee", "latte", "with soy milk"),
+    request("coffee", "espresso"),
+    request("coffee", "irish coffee"),
+  ])
+
+  for (const worker of workers) {
+    await worker.stop()
+  }
+
+  await broker.stop()
+}
+
+main().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
+
 async function request(
   service: string,
   ...req: string[]
@@ -46,33 +77,3 @@ async function request(
     console.log(`timeout expired waiting for '${service}'`)
   }
 }
-
-async function main() {
-  for (const worker of workers) {
-    worker.start()
-  }
-  broker.start()
-
-  /* Requests are issued in parallel. */
-  await Promise.all([
-    request("soda", "cola"),
-    request("tea", "oolong"),
-    request("tea", "sencha"),
-    request("tea", "earl grey", "with milk"),
-    request("tea", "jasmine"),
-    request("coffee", "cappuccino"),
-    request("coffee", "latte", "with soy milk"),
-    request("coffee", "espresso"),
-    request("coffee", "irish coffee"),
-  ])
-
-  for (const worker of workers) {
-    worker.stop()
-  }
-  broker.stop()
-}
-
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
