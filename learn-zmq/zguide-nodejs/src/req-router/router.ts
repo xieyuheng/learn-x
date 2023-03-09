@@ -17,18 +17,14 @@ async function run() {
     })
   }
 
-  for await (const messages of router) {
-    console.log(messages.map(String))
-
-    const [id, message] = messages
-
-    const squared = Number(message) * Number(message)
-    await router.send([id, String(squared)])
+  for await (const [id, delimiter, n] of router) {
+    const squared = Number(n) * Number(n)
+    await router.send([id, delimiter, String(squared)])
 
     console.log({
       who,
       id: id.toString(),
-      message: Number(message),
+      n: Number(n),
       squared,
     })
   }

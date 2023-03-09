@@ -1,6 +1,7 @@
 import * as Zmq from "zeromq"
 import { eventTypes } from "../utils/eventTypes"
 import { randomHexString } from "../utils/randomHexString"
+import { wait } from "../utils/wait"
 
 async function run() {
   const client = new Zmq.Request()
@@ -10,7 +11,6 @@ async function run() {
 
   // We can set custom id before `connect`.
   client.routingId = randomHexString(10)
-
   client.connect(url)
 
   console.log({ who, url })
@@ -21,10 +21,10 @@ async function run() {
     })
   }
 
-  const numbers = [3, 4, 5]
+  let n = 0
 
-  for (const n of numbers) {
-    await client.send(["", String(n)])
+  while (true) {
+    await client.send(String(n))
 
     const [squared] = await client.receive()
 
@@ -33,6 +33,10 @@ async function run() {
       n,
       squared: Number(squared),
     })
+
+    await wait(500)
+
+    n++
   }
 }
 
