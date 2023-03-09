@@ -1,4 +1,5 @@
 import * as Zmq from "zeromq"
+import { wait } from "../utils/wait"
 
 type State = {
   frontend: Zmq.Router
@@ -43,22 +44,15 @@ async function handleResult(state: State) {
 }
 
 async function handleTask(state: State) {
-  for await (const [clientId, task] of state.frontend) {
-    // Using `setInterval` means that
-    // tasks will be queued in the event loop of js.
+  while (true) {
+    const workerId = state.workerQueue.shift()
+    if (workerId === undefined) {
+      await wait(10)
+      continue
+    }
 
-    // TODO Can we avoid using `setInterval`?
-    
-
-    const intervalId = setInterval(async () => {
-      const workerId = state.workerQueue.shift()
-      if (workerId === undefined) {
-        return
-      }
-
-      await state.backend.send([workerId, clientId, task])
-      clearInterval(intervalId)
-    }, 10)
+    const [clientId, task] = await state.frontend.receive()
+    await state.backend.send([workerId, clientId, task])
   }
 }
 
