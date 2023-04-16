@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    TODO
-  </div>
+  <div>TODO</div>
 </template>
