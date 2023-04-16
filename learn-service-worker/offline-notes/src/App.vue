@@ -83,7 +83,7 @@ async function saveNote(): Promise<void> {
           :key="note.createdAt"
           href="#"
         >
-          <span>{{ new Date(note.createdAt).toLocaleString() }}</span>
+          <span>{{ new Date(note.createdAt).toISOString() }}</span>
         </a>
       </div>
     </div>
