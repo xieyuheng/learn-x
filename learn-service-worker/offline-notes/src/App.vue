@@ -61,7 +61,7 @@ async function saveNote(): Promise<void> {
     }
 
     const note = {
-      content: editor.value?.getHTML(),
+      content: editor.value?.getHTML() || '',
       createdAt: Date.now(),
     }
 
