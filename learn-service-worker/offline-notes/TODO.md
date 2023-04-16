@@ -1,7 +1,3 @@
-learn from
-
-- https://laracasts.com/series/lets-build-an-offline-first-vue-app
-
 02 The Editor Frontend
 
 03 Introducing IndexedDB
