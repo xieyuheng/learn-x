@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import { onMounted, reactive } from 'vue'
 import Tiptap from './components/Tiptap.vue'
+import { getDatabase } from './getDatabase'
+
+const state = reactive<{
+  database?: IDBDatabase
+}>({})
+
+onMounted(async () => {
+  state.database = await getDatabase()
+})
 </script>
 
 <template>
