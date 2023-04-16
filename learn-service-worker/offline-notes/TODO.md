@@ -1,5 +1,3 @@
-02 The Editor Frontend
-
 03 Introducing IndexedDB
 
 04 Saving and Displaying Notes
