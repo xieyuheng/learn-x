@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body>
+    <div
+      x-data="{
+         active: null,
+         items: [
+           { id: 1, title: 'Question #1' },
+           { id: 2, title: 'Question #2' },
+           { id: 3, title: 'Question #3' },
+         ]
+        }"
+      class="max-w-3xl mx-auto space-y-3 pt-12"
+    >
+      <template x-for="{ id, title } of items" :key="id">
+        <div
+          x-data="{
+            get expanded() { return this.id === this.active },
+            set expanded(value) { this.active = value ? this.id : null },
+          }"
+          role="region"
+          class="bg-white border-2 border-gray-900"
+        >
+          <h2>
+            <button
+              @click="expanded = !expanded"
+              :aria-expanded="expanded"
+              class="flex items-center justify-between w-full font-bold text-xl px-6 py-4"
+            >
+              <span x-text="title"></span>
+              <span
+                x-show="expanded"
+                aria-hidden="true"
+                class="ml-4"
+                style="display: none"
+                >-</span
+              >
+              <span x-show="!expanded" aria-hidden="true" class="ml-4">+</span>
+            </button>
+          </h2>
+
+          <div x-show="expanded" x-collapse style="display: none" x-collapse>
+            <div class="pb-4 px-6">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. In magnam
+              quod natus deleniti architecto eaque consequuntur ex, illo neque
+              iste repellendus modi, quasi ipsa commodi saepe? Provident ipsa
+              nulla earum.
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </body>
+</html>

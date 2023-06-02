@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/trix@2.0.0-alpha.1/dist/trix.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/trix@2.0.0-alpha.1/dist/trix.css"
+    />
+    <style>
+      [data-trix-button-group="file-tools"] {
+        display: none !important;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body class="pt-6">
+    <div
+      x-data="{ value: '' }"
+      x-init="$refs.trix.editor.loadHTML(value)"
+      x-id="['trix']"
+      class="max-w-2xl mx-auto"
+      @trix-change="value = $refs.input.value"
+      @trix-file-accept.prevent
+    >
+      <input :id="$id('trix')" type="hidden" x-ref="input" />
+      <trix-editor x-ref="trix" :input="$id('trix')"></trix-editor>
+    </div>
+  </body>
+</html>
