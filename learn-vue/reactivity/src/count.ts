@@ -1,4 +1,4 @@
-import { reactive, watch } from "@vue/runtime-core"
+import { reactive, watch, watchEffect } from "@vue/runtime-core"
 import { wait } from "./utils/wait"
 
 interface State {
@@ -19,26 +19,27 @@ function createState(): State {
   }
 }
 
-function reactiveState(): State {
-  const state = reactive(createState())
-  stateStartCounting(state)
-  return state
-}
-
 function stateStartCounting(state: State): void {
+  // Mimic user events.
   watch(
     () => state.count,
-    async (to, from) => {
+    async () => {
       await wait(100)
-      console.log({
-        "state.count": state.count,
-        "state.add1": state.add1,
-        "state.add(10)": state.add(10),
-      })
       state.count++
     },
     { immediate: true },
   )
+
+  // Mimic DOM rendering.
+  watchEffect(() => {
+    console.log({
+      "state.count": state.count,
+      "state.add1": state.add1,
+      "state.add(10)": state.add(10),
+    })
+  })
 }
 
-const state = reactiveState()
+const state = reactive(createState())
+
+stateStartCounting(state)
