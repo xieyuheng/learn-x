@@ -5,6 +5,10 @@ description = ""
 authors = ["Xie Yuheng <xyheme@gmail.com>"]
 readme = "README.md"
 
+[[tool.poetry.source]]
+name = "tuna"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+
 [tool.poetry.dependencies]
 python = "^3.12"
 

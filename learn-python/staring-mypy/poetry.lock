@@ -46,6 +46,11 @@ install-types = ["pip"]
 mypyc = ["setuptools (>=50)"]
 reports = ["lxml"]
 
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "tuna"
+
 [[package]]
 name = "mypy-extensions"
 version = "1.0.0"
@@ -56,6 +61,11 @@ files = [
     {file = "mypy_extensions-1.0.0-py3-none-any.whl", hash = "sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d"},
     {file = "mypy_extensions-1.0.0.tar.gz", hash = "sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "tuna"
 
 [[package]]
 name = "typing-extensions"
@@ -68,7 +78,12 @@ files = [
     {file = "typing_extensions-4.10.0.tar.gz", hash = "sha256:b0abd7c89e8fb96f98db18d86106ff1d90ab692004eb746cf6eda2682f91b3cb"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "tuna"
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "1951fb35a1f1b705b39a9e9c5ad952d48c5a7b4faef63e306db381b06c239803"
+content-hash = "832867470821f12975c806ac6b7ee93514c596a5c2b4446ff47a9933e8e733f5"
