@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+type Shape = Point | Circle | Rectangle
+
 @dataclass
 class Point:
     x: float
@@ -17,8 +19,6 @@ class Rectangle:
     y: float
     w: float
     h: float
-
-Shape = Point | Circle | Rectangle
 
 def print_shape(shape: Shape):
     match shape:
