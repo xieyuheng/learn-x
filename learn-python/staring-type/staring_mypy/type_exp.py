@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 # from pydantic.dataclasses import dataclass
+# NOTE pydantic 的 dataclass 不支持递归定义（运行时错误）
 
 type Exp = Var | Ap | Fn | Let
 
