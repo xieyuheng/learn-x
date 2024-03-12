@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "staring-mypy"
+name = "staring-type"
 version = "0.1.0"
 description = ""
 authors = ["Xie Yuheng <xyheme@gmail.com>"]
