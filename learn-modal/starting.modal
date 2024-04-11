@@ -1,5 +1,19 @@
-<> a b
-<> b c
+<> hello world
 
-a a a
+<> (eq ?x ?x) #t
+<> (eq ?x ?y) #f
 
+<> (and #t #t) #t
+<> (and #t #f) #f
+<> (and #f #t) #f
+<> (and #f #f) #f
+
+<> (or #t #t) #t
+<> (or #t #f) #t
+<> (or #f #t) #t
+<> (or #f #f) #t
+
+<> (not #t) #f
+<> (not #f) #t
+
+or eq cat bat eq fox fox
