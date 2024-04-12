@@ -1,0 +1,13 @@
+<> (-- ?c) ()
+<> (add zero ?y) (?y)
+<> (add add1 ?p ?y) (add1 add ?p ?y)
+
+-- (add zero zero)
+-- (add add1 zero zero)
+
+<> (one) (add1 zero)
+<> (two) (add1 one)
+<> (three) (add1 two)
+<> (four) (add1 three)
+
+add four four

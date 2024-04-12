@@ -1,0 +1,12 @@
+<> (@reduce (lambda (?n) ?b)) (lambda (?n) @reduce ?b)
+<> (@reduce (let (?s) ?b)) (@reduce (@substitute (?s) ?b))
+<> (@reduce ((lambda (?n) ?b) ?a)) (@reduce (let ((?n ?a)) ?b))
+<> (@reduce (?t ?a)) ((@reduce ?t @reduce ?a))
+<> (@reduce ?v) (?v)
+
+<> (@substitute (?s) (?t ?a)) ((@substitute (?s) ?t @substitute (?s) ?a))
+<> (@substitute ((?n ?e)) ?b) (?b)
+
+@reduce (let ((id (lambda (x) x))) (id id))
+@substitute () (let ((id (lambda (x) x))) (id id))
+@reduce (f x)
