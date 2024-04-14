@@ -1,0 +1,30 @@
+<> ([ ]) (())
+<> ([ ?x ]) ((quotation ?x))
+<> (?x ]) ((?x) :])
+<> ([ ?l :]) ((quotation ?l))
+<> (?x ?l :]) ((?x ?l) :])
+
+<> == ({ [)
+<> ; (:] })
+<> (?x { ?y }) (<> ?x (:: ?y))
+
+<> (: ?n ?l ?r) (<> ?n ((primitive ((stack ?l)) ((stack ?r)))))
+
+<> (evaluate (quotation ?x)) (evaluating (apply) (stack (?x ())))
+<> (evaluating (apply ?p) (stack ((quotation ?x) ?s))) (evaluating ((quotation ?x) ?p) (stack ?s))
+<> (evaluating (apply) (stack ((quotation ?x) ?s))) (evaluating ((quotation ?x)) (stack ?s))
+<> (evaluating ((quotation ?x) ?p) (stack ?s)) (evaluating ?p (stack ((quotation ?x) ?s)))
+<> (evaluating ((quotation ?x)) (stack ?s)) (done (stack ((quotation ?x) ?s)))
+<> (evaluating ((primitive ?l ?r) ?p)) (waiting ?p ?(?l ?r))
+<> (evaluating ((primitive ?l ?r))) (waiting ?(?l ?r))
+<> (evaluating ((primitive ?x) ?p)) (waiting ?p ?x)
+<> (evaluating ((primitive ?x))) (waiting ?x)
+<> (waiting ?p (stack ?s)) (evaluating ?p (stack ?s))
+<> (waiting (stack ?s)) (done (stack ?s))
+: dup (?h ?t) (?h (?h ?t)) ;
+: drop (?h ?t) ?t ;
+: swap (?x (?y ?t)) (?y (?x ?t)) ;
+
+evaluate [
+    [ dup swap drop ] drop
+]
