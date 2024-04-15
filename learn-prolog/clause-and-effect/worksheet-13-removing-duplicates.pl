@@ -1,5 +1,5 @@
 member(X, [X | _]).
-member(X, [H | T]) :- member(X, T).
+member(X, [_ | T]) :- member(X, T).
 
 setify([], []).
 setify([X | T], L) :- member(X, T), setify(T, L).
