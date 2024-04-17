@@ -1,0 +1,21 @@
+<> (explode ?*) (str (?*))
+
+<> (quote ?x) (quote ?x)
+<> (unwrap ((?x)) ) (unwrap ?x)
+<> (unwrap (?x)) (?x)
+
+<> (if ?c ?t else ?f) (if/q ?c quote ?t quote ?f)
+<> (if/q (bool true) quote ?t quote ?f) (unwrap ?t)
+<> (if/q (bool false) quote ?t quote ?f) (unwrap ?f)
+
+<> (find ?x (list (?x ?t))) (bool true)
+<> (find ?x (list (?x))) (bool true)
+<> (find ?x (list (?h ?t))) (find ?x (list ?t))
+<> (find ?x (list (?h))) (bool false)
+<> (find ?x (str ?s)) (find ?x (list ?s))
+
+if (find o (explode hello)) (
+  found!
+) else (
+  not found :<
+)
