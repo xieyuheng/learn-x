@@ -1,0 +1,3 @@
+<> (rotate ?x (?y) ?z) (?y (?z) ?x)
+
+rotate foo (bar) baz

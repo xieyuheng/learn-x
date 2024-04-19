@@ -1,0 +1,4 @@
+<> (putrec (?: ?x)) (putrec ?:?x)
+<> ((putrec (?:))) (?:2)
+
+(putrec (a (b (c (d (e))))))
