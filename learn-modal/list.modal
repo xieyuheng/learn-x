@@ -1,0 +1,6 @@
+<> (to-list (tuple ?*)) (list (?*))
+<> (to-tuple (list ?l)) ((tuple (flatten ?l)))
+<> (flatten (?x ?h)) (?x flatten ?h)
+<> (flatten ()) ()
+
+to-tuple (to-list (tuple (1 2 3)))

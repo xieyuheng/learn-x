@@ -1,0 +1,12 @@
+<> (?* explode) ((?*))
+<> (?l ?e remove) ((?l explode ?e remove-aux unexplode))
+<> ((?e ?r) ?e remove-aux) (?r)
+<> ((?x ?r) ?e remove-aux) (?x ?r ?e remove-aux)
+<> ((?e ?r) unexplode) (?e ?r unexplode)
+<> (() unexplode) ()
+
+(1 2 3 4) 1 remove
+(1 2 3 4) 2 remove
+(1 2 3 4) 3 remove
+(1 2 3 4) 4 remove
+(1 2 3 4) 5 remove
