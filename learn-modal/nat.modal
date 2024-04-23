@@ -1,13 +1,6 @@
-<> (-- ?c) ()
-<> (add zero ?y) (?y)
-<> (add add1 ?p ?y) (add1 add ?p ?y)
+<> (add (s ?x) (s ?y)) (s (add ?x (s ?y)))
+<> (add (s ?x) (0)) (s ?x)
+<> (add (0) (s ?y)) (s ?y)
+<> (add (0) (0)) (0)
 
--- (add zero zero)
--- (add add1 zero zero)
-
-<> (one) (add1 zero)
-<> (two) (add1 one)
-<> (three) (add1 two)
-<> (four) (add1 three)
-
-add four four
+(add (s (s (0))) (s (s (0))))

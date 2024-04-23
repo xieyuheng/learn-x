@@ -1,4 +1,4 @@
-<> (add (s ?x) ?y) (s add ?x ?y)
+<> (add (s ?x) ?y) (s (add ?x ?y))
 <> (add (0) ?y) (?y)
 
 (add (s (s (0))) (s (s (0))))
