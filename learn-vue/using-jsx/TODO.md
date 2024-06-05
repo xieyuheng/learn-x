@@ -1,3 +1,3 @@
-play with h
-support jsx
+setup tailwind
+setup jsx
 play with jsx
