@@ -4,19 +4,15 @@ type Props = {
   message: string
 }
 
-export default {
-  props: ['message'],
+const count = ref(0)
 
-  setup(props: Props) {
-    const count = ref(0)
-
-    return () => (
-      <>
-        <h1>{props.message}</h1>
-        <div>
-          <button onClick={() => count.value++}>count is {count.value}</button>
-        </div>
-      </>
-    )
-  },
+export function HelloWorld(props: Props) {
+  return (
+    <>
+      <h1>{props.message}</h1>
+      <div>
+        <button onClick={() => count.value++}>count is {count.value}</button>
+      </div>
+    </>
+  )
 }
