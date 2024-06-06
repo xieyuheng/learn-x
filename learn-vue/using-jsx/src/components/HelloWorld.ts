@@ -5,15 +5,19 @@ type Props = {
 }
 
 export default {
-  props: ["message"],
+  props: ['message'],
+
   setup(props: Props) {
     const count = ref(0)
 
     return () => [
       h('h1', props.message),
       h('div', [
-        h('button', { onClick: () => count.value++ }, ['count is ', count.value]),
+        h('button', { onClick: () => count.value++ }, [
+          'count is ',
+          count.value,
+        ]),
       ]),
     ]
-  }
+  },
 }
