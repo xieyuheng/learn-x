@@ -1,2 +1,1 @@
-Hi.vue
 setup tailwind
