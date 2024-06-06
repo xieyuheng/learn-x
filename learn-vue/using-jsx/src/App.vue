@@ -8,5 +8,7 @@ import { Hi } from './components/Hi.tsx'
 
 <template>
   <HelloWorld message="hello world" />
-  <Hi message="hihi" />
+  <Hi message="hihi">
+    hahaha
+  </Hi>
 </template>

@@ -6,6 +6,7 @@ type Props = {
 
 export default {
   props: ['message'],
+
   setup(props: Props) {
     const count = ref(0)
 
