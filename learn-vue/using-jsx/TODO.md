@@ -1,2 +1,3 @@
+Hi.vue
+Hi.tsx
 setup tailwind
-play with jsx

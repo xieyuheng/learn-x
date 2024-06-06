@@ -9,6 +9,13 @@ export default {
   setup(props: Props) {
     const count = ref(0)
 
-    return () => <div>hello</div>
+    return () => <>
+      <h1>{props.message}</h1>
+      <div>
+        <button onClick={() => count.value++}>
+          count is {count.value}
+        </button>
+      </div>
+    </>
   }
 }
