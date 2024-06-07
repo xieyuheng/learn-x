@@ -1,3 +1,5 @@
+// https://vuejs.org/guide/extras/reactivity-in-depth.html
+
 export function reactive(obj: any) {
   return new Proxy(obj, {
     get(target, key) {
@@ -12,20 +14,20 @@ export function reactive(obj: any) {
   })
 }
 
-// export function ref(value: any) {
-//   const refObject = {
-//     get value() {
-//       track(refObject, "value")
-//       return value
-//     },
-//     set value(newValue) {
-//       value = newValue
-//       trigger(refObject, "value")
-//     },
-//   }
+export function ref(value: any) {
+  const refObject = {
+    get value() {
+      track(refObject, "value")
+      return value
+    },
+    set value(newValue) {
+      value = newValue
+      trigger(refObject, "value")
+    },
+  }
 
-//   return refObject
-// }
+  return refObject
+}
 
 type Key = string | symbol
 
