@@ -1,0 +1,23 @@
+{
+  "name": "reactive",
+  "private": true,
+  "type": "module",
+  "main": "./lib/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "node --test",
+    "format": "prettier src docs --write"
+  },
+  "devDependencies": {
+    "@types/node": "^20.13.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "typescript": "^5.4.5"
+  },
+  "license": "GPL-3.0-or-later"
+}
