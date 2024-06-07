@@ -1,1 +1,1 @@
-[learn] read https://htmx.org/docs
+[learn] https://htmx.org/examples
