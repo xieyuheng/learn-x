@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# c="g++"
-c="clang++"
+c="g++"
+# c="clang++"
 
 f="-Wall -foptimize-sibling-calls"
 # f="-Wall -foptimize-sibling-calls -O2"
@@ -17,4 +17,4 @@ test () {
     time ./lego
 }
 
-test
+build
