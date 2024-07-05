@@ -1,4 +1,7 @@
 import * as THREE from "three"
+import { assertWebGL } from "./assertWebGL.js"
+
+assertWebGL()
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(
