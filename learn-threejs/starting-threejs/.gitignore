@@ -1,0 +1,22 @@
+# typescript
+lib
+
+# npm
+node_modules
+
+# 0x
+*.0x/
+
+# emacs
+*~
+*#*
+.#*
+
+# vscode
+.vscode
+
+# idea
+.idea
+
+# macOS
+.DS_Store
