@@ -6,6 +6,7 @@
     "target": "es6",
     "strict": true,
     "verbatimModuleSyntax": true,
+    "noEmit": true,
     "declaration": true,
     "sourceMap": true,
     "declarationMap": true,

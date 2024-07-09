@@ -1,36 +1,69 @@
 import * as THREE from "three"
-import { assertWebGL } from "./assertWebGL.js"
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js"
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js"
 
-assertWebGL()
+const scene = new THREE.Scene()
+
+const renderer = new THREE.WebGLRenderer({ antialias: true })
+renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.toneMapping = THREE.ACESFilmicToneMapping
+
+const container = document.createElement("div")
+document.body.appendChild(container)
+container.appendChild(renderer.domElement)
 
 const camera = new THREE.PerspectiveCamera(
   45,
   window.innerWidth / window.innerHeight,
-  1,
-  500,
+  0.25,
+  20,
 )
-camera.position.set(0, 0, 100)
-camera.lookAt(0, 0, 0)
-// camera.position.z = 5
+camera.position.set(-1.8, 0.6, 2.7)
 
-const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setAnimationLoop(animate)
-document.body.appendChild(renderer.domElement)
+init()
+render()
 
-const scene = new THREE.Scene()
-const points = [];
-points.push( new THREE.Vector3( - 10, 0, 0 ) );
-points.push( new THREE.Vector3( 0, 10, 0 ) );
-points.push( new THREE.Vector3( 10, 0, 0 ) );
-const geometry = new THREE.BufferGeometry().setFromPoints( points );
-const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-const line = new THREE.Line( geometry, material );
-scene.add(line)
+function init() {
+  new RGBELoader()
+    .setPath("textures/equirectangular/")
+    .load("royal_esplanade_1k.hdr", (texture) => {
+      texture.mapping = THREE.EquirectangularReflectionMapping
 
-function animate() {
-line.rotation.x += 0.01
-line.rotation.y += 0.01
+      scene.background = texture
+      scene.environment = texture
 
+      render()
+
+      new GLTFLoader()
+        .setPath("models/gltf/DamagedHelmet/glTF/")
+        .load("DamagedHelmet.gltf", (gltf) => {
+          scene.add(gltf.scene)
+
+          render()
+        })
+    })
+
+  const controls = new OrbitControls(camera, renderer.domElement)
+  controls.addEventListener("change", render) // use if there is no animation loop
+  controls.minDistance = 2
+  controls.maxDistance = 10
+  controls.target.set(0, 0, -0.2)
+  controls.update()
+
+  window.addEventListener("resize", onWindowResize)
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight
+  camera.updateProjectionMatrix()
+
+  renderer.setSize(window.innerWidth, window.innerHeight)
+
+  render()
+}
+
+function render() {
   renderer.render(scene, camera)
 }

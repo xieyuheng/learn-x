@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "check": "tsc",
+    "check:watch": "tsc --watch",
     "test": "node --test",
     "format": "prettier src --write"
   },
