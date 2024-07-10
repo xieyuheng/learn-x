@@ -1,1 +1,1 @@
-import "./03-first-three-js-project"
+import "./lessons/04-transform-objects"

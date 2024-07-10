@@ -1,6 +1,5 @@
 # Basics
 
-04 Transform objects
 05 Animations
 06 Cameras
 07 Fullscreen and resizing
