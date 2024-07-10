@@ -2,15 +2,12 @@ import * as THREE from "three"
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl")
-if (canvas === null) {
-  throw new Error()
-}
+if (canvas === null) throw new Error()
 
 // Scene
 const scene = new THREE.Scene()
 
 // Objects
-
 const group = new THREE.Group()
 group.position.y = 1
 group.rotation.y = Math.PI / 4
@@ -45,11 +42,11 @@ camera.position.z = 4
 camera.lookAt(group.position)
 scene.add(camera)
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({ canvas })
-renderer.setSize(sizes.width, sizes.height)
-
+// AxesHelper
 const axesHelper = new THREE.AxesHelper()
 scene.add(axesHelper)
 
+// Renderer
+const renderer = new THREE.WebGLRenderer({ canvas })
+renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)

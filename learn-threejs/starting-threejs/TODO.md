@@ -1,11 +1,10 @@
 # Basics
 
-05 Animations
-06 Cameras
-07 Fullscreen and resizing
-08 Geometries
-09 Debug UI
-10 Textures
-11 Materials
-12 3D Text
-13 Go live
+06-cameras
+07-fullscreen-and-resizing
+08-geometries
+09-debug-ui
+10-textures
+11-material
+12-3d-text
+13-go-live
