@@ -1,6 +1,5 @@
 # Basics
 
-03 First Three.js Project
 04 Transform objects
 05 Animations
 06 Cameras
