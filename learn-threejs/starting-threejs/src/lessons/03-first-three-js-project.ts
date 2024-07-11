@@ -1,9 +1,10 @@
 import * as THREE from "three"
 
-// threejs 的基本的用法，包含如下部分：
-// - Scene -- 包含很多三维 Objects
-// - Camera -- 代表不同的将三维模型投影到二维的方式
-// - Renderer -- 代表具体的投影方式
+// 知识点：
+// - threejs 的基本的用法，包含如下部分：
+//   - Scene -- 包含很多三维 Objects
+//   - Camera -- 代表不同的将三维模型投影到二维的方式
+//   - Renderer -- 代表具体的投影方式
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl")

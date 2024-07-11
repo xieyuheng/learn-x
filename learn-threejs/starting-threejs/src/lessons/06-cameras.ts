@@ -1,8 +1,13 @@
 import * as THREE from "three"
 
+// 知识点：
+// - 通过鼠标的坐标获得用于控制 camera 的输入信息。
+
 // Cursor
+const cursor = { x: 0, y: 0 }
 window.addEventListener("mousemove", (event) => {
-  console.log(event.clientX)
+  cursor.x = event.clientX
+  cursor.y = event.clientY
 })
 
 // Canvas
