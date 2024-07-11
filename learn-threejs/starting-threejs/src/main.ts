@@ -1,1 +1,2 @@
-import "./lessons/06-cameras"
+import "./styles/index.css"
+import "./lessons/07-fullscreen-and-resizing.js"
