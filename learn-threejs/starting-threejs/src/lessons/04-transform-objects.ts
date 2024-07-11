@@ -1,5 +1,15 @@
 import * as THREE from "three"
 
+// 知识点：
+// - Mesh 与 Camera 都是 Object3D。
+// - 通过修改 Object3D 的属性来实现 transform：
+//   - position: Vector3
+//   - scale: Vector3
+//   - rotation: Euler
+//   它们会被翻译为代表 transformation 矩阵操作。
+// - Group 也是 Object3D，并且可以用来形成嵌套的结构。
+// - 可以用 AxesHelper 来显示坐标系。
+
 // Canvas
 const canvas = document.querySelector("canvas.webgl")
 if (canvas === null) throw new Error()

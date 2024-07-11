@@ -1,5 +1,10 @@
 import * as THREE from "three"
 
+// Cursor
+window.addEventListener("mousemove", (event) => {
+  console.log(event.clientX)
+})
+
 // Canvas
 const canvas = document.querySelector("canvas.webgl")
 if (canvas === null) throw new Error()
@@ -20,9 +25,16 @@ scene.add(mesh)
 const sizes = { width: 800, height: 600 }
 
 // Camera
-const aspectRatio =  sizes.width / sizes.height
+const aspectRatio = sizes.width / sizes.height
 // const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 100)
-const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 0.1, 100)
+const camera = new THREE.OrthographicCamera(
+  -1 * aspectRatio,
+  1 * aspectRatio,
+  1,
+  -1,
+  0.1,
+  100,
+)
 camera.position.x = 2
 camera.position.y = 2
 camera.position.z = 2

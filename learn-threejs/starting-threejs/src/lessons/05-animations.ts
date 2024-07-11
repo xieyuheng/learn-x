@@ -1,6 +1,15 @@
 import gsap from "gsap"
 import * as THREE from "three"
 
+// 知识点：
+// - 用 requestAnimationFrame + render 来实现动画。
+// - 动画是时间的函数，动画开始是 0，延续到无穷。
+// - 有多种获得时间参数的方式：
+//   - Date.now -- 自己计算 elapsedTime
+//   - Clock -- 有 getElapsedTime 方法
+// - 通过 gsap 这个专门处理时序的库，
+//   来介绍用 tween（inbetweening）这种实现动画的方式。
+
 // Canvas
 const canvas = document.querySelector("canvas.webgl")
 if (canvas === null) throw new Error()
