@@ -1,2 +1,2 @@
-import "./lessons/07-fullscreen-and-resizing.js"
+import "./lessons/08-geometries.js"
 import "./styles/index.css"
