@@ -23,8 +23,8 @@ const geometry = new THREE.BufferGeometry()
 
 const count = 100
 const positionArray = new Float32Array(count * 3 * 3)
-for (let i=0;i<count * 3 * 3;i++) {
-  positionArray[i]= (Math.random() - 0.5) * 3
+for (let i = 0; i < count * 3 * 3; i++) {
+  positionArray[i] = (Math.random() - 0.5) * 3
 }
 
 const positionAttribute = new THREE.BufferAttribute(positionArray, 3)

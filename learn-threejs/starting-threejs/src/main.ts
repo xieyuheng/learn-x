@@ -1,2 +1,2 @@
-import "./lessons/08-geometries.js"
+import "./lessons/09-debug-ui"
 import "./styles/index.css"
