@@ -2,11 +2,8 @@ import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 // 知识点：
-// - 这一节是 WebAPI 的知识。
-// - 只处理了全屏，当需要在某个 box 中最大化时，需要调整这里的方案。
-// - 用双击来 toggle fullscreen：
-//   - canvas.requestFullscreen()
-//   - document.exitFullscreen()
+// - material 用来给每个像素染色。
+//   material 是用 shader 代码实现的，这些代码要送给 GPU 去运行。
 
 // Cursor
 const cursor = { x: 0, y: 0 }
@@ -23,13 +20,24 @@ if (canvas === null) throw new Error()
 const scene = new THREE.Scene()
 
 // Objects
-const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2)
 const material = new THREE.MeshBasicMaterial({
   color: 0xff0000,
   wireframe: true,
 })
-const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32), material)
+sphere.position.x = -1.5
+scene.add(sphere)
+
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material)
+plane.position.x = 0
+scene.add(plane)
+
+const torus = new THREE.Mesh(
+  new THREE.TorusGeometry(0.3, 0.15, 32, 32),
+  material,
+)
+torus.position.x = 1.5
+scene.add(torus)
 
 // Sizes
 const sizes = {
@@ -54,32 +62,19 @@ window.addEventListener("resize", () => {
   renderer.render(scene, camera)
 })
 
-window.addEventListener("dblclick", () => {
-  // 注意苹果的浏览器不完全支持 requestFullscreen 和 exitFullscreen，
-  // 所以需要检查这些 API 是否存在，才能安全使用（不 throw error）。
-  // 或者用带有 webkit prefix 的 API。
-
-  if (!document.fullscreenElement) {
-    canvas.requestFullscreen()
-  } else {
-    document.exitFullscreen()
-  }
-})
+// AxesHelper
+const axesHelper = new THREE.AxesHelper()
+scene.add(axesHelper)
 
 // Camera
-
 const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 100)
 camera.position.z = 3
-camera.lookAt(mesh.position)
+camera.lookAt(axesHelper.position)
 scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
-
-// AxesHelper
-const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({ canvas })

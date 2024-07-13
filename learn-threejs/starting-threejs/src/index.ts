@@ -1,2 +1,2 @@
-import "./lessons/10-textures"
+import "./lessons/11-material"
 import "./styles/index.css"
