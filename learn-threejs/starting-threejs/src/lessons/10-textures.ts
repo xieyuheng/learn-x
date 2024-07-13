@@ -1,20 +1,16 @@
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
-import { loadImageElement } from "../utils/loadImageElement.js"
+import { loadTexture } from "../utils/threejs/loadTexture.js"
 
 // 知识点：
-// TODO
+// - 加载 Image，用来构造 Texture。
+//   - 可以用 image.onload 和 texture.needsUpdate 来实现。
 
 main()
 
 async function main() {
   // Textures
-
-  const image = await loadImageElement("/textures/door/color.jpg")
-  const texture = new THREE.Texture(image)
-
-  console.log(image)
-  console.log(texture)
+  const texture = loadTexture("/textures/door/color.jpg")
 
   // Cursor
   const cursor = { x: 0, y: 0 }
@@ -32,10 +28,7 @@ async function main() {
 
   // Objects
   const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2)
-  const material = new THREE.MeshBasicMaterial({
-    color: 0xff0000,
-    wireframe: true,
-  })
+  const material = new THREE.MeshBasicMaterial({ map: texture })
   const mesh = new THREE.Mesh(geometry, material)
   scene.add(mesh)
 
