@@ -11,6 +11,7 @@ main()
 async function main() {
   // Textures
   const texture = loadTexture("/textures/door/color.jpg")
+  texture.colorSpace = THREE.SRGBColorSpace
 
   // Cursor
   const cursor = { x: 0, y: 0 }
