@@ -19,12 +19,30 @@ if (canvas === null) throw new Error()
 // Scene
 const scene = new THREE.Scene()
 
+// Textures
+const textureLoader = new THREE.TextureLoader()
+
+const doorColorTexture = textureLoader.load("/textures/door/color.jpg")
+const doorAlphaTexture = textureLoader.load("/textures/door/alpha.jpg")
+const doorAmbientOcclusionTexture = textureLoader.load(
+  "/textures/door/ambientOcclusion.jpg",
+)
+const doorHeightTexture = textureLoader.load("/textures/door/height.jpg")
+const doorNormalTexture = textureLoader.load("/textures/door/normal.jpg")
+const doorMetalnessTexture = textureLoader.load("/textures/door/metalness.jpg")
+const doorRoughnessTexture = textureLoader.load("/textures/door/roughness.jpg")
+const matcapTexture = textureLoader.load("/textures/matcaps/1.png")
+const gradientTexture = textureLoader.load("/textures/gradients/3.jpg")
+
+doorColorTexture.colorSpace = THREE.SRGBColorSpace
+matcapTexture.colorSpace = THREE.SRGBColorSpace
+
 // Objects
 const material = new THREE.MeshBasicMaterial({
-  color: 0xff0000,
-  wireframe: true,
+  map: doorColorTexture,
+  // wireframe: true,
 })
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32), material)
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), material)
 sphere.position.x = -1.5
 scene.add(sphere)
 
@@ -33,7 +51,7 @@ plane.position.x = 0
 scene.add(plane)
 
 const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(0.3, 0.15, 32, 32),
+  new THREE.TorusGeometry(0.3, 0.15, 16, 32),
   material,
 )
 torus.position.x = 1.5
@@ -88,6 +106,14 @@ function tick() {
   // Animation as a function of time.
 
   const elapsedTime = clock.getElapsedTime()
+
+  sphere.rotation.y = 0.1 * elapsedTime
+  plane.rotation.y = 0.1 * elapsedTime
+  torus.rotation.y = 0.1 * elapsedTime
+
+  sphere.rotation.x = -0.15 * elapsedTime
+  plane.rotation.x = -0.15 * elapsedTime
+  torus.rotation.x = -0.15 * elapsedTime
 
   // 用 threejs 内部的 controls：
   controls.update()
