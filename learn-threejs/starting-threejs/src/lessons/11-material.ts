@@ -4,6 +4,16 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 // 知识点：
 // - material 用来给每个像素染色。
 //   material 是用 shader 代码实现的，这些代码要送给 GPU 去运行。
+// - MeshNormalMaterial 可以用来给曲面上每一个点一个法向量，
+//   - 注意，法向量是相对于 camera 的，
+//     所以转换 camera 视角的时候，material 效果不变。
+//     - 这些 Material 所创造的光影效果，都是假象，
+//       好像有 light 在 camera 后面，但是其实没有 light。
+//   因为不能用 mesh 本身的面片的法向量。
+//   - 通过设置 material.flatShading 可以改成用面片的法向量。
+// - MeshMatcapMaterial -- material captures，
+//   是把点的 normal，映射到一个圆盘上，非常有意思。
+// - MeshLambertMaterial -- 这个就需要 light 了。
 
 // Cursor
 const cursor = { x: 0, y: 0 }
@@ -31,14 +41,34 @@ const doorHeightTexture = textureLoader.load("/textures/door/height.jpg")
 const doorNormalTexture = textureLoader.load("/textures/door/normal.jpg")
 const doorMetalnessTexture = textureLoader.load("/textures/door/metalness.jpg")
 const doorRoughnessTexture = textureLoader.load("/textures/door/roughness.jpg")
-const matcapTexture = textureLoader.load("/textures/matcaps/1.png")
+const matcapTexture = textureLoader.load("/textures/matcaps/4.png")
 const gradientTexture = textureLoader.load("/textures/gradients/3.jpg")
 
 doorColorTexture.colorSpace = THREE.SRGBColorSpace
 matcapTexture.colorSpace = THREE.SRGBColorSpace
 
 // Objects
-const material = new THREE.MeshBasicMaterial({ map: matcapTexture })
+
+// const material = new THREE.MeshBasicMaterial({ map: matcapTexture })
+// material.transparent = true
+// material.opacity = 0.5
+// material.side = THREE.DoubleSide
+
+// const material = new THREE.MeshNormalMaterial()
+// material.transparent = true
+// material.side = THREE.DoubleSide
+// material.flatShading = true
+
+// const material = new THREE.MeshMatcapMaterial()
+// material.matcap = matcapTexture
+// material.side = THREE.DoubleSide
+
+// const material = new THREE.MeshDepthMaterial()
+// material.side = THREE.DoubleSide
+
+const material = new THREE.MeshLambertMaterial()
+material.side = THREE.DoubleSide
+
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), material)
 sphere.position.x = -1.5
 scene.add(sphere)
