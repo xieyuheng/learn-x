@@ -38,10 +38,7 @@ doorColorTexture.colorSpace = THREE.SRGBColorSpace
 matcapTexture.colorSpace = THREE.SRGBColorSpace
 
 // Objects
-const material = new THREE.MeshBasicMaterial({
-  map: doorColorTexture,
-  // wireframe: true,
-})
+const material = new THREE.MeshBasicMaterial({ map: matcapTexture })
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), material)
 sphere.position.x = -1.5
 scene.add(sphere)
