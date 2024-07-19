@@ -1,3 +1,4 @@
+import GUI from "lil-gui"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
@@ -14,6 +15,13 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 // - MeshMatcapMaterial -- material captures，
 //   是把点的 normal，映射到一个圆盘上，非常有意思。
 // - MeshLambertMaterial -- 这个就需要 light 了。
+//   其他参数与 MeshBasicMaterial 类似。
+// - MeshStandardMaterial -- 具有更逼真的效果。
+
+const gui = new GUI({
+  title: "Learning Debug GUI",
+  width: 300,
+})
 
 // Cursor
 const cursor = { x: 0, y: 0 }
@@ -42,7 +50,7 @@ const doorNormalTexture = textureLoader.load("/textures/door/normal.jpg")
 const doorMetalnessTexture = textureLoader.load("/textures/door/metalness.jpg")
 const doorRoughnessTexture = textureLoader.load("/textures/door/roughness.jpg")
 const matcapTexture = textureLoader.load("/textures/matcaps/4.png")
-const gradientTexture = textureLoader.load("/textures/gradients/3.jpg")
+const gradientTexture = textureLoader.load("/textures/gradients/5.jpg")
 
 doorColorTexture.colorSpace = THREE.SRGBColorSpace
 matcapTexture.colorSpace = THREE.SRGBColorSpace
@@ -66,8 +74,38 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace
 // const material = new THREE.MeshDepthMaterial()
 // material.side = THREE.DoubleSide
 
-const material = new THREE.MeshLambertMaterial()
+// const material = new THREE.MeshLambertMaterial()
+// material.side = THREE.DoubleSide
+
+// const material = new THREE.MeshPhongMaterial()
+// material.shininess = 100
+// material.specular = new THREE.Color("red")
+// material.side = THREE.DoubleSide
+
+// const material = new THREE.MeshToonMaterial()
+// material.side = THREE.DoubleSide
+// gradientTexture.magFilter = THREE.NearestFilter
+// // gradientTexture.minFilter = THREE.NearestFilter
+// gradientTexture.generateMipmaps = false
+// material.gradientMap = gradientTexture
+
+const material = new THREE.MeshStandardMaterial()
 material.side = THREE.DoubleSide
+material.metalness = 0.45
+material.roughness = 0.45
+
+const materialTweaks = gui.addFolder("materialTweaks")
+materialTweaks.add(material, "metalness").min(0).max(1).step(0.001)
+materialTweaks.add(material, "roughness").min(0).max(1).step(0.001)
+
+const ambientLight = new THREE.AmbientLight("#ffffff", 1)
+scene.add(ambientLight)
+
+const pointLight = new THREE.PointLight("#ffffff", 30)
+pointLight.position.x = 2
+pointLight.position.y = 2
+pointLight.position.z = 2
+scene.add(pointLight)
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), material)
 sphere.position.x = -1.5
