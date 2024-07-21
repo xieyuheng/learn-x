@@ -1,6 +1,7 @@
 import GUI from "lil-gui"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js"
 
 // 知识点：
 // - material 用来给每个像素染色。
@@ -91,21 +92,29 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace
 
 const material = new THREE.MeshStandardMaterial()
 material.side = THREE.DoubleSide
-material.metalness = 0.45
-material.roughness = 0.45
+material.metalness = 0.7
+material.roughness = 0.2
 
 const materialTweaks = gui.addFolder("materialTweaks")
 materialTweaks.add(material, "metalness").min(0).max(1).step(0.001)
 materialTweaks.add(material, "roughness").min(0).max(1).step(0.001)
 
-const ambientLight = new THREE.AmbientLight("#ffffff", 1)
-scene.add(ambientLight)
+// const ambientLight = new THREE.AmbientLight("#ffffff", 1)
+// scene.add(ambientLight)
 
-const pointLight = new THREE.PointLight("#ffffff", 30)
-pointLight.position.x = 2
-pointLight.position.y = 2
-pointLight.position.z = 2
-scene.add(pointLight)
+// const pointLight = new THREE.PointLight("#ffffff", 30)
+// pointLight.position.x = 2
+// pointLight.position.y = 2
+// pointLight.position.z = 2
+// scene.add(pointLight)
+
+const rgbeLoader = new RGBELoader()
+rgbeLoader.load("./textures/environmentMap/2k.hdr", (environmentMap) => {
+  environmentMap.mapping = THREE.EquirectangularReflectionMapping
+
+  scene.background = environmentMap
+  scene.environment = environmentMap
+})
 
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), material)
 sphere.position.x = -1.5
