@@ -1,1 +1,0 @@
-prolog taken generated facts
