@@ -9,7 +9,6 @@ list_length([_|Ls], N) :-
 :- initialization(main).
 
 main :-
-  write('Hello World!'), nl,
-  list_length(L, 1000000),
+  list_length(L, 100),
   print(L),
   halt.
