@@ -1,10 +1,10 @@
-:- initialization(main).
-
 add(X, zero(), X).
 add(X, add1(Y), add1(Z)) :- add(X, Y, Z).
 
 mul(_, zero(), zero()).
 mul(X, add1(Y), R) :- mul(X, Y, Z), add(X, Z, R).
+
+:- initialization(main).
 
 main :-
   write('Hello World!'), nl,
