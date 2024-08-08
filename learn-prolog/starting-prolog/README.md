@@ -1,1 +1,5 @@
-https://www.metalevel.at/prolog
+# Starting Prolog
+
+Resources:
+
+- [The Power of Prolog](https://www.metalevel.at/prolog)
