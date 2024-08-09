@@ -1,3 +1,4 @@
+:- module(list_length, [list_length/2, list_print/1]).
 :- use_module(library(clpfd)).
 
 list_length([], 0).
@@ -6,9 +7,4 @@ list_length([_|Ls], N) :-
   N #= N0 + 1,
   list_length(Ls, N0).
 
-:- initialization(main).
-
-main :-
-  list_length(L, 100),
-  print(L),
-  halt.
+list_print(L) :- writeln(L).
