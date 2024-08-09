@@ -1,5 +1,2 @@
-use module system to write tests
-
 read prolog term from file
-
-load (JSON?) data as prolog facts
+load data as prolog facts
