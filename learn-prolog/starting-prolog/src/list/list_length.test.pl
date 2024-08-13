@@ -1,4 +1,4 @@
-:- use_module(list_length).
+:- use_module("../kkk.pl").
 
 :- initialization(main).
 
