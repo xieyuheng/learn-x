@@ -1,3 +1,5 @@
+:- module(hello, []).
+
 :- initialization(main).
 
 main :-
