@@ -1,20 +1,9 @@
-// Bun.serve({
-//   fetch(request) {
-//     console.log(request)
-//     return Response.json({message: "Bun!"})
-//     return new Response("Bun!")
-//   },
-// })
-
-const x: numebr = 123
-
 const server = Bun.serve({
+  port: 0,
   fetch(req, server) {
-    const ip = server.requestIP(req);
-    console.log(ip)
-    return Response.json({x, ip});
+    const ip = server.requestIP(req)
+    return Response.json({ ip })
   },
-});
+})
 
-console.log(server.url);
-console.log(server);
+console.log(server.url)
