@@ -4,6 +4,8 @@
   比如非标准的 onClick 的行为，
   虽然有 on:click 但是不推荐使用，ts 的支持也不好。
 
+  - 这个好像修复了。
+
 - solidjs 不想支持简单的类似 vue 的 reactive 函数，
   虽然现在有 createMutable，但是准备删除这个 API。
 
