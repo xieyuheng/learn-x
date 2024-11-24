@@ -6,15 +6,15 @@
 |100
 
 @on-reset ( -> )
-        ;my-string print-text
-        BRK
+  ;my-string print-text
+  BRK
 
 @print-text ( str* -- )
-        &while
-                LDAk .Console/write DEO
-                INC2 LDAk ?&while
-        POP2
-        JMP2r
+  &while
+    LDAk .Console/write DEO
+    INC2 LDAk ?&while
+  POP2
+  JMP2r
 
 @my-string
-        "Hello 20 "World! 0a 00
+  "Hello 20 "World! 0a 00
