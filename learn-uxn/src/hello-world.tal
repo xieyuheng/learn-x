@@ -1,6 +1,3 @@
-( uxnasm 00-hello-world.tal 00-hello-world.rom
-  uxncli 00-hello-world.rom )
-
 |10 @Console &vector $2 &read $1 &pad $5 &write $1 &error $1
 
 |100
