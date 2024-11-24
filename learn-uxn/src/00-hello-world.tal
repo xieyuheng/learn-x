@@ -17,4 +17,4 @@
         JMP2r
 
 @my-string
-        "Hello 20 "World! 00
+        "Hello 20 "World! 0a 00

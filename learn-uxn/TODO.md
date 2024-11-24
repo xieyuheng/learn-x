@@ -1,3 +1,5 @@
+uxntal page
+
 uxntal syntax
 
 [syntax] uxntal macros
