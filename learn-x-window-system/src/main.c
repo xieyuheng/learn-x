@@ -6,6 +6,28 @@
 #include<X11/Xutil.h>
 #include<X11/Xatom.h>
 
+void
+setSizeHint(
+    Display* display,
+    Window window,
+    int minWidth, int minHeight,
+    int maxWidth, int maxHeight
+) {
+    XSizeHints *hints = XAllocSizeHints();
+
+    if(minWidth > 0 && minHeight > 0) hints->flags |= PMinSize;
+    if(maxWidth > 0 && maxHeight > 0) hints->flags |= PMaxSize;
+
+    hints->min_width = minWidth;
+    hints->min_height = minHeight;
+    hints->max_width = maxWidth;
+    hints->max_height = maxHeight;
+
+    XSetWMNormalHints(display, window, hints);
+
+    XFree(hints);
+}
+
 int
 main() {
     int width = 800;
@@ -54,7 +76,7 @@ main() {
     }
 
     XStoreName(display, window, "Hello, World!");
-
+    // setSizeHint(display, window, 400, 300, 0, 0);
     XMapWindow(display, window);
     XFlush(display);
 
