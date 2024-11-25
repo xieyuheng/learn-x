@@ -7,7 +7,7 @@
 #include<X11/Xatom.h>
 
 int
-main() {
+learning() {
     int width = 800;
     int height = 600;
 
@@ -37,9 +37,25 @@ main() {
     XMapWindow(display, window);
     XFlush(display);
 
-    while (true) {
-        //
-    }
+    int windowOpen = 1;
+    while(windowOpen)
+    {
+        XEvent ev;
+        while(XPending(display) > 0)
+        {
+            XNextEvent(display, &ev);
+            switch(ev.type)
+            {
+            case DestroyNotify: {
+                XDestroyWindowEvent* e = (XDestroyWindowEvent*) &ev;
+                if(e->window == window)
+                {
+                    windowOpen = 0;
+                }
+            } break;
+            }
+        }
+    };
 
     return 0;
 }
