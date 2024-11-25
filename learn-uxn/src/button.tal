@@ -44,15 +44,17 @@
 ( drawing )
 
 @<draw-button> ( addr* -- )
-        [ LIT2 26 -Screen/auto ] DEO
-        #0010 DUP2 .Screen/x DEO2
-        .Screen/y DEO2
         .Screen/addr DEO2
-        [ LIT2 81 -Screen/sprite ] DEOk DEOk DEO
+        #26 .Screen/auto DEO
+        #0010 .Screen/x DEO2
+        #0010 .Screen/y DEO2
+        #81 .Screen/sprite DEO
+        #81 .Screen/sprite DEO
+        #81 .Screen/sprite DEO
         JMP2r
 
 @<update-pointer> ( color addr* -- )
-        [ LIT2 00 -Screen/auto ] DEO
+        #00 .Screen/auto DEO
         ;fill-icn .Screen/addr DEO2
         #40 <draw-pointer>
         .Mouse/x DEI2 ,<draw-pointer>/x STR2
