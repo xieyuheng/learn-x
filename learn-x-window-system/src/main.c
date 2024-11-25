@@ -105,6 +105,18 @@ main() {
     toggleMaximize(display, window);
     XFlush(display);
 
+    int pixelBits = 32;
+    int pixelBytes = pixelBits/8;
+    int windowBufferSize = width*height*pixelBytes;
+    char* mem  = (char*)malloc(windowBufferSize);
+
+    XImage* xWindowBuffer = XCreateImage(
+        display, visinfo.visual, visinfo.depth,
+        ZPixmap, 0, mem, width, height,
+        pixelBits, 0);
+    GC defaultGC = DefaultGC(display, defaultScreen);
+
+
     Atom wmDelete = XInternAtom(display, "WM_DELETE_WINDOW", True);
     XSetWMProtocols(display, window, &wmDelete, 1);
 
@@ -132,6 +144,30 @@ main() {
             }
             }
         }
+
+
+
+        int pitch = width*pixelBytes;
+        for(int y=0; y<height; y++)
+        {
+            char* row = mem+(y*pitch);
+            for(int x=0; x<width; x++)
+            {
+                unsigned int* p = (unsigned int*) (row+(x*pixelBytes));
+                if(x%16 && y%16)
+                {
+                    *p = 0xffffffff;
+                }
+                else
+                {
+                    *p = 0;
+                }
+            }
+        }
+
+        XPutImage(display, window,
+                  defaultGC, xWindowBuffer, 0, 0, 0, 0,
+                  width, height);
     }
 
     return 0;
