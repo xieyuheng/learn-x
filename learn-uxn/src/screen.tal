@@ -9,8 +9,8 @@
         set-theme
         .Screen/width DEI2 #01 SFT2 .Screen/x DEO2
         .Screen/height DEI2 #01 SFT2 .Screen/y DEO2
-        #01 .Screen/pixel DEO ( paint a black pixel, on background )
-        #43 .Screen/pixel DEO ( paint a red pixel, on foreground )
+        ( #01 .Screen/pixel DEO ( paint a black pixel, on background ) )
+        ( #43 .Screen/pixel DEO ( paint a red pixel, on foreground ) )
         #93 .Screen/pixel DEO ( fill a red rectangle bottom-left, on background )
         #e2 .Screen/pixel DEO ( fill a cyan rectangle top-right, on foreground )
         BRK
