@@ -105,6 +105,9 @@ main() {
     toggleMaximize(display, window);
     XFlush(display);
 
+    Atom wmDelete = XInternAtom(display, "WM_DELETE_WINDOW", True);
+    XSetWMProtocols(display, window, &wmDelete, 1);
+
     bool windowOpen = true;
     while (windowOpen) {
         XEvent ev;
@@ -117,8 +120,14 @@ main() {
                     printf("[DestroyNotify]\n");
                     windowOpen = false;
                 }
+                break;
             }
-            default: {
+            case ClientMessage: {
+                XClientMessageEvent* e = (XClientMessageEvent*) &ev;
+                if ((Atom)e->data.l[0] == wmDelete) {
+                    XDestroyWindow(display, window);
+                    windowOpen = false;
+                }
                 break;
             }
             }
