@@ -37,8 +37,7 @@
         #0010 SUB2 #0018 LTH2 STH
         #0010 SUB2 #0018 LTH2 STHr AND JMP2r
 
-(
-@|drawing )
+( drawing )
 
 @<draw-button> ( addr* -- )
         [ LIT2 26 -Screen/auto ] DEO
