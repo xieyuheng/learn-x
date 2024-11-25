@@ -37,7 +37,9 @@ main() {
     windowAttr.colormap = XCreateColormap(
         display, root,
         visinfo.visual, AllocNone);
-    unsigned long attributeMask = CWBackPixel | CWColormap;
+    windowAttr.event_mask = StructureNotifyMask;
+
+    unsigned long attributeMask = CWBackPixel | CWColormap | CWEventMask;
 
     Window window = XCreateWindow(
         display, root,
@@ -56,26 +58,25 @@ main() {
     XMapWindow(display, window);
     XFlush(display);
 
-    int windowOpen = 1;
-    while(windowOpen)
-    {
+    bool windowOpen = true;
+    while (windowOpen) {
         XEvent ev;
-        while(XPending(display) > 0)
-        {
+        while (XPending(display) > 0) {
             XNextEvent(display, &ev);
-            switch(ev.type)
-            {
+            switch (ev.type) {
             case DestroyNotify: {
                 XDestroyWindowEvent* e = (XDestroyWindowEvent*) &ev;
-                if(e->window == window)
-                {
-                    windowOpen = 0;
+                if (e->window == window) {
+                    printf("[DestroyNotify]\n");
+                    windowOpen = false;
                 }
-            } break;
+            }
+            default: {
+                break;
+            }
             }
         }
-    };
-
+    }
 
     return 0;
 }
