@@ -120,6 +120,7 @@ main() {
     Atom wmDelete = XInternAtom(display, "WM_DELETE_WINDOW", True);
     XSetWMProtocols(display, window, &wmDelete, 1);
 
+    int sizeChange = 0;
     bool windowOpen = true;
     while (windowOpen) {
         XEvent ev;
@@ -134,6 +135,7 @@ main() {
                 }
                 break;
             }
+
             case ClientMessage: {
                 XClientMessageEvent* e = (XClientMessageEvent*) &ev;
                 if ((Atom)e->data.l[0] == wmDelete) {
@@ -142,10 +144,28 @@ main() {
                 }
                 break;
             }
+
+            case ConfigureNotify: {
+                XConfigureEvent* e = (XConfigureEvent*) &ev;
+                width = e->width;
+                height = e->height;
+                sizeChange = 1;
+                break;
+            }
             }
         }
 
+        if(sizeChange) {
+            sizeChange = 0;
+            XDestroyImage(xWindowBuffer); // Free's the memory we malloced;
+            windowBufferSize = width*height*pixelBytes;
+            mem  = (char*)malloc(windowBufferSize);
 
+            xWindowBuffer = XCreateImage(
+                display, visinfo.visual, visinfo.depth,
+                ZPixmap, 0, mem, width, height,
+                pixelBits, 0);
+        }
 
         int pitch = width*pixelBytes;
         for(int y=0; y<height; y++)
