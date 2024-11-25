@@ -28,6 +28,30 @@ setSizeHint(
     XFree(hints);
 }
 
+Status
+toggleMaximize(Display* display, Window window)
+{
+    XClientMessageEvent ev;
+    Atom wmState = XInternAtom(display, "_NET_WM_STATE", False);
+    Atom maxH  =  XInternAtom(display, "_NET_WM_STATE_MAXIMIZED_HORZ", False);
+    Atom maxV  =  XInternAtom(display, "_NET_WM_STATE_MAXIMIZED_VERT", False);
+
+    if(wmState == None) return 0;
+
+    ev.type = ClientMessage;
+    ev.format = 32;
+    ev.window = window;
+    ev.message_type = wmState;
+    ev.data.l[0] = 2; // _NET_WM_STATE_TOGGLE 2 according to spec; Not defined in my headers
+    ev.data.l[1] = maxH;
+    ev.data.l[2] = maxV;
+    ev.data.l[3] = 1;
+
+    return XSendEvent(display, DefaultRootWindow(display), False,
+                      SubstructureNotifyMask,
+                      (XEvent *)&ev);
+}
+
 int
 main() {
     int width = 800;
@@ -75,9 +99,10 @@ main() {
         exit(1);
     }
 
-    XStoreName(display, window, "Hello, World!");
-    // setSizeHint(display, window, 400, 300, 0, 0);
+    XStoreName(display, window, "floating Hello, World!");
+    setSizeHint(display, window, 400, 300, 0, 0);
     XMapWindow(display, window);
+    toggleMaximize(display, window);
     XFlush(display);
 
     bool windowOpen = true;
