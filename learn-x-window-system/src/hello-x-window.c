@@ -7,12 +7,7 @@
 #include<X11/Xatom.h>
 
 int
-main(int argc, char** args) {
-    (void) argc;
-    (void) args;
-
-    printf("hello-x-window\n");
-
+main() {
     int width = 800;
     int height = 600;
 
@@ -23,33 +18,14 @@ main(int argc, char** args) {
     }
 
     int root = DefaultRootWindow(display);
-    int defaultScreen = DefaultScreen(display);
+    int screen = DefaultScreen(display);
 
-    int screenBitDepth = 24;
-    XVisualInfo visinfo;
-    if (!XMatchVisualInfo(
-            display,
-            defaultScreen,
-            screenBitDepth,
-            TrueColor,
-            &visinfo)) {
-        printf("No matching visual info\n");
-        exit(1);
-    }
-
-    XSetWindowAttributes windowAttr;
-    windowAttr.background_pixel = 0;
-    windowAttr.colormap = XCreateColormap(
-        display, root,
-        visinfo.visual, AllocNone);
-    unsigned long attributeMask = CWBackPixel | CWColormap;
-
-    Window window = XCreateWindow(
+    Window window = XCreateSimpleWindow(
         display, root,
         0, 0,
         width, height, 0,
-        visinfo.depth, InputOutput,
-        visinfo.visual, attributeMask, &windowAttr);
+        BlackPixel(display, screen),
+        BlackPixel(display, screen));
 
     if (!window) {
         printf("Window wasn't created properly\n");
@@ -62,6 +38,7 @@ main(int argc, char** args) {
     XFlush(display);
 
     while (true) {
+        //
     }
 
     return 0;
