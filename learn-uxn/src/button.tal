@@ -6,14 +6,18 @@
 |0100
 
 @on-reset ( -> )
-        #5c0f .System/r DEO2
-        #6d0f .System/g DEO2
-        #6d0f .System/b DEO2
+        set-theme
         #0038 DUP2 .Screen/width DEO2
         .Screen/height DEO2
         ;on-mouse .Mouse/vector DEO2
         ;button-chr <draw-button>
         BRK
+
+@set-theme ( -- )
+        #5c0f .System/r DEO2
+        #6d0f .System/g DEO2
+        #6d0f .System/b DEO2
+        JMP2r
 
 @on-frame ( -> )
         [ LIT2 18 &time 00 ] INCk ,&time STR
