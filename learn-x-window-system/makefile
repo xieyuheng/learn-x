@@ -1,5 +1,5 @@
 cc = gcc
-ldflags = -lX11 -lutil
+ldflags = -lX11
 cflags = -g -Wall -Wwrite-strings -Wextra -Werror -O0 -std=c11 -pedantic
 
 src = $(shell find src -name '*.c')
