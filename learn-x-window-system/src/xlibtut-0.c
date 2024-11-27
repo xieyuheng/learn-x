@@ -1,10 +1,10 @@
-#include<assert.h>
-#include<stdbool.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<X11/Xlib.h>
-#include<X11/Xutil.h>
-#include<X11/Xatom.h>
+#include <assert.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/Xatom.h>
 
 int
 xlibtut_0() {
