@@ -1,0 +1,23 @@
+@button-chr
+
+&up
+    0000 1f3f 3f3f 3f3f 001f 3f7f 7f7f 7f7f
+    0000 ffff ffff ffff 00ff ffff ffff ffff
+    0000 f8fc fcfc fcfc 00f8 fcfe fefe fefe
+    3f3f 3f3f 3f3f 3f3f 7f7f 7f7f 7f7f 7f7f
+    e7e7 e781 c3e7 ffff ffff ffff ffff ffff
+    fcfc fcfc fcfc fcfc fefe fefe fefe fefe
+    3f3f 3f3f 3f1f 0000 7f7f 7f5f 4020 1f00
+    ffff ffff ffff 0000 ffff ffff 0000 ff00
+    fcfc fcfc fcf8 0000 fefe fefa 0204 f800
+
+&down
+    0000 001f 3f3f 3f3f 0000 1f3f 7f7f 7f7f
+    0000 00ff ffff ffff 0000 ffff ffff ffff
+    0000 00f8 fcfc fcfc 0000 f8fc fefe fefe
+    3f3f 3f3f 3f3f 3f3f 7f7f 7f7f 7f7f 7f7f
+    ffe7 e7e7 81c3 e7ff ffff ffff ffff ffff
+    fcfc fcfc fcfc fcfc fefe fefe fefe fefe
+    3f3f 3f3f 3f1f 0000 7f7f 7f7f 5f20 1f00
+    ffff ffff ffff 0000 ffff ffff ff00 ff00
+    fcfc fcfc fcf8 0000 fefe fefe fa04 f800
