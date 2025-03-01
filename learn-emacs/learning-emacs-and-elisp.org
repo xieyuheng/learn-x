@@ -1,0 +1,408 @@
+#+TITLE: learning-emacs-and-elisp
+#+AUTHOR: XIE Yuheng
+#+EMAIL: xyheme@gmail.com
+
+
+* readings
+** the giraffe book
+** elisp manual
+*** insert unicode
+    #+begin_src emacs-lisp
+    ;; 每编译一次版本号中的最后一个数字就增加一
+    (emacs-version)
+
+    (key-description [?\M-3 delete])
+    (key-description [delete] "\M-3")
+
+    (single-key-description ?\C-x)
+    (key-description "\C-x \M-y \n \t \r \f123")
+    (single-key-description 'delete)
+    (single-key-description 'C-mouse-1)
+    (single-key-description 'C-mouse-1 t)
+    (text-char-description ?\C-c)
+    (text-char-description 65)
+    (text-char-description ?\C-\M-m)
+    (text-char-description (+ 128 ?m))
+    (text-char-description (+ 128 ?\C-m))
+    (read-kbd-macro "e 12  3123")
+    (describe-char 65)
+
+    (insert 92)
+    (insert ?\\)
+
+    ?\a control-g
+    ?\b backspace
+    ?\t tab
+    ?\n newline
+    ?\v vertical tab
+    ?\f formfeed
+    ?\s space
+    ?\r retur
+    ?\d del
+    ?\e escape
+
+
+    (defun relationship-between-number-and-char (a b)
+      (cond ((< a b)
+             (let ()
+               (insert (number-to-string a))
+               (insert " : ")
+               (insert (text-char-description a))
+               (newline)
+               (relationship-between-number-and-char
+                (+ a 1) b)))
+            (t
+             (let ()
+               (insert "Mission complete, Sir!")
+               (newline)))))
+    (defun n*100-show-relationship-between-number-and-char (a b)
+      (cond ((< a b)
+             (let ()
+               (relationship-between-number-and-char
+                (* 100 a)
+                (* 100 (+ a 1)))
+               (n*100-show-relationship-between-number-and-char
+                (+ a 1) b)))
+            (t
+             (let ()
+               (insert "Mission complete, Sir!")
+               (newline)
+               (newline)))))
+    (progn (newline)
+           (newline)
+           ;; (n*100-show-relationship-between-number-and-char 0 10)
+           ;; (n*100-show-relationship-between-number-and-char 11 20)
+           ;; (n*100-show-relationship-between-number-and-char 21 30)
+           ;; (n*100-show-relationship-between-number-and-char 31 40)
+           ;; (n*100-show-relationship-between-number-and-char 41 50)
+           (n*100-show-relationship-between-number-and-char 9 10)
+           )
+    #+end_src
+*** regular expressions
+    [[shell:evince -p 758 ~/math/computer\ science/emacs/elisp-manual.pdf &]]
+
+    THE SPECIAL CHARACTERS SET:
+
+    .
+    : matches any single character except a newline
+
+    the following 3 postfixes match the largest possible substring
+    *
+    : 0,1,2,3,4...
+    +
+    : 1,2,3,4...
+    ?
+    : 0,1
+    the following 3 postfixes match the smallest possible substring
+    *?
+    +?
+    ??
+    ``the matcher processes a `*' construct by matching
+    as many repetitions as can be found
+    then it continues with the rest of the pattern
+    if that fails, backtracking occurs
+    discarding some of the matches of the `*'-modified construct
+    in the hope that that will make it possible to match
+    the rest of the pattern''
+    单独使用时两组中对应者表示的集合没有区别
+    和别的regexp并连时 都是从多到少尝试所有可能的匹配数
+    前一组尝试匹配最长的string
+    后一组尝试匹配最短的string
+    cdaaada:
+    "c[da]*a" 匹配 cdaaada
+    "c[da]*?a" 匹配 cda
+
+    [ ... ]
+    : character alternative
+    can use ranges
+    If case-fold-search is non-nil
+    ``[a-z]'' also matches upper-case letters
+    a different special characters set
+    inside character alternatives: `]' `-' `^'
+    to include a `]' in a character alternative
+    you must make it the first character
+    to include a `-', write `-' as the first or last character
+    of the character alternative, or put it after a range
+    you cannot use `\]' to include a `]'
+    inside a character alternative, since `\' is not special there
+    to include ‘^’ in a character alternative
+    put it anywhere but at the beginning
+
+    [^ ... ]
+    : complemented character alternative
+    a complemented character alternative can match a newline
+    unless newline is mentioned as one of the characters not to match
+
+    ^
+    :
+    When matching a buffer
+    `^' matches the empty string
+    but only at the beginning of a line in the text being matched
+    or the beginning of the accessible portion of the buffer
+    When matching a string instead of a buffer
+    `^' matches at the beginning of the string or after a newline character
+    for historical compatibility reasons
+    `^' can be used only at the beginning of the regular expression
+    or after `\(' `\(' `\|'
+
+    $
+    : is similar to `^'
+    but matches only at the end of a line
+    (or the end of the accessible portion of the buffer)
+    thus, `x+$' matches a string of one `x' or more at the end of a line
+    for historical compatibility reasons
+    `$' can be used only at the end of the regular expression
+    or before `\)' `\|'
+
+    \
+    :
+    quotes the special characters
+    \$ matches only $
+    \[ matches only [
+    `\' also has special meaning in the read syntax of lisp strings
+    and must be quoted with \
+    the regular expression that matches the `\' character is `\\'
+    to write a lisp string that contains the characters `\\'
+    lisp syntax requires you to quote each `\' with another `\'
+    therefore, the read syntax for a regular expression
+    matching `\' is `\\\\'
+
+
+    BACKSLASH CONSTRUCTS IN REGULAR EXPRESSIONS:
+    \|
+    : regular expression alternative
+    `foo\|bar' matches either `foo' or `bar' but no other string
+
+    \( ... \)
+    :
+    1. to enclose a set of `\|` alternatives for other operations
+       thus, the regular expression `\(foo\|bar\)x'
+       matches either `foox' or `barx'
+    2. to enclose a complicated expression
+       for the postfix operators `*' `+' `?' to operate on
+
+
+    M-x re-builder
+
+    #+begin_src emacs-lisp
+    (add-hook
+     'c-mode-hook
+     (lambda ()
+       (font-lock-add-keywords
+        nil
+        '(("\\<\\(FIXME\\):" 1 'font-lock-warning-face prepend)
+          ("\\<\\(and\\|or\\|not\\)\\>" . 'font-lock-keyword-face)))))
+    #+end_src
+
+* write mode for new language
+** var
+   #+begin_src emacs-lisp
+   (defvar wpdl-mode-hook nil)
+
+   (defvar wpdl-mode-map
+     (let ((wpdl-mode-map (make-keymap)))
+       (define-key wpdl-mode-map (kbd "C-j") 'newline-and-indent)
+       wpdl-mode-map)
+     "Keymap for WPDL major mode")
+
+
+   (add-to-list 'auto-mode-alist '("\\.wpd\\'" . wpdl-mode))
+
+
+   ;; Syntax highlighting using keywords
+   (defconst wpdl-font-lock-keywords-1
+     (list
+      ;; These define the beginning and end of each WPDL entity definition
+      ;; "PARTICIPANT" "END_PARTICIPANT" "MODEL" "END_MODEL" "WORKFLOW"
+      ;; "END_WORKFLOW" "ACTIVITY" "END_ACTIVITY" "TRANSITION"
+      ;; "END_TRANSITION" "APPLICATION" "END_APPLICATION" "DATA" "END_DATA"
+      ;; "TOOL_LIST" "END_TOOL_LIST"
+
+      ;; matches WPDL language keywords
+      ;; (regexp-opt '("PARTICIPANT" "END_PARTICIPANT" "MODEL" "END_MODEL"
+      ;;               "WORKFLOW" "END_WORKFLOW" "ACTIVITY" "END_ACTIVITY" "TRANSITION"
+      ;;               "END_TRANSITION" "APPLICATION" "END_APPLICATION" "DATA" "END_DATA"
+      ;;               "TOOL_LIST" "END_TOOL_LIST") t)
+      ;; the regexp is wrapped in < and >
+      ;; These indicate that the regexp should only match keywords
+      ;; if they are surrounded by either a space or a beginning/end-of-file
+      '("\\<\\(A\\(CTIVITY\\|PPLICATION\\)\\|DATA\\|END_\\(A\\(CTIVITY\\|PPLICATION\\)\\|DATA\\|MODEL\\|PARTICIPANT\\|T\\(OOL_LIST\\|RANSITION\\)\\|WORKFLOW\\)\\|MODEL\\|PARTICIPANT\\|T\\(OOL_LIST\\|RANSITION\\)\\|WORKFLOW\\)\\>" . font-lock-builtin-face)
+
+      ;; WPDL identifier names (variable names)
+      '("\\('\\w*'\\)" . font-lock-variable-name-face)
+
+      )
+     "Minimal highlighting expressions for WPDL mode.")
+
+   (defconst wpdl-font-lock-keywords-2
+     (append wpdl-font-lock-keywords-1
+             (list
+              ;; These are some possible attributes of WPDL entities
+              ;; "WPDL_VERSION" "VENDOR" "CREATED" "NAME" "DESCRIPTION"
+              ;; "AUTHOR" "STATUS" "EXTENDED_ATTRIBUTE" "TYPE" "TOOLNAME"
+              ;; "IN_PARAMETERS" "OUT_PARAMETERS" "DEFAULT_VALUE"
+              ;; "IMPLEMENTATION" "PERFORMER" "SPLIT" "CONDITION" "ROUTE"
+              ;; "JOIN" "OTHERWISE" "TO" "FROM"
+
+              '("\\<\\(AUTHOR\\|C\\(ONDITION\\|REATED\\)\\|DE\\(FAULT_VALUE\\|SCRIPTION\\)\\|EXTENDED_ATTRIBUTE\\|FROM\\|I\\(MPLEMENTATION\\|N_PARAMETERS\\)\\|JOIN\\|NAME\\|O\\(THERWISE\\|UT_PARAMETERS\\)\\|PERFORMER\\|ROUTE\\|S\\(PLIT\\|TATUS\\)\\|T\\(O\\(OLNAME\\)?\\|YPE\\)\\|VENDOR\\|WPDL_VERSION\\)\\>" . font-lock-keyword-face)
+
+              '("\\<\\(TRUE\\|FALSE\\)\\>" . font-lock-constant-face)))
+     "Additional Keywords to highlight in WPDL mode.")
+
+   (defconst wpdl-font-lock-keywords-3
+     (append wpdl-font-lock-keywords-2
+             (list
+              ;; These are some possible built-in values for WPDL attributes
+              ;; "ROLE" "ORGANISATIONAL_UNIT" "STRING" "REFERENCE" "AND"
+              ;; "XOR" "WORKFLOW" "SYNCHR" "NO" "APPLICATIONS" "BOOLEAN"
+              ;; "INTEGER" "HUMAN" "UNDER_REVISION" "OR"
+
+              '("\\<\\(A\\(ND\\|PPLICATIONS\\)\\|BOOLEAN\\|HUMAN\\|INTEGER\\|NO\\|OR\\(GANISATIONAL_UNIT\\)?\\|R\\(EFERENCE\\|OLE\\)\\|S\\(TRING\\|YNCHR\\)\\|UNDER_REVISION\\|WORKFLOW\\|XOR\\)\\>" . font-lock-constant-face)))
+     "Balls-out highlighting in WPDL mode.")
+
+
+   (defvar wpdl-font-lock-keywords wpdl-font-lock-keywords-3
+     "Default highlighting expressions for WPDL mode.")
+
+
+
+
+
+   ;; Indentation
+   (defun wpdl-indent-line ()
+     "Indent current line as WPDL code."
+     (interactive)
+     (beginning-of-line)
+     (if (bobp)
+         (indent-line-to 0)               ; First line is always non-indented
+       (let ((not-indented t) cur-indent)
+         (if (looking-at "^[ \t]*END_") ; If the line we are looking at is the end of a block, then decrease the indentation
+             (progn
+               (save-excursion
+                 (forward-line -1)
+                 (setq cur-indent (- (current-indentation) default-tab-width)))
+               (if (< cur-indent 0) ; We can't indent past the left margin
+                   (setq cur-indent 0)))
+           (save-excursion
+             (while not-indented ; Iterate backwards until we find an indentation hint
+               (forward-line -1)
+               (if (looking-at "^[ \t]*END_") ; This hint indicates that we need to indent at the level of the END_ token
+                   (progn
+                     (setq cur-indent (current-indentation))
+                     (setq not-indented nil))
+                 (if (looking-at "^[ \t]*\\(PARTICIPANT\\|MODEL\\|APPLICATION\\|WORKFLOW\\|ACTIVITY\\|DATA\\|TOOL_LIST\\|TRANSITION\\)") ; This hint indicates that we need to indent an extra level
+                     (progn
+                       (setq cur-indent (+ (current-indentation) default-tab-width)) ; Do the actual indenting
+                       (setq not-indented nil))
+                   (if (bobp)
+                       (setq not-indented nil)))))))
+         (if cur-indent
+             (indent-line-to cur-indent)
+           (indent-line-to 0))))) ; If we didn't see an indentation hint, then allow no indentation
+
+
+   ;; The syntax table
+   (defvar wpdl-mode-syntax-table
+     (let ((wpdl-mode-syntax-table (make-syntax-table)))
+
+       ;; This is added so entity names with underscores can be more easily parsed
+       (modify-syntax-entry ?_ "w" wpdl-mode-syntax-table)
+
+       ;; Comment styles are same as C++
+       (modify-syntax-entry ?/ ". 124b" wpdl-mode-syntax-table)
+       (modify-syntax-entry ?* ". 23" wpdl-mode-syntax-table)
+       (modify-syntax-entry ?\n "> b" wpdl-mode-syntax-table)
+       wpdl-mode-syntax-table)
+     "Syntax table for wpdl-mode")
+
+
+   ;; The entry function
+   (defun wpdl-mode ()
+     (interactive)
+     (kill-all-local-variables)
+     (use-local-map wpdl-mode-map)
+     (set-syntax-table wpdl-mode-syntax-table)
+     ;; Set up font-lock
+     (set (make-local-variable 'font-lock-defaults) '(wpdl-font-lock-keywords))
+     ;; Register our indentation function
+     (set (make-local-variable 'indent-line-function) 'wpdl-indent-line)
+     (setq major-mode 'wpdl-mode)
+     (setq mode-name "WPDL")
+     (run-hooks 'wpdl-mode-hook))
+
+   (provide 'wpdl-mode)
+   #+end_src
+* about print
+  #+begin_src emacs-lisp
+  (message "hi")
+  (message "Her age is: %d " 16)        ;; %d is for number
+  (message "Her name is: %s " "Vicky")  ;; %s is for string
+  (message "Her mid init is: %c " 86)   ;; %c is for character in ASCII code
+
+
+  (print "kkk")
+  (print 666)
+
+  (prin1 "kkk")
+  (prin1 666)
+
+  (princ '("x" "y")) ;; result display is (x y)
+  (prin1 '("x" "y")) ;; result display is ("x" "y")
+
+
+  ;; (format STRING &rest OBJECTS)
+  (progn
+   (describe-function 'format)
+   (message "eval (describe-function 'format)."))
+  #+end_src
+* >< rx
+  #+begin_src emacs-lisp
+  (rx 57)
+  (rx buffer-end)
+  (rx buffer-start)
+  (rx "123")
+  (rx not-newline)
+  (rx anything)
+
+  (rx line-start)
+  (rx line-end)
+
+  (rx string-start)
+  (rx string-end)
+
+  (rx word-start)
+  (rx word-end)
+
+  (rx word-boundary)
+  (rx (not word-boundary))
+
+  (rx (in "kasasdfdk" digit 39 76))
+  (rx (in (?0 . ?9)))
+  (rx (in (48 . 57)))
+  (rx (not (in (48 . 57))))
+  (rx (not (in "0123456789")))
+
+  (rx (not "0123456789"))
+
+
+  (rx (sequence word-boundary
+                (not (in (48 . 57)))
+                (in "kasasdfdk" digit 39 76)))
+
+  (rx (or word-boundary
+          (not (in (48 . 57)))
+          (in "kasasdfdk" digit 39 76)))
+
+  (rx (minimal-match "SEXP"))
+
+  (rx (zero-or-more "kkk" "aaa"))
+  (rx (zero-or-more anything))
+  (rx (zero-or-more (sequence "kkk" "aaa")))
+  (rx (one-or-more (sequence "kkk" "aaa")))
+  (rx (zero-or-one (sequence "kkk" "aaa")))
+  (rx (repeat 10 (sequence "kkk" "aaa")))
+  (rx (>= 10 (sequence "kkk" "aaa")))
+  (rx (repeat 10 20 (sequence "kkk" "aaa")))
+
+  (rx (eval 1))
+  #+end_src
