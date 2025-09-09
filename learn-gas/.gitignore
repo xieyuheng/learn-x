@@ -1,2 +1,5 @@
+# asm
+
 *.o
-*.exe
+lib
+out

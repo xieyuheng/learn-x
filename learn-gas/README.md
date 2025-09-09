@@ -1,4 +1,4 @@
-# x86 Assembly
+# Learn GAS (GNU Assembler)
 
 为了学习 [IUCompilerCourse/Essentials-of-Compilation](https://github.com/IUCompilerCourse/Essentials-of-Compilation)，
 重新学习 x86 Assembly。
@@ -14,6 +14,3 @@ jonesforth 是 32bits 的，
 
 学习过程用中文流水账记录一下，希望几年之后，
 再次忘光之后，可以帮助自己更快回忆起来。
-
-- [Makefile tutorial](https://makefiletutorial.com)
-- [Makefile manual](https://www.gnu.org/software/make/manual/make.html)
