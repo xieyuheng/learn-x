@@ -1,10 +1,10 @@
-    .global _start
+        .global _start
 
-    .data
+        .data
 
-    .text
+        .text
 
 _start:
-    movq $60, %rax
-    movq $6, %rdi
-    syscall
+        movq $60, %rax
+        movq $6, %rdi
+        syscall
