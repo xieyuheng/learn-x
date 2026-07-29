@@ -19,6 +19,7 @@ read:
   mov rsi, buffer   ; pass address of the buffer to read to
   mov rdx, 1        ; tell sys_read to read one char from stdin
   syscall           ; call sys_read
+
   cmp rax, 0        ; look at sys_read's return value in rax
   je exit           ; jump if equal to 0 (0 means eof) to exit:
                     ; or fall through to test for lowercase
@@ -27,6 +28,7 @@ read:
   jb write                ; if below 'a' in ascii chart, not lowercase
   cmp byte [buffer], 7ah  ; test input char against lowercase 'z'
   ja write                ; if above 'z' in ascii chart, not lowercase
+
                           ; at this point, we have a lowercase character
   sub byte [buffer], 20h  ; subtract 20h from lowercase to give uppercase
                           ; and then write out the char to stdout:
