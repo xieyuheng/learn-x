@@ -1,4 +1,5 @@
-;; nasm -f bin shellcode.nasm -o shellcode.nasm.flat
+;; build:
+;;   nasm -f bin shellcode.nasm -o shellcode.nasm.flat
 
 bits 64
 

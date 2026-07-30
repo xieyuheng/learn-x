@@ -1,4 +1,5 @@
-;; nasm -f bin hello.nasm -o hello.nasm.flat
+;; build:
+;;   nasm -f bin hello.nasm -o hello.nasm.flat
 
 bits 64
 

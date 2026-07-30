@@ -1,5 +1,10 @@
-;; nasm -f elf64 to-upper-case.nasm -o to-upper-case.o
-;; gcc -m64 -no-pie to-upper-case.o -o to-upper-case.exe
+;; build:
+;;   nasm -f elf64 to-upper-case.nasm -o to-upper-case.o
+;;   gcc -m64 -no-pie to-upper-case.o -o to-upper-case.exe
+;; usage:
+;;   ./to-upper-case.exe > OUTPUT-FILE < INPUT-FILE
+;; example:
+;;   ./to-upper-case.exe < to-upper-case.nasm
 
 section .bss
   buffer resb 1
