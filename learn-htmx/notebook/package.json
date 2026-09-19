@@ -8,7 +8,9 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "@hono/node-server": "^2.1.1",
     "handlebars": "^4.7.9",
+    "hono": "^4.13.8",
     "htmx.org": "4.0.0"
   },
   "devDependencies": {
