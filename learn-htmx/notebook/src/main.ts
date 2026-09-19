@@ -15,14 +15,13 @@ app.get("/", async (c) => {
   return c.html(await renderPage("pages/index", { title: "notebook" }))
 })
 
-// Fragments: the server returns HTML, htmx swaps it in. No JSON.
-app.get("/fragments/hello", async (c) => {
+app.get("/components/hello", async (c) => {
   return c.html(
     await render("components/hello", { now: new Date().toLocaleTimeString() }),
   )
 })
 
-app.post("/fragments/greet", async (c) => {
+app.post("/components/greet", async (c) => {
   const body = await c.req.parseBody()
   const value = body["name"]
   const name = typeof value === "string" ? value.trim() : ""

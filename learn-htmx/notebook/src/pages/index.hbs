@@ -1,38 +1,36 @@
-<header class="mb-8">
-  <h1 class="text-3xl font-semibold">notebook</h1>
-  <p>
-    htmx 4 playground &middot; the server returns HTML, not JSON
-  </p>
-</header>
+<div class="flex-col space-y-2">
+  <header>
+    <h1 class="text-3xl font-bold">notebook</h1>
+    <p>
+      htmx 4 playground
+    </p>
+  </header>
 
-<section class="mb-8">
-  <h2 class="mb-2 font-medium">GET: swap a fragment</h2>
-  <button
-    class="px-3 py-1"
-    hx-get="/fragments/hello"
-    hx-target="#hello"
-    hx-indicator="#hello-indicator"
-  >
-    Say hello
-  </button>
-  <span id="hello-indicator" class="htmx-indicator">
-    loading&hellip;
-  </span>
-  <div id="hello">nothing yet</div>
-</section>
+  <section>
+    <h2 class="font-bold">GET: swap a fragment</h2>
+    <button
+      class="border px-2"
+      hx-get="/components/hello"
+      hx-target="#hello"
+    >
+      Say hello
+    </button>
+    <div id="hello">nothing yet</div>
+  </section>
 
-<section>
-  <h2 class="mb-2 font-medium">POST a form: 422 validation</h2>
-  <form class="mb-2" hx-post="/fragments/greet" hx-target="#greet">
-    <input
-      class="border px-3 py-1"
-      type="text"
-      name="name"
-      placeholder="your name"
-    />
-    <button class="px-3 py-1" type="submit">Greet</button>
-  </form>
-  <div id="greet">
-    submit an empty name to see the 422 path
-  </div>
-</section>
+  <section>
+    <h2 class="font-bold">POST a form: 422 validation</h2>
+    <form hx-post="/components/greet" hx-target="#greet">
+      <input
+        class="border px-2"
+        type="text"
+        name="name"
+        placeholder="your name"
+      />
+      <button class="border px-2" type="submit">Greet</button>
+    </form>
+    <div id="greet">
+      submit an empty name to see the 422 path
+    </div>
+  </section>
+</div>
