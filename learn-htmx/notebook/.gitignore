@@ -1,0 +1,17 @@
+# npm
+node_modules
+
+# build output (public/index.html is hand written and IS tracked)
+public/app.css
+public/vendor
+
+# 0x
+*.0x/
+
+# emacs
+*~
+*#*
+.#*
+
+# idea
+.idea

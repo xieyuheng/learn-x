@@ -1,0 +1,14 @@
+/*
+ * Tailwind v4.
+ *
+ * There is no `content` config anymore: Tailwind scans the current working
+ * directory automatically, skipping anything in .gitignore. That is why
+ * `public/vendor` is gitignored -- so the minified htmx bundle is never
+ * scanned for class names.
+ */
+@import "tailwindcss";
+
+/* Extra source roots, relative to this file. */
+@source "../src";
+@source "../views";
+@source "../public/index.html";
