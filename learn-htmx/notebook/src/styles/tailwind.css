@@ -1,9 +1,1 @@
-/*
- * Tailwind itself.
- *
- * Tailwind v4 has no `content` config: it scans the working directory and
- * skips whatever .gitignore lists. So `public/index.css` (the output) and
- * `public/vendor` (the vendored htmx) are skipped, while src/*.hbs, src/*.ts
- * and hand written files in public/ are scanned.
- */
 @import "tailwindcss";

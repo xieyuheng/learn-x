@@ -1,49 +1,38 @@
-<header class="flex flex-col gap-1">
+<header class="mb-8">
   <h1 class="text-3xl font-semibold">notebook</h1>
-  <p class="text-sm text-neutral-400">
-    htmx 4 playground &middot; the server returns HTML fragments, not JSON
+  <p class="text-neutral-400">
+    htmx 4 playground &middot; the server returns HTML, not JSON
   </p>
 </header>
 
-<section class="flex flex-col gap-3 rounded-lg border border-neutral-800 p-4">
-  <h2 class="font-medium">GET &rarr; swap a fragment</h2>
-  <div class="flex items-center gap-3">
-    <button
-      class="rounded bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white"
-      hx-get="/fragments/hello"
-      hx-target="#hello"
-      hx-indicator="#hello-indicator"
-    >
-      Say hello
-    </button>
-    <span id="hello-indicator" class="htmx-indicator text-sm text-neutral-500">
-      loading&hellip;
-    </span>
-  </div>
-  <div id="hello" class="text-sm text-neutral-500">nothing yet</div>
+<section class="mb-8">
+  <h2 class="mb-2 font-medium">GET: swap a fragment</h2>
+  <button
+    class="bg-neutral-800 px-3 py-1"
+    hx-get="/fragments/hello"
+    hx-target="#hello"
+    hx-indicator="#hello-indicator"
+  >
+    Say hello
+  </button>
+  <span id="hello-indicator" class="htmx-indicator text-neutral-400">
+    loading&hellip;
+  </span>
+  <div id="hello" class="text-neutral-400">nothing yet</div>
 </section>
 
-<section class="flex flex-col gap-3 rounded-lg border border-neutral-800 p-4">
-  <h2 class="font-medium">POST a form &rarr; 422 validation</h2>
-  <form
-    class="flex items-center gap-3"
-    hx-post="/fragments/greet"
-    hx-target="#greet"
-  >
+<section>
+  <h2 class="mb-2 font-medium">POST a form: 422 validation</h2>
+  <form class="mb-2" hx-post="/fragments/greet" hx-target="#greet">
     <input
-      class="rounded border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm"
+      class="border border-neutral-700 px-3 py-1"
       type="text"
       name="name"
       placeholder="your name"
     />
-    <button
-      class="rounded bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white"
-      type="submit"
-    >
-      Greet
-    </button>
+    <button class="bg-neutral-800 px-3 py-1" type="submit">Greet</button>
   </form>
-  <div id="greet" class="text-sm text-neutral-500">
+  <div id="greet" class="text-neutral-400">
     submit an empty name to see the 422 path
   </div>
 </section>
