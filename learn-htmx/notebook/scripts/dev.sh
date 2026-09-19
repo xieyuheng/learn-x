@@ -8,8 +8,8 @@ bash scripts/vendor.sh
 
 # Build the css once, so the first page load is styled.
 pnpm exec tailwindcss \
-  --input styles/app.css \
-  --output public/app.css
+  --input src/styles/index.css \
+  --output public/index.css
 
 # Ctrl-C already reaches every process in the group. This trap is a safety net
 # for when only this script is signalled, and it resets the handlers first so
@@ -24,19 +24,18 @@ trap cleanup EXIT INT TERM
 # ends, and a background job in a non-interactive shell gets stdin from
 # /dev/null, so plain `--watch` would quit before it ever builds.
 pnpm exec tailwindcss \
-  --input styles/app.css \
-  --output public/app.css \
+  --input src/styles/index.css \
+  --output public/index.css \
   --watch always &
 
-# Restart on server code and on template edits (compiled templates are cached
-# in memory, so a restart is what makes an edit take effect). css needs no
-# restart: the browser refetches public/app.css on reload.
+# Restart on anything under src/: server code, and templates (compiled
+# templates are cached in memory, so a restart is what makes an edit take
+# effect).
 #
-# `--watch-path` replaces the default module-graph watching, so `src` has to be
+# `--watch-path` replaces the default module-graph watching, so src has to be
 # listed explicitly.
 node --watch \
   --watch-path=src \
-  --watch-path=views \
   src/main.ts &
 
 wait

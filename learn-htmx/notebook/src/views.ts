@@ -2,7 +2,8 @@ import Handlebars from "handlebars"
 import { readFile, readdir } from "node:fs/promises"
 import { join, resolve } from "node:path"
 
-const viewsRoot = resolve(import.meta.dirname, "..", "views")
+// Templates live next to this file: src/layouts, src/pages, src/components.
+const templatesRoot = import.meta.dirname
 
 const templates = new Map<string, Handlebars.TemplateDelegate>()
 
@@ -14,7 +15,7 @@ async function loadPartials(): Promise<void> {
   }
   partialsLoaded = true
 
-  const dir = join(viewsRoot, "partials")
+  const dir = join(templatesRoot, "partials")
 
   let entries: string[]
   try {
@@ -41,7 +42,7 @@ async function loadTemplate(
     return cached
   }
 
-  const source = await readFile(join(viewsRoot, `${name}.hbs`), "utf8")
+  const source = await readFile(join(templatesRoot, `${name}.hbs`), "utf8")
   const template = Handlebars.compile(source, { noEscape: false })
   templates.set(name, template)
   return template
@@ -57,7 +58,7 @@ export async function render(
   return template(data)
 }
 
-/** Render a full page: the template goes into `views/layouts/main.hbs`. */
+/** Render a full page: the template goes into `src/layouts/main.hbs`. */
 export async function renderPage(
   name: string,
   data: Record<string, unknown> = {},

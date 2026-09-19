@@ -4,6 +4,6 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-# Only TS and CSS: prettier's handlebars parser drops `<!doctype html>` and
-# mangles inline <script>, so views/ is left alone.
-pnpm exec prettier src styles --write
+# TS and CSS only: prettier's handlebars parser drops `<!doctype html>` and
+# mangles inline <script>, so *.hbs is left alone.
+pnpm exec prettier "src/**/*.ts" "src/**/*.css" --write

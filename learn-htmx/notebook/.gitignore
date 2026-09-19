@@ -2,7 +2,7 @@
 node_modules
 
 # generated under public/ (everything else there is hand written and tracked)
-/public/app.css
+/public/index.css
 /public/vendor
 
 # 0x

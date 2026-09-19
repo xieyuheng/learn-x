@@ -4,4 +4,4 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-rm -rf public/app.css public/vendor
+rm -rf public/index.css public/vendor

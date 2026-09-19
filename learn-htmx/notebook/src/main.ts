@@ -18,7 +18,7 @@ app.get("/", async (c) => {
 // Fragments: the server returns HTML, htmx swaps it in. No JSON.
 app.get("/fragments/hello", async (c) => {
   return c.html(
-    await render("fragments/hello", { now: new Date().toLocaleTimeString() }),
+    await render("components/hello", { now: new Date().toLocaleTimeString() }),
   )
 })
 
@@ -30,12 +30,12 @@ app.post("/fragments/greet", async (c) => {
   // htmx 4 swaps 4xx responses too, so a validation fragment just works.
   if (name === "") {
     return c.html(
-      await render("fragments/error", { message: "Please enter a name." }),
+      await render("components/error", { message: "Please enter a name." }),
       422,
     )
   }
 
-  return c.html(await render("fragments/greet", { name }))
+  return c.html(await render("components/greet", { name }))
 })
 
 // Everything else under public/: the tailwind output, the vendored htmx, and
