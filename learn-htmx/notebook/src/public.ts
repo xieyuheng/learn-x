@@ -19,7 +19,8 @@ const contentTypes: Record<string, string> = {
 }
 
 /**
- * Serve a file from `public/`. Returns false when the path does not name an
+ * Serve a file from `public/` (which is entirely generated: tailwind output
+ * and the vendored htmx bundle). Returns false when the path does not name an
  * existing file, so the caller can fall through to other routes.
  */
 export async function servePublic(
@@ -33,8 +34,7 @@ export async function servePublic(
     return false
   }
 
-  const relative = decoded === "/" ? "index.html" : decoded.replace(/^\/+/, "")
-  const filePath = resolve(root, relative)
+  const filePath = resolve(root, decoded.replace(/^\/+/, ""))
 
   // Block `..` from escaping `public/`.
   if (filePath !== root && !filePath.startsWith(root + sep)) {

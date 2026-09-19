@@ -6,8 +6,19 @@ cd "$(dirname "$0")/.."
 
 bash scripts/vendor.sh
 
-# Ctrl-C takes down the whole process group.
-trap 'kill 0' EXIT INT TERM
+# Build the css once, so the first page load is styled.
+pnpm exec tailwindcss \
+  --input styles/app.css \
+  --output public/app.css
+
+# Ctrl-C already reaches every process in the group. This trap is a safety net
+# for when only this script is signalled, and it resets the handlers first so
+# that killing the group does not re-enter the handler.
+cleanup() {
+  trap - EXIT INT TERM
+  kill 0
+}
+trap cleanup EXIT INT TERM
 
 # `--watch always` matters: tailwind's plain `--watch` exits as soon as stdin
 # ends, and a background job in a non-interactive shell gets stdin from
@@ -17,6 +28,15 @@ pnpm exec tailwindcss \
   --output public/app.css \
   --watch always &
 
-node --watch src/main.ts &
+# Restart on server code and on template edits (compiled templates are cached
+# in memory, so a restart is what makes an edit take effect). css needs no
+# restart: the browser refetches public/app.css on reload.
+#
+# `--watch-path` replaces the default module-graph watching, so `src` has to be
+# listed explicitly.
+node --watch \
+  --watch-path=src \
+  --watch-path=views \
+  src/main.ts &
 
 wait

@@ -1,51 +1,27 @@
 # notebook
 
-A playground for learning [htmx 4](https://four.htmx.org/) with:
+htmx 4 练习项目：`node:http` + TypeScript + handlebars + Tailwind v4。
 
-- **backend**: plain `node:http` + TypeScript, run directly by Node (no build step)
-- **templates**: [handlebars.js](https://handlebarsjs.com/)
-- **styles**: `@tailwindcss/cli` (Tailwind v4)
-- **htmx**: installed with pnpm, vendored from `node_modules` into `public/vendor/`
-
-## Layout
-
-```
-src/main.ts        http server + routes
-src/views.ts       handlebars engine (fragments, partials, layouts)
-src/public.ts      static file serving from public/
-views/             *.hbs templates
-styles/app.css     tailwind entry
-public/index.html  hand written page shell (tracked)
-public/app.css     tailwind output (generated)
-public/vendor/     copied from node_modules (generated)
-scripts/*.sh       all entry points
-```
-
-## Commands
+## 命令
 
 ```sh
 pnpm install
 
-scripts/dev.sh      # tailwind --watch + node --watch
-scripts/build.sh    # vendor + tailwind (once) + tsc --noEmit
-scripts/start.sh    # run the server without watching
+scripts/dev.sh      # 开发：tailwind/node 监听
+scripts/build.sh    # 构建 public/
+scripts/start.sh    # 不监听，直接跑
 scripts/check.sh    # tsc --noEmit
 scripts/format.sh   # prettier
-scripts/clean.sh    # remove generated files in public/
-scripts/vendor.sh   # copy htmx into public/vendor/
+scripts/clean.sh    # 删除 public/ 下的产物
+scripts/vendor.sh   # 把 htmx 复制到 public/vendor/
 ```
 
-There are no `scripts` in `package.json` on purpose: every entry point is a
-file in `scripts/`.
+## 结构
 
-## The demo routes
-
-The app is deliberately almost empty; the routes exist to prove the plumbing
-works end to end.
-
-| route                     | returns                                   |
-| ------------------------- | ----------------------------------------- |
-| `GET /`                   | `public/index.html`                       |
-| `GET /fragments/hello`    | handlebars fragment                       |
-| `POST /fragments/greet`   | fragment, or a 422 fragment for empty input |
-| anything else             | handlebars page rendered into a layout    |
+```
+src/                服务器与 handlebars 封装
+views/              *.hbs 模板
+styles/app.css      tailwind 入口
+public/             静态文件（app.css 与 vendor/ 是产物）
+scripts/*.sh        所有入口
+```

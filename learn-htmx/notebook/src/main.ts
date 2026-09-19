@@ -26,6 +26,12 @@ const server = createServer(async (request, response) => {
   const path = url.pathname
 
   try {
+    // Every page goes through a handlebars layout.
+    if (method === "GET" && path === "/") {
+      sendHtml(response, await renderPage("pages/index", { title: "notebook" }))
+      return
+    }
+
     // Fragments: the server returns HTML, htmx swaps it in. No JSON.
     if (method === "GET" && path === "/fragments/hello") {
       sendHtml(
@@ -55,7 +61,7 @@ const server = createServer(async (request, response) => {
       return
     }
 
-    // Static assets, including `/` -> `public/index.html`.
+    // Static assets: `/app.css` and `/vendor/*`. `public/` is build output.
     if (method === "GET" && (await servePublic(path, response))) {
       return
     }
